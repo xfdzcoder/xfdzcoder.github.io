@@ -6,5 +6,3 @@ draft = true
 
 你好，Hello World !
 **你好，Hello World !**
-
-
