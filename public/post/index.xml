@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>夏风冬至站</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on 夏风冬至站</description>
+    <title>Posts on 夏风冬至站</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on 夏风冬至站</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Wed, 17 Jul 2024 21:47:40 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>优质Java站点</title>
       <link>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>

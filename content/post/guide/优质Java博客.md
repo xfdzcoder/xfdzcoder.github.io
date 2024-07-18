@@ -1,11 +1,16 @@
 +++
 title = '优质Java站点'
+
 date = 2024-07-17T21:47:40+08:00
-draft = true
+
+draft = false
+
+pin = true
 
 +++
 
 汇总一下Java学习路上的优质Java站点，持续更新……
+<!--more-->
 
 #### 知识/教程
 
@@ -30,4 +35,3 @@ draft = true
 [通过动画可视化数据结构和算法 - VisuAlgo](https://visualgo.net/zh)
 
 [力扣 (LeetCode) 全球极客挚爱的技术成长平台](https://leetcode.cn/)
-

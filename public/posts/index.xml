@@ -2,11 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 夏风冬至站</title>
-    <link>https://example.org/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on 夏风冬至站</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Jul 2024 21:47:40 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>优质Java站点</title>
+      <link>http://localhost:1313/posts/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Wed, 17 Jul 2024 21:47:40 +0800</pubDate>
+      <guid>http://localhost:1313/posts/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</guid>
+      <description>汇总一下Java学习路上的优质Java站点，持续更新……&#xA;知识/教程 Java 面试指南 | JavaGuide&#xA;代码随想录 (programmercarl.com)&#xA;Java 全栈知识体系 (pdai.tech)&#xA;美团技术团队 (meituan.com)&#xA;兵器|代码重工 (wolai.com)&#xA;菜鸟教程 - 学的不仅是技术，更是梦想！ (runoob.com)&#xA;w3school 在线教程&#xA;MDN 网络文档 (mozilla.org)&#xA;刷题 通过动画可视化数据结构和算法 - VisuAlgo&#xA;力扣 (LeetCode) 全球极客挚爱的技术成长平台</description>
+    </item>
+    <item>
+      <title>My First Post</title>
+      <link>http://localhost:1313/posts/my-first-post/</link>
+      <pubDate>Sun, 07 Jul 2024 22:48:30 +0800</pubDate>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
+      <description>你好，Hello World ! 你好，Hello World !</description>
+    </item>
   </channel>
 </rss>
