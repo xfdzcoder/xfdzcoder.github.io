@@ -1,4 +1,55 @@
-baseURL = 'https://example.org/'
-languageCode = 'zh-us'
-title = '夏风冬至站'
-theme = 'github-style'
+baseURL = "https://xfdzcoder.github.io/home"
+languageCode = "zh-cn"
+title = "XFDZ's blog"
+theme = "github-style"
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+
+[params]
+  author = "XFDZ"
+  description = "A coder."
+  github = "xfdzcoder"
+  facebook = ""
+  twitter = ""
+  linkedin = ""
+  instagram = ""
+  tumblr = ""
+  email = "xfdzcoder@gmail.com"
+  url = ""
+  keywords = "blog, google analytics"
+  rss = false
+  lastmod = true
+  favicon = "/images/github-mark.png"
+  avatar = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F18%2F10-06-57-0a54e79d9d15bff3ff45ed23c3ca3725-F81SJ7MxrpkPV1DKwIHIhBQ5H2MXFq7E-e4dab1.jpg"
+  headerIcon = "/images/github-mark-white.png"
+  location = "China"
+  userStatusEmoji = "😀"
+  enableGitalk = false
+
+  [params.gitalk]
+    clientID = "Your client ID" # Your client ID
+    clientSecret = "Your client secret" # Your client secret
+    repo = "LuvSia" # 您的博客的github地址Repository name，例如：xxxx.github.io
+    owner = "ventusoon" # 您的GitHub ID
+    admin = "ventusoon" # 您的GitHub ID
+    id = "location.pathname" # 文章页面的链接地址就是ID
+    labels = "gitalk" # Github issue labels. If you used to use Gitment, you can change it
+    perPage = 15 # Pagination size, with maximum 100.
+    pagerDirection = "last" # Comment sorting direction, available values are 'last' and 'first'.
+    createIssueManually = true # 设置为true，如果是管理员登录，会自动创建issue，如果是false，需要管理员手动添加第一个评论(issue)
+    distractionFreeMode = false # Enable hot key (cmd|ctrl + enter) submit comment.
+    proxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token" # 可以自行添加反向代理
+#  [[params.links]]
+#    title = "Link"
+#    href = "https://github.com/xfdzcoder"
+#  [[params.links]]
+#    title = "Link2"
+#    href = "https://meik2333.com"
+#    icon = "https://meik2333.com/images/avatar.png"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[services]
+  [services.googleAnalytics]
+    ID = "UA-123456-789"

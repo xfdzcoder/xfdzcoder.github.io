@@ -6,8 +6,22 @@
     <description>Recent content on 夏风冬至站</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Wed, 17 Jul 2024 21:47:40 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jul 2024 14:13:04 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WindowsTerminal美化教程</title>
+      <link>http://localhost:1313/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Fri, 19 Jul 2024 14:13:04 +0800</pubDate>
+      <guid>http://localhost:1313/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</guid>
+      <description>oh-my-posh Home | Oh My Posh&#xA;先安装一下oh-my-posh，然后选择一个自己喜欢的主题就好了。&#xA;下面记录一下我的主题和配置。&#xA;主题（emodipt-extend-custom） 效果展示：&#xA;{ &amp;#34;$schema&amp;#34;: &amp;#34;https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json&amp;#34;, &amp;#34;blocks&amp;#34;: [ { &amp;#34;alignment&amp;#34;: &amp;#34;left&amp;#34;, &amp;#34;newline&amp;#34;: true, &amp;#34;segments&amp;#34;: [ { &amp;#34;foreground&amp;#34;: &amp;#34;#E5C07B&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;time_format&amp;#34;: &amp;#34;15:04:05&amp;#34; }, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34;[{{ .CurrentDate | date .Format }}]&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;time&amp;#34; }, { &amp;#34;type&amp;#34;: &amp;#34;os&amp;#34;, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;foreground&amp;#34;: &amp;#34;#26C6DA&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34; {{ .Icon }} {{ .UserName }}&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;windows&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;display_distro_name&amp;#34;: true } }, { &amp;#34;type&amp;#34;: &amp;#34;java&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;home_enabled&amp;#34;: true, &amp;#34;display_mode&amp;#34;: &amp;#34;always&amp;#34; }, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;foreground&amp;#34;: &amp;#34;#E06C75&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34;  {{ .</description>
+    </item>
+    <item>
+      <title>mysql中datadir目录下的文件</title>
+      <link>http://localhost:1313/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Fri, 19 Jul 2024 09:52:52 +0800</pubDate>
+      <guid>http://localhost:1313/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <description>MySQL5和8中的数据库目录结构的异同</description>
+    </item>
     <item>
       <title>优质Java站点</title>
       <link>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
