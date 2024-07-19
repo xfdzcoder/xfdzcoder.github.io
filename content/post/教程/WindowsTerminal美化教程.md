@@ -4,7 +4,7 @@ title: 'WindowsTerminal美化教程'
 
 date: 2024-07-19T14:13:04+08:00
 
-draft: true
+draft: false
 
 pin: false
 
