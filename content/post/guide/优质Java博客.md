@@ -12,6 +12,8 @@ summary: "汇总一下Java学习路上的优质Java站点，持续更新……"
 
 ---
 
++++
+
 #### 知识/教程
 
 [Java 面试指南 | JavaGuide](https://javaguide.cn/)
@@ -35,4 +37,20 @@ summary: "汇总一下Java学习路上的优质Java站点，持续更新……"
 [通过动画可视化数据结构和算法 - VisuAlgo](https://visualgo.net/zh)
 
 [力扣 (LeetCode) 全球极客挚爱的技术成长平台](https://leetcode.cn/)
+
+#### 常用工具
+
+（这里就不分享什么idea之类的IDE必备工具了
+
+##### 浏览器插件
+
+[介绍 | Talent划词翻译 (talentranslate.com)](https://docs.talentranslate.com/)
+
+##### windows工具
+
+[uTools官网 - 新一代效率工具平台](https://u.tools/)
+
+[Snipaste - 截图 + 贴图](https://zh.snipaste.com/)
+
+[voidtools](https://www.voidtools.com/zh-cn/)
 
