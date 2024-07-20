@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MySQL on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/home/categories/mysql/</link>
+    <description>Recent content in MySQL on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Fri, 19 Jul 2024 09:52:52 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/home/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mysql中datadir目录下的文件</title>
+      <link>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Fri, 19 Jul 2024 09:52:52 +0800</pubDate>
+      <guid>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <description>MySQL5和8中的数据库目录结构的异同</description>
+    </item>
+  </channel>
+</rss>

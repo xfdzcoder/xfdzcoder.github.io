@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/home/categories/java/</link>
+    <description>Recent content in Java on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <atom:link href="http://localhost:1313/home/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java核心技术卷一阅读笔记（1.1 ~ 7.2.5）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%801.1-~-7.2.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%801.1-~-7.2.5/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷一阅读笔记（7.3 ~ 9.5.3）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%807.3-~-9.5.3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%807.3-~-9.5.3/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷二阅读笔记（1.2 ~ 3.9）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C1.2-~-3.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C1.2-~-3.9/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷二阅读笔记（4.1 ~ ）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>JDK 的动态代理之源码 DEBUG</title>
+      <link>http://localhost:1313/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</guid>
+      <description>废话不多说，上案例代码： public class Main { public static void main(String[] args) { // 先不用管，后面会提到 System.setProperty(&amp;#34;sun.misc.ProxyGenerator.saveGeneratedFiles&amp;#34;, &amp;#34;true&amp;#34;); // 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载 // 并且实现 F 接口 // 该</description>
+    </item>
+  </channel>
+</rss>

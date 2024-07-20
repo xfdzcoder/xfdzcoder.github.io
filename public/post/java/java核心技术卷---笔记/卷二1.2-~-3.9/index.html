@@ -97,18 +97,36 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href='/home/'>主页</a>
+                        <a style="color: black" href='/home/'>主页</a>
                     </li>
                     
+                        
+                        <li>
+                            <a style="color: black" href="/home/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/home/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/home/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/home/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/home/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
                         
                     
 
                     
-                        <li style="color: black"><a href="/home/archive//">归档</a></li>
+                        <li><a style="color: black" href="/home/archive//">归档</a></li>
                     
-                        <li style="color: black"><a href="/home/categories//">分类</a></li>
-                    
-                        <li style="color: black"><a href="/home/about//">关于</a></li>
+                        <li><a style="color: black" href="/home/about//">关于</a></li>
                     
 		            <li>
                         <a href="/home/search"><i class="fa fa-search" style="color: black"></i></a>
@@ -1497,5 +1515,13 @@ flatMap()操作具有对流的元素应用一对多转换的效果，然后将�
 
 
 
-</body>
+<script>
+  console.log(location.pathname)
+  console.log(location.href)
+  if (location.pathname === '/home/') {
+    document.querySelector('.intro-header').style.height = '100vh'
+  } else {
+    document.querySelector('.intro-header').style.height = '40vh'
+  }
+</script>
 </html>
