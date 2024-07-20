@@ -1,4 +1,19 @@
+---
+title: 'JDK 的动态代理之源码 DEBUG'
+
+date: 2022/05/12T14:13:04+08:00
+
+draft: false
+
+pin: true
+
+summary: ""
+---
+
+<hr>
+
 废话不多说，上案例代码：
+
 ```java
 public class Main {
 

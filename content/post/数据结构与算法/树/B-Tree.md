@@ -1,4 +1,19 @@
+---
+title: 'B-Tree'
+
+date: 2022/05/12T14:13:04+08:00
+
+draft: false
+
+pin: true
+
+summary: ""
+---
+
+<hr>
+
 ## 0. 预备知识
+
 - 二叉树
 - 排序二叉树
 - AVL树
