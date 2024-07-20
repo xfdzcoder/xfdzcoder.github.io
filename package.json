@@ -1,0 +1,14 @@
+{
+  "name": "blog-hugo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "algolia": "atomic-algolia"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "atomic-algolia": "^0.3.19"
+  }
+}

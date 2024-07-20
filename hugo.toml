@@ -1,55 +1,133 @@
-baseURL = "https://xfdzcoder.github.io/home"
-languageCode = "zh-cn"
-title = "XFDZ's blog"
-theme = "github-style"
-pygmentsCodeFences = true
-pygmentsUseClasses = true
+baseurl = "https://xfdzcoder.github.io/home/"
+title = "XFDZ's Blog"
+theme = "CleanWhite"
+languageCode = "zh-us"
+# Enable comments by entering your Disqus shortname
+disqusShortname = ""
+googleAnalytics = ""
+preserveTaxonomyNames = true
+paginate = 5 #frontpage pagination
+hasCJKLanguage = true
+
+[outputs]
+home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  author = "XFDZ"
-  description = "A coder."
-  github = "xfdzcoder"
-  facebook = ""
-  twitter = ""
-  linkedin = ""
-  instagram = ""
-  tumblr = ""
-  email = "xfdzcoder@gmail.com"
-  url = ""
-  keywords = "blog, google analytics"
-  rss = false
-  lastmod = true
-  favicon = "/images/github-mark.png"
-  avatar = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F18%2F10-06-57-0a54e79d9d15bff3ff45ed23c3ca3725-F81SJ7MxrpkPV1DKwIHIhBQ5H2MXFq7E-e4dab1.jpg"
-  headerIcon = "/images/github-mark-white.png"
-  location = "China"
-  userStatusEmoji = "😀"
-  enableGitalk = false
+  header_image = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg"
+  SEOTitle = "XFDZ 的博客 | XFDZ Blog"
+  description = "xfdzcoder"
+  keyword = "xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java"
+  slogan = "层楼终究误少年，自由早晚乱余生"
+  upstreamAttribution = true
 
-  [params.gitalk]
-    clientID = "Your client ID" # Your client ID
-    clientSecret = "Your client secret" # Your client secret
-    repo = "LuvSia" # 您的博客的github地址Repository name，例如：xxxx.github.io
-    owner = "ventusoon" # 您的GitHub ID
-    admin = "ventusoon" # 您的GitHub ID
-    id = "location.pathname" # 文章页面的链接地址就是ID
-    labels = "gitalk" # Github issue labels. If you used to use Gitment, you can change it
-    perPage = 15 # Pagination size, with maximum 100.
-    pagerDirection = "last" # Comment sorting direction, available values are 'last' and 'first'.
-    createIssueManually = true # 设置为true，如果是管理员登录，会自动创建issue，如果是false，需要管理员手动添加第一个评论(issue)
-    distractionFreeMode = false # Enable hot key (cmd|ctrl + enter) submit comment.
-    proxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token" # 可以自行添加反向代理
-#  [[params.links]]
-#    title = "Link"
-#    href = "https://github.com/xfdzcoder"
-#  [[params.links]]
-#    title = "Link2"
-#    href = "https://meik2333.com"
-#    icon = "https://meik2333.com/images/avatar.png"
+  image_404 = "img/404-bg.jpg"
+  title_404 = "你来到了没有知识的荒原 :("
+  omit_categories = false
 
-[frontmatter]
-  lastmod = ["lastmod", ":fileModTime", ":default"]
+  # leancloud storage for page view counter
+  page_view_conter = false 
+  leancloud_app_id = ""
+  leancloud_app_key = ""
 
-[services]
-  [services.googleAnalytics]
-    ID = "UA-123456-789"
+  # algolia site search
+  algolia_search = true
+  algolia_appId = "XF7Z3UUDE9"
+  algolia_indexName = "blog-hugo"
+  algolia_apiKey = "1796b034a0590326e8dd8e3d27327531"
+
+  # Sidebar settings
+  sidebar_about_description = "A Java coder."
+  #sidebar_avatar = "img/avatar-zhaohuabing.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+  sidebar_avatar = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F18%2F10-06-57-0a54e79d9d15bff3ff45ed23c3ca3725-F81SJ7MxrpkPV1DKwIHIhBQ5H2MXFq7E-e4dab1.jpg"      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+  featured_tags = true 
+  featured_condition_size = 1 
+
+  # Baidu Analytics
+  ba_track_id = ""
+  
+  # We need a proxy to access Disqus api in China
+  # Follow https://github.com/zhaohuabing/disqus-php-api to set up your own disqus proxy
+  disqus_proxy = ""
+  disqus_site = ""
+
+  # Twikoo comments
+  # Follow https://twikoo.js.org/ to set up your own env_id
+  twikoo_env_id = ""
+
+  #Enable wechat pay & alipay to allow readers send reward money if they like the articles 
+  reward = true 
+  # reward_guide = "如果这篇文章对你有用,请随意打赏" 
+
+  friends = true
+  bookmarks = false
+  about_me = true
+
+  # Include any custom CSS and/or JS files, url or relative to /static folder
+  #custom_css = ["css/lightbox.css", "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css", "css/main.css"]
+  #custom_js = ["js/lightbox.js", "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", "js/main.js"]
+
+  [params.social]
+  rss            = false 
+  email          = "xfdzcoder@gmail.com"
+  #facebook      = "full profile url in facebook"
+  #googleplus    = "full profile url in googleplus"
+  #twitter       = "full profile url in twitter"
+  #linkedin       = "https://www.linkedin.com/in/yourlinkedinid"
+  #stackoverflow  = "https://stackoverflow.com/users/yourstackoverflowid"
+  #instagram     = "full profile url in instagram"
+  github         = "https://github.com/xfdzcoder"
+  #wechat         = "your wechat qr code image"
+  #medium        = "full profile url in medium"
+  #slack         = "full workspace url in slack"
+  #pinterest     = "full profile url in pinterest"
+  #reddit        = "full profile url in reddit"
+  #gitlab        = "full profile url in gitlab"
+  #mastodon      = "full profile url in mastodon"
+  #keybase       = "full profile url in keybase"
+  #xing          = "https://www.xing.com/profile/yourxingid"
+  #git           = "full profile url for git user"
+  
+  [[params.friend_link]]
+  title = "ZRGZS 的博客"
+  href =  "https://zrgzs.github.io/guide"
+
+  [[params.bookmark_link]]
+  title =  "Martin Fowler"
+  href =  "https://martinfowler.com"
+  [[params.bookmark_link]]
+  title = "ServiceMesher"
+  href =  "http://www.servicemesher.com"
+  [[params.bookmark_link]]
+  title =  "Pxhere"
+  href = "https://pxhere.com"
+  [[params.bookmark_link]]
+  title = "unsplash"
+  href = "https://unsplash.com"
+  
+  [[params.addtional_menus]]
+  title =  "归档"
+  href =  "/home/archive/"
+  [[params.addtional_menus]]
+  title =  "分类"
+  href =  "/home/categories/"
+  [[params.addtional_menus]]
+  title =  "关于"
+  href =  "/home/about/"
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink"]
+params = ["categories", "tags"] 
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 2
+    startLevel = 1
+  [markup.highlight]
+    style = "dracula"

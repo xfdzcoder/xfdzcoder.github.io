@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/home/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=home/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313/home//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg">
+    <meta property="twitter:image" content="http://localhost:1313/home//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg" />
+    
+
+    
+    <meta name="title" content="JDK 的动态代理之源码 DEBUG" />
+    <meta property="og:title" content="JDK 的动态代理之源码 DEBUG" />
+    <meta property="twitter:title" content="JDK 的动态代理之源码 DEBUG" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/home/img/favicon.ico">
+
+    <title>JDK 的动态代理之源码 DEBUG | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/home/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/home/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/home/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/home/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/home/js/jquery.min.js"></script>
+
+    
+    <script src="/home/js/bootstrap.min.js"></script>
+
+    
+    <script src="/home/js/hux-blog.min.js"></script>
+
+    
+    <script src="/home/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/home/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href='/home/'>主页</a>
+                    </li>
+                    
+                        
+                    
+
+                    
+                        <li style="color: black"><a href="/home/archive//">归档</a></li>
+                    
+                        <li style="color: black"><a href="/home/categories//">分类</a></li>
+                    
+                        <li style="color: black"><a href="/home/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/home/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>JDK 的动态代理之源码 DEBUG</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Monday, January 1, 0001
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<p>废话不多说，上案例代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Main</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 先不用管，后面会提到</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">setProperty</span>(<span style="color:#f1fa8c">&#34;sun.misc.ProxyGenerator.saveGeneratedFiles&#34;</span>, <span style="color:#f1fa8c">&#34;true&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 并且实现 F 接口</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 该代理类的方法调用都将被转发到 匿名内部类，然后打印方法名称</span>
+</span></span><span style="display:flex;"><span>        F f <span style="color:#ff79c6">=</span> (F) Proxy.<span style="color:#50fa7b">newProxyInstance</span>(
+</span></span><span style="display:flex;"><span>                Main.<span style="color:#50fa7b">class</span>.<span style="color:#50fa7b">getClassLoader</span>(),
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> Class<span style="color:#ff79c6">[]</span>{F.<span style="color:#50fa7b">class</span>},
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> InvocationHandler() {
+</span></span><span style="display:flex;"><span>                    @Override
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">invoke</span>(Object proxy, Method method, Object<span style="color:#ff79c6">[]</span> args) <span style="color:#8be9fd;font-style:italic">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>                        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(method.<span style="color:#50fa7b">getName</span>());
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        f.<span style="color:#50fa7b">m</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">F</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">m</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>首先通过第9行进入 <code>java.lang.reflect.Proxy#newProxyInstance</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 返回指定接口的代理类实例，该代理类将方法调用调度到指定的调用处理程序。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Proxy.newProxyInstanceIllegalArgumentException投掷的原因与投掷的原因Proxy.getProxyClass相同。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 参数：loader – 用于定义代理类的类加载器 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *       interfaces – 要实现的代理类的接口列表 
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *       h – 用于将方法调用调度到
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 返回：一个代理实例，具有由指定的类装入器定义并实现指定接口的代理类的指定调用处理程序
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 抛出：IllegalArgumentException – 如果违反了对可能传递到 getProxyClass 的参数的任何限制
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *       SecurityException – 如果安全经理 S 在场并且满足以下任何条件：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *          · 给定 loader 的 is null 和调用方的类加载器不是 null ，并且调用 with s.checkPermission RuntimePermission(&#34;getClassLoader&#34;) permission 拒绝访问;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *          · 对于每个代理接口，调用方的类装入器与 的intf类装入器的祖先不同，intf并且调用 拒绝s.checkPackageAccess()访问 intf;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *          · 任何给定的代理接口都是非公共的，调用方类与非公共接口不在同一 运行时包 中，并且调用 with s.checkPermission ReflectPermission(&#34;newProxyInPackage.{package name}&#34;) permission 会拒绝访问。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *       NullPointerException– 如果数组参数或其任何元素是 ，或者如果interfaces调用处理程序h是 ，是nullnull
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>@CallerSensitive
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> Object <span style="color:#50fa7b">newProxyInstance</span>(ClassLoader loader,
+</span></span><span style="display:flex;"><span>                                          Class<span style="color:#ff79c6">&lt;?&gt;[]</span> interfaces,
+</span></span><span style="display:flex;"><span>                                          InvocationHandler h)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">throws</span> IllegalArgumentException
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 查找或生成指定的代理类。说人话：生成代理类，如果代理类存在，那就不生成了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        Class<span style="color:#ff79c6">&lt;?&gt;</span> cl <span style="color:#ff79c6">=</span> getProxyClass0(loader, intfs);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 使用指定的调用处理程序调用其构造函数。说人话：通过 Class 对象调用构造方法构造代理类对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        	<span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">final</span> Constructor<span style="color:#ff79c6">&lt;?&gt;</span> cons <span style="color:#ff79c6">=</span> cl.<span style="color:#50fa7b">getConstructor</span>(constructorParams);
+</span></span><span style="display:flex;"><span>        	<span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> cons.<span style="color:#50fa7b">newInstance</span>(<span style="color:#ff79c6">new</span> Object<span style="color:#ff79c6">[]</span>{h});
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (IllegalAccessException<span style="color:#ff79c6">|</span>InstantiationException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (InvocationTargetException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (NoSuchMethodException e) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 生成代理类。在调用此函数之前，必须调用 checkProxyAccess 方法以执行权限检查。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> Class<span style="color:#ff79c6">&lt;?&gt;</span> getProxyClass0(ClassLoader loader,
+</span></span><span style="display:flex;"><span>                                           Class<span style="color:#ff79c6">&lt;?&gt;</span>... interfaces) {
+</span></span><span style="display:flex;"><span>    	<span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果由给定加载器定义的代理类实现给定的接口存在，这将只返回缓存的副本;否则，它将通过 ProxyClassFactory 创建代理类.</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 说人话：这里可以看出，一个代理类是由 类加载器 和 代理类需要实现的接口 共同决定的。</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#6272a4">// 所以这里的意思就是判断这个类加载器和接口的组合，有没有创建过代理类，如果创建过，那么就存在缓存，那就直接从缓存取。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> proxyClassCache.<span style="color:#50fa7b">get</span>(loader, interfaces);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>通过查看 <code>proxyClassCache</code> 这个属性如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> WeakCache<span style="color:#ff79c6">&lt;</span>ClassLoader, Class<span style="color:#ff79c6">&lt;?&gt;[]</span>, Class<span style="color:#ff79c6">&lt;?&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>        proxyClassCache <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> WeakCache<span style="color:#ff79c6">&lt;&gt;</span>(<span style="color:#ff79c6">new</span> KeyFactory(), <span style="color:#ff79c6">new</span> ProxyClassFactory());
+</span></span></code></pre></div><p>很容易能够看出，如果代理类不存在，那么会调用 <code>ProxyClassFactory</code>工厂来生成代理类。通过该类的文档也能说明这一点。
+查看该类源码发现，该类实现了 <code>BiFunction</code> ，也就是说我们的目标更明确了，那就是：生成代理类的实现就在 ：<code>java.lang.reflect.Proxy.ProxyClassFactory#apply</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Override
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> Class<span style="color:#ff79c6">&lt;?&gt;</span> apply(ClassLoader loader, Class<span style="color:#ff79c6">&lt;?&gt;[]</span> interfaces) {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 生成指定的代理类。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 到了这里，终于到了最关键的地方。因为这个方法的返回值，就是代理类的 class 对象的字节数组了。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> proxyClassFile <span style="color:#ff79c6">=</span> ProxyGenerator.<span style="color:#50fa7b">generateProxyClass</span>(
+</span></span><span style="display:flex;"><span>        proxyName, interfaces, accessFlags);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> defineClass0(loader, proxyName,
+</span></span><span style="display:flex;"><span>                            proxyClassFile, 0, proxyClassFile.<span style="color:#50fa7b">length</span>);
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (ClassFormatError e) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// ...</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">generateProxyClass</span>(<span style="color:#8be9fd;font-style:italic">final</span> String var0, Class<span style="color:#ff79c6">&lt;?&gt;[]</span> var1, <span style="color:#8be9fd">int</span> var2) {
+</span></span><span style="display:flex;"><span>        ProxyGenerator var3 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ProxyGenerator(var0, var1, var2);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 生成类文件，这里面就不再追了，这里面就是手写代理类的字节码到字节数组缓冲区中，然后将其返回了。好奇的可以自行了解。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">byte</span><span style="color:#ff79c6">[]</span> var4 <span style="color:#ff79c6">=</span> var3.<span style="color:#50fa7b">generateClassFile</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果需要保存文件，那么就将文件进行存储。默认为 false。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 可以通过最开始那个 main 方法的 line 5 开启。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (saveGeneratedFiles) {
+</span></span><span style="display:flex;"><span>            AccessController.<span style="color:#50fa7b">doPrivileged</span>(<span style="color:#ff79c6">new</span> PrivilegedAction<span style="color:#ff79c6">&lt;</span>Void<span style="color:#ff79c6">&gt;</span>() {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd;font-style:italic">public</span> Void <span style="color:#50fa7b">run</span>() {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>                        <span style="color:#8be9fd">int</span> var1 <span style="color:#ff79c6">=</span> var0.<span style="color:#50fa7b">lastIndexOf</span>(46);
+</span></span><span style="display:flex;"><span>                        Path var2;
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">if</span> (var1 <span style="color:#ff79c6">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>                            Path var3 <span style="color:#ff79c6">=</span> Paths.<span style="color:#50fa7b">get</span>(var0.<span style="color:#50fa7b">substring</span>(0, var1).<span style="color:#50fa7b">replace</span>(<span style="color:#f1fa8c">&#39;.&#39;</span>, File.<span style="color:#50fa7b">separatorChar</span>));
+</span></span><span style="display:flex;"><span>                            Files.<span style="color:#50fa7b">createDirectories</span>(var3);
+</span></span><span style="display:flex;"><span>                            var2 <span style="color:#ff79c6">=</span> var3.<span style="color:#50fa7b">resolve</span>(var0.<span style="color:#50fa7b">substring</span>(var1 <span style="color:#ff79c6">+</span> 1, var0.<span style="color:#50fa7b">length</span>()) <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;.class&#34;</span>);
+</span></span><span style="display:flex;"><span>                        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                            var2 <span style="color:#ff79c6">=</span> Paths.<span style="color:#50fa7b">get</span>(var0 <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;.class&#34;</span>);
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                        Files.<span style="color:#50fa7b">write</span>(var2, var4, <span style="color:#ff79c6">new</span> OpenOption<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span>);
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">catch</span> (IOException var4x) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> InternalError(<span style="color:#f1fa8c">&#34;I/O exception saving generated file: &#34;</span> <span style="color:#ff79c6">+</span> var4x);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> var4;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>最后来看看生成的 class 文件吧。</p>
+<ul>
+<li>class 文件会生成在和项目根目录同级的com包下，需要自行反编译。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Source code recreated from a .class file by IntelliJ IDEA</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// (powered by FernFlower decompiler)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">//</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.jdbc01;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.reflect.InvocationHandler;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.reflect.Method;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.reflect.Proxy;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.reflect.UndeclaredThrowableException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">$Proxy0</span> <span style="color:#8be9fd;font-style:italic">extends</span> Proxy <span style="color:#8be9fd;font-style:italic">implements</span> F {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> Method m1;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> Method m2;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> Method m0;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> Method m3;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">$Proxy0</span>(InvocationHandler var1) <span style="color:#8be9fd;font-style:italic">throws</span>  {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">super</span>(var1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">equals</span>(Object var1) <span style="color:#8be9fd;font-style:italic">throws</span>  {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> (Boolean)<span style="color:#8be9fd;font-style:italic">super</span>.<span style="color:#50fa7b">h</span>.<span style="color:#50fa7b">invoke</span>(<span style="color:#ff79c6">this</span>, m1, <span style="color:#ff79c6">new</span> Object<span style="color:#ff79c6">[]</span>{var1});
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (RuntimeException <span style="color:#ff79c6">|</span> Error var3) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> var3;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (Throwable var4) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> UndeclaredThrowableException(var4);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> String <span style="color:#50fa7b">toString</span>() <span style="color:#8be9fd;font-style:italic">throws</span>  {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> (String)<span style="color:#8be9fd;font-style:italic">super</span>.<span style="color:#50fa7b">h</span>.<span style="color:#50fa7b">invoke</span>(<span style="color:#ff79c6">this</span>, m2, (Object<span style="color:#ff79c6">[]</span>)<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (RuntimeException <span style="color:#ff79c6">|</span> Error var2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> var2;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (Throwable var3) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> UndeclaredThrowableException(var3);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">hashCode</span>() <span style="color:#8be9fd;font-style:italic">throws</span>  {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> (Integer)<span style="color:#8be9fd;font-style:italic">super</span>.<span style="color:#50fa7b">h</span>.<span style="color:#50fa7b">invoke</span>(<span style="color:#ff79c6">this</span>, m0, (Object<span style="color:#ff79c6">[]</span>)<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (RuntimeException <span style="color:#ff79c6">|</span> Error var2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> var2;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (Throwable var3) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> UndeclaredThrowableException(var3);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">m</span>() <span style="color:#8be9fd;font-style:italic">throws</span>  {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd;font-style:italic">super</span>.<span style="color:#50fa7b">h</span>.<span style="color:#50fa7b">invoke</span>(<span style="color:#ff79c6">this</span>, m3, (Object<span style="color:#ff79c6">[]</span>)<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (RuntimeException <span style="color:#ff79c6">|</span> Error var2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> var2;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (Throwable var3) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> UndeclaredThrowableException(var3);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">static</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>            m1 <span style="color:#ff79c6">=</span> Class.<span style="color:#50fa7b">forName</span>(<span style="color:#f1fa8c">&#34;java.lang.Object&#34;</span>).<span style="color:#50fa7b">getMethod</span>(<span style="color:#f1fa8c">&#34;equals&#34;</span>, Class.<span style="color:#50fa7b">forName</span>(<span style="color:#f1fa8c">&#34;java.lang.Object&#34;</span>));
+</span></span><span style="display:flex;"><span>            m2 <span style="color:#ff79c6">=</span> Class.<span style="color:#50fa7b">forName</span>(<span style="color:#f1fa8c">&#34;java.lang.Object&#34;</span>).<span style="color:#50fa7b">getMethod</span>(<span style="color:#f1fa8c">&#34;toString&#34;</span>);
+</span></span><span style="display:flex;"><span>            m0 <span style="color:#ff79c6">=</span> Class.<span style="color:#50fa7b">forName</span>(<span style="color:#f1fa8c">&#34;java.lang.Object&#34;</span>).<span style="color:#50fa7b">getMethod</span>(<span style="color:#f1fa8c">&#34;hashCode&#34;</span>);
+</span></span><span style="display:flex;"><span>            m3 <span style="color:#ff79c6">=</span> Class.<span style="color:#50fa7b">forName</span>(<span style="color:#f1fa8c">&#34;com.d.jdbc01.F&#34;</span>).<span style="color:#50fa7b">getMethod</span>(<span style="color:#f1fa8c">&#34;m&#34;</span>);
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (NoSuchMethodException var2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> NoSuchMethodError(var2.<span style="color:#50fa7b">getMessage</span>());
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">catch</span> (ClassNotFoundException var3) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> NoClassDefFoundError(var3.<span style="color:#50fa7b">getMessage</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>现在就能理解，为什么调用接口的方法之后，会被转发到我们实现了 <code>InvocationHandler</code> 接口的对象中了，因为代理类的每一个方法都在 <code>h.invoke(..)</code> ，而 h 来自于 <code>Proxy</code> 父类，也就是我们传入的 <code>InvocationHandler</code> 接口的实现类。</p>
+
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/home/"><img src="/home/img/favicon.png" />XFDZ&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/home/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/home/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/home/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/home/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/" data-toggle="tooltip" data-placement="top" title="Java核心技术卷二阅读笔记（4.1 ~ ）">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/home\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>

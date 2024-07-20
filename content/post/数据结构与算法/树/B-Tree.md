@@ -233,7 +233,7 @@ public class BalanceTree<T extends Comparable<T>> {
 
         /**
          * 存放当前结点的所有键值。
-         * 键两端对子结点的引用存放在 {@link #linkList} 中，假设键的索引为 n，那么其左子结点引用的索引为 2n，右子结点的引用为 2n + 1
+         * 键两端对子结点的引用存放在 {@link #linkList} 中，假设键的索引为 n，那么其左子结点引用的索引为 n，右子结点的引用为 n + 1
          */
         ArrayList<T> keyList;
 

@@ -1,40 +1,89 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 夏风冬至站</title>
-    <link>http://localhost:1313/post/</link>
-    <description>Recent content in Posts on 夏风冬至站</description>
+    <title>Posts on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/home/post/</link>
+    <description>Recent content in Posts on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Fri, 19 Jul 2024 14:13:04 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/home/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>WindowsTerminal美化教程</title>
-      <link>http://localhost:1313/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/home/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</link>
       <pubDate>Fri, 19 Jul 2024 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</guid>
-      <description>oh-my-posh Home | Oh My Posh&#xA;先安装一下oh-my-posh，然后选择一个自己喜欢的主题就好了。&#xA;下面记录一下我的主题和配置。&#xA;主题（emodipt-extend-custom） 效果展示：&#xA;{ &amp;#34;$schema&amp;#34;: &amp;#34;https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json&amp;#34;, &amp;#34;blocks&amp;#34;: [ { &amp;#34;alignment&amp;#34;: &amp;#34;left&amp;#34;, &amp;#34;newline&amp;#34;: true, &amp;#34;segments&amp;#34;: [ { &amp;#34;foreground&amp;#34;: &amp;#34;#E5C07B&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;time_format&amp;#34;: &amp;#34;15:04:05&amp;#34; }, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34;[{{ .CurrentDate | date .Format }}]&amp;#34;, &amp;#34;type&amp;#34;: &amp;#34;time&amp;#34; }, { &amp;#34;type&amp;#34;: &amp;#34;os&amp;#34;, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;foreground&amp;#34;: &amp;#34;#26C6DA&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34; {{ .Icon }} {{ .UserName }}&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;windows&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;display_distro_name&amp;#34;: true } }, { &amp;#34;type&amp;#34;: &amp;#34;java&amp;#34;, &amp;#34;properties&amp;#34;: { &amp;#34;home_enabled&amp;#34;: true, &amp;#34;display_mode&amp;#34;: &amp;#34;always&amp;#34; }, &amp;#34;style&amp;#34;: &amp;#34;plain&amp;#34;, &amp;#34;foreground&amp;#34;: &amp;#34;#E06C75&amp;#34;, &amp;#34;template&amp;#34;: &amp;#34;  {{ .</description>
+      <guid>http://localhost:1313/home/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/</guid>
+      <description>美化 terminal 窗口</description>
     </item>
     <item>
       <title>mysql中datadir目录下的文件</title>
-      <link>http://localhost:1313/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <link>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</link>
       <pubDate>Fri, 19 Jul 2024 09:52:52 +0800</pubDate>
-      <guid>http://localhost:1313/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <guid>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
       <description>MySQL5和8中的数据库目录结构的异同</description>
     </item>
     <item>
       <title>优质Java站点</title>
-      <link>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
+      <link>http://localhost:1313/home/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Wed, 17 Jul 2024 21:47:40 +0800</pubDate>
-      <guid>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>http://localhost:1313/home/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</guid>
       <description>汇总一下Java学习路上的优质Java站点，持续更新……</description>
     </item>
     <item>
       <title>My First Post</title>
-      <link>http://localhost:1313/post/my-first-post/</link>
+      <link>http://localhost:1313/home/post/my-first-post/</link>
       <pubDate>Sun, 07 Jul 2024 22:48:30 +0800</pubDate>
-      <guid>http://localhost:1313/post/my-first-post/</guid>
+      <guid>http://localhost:1313/home/post/my-first-post/</guid>
       <description>你好，Hello World ! 你好，Hello World !</description>
+    </item>
+    <item>
+      <title>B-Tree</title>
+      <link>http://localhost:1313/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b-tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b-tree/</guid>
+      <description>完成了B树的代码实现</description>
+    </item>
+    <item>
+      <title>B⁺-Tree</title>
+      <link>http://localhost:1313/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b-tree/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b-tree/</guid>
+      <description>B⁺树的学习</description>
+    </item>
+    <item>
+      <title>Java核心技术卷一阅读笔记（1.1 ~ 7.2.5）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%801.1-~-7.2.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%801.1-~-7.2.5/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷一阅读笔记（7.3 ~ 9.5.3）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%807.3-~-9.5.3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%B8%807.3-~-9.5.3/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷二阅读笔记（1.2 ~ 3.9）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C1.2-~-3.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C1.2-~-3.9/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>Java核心技术卷二阅读笔记（4.1 ~ ）</title>
+      <link>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/</guid>
+      <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
+    </item>
+    <item>
+      <title>JDK 的动态代理之源码 DEBUG</title>
+      <link>http://localhost:1313/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</guid>
+      <description>废话不多说，上案例代码： public class Main { public static void main(String[] args) { // 先不用管，后面会提到 System.setProperty(&amp;#34;sun.misc.ProxyGenerator.saveGeneratedFiles&amp;#34;, &amp;#34;true&amp;#34;); // 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载 // 并且实现 F 接口 // 该</description>
     </item>
   </channel>
 </rss>

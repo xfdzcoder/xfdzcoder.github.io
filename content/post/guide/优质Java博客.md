@@ -36,6 +36,8 @@ summary: "汇总一下Java学习路上的优质Java站点，持续更新……"
 
 [通过动画可视化数据结构和算法 - VisuAlgo](https://visualgo.net/zh)
 
+[数据结构可视化 (usfca.edu)](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+
 [力扣 (LeetCode) 全球极客挚爱的技术成长平台](https://leetcode.cn/)
 
 #### 常用工具
