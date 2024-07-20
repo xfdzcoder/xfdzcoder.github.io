@@ -6,6 +6,8 @@ date: 2022/05/12T14:13:04+08:00
 draft: false
 
 summary: ""
+
+categories: [Java]
 ---
 
 <hr>

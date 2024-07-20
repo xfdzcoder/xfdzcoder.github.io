@@ -7,6 +7,7 @@ draft: false
 
 summary: 'MySQL5和8中的数据库目录结构的异同'
 
+categories: [MySQL]
 ---
 
 <hr>
