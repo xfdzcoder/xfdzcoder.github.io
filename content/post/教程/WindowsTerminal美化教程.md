@@ -8,11 +8,12 @@ draft: false
 
 pin: false
 
-summary: ""
+summary: "美化 terminal 窗口"
 
 ---
 
 <hr>
+
 Windows终端的选型有很多，经过试用最终是选择了 WindowsTerminal + PowerShell的组合。但是默认的WindowsTerminal也没那么好看，下面就来介绍一下如何美化。
 
 ### oh-my-posh
