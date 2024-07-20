@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="B&#43;Tree" />
+    <meta property="og:title" content="B&#43;Tree" />
+    <meta property="twitter:title" content="B&#43;Tree" />
     
 
     
@@ -27,16 +27,16 @@
     
 
     
-    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:card" content="B&#43;树的学习" />
     
     
 
     <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
     <link rel="shortcut icon" href="/home/img/favicon.ico">
 
-    <title>Posts | XFDZ 的博客 | XFDZ Blog</title>
+    <title>B&#43;Tree | XFDZ 的博客 | XFDZ Blog</title>
 
-    <link rel="canonical" href="/home/post/">
+    <link rel="canonical" href="/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b&#43;tree/">
 
     
     
@@ -169,14 +169,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg');">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading" style="color: black">
-                    <h1>XFDZ&#39;s Blog </h1>
-                    
-		    <span class="subheading">层楼终究误少年，自由早晚乱余生</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>B&#43;Tree</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Friday, July 19, 2024
+                            
+                            
+                            
+                            
+                    </span>
                 </div>
             </div>
         </div>
@@ -189,18 +212,124 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
-         	
+                
+                <!-- raw HTML omitted -->
+<h3 id="1-前言">1 前言</h3>
+<p>还没学习过 B - Tree 的同学可以先看看 <a href="https://xfdzcoder.github.io/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b-tree/">B-Tree</a></p>
+<p>学习 B+树一方面是为了探索一下B树的变体，另一方面也是为了了解 MySQL 底层存储引擎 InnoDB 的索引结构。下面就步入正题。</p>
+<p>B+ 树是 <a href="https://oi-wiki.org/ds/b-tree/">B 树</a> 的一个升级，它比 B 树更适合实际应用中操作系统的文件索引和数据库索引。</p>
+<p>首先介绍一棵 m 阶 B+ 树的特性。
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="m">
+
+ 表示这个树的每一个节点最多可以拥有的子节点个数。一棵 m 阶的 B+ 树和 B 树的差异在于：</p>
+<ol>
+<li>有 n 棵子树的节点中含有 n - 1 个关键字（即将区间分为 n 个子区间，每个子区间对应一棵子树）。</li>
+<li><strong>所有叶子节点中包含了全部关键字的信息</strong>，及指向含这些关键字记录的指针，<strong>且叶子节点本身依关键字的大小自小而大顺序链接。</strong></li>
+<li><strong>所有的非叶子节点可以看成是索引部分</strong>，节点中<strong>仅含有</strong>其子树（根节点）中的最大（或最小）关键字。</li>
+<li>除根节点外，其他所有节点中所含<strong>关键字</strong>的个数最少有  ⌈M/2⌉ 个（向上取整）。（注意：B 树中除根以外的所有非叶子节点至少有  ⌈M/2⌉ 棵子树）。</li>
+</ol>
+<p>同时，B+ 树为了方便范围查询，叶子节点之间还用指针串联起来。</p>
+<h3 id="2-b-树相比于-b-树的优势">2 B+ 树相比于 B 树的优势</h3>
+<ol>
+<li><strong>高度更矮，磁盘寻道次数更少</strong>
+<ul>
+<li>由于索引节点上只有索引而没有数据，所以索引节点上能存储比 B 树更多的索引，这样树的高度就会更矮。树的高度越矮，磁盘寻道的次数就会越少。</li>
+</ul>
+</li>
+<li><strong>更容易进行连续访问</strong>
+<ul>
+<li>因为数据都集中在叶子节点，而所有叶子节点的高度相同，那么可以在叶子节点中增加前后指针，指向同一个父节点的相邻兄弟节点，这样可以更好地支持查询一个值的前驱或后继，使连续访问更容易实现。比如这样的 SQL 语句：<code>select * from table_name where t &gt; 10</code>，如果使用 B+ 树存储数据的话，可以首先定位到数据为 10 的节点，再沿着它的 <code>next</code> 指针一路找到所有在该叶子节点右边的叶子节点，返回这些节点包含的数据。而如果使用 B 树结构，由于数据既可以存储在内部节点也可以存储在叶子节点，连续访问的实现会更加繁琐（需要在树的内部结构中进行移动）。</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-b树的操作">3 B+树的操作</h3>
+<p>操作和 B 树类似，具体过程可参考前文。这里只给出代码仅供参考。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"></code></pre></div>
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
+</div>
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/home/"><img src="/home/img/favicon.png" />XFDZ&#39;s Blog</a></span>
+        
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/home/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/home/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/home/img/reward/alipay-btn.png"/></span></label>
+	</div>
+</div>
+<script type="text/javascript" src="/home/js/reward.js"></script>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/home/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/" data-toggle="tooltip" data-placement="top" title="WindowsTerminal美化教程">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
                 
 
 
-
             </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
