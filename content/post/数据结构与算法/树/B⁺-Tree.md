@@ -5,8 +5,6 @@ date: 2024/7/20T14:47:00+08:00
 
 draft: false
 
-pin: true
-
 summary: "B⁺树的学习"
 ---
 

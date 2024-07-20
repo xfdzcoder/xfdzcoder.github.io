@@ -6,8 +6,6 @@ date: 2024-07-19T14:13:04+08:00
 
 draft: false
 
-pin: false
-
 summary: "美化 terminal 窗口"
 
 ---

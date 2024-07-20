@@ -6,8 +6,6 @@ date: 2024-07-17T21:47:40+08:00
 
 draft: false
 
-pin: true
-
 summary: "汇总一下Java学习路上的优质Java站点，持续更新……"
 
 ---
