@@ -6,8 +6,15 @@
     <description>Recent content on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Fri, 19 Jul 2024 14:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jul 2024 09:32:14 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/home/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>二级索引为什么不直接存储对应页地址</title>
+      <link>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E5%BA%94%E9%A1%B5%E5%9C%B0%E5%9D%80/</link>
+      <pubDate>Sun, 21 Jul 2024 09:32:14 +0800</pubDate>
+      <guid>http://localhost:1313/home/post/mysql%E9%AB%98%E7%BA%A7/%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E5%BA%94%E9%A1%B5%E5%9C%B0%E5%9D%80/</guid>
+      <description>关于回表的疑问</description>
+    </item>
     <item>
       <title>B&#43;Tree</title>
       <link>http://localhost:1313/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b&#43;tree/</link>
@@ -90,7 +97,7 @@
       <link>http://localhost:1313/home/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/home/about/</guid>
-      <description>关于我 // TODO</description>
+      <description>关于我 一个在校的 Java Coder。 主要方向是 Java后端，就是 Spring 那一套东西了。</description>
     </item>
     <item>
       <title></title>

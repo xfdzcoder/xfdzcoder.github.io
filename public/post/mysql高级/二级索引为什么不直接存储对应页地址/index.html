@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-us">
-<head>
-	<meta name="generator" content="Hugo 0.128.2"><script src="/home/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=home/livereload" data-no-instant defer></script>
+<head><script src="/home/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=home/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,9 +15,9 @@
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="二级索引为什么不直接存储对应页地址" />
+    <meta property="og:title" content="二级索引为什么不直接存储对应页地址" />
+    <meta property="twitter:title" content="二级索引为什么不直接存储对应页地址" />
     
 
     
@@ -28,16 +27,16 @@
     
 
     
-    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:card" content="关于回表的疑问" />
     
     
 
     <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
     <link rel="shortcut icon" href="/home/img/favicon.ico">
 
-    <title>XFDZ&#39;s Blog | XFDZ 的博客 | XFDZ Blog</title>
+    <title>二级索引为什么不直接存储对应页地址 | XFDZ 的博客 | XFDZ Blog</title>
 
-    <link rel="canonical" href="/home/">
+    <link rel="canonical" href="/home/post/mysql%E9%AB%98%E7%BA%A7/%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E5%BA%94%E9%A1%B5%E5%9C%B0%E5%9D%80/">
 
     
     
@@ -170,14 +169,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg');">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading" style="color: black">
-                    <h1>XFDZ&#39;s Blog </h1>
-                    
-		    <span class="subheading">层楼终究误少年，自由早晚乱余生</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>二级索引为什么不直接存储对应页地址</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Sunday, July 21, 2024
+                            
+                            
+                            
+                            
+                    </span>
                 </div>
             </div>
         </div>
@@ -186,179 +208,133 @@
 
 
 
-  
-<div data-pagefind-ignore="all" class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
+
+<article>
+    <div class="container">
+        <div class="row">
+
             
-<div data-pagefind-ignore="all">
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-<div class="post-preview">
-    <a href="http://localhost:1313/home/post/java/java%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E5%8D%B7---%E7%AC%94%E8%AE%B0/%E5%8D%B7%E4%BA%8C4.1-~-/">
-        <h2 class="post-title">
-            Java核心技术卷二阅读笔记（4.1 ~ ）
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    
-        Posted by XFDZ&#39;s Blog on Thursday, May 12, 2022
-        
-        
-    
-    </p>
+                
+                <!-- raw HTML omitted -->
+<p>InnoDB 在移动行时，无需维护二级索引，因为叶子节点中存储的是主键值，而不是指针。聚簇索引存储了完整的数据，当数据发生改动时，对应的叶子节点位置可能会变化，但是主键不会变化。如果存储的是位置，那么当聚簇索引变化后，需要同步更新二级索引的位置信息，这会导致难度大且效率低下。</p>
 
+
+                
+                
+<div class="entry-shang text-center">
+    
+	    <p>「真诚赞赏，手留余香」</p>
+	
+	<button class="zs show-zs btn btn-bred">赞赏支持</button>
 </div>
-<hr>
-
-<div class="post-preview">
-    <a href="http://localhost:1313/home/post/java/jdk-%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E4%B9%8B%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
-        <h2 class="post-title">
-            JDK 的动态代理之源码 DEBUG
-        </h2>
-	
-        <div class="post-content-preview">
-	
-            废话不多说，上案例代码： public class Main { public static void main(String[] args) { // 先不用管，后面会提到 System.setProperty(&#34;sun.misc.ProxyGenerator.saveGeneratedFiles&#34;, &#34;true&#34;); // 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载 // 并且实现 F 接口 // 该
-       
-        </div>
-    </a>
-    <p class="post-meta">
-    
-        Posted by XFDZ&#39;s Blog on Thursday, May 12, 2022
+<div class="zs-modal-bg"></div>
+<div class="zs-modal-box">
+	<div class="zs-modal-head">
+		<button type="button" class="close">×</button>
+		<span class="author"><a href="http://localhost:1313/home/"><img src="/home/img/favicon.png" />XFDZ&#39;s Blog</a></span>
         
-        
-    
-    </p>
-
-</div>
-<hr>
-
-</div>
-
-            
-
-
-<ul class="pager" data-pagefind-ignore="all">
-    
-    <li class="previous">
-        <a href="/home/page/2/">&larr; Newer Posts</a>
-    </li>
-    
-    
-</ul>
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/about">
-               <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F18%2F10-06-57-0a54e79d9d15bff3ff45ed23c3ca3725-F81SJ7MxrpkPV1DKwIHIhBQ5H2MXFq7E-e4dab1.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>A Java coder.</p>
-            
-           
-           <ul class="list-inline">
-               
-               <li>
-                   <a href="mailto:xfdzcoder@gmail.com">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                      </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/xfdzcoder">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-            
-            
-               
-               
-               
-               
-                </ul>
-            </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-        </div>
-    </section>
-    
-
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-            
-            <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
-            
-        </ul>
-    </section>
-    
-    
-</div>
-
+	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
+		
+ 
+	</div>
+	<div class="zs-modal-body">
+		<div class="zs-modal-btns">
+			<button class="btn btn-blink" data-num="2">2元</button>
+			<button class="btn btn-blink" data-num="5">5元</button>
+			<button class="btn btn-blink" data-num="10">10元</button>
+			<button class="btn btn-blink" data-num="50">50元</button>
+			<button class="btn btn-blink" data-num="100">100元</button>
+			<button class="btn btn-blink" data-num="1">任意金额</button>
+		</div>
+		<div class="zs-modal-pay">
+			<button class="btn btn-bred" id="pay-text">2元</button>
+			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
+			<img src="/home/img/reward/wechat-2.png"  id="pay-image"/>
+		</div>
+	</div>
+	<div class="zs-modal-footer">
+		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/home/img/reward/wechat-btn.png"/></span></label>
+		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/home/img/reward/alipay-btn.png"/></span></label>
 	</div>
 </div>
+<script type="text/javascript" src="/home/js/reward.js"></script>
 
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b&#43;tree/" data-toggle="tooltip" data-placement="top" title="B&#43;Tree">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
