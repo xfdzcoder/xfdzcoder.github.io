@@ -52,6 +52,8 @@ categories: [Java]
 
 SpringBoot 版本一般选择 2.7.6，或者 2.x.x 的最高版本，不要选择 3.x.x 的
 
+其他的依赖都不用选择
+
 ![image-20240722201555155](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-15-56-adb7f684a11c3ad294915721d0516e48-image-20240722201555155-c983f4.png)
 
 ## 2 添加必备依赖
@@ -337,7 +339,7 @@ CREATE TABLE student
 
 ## 6 添加 application.yml 文件
 
-如果 java 目录的同级没有 resources 目录，请手动创建一个，如下图：
+如果 **java 目录的同级**没有 resources 目录，请手动创建一个，如下图：
 
 ![image-20240722205305799](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-53-06-1fa8eb37d61fb2e8b872448bbc1fa0a7-image-20240722205305799-0eb32b.png)
 
@@ -353,6 +355,10 @@ spring:
     username: root
     password: 你的密码
 ```
+
+创建好后如下图所示：
+
+![image-20240723160418577](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F16-04-19-323349366be7884f5f9573bd80b04225-image-20240723160418577-551337.png)
 
 ## 7 启动项目
 
@@ -768,6 +774,10 @@ public class StudentController {
 
 ### 8.1 接口示例
 
+这里要注意一下导的包：
+
+- Page 类是 `com.baomidou.mybatisplus.extension.plugins.pagination.Page`
+
 ```java
     @PostMapping
 	// 如果方法参数上是一个对象，不是基本类型的包装类或者 String，那么就需要添加 @RequestBody 注解
@@ -811,7 +821,7 @@ public class StudentController {
 
 [new_player 在 Apifox 邀请你加入项目 springboot-demo ](https://app.apifox.com/invite/project?token=5jyqOhJrvtT19Ylq3cS5y)
 
-可以直接使用网页版，也可以下载应用程序。加入项目后，先介绍一下 apifox 的界面
+可以直接使用网页版（**使用网页版在发送请求前记得下载插件或者下载桌面版**），也可以下载应用程序。加入项目后，先介绍一下 apifox 的界面
 
 ![image-20240723142546696](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-26-07-f337a68b5a10f944389f98287b459bd1-image-20240723142546696-a437e0.png)
 
@@ -820,6 +830,8 @@ public class StudentController {
 ![image-20240723143559628](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-36-00-ef71518959d17569b1bd74c4817de75f-image-20240723143559628-6adc4c.png)
 
 ### 9.1 发送请求
+
+**使用网页版在发送请求前记得下载插件或者下载桌面版**
 
 ### 9.1.1 POST/PUT 请求
 
@@ -925,3 +937,333 @@ Param 具体在哪呢？
 ![image-20240723152310911](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-23-11-55e772eb0cf351cd216edc612b88b60b-image-20240723152310911-6330c1.png)
 
 好了你已经成功掌握了 Apifox 的基本用法。
+
+## 10 多表查询
+
+### 10.1 引入新的表
+
+现在我们就只有一张 student 表，所以我们再建一张表叫做课程表（course）
+
+```sql
+CREATE TABLE course
+(
+    id BIGINT PRIMARY KEY COMMENT '主键 id',
+    name VARCHAR(10) COMMENT '名称',
+    teacher VARCHAR(10) COMMENT '老师',
+    score INT COMMENT '学分'
+) COMMENT '课程表';
+```
+
+好了课程也有了，但是这两张表还没有任何关系，学生和课程什么时候会产生联系呢？上课？考试？都可以，但是这里选择考试吧，所以我们还需要一张考试表来联系学生和课程。
+
+```sql
+CREATE TABLE exam
+(
+    id BIGINT PRIMARY KEY COMMENT '主键 id',
+    student_id BIGINT COMMENT '指向 student 表中的 id',
+    course_id BIGINT COMMENT '指向 course 表中的 id',
+    score INT COMMENT '分数'
+) COMMENT '考试表';
+```
+
+然后就可以像之前一样直接生成代码了。（注：按住 shift 或者 ctrl 可以多选表，然后一起生成）
+
+生成完后目录结构如下图所示
+
+![image-20240723164347424](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F16-43-48-38f5423d9984e0f85c0ebd615a931922-image-20240723164347424-82fe06.png)
+
+### 10.2 完成 CourseController 的接口
+
+这里就不贴代码了，自行完成。
+
+### 10.3 完成 ExamController 接口
+
+这里主要讲一下 ExamController 的查询接口，增删改都和前面一样只是对单表进行操作。
+
+在查询 exam 表的时候，如果我们希望把学生名字和课程名称都查出来，会发现其中有两个字段都是指向其他表的 id 字段，这个时候应该怎么查呢？
+
+这个时候就要用到SQL中的多表查询了，对应的 SQL 如下：
+
+```sql
+# 要查询的字段
+# s.* 表示 student 表中的所有字段，其他同理
+SELECT s.*, c.*, e.*
+# exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 c 和 s 同理
+FROM exam e
+		 # 连接查询
+		 # 		JOIN course ：连接到 course 表
+		 # 		ON c.id = e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+		 # 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+         LEFT JOIN course c ON c.id = e.course_id
+         LEFT JOIN student s ON e.student_id = s.id
+```
+
+但我们还没有一个实体类能够同时包含 exam、student、course 三张表的数据，所以我们还需要新建一个实体类，就叫 ExamInfo 吧。
+
+在 entity 包下新建这样一个实体类
+
+```java
+package com.xfdzcoder.springbootdemo.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+/**
+ * @author: Ding
+ */
+
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class ExamInfo {
+
+
+    /**
+     * 主键 id
+     */
+    @Schema(description = "主键 id")
+    @TableId(type = IdType.ASSIGN_ID)
+    private Long id;
+
+
+    /**
+     * 学生 id
+     */
+    @Schema(description = "学生 id")
+    @TableField("student_id")
+    private Long studentId;
+
+
+    /**
+     * 课程 id
+     */
+    @Schema(description = "课程 id")
+    @TableField("course_id")
+    private Long courseId;
+
+
+    /**
+     * 分数
+     */
+    @Schema(description = "分数")
+    @TableField("score")
+    private Integer score;
+
+    private Course course;
+
+    private Student student;
+
+}
+
+```
+
+可以看到，其实就是把 Exam 类复制过来了，然后新增了俩属性，类型分别是 Course 和 Student，这样就把另外两张表的属性也包含进来了。那么现在问题来了，怎么查呢？MyBatisPlus的 IService 接口只提供了简单的 CRUD 操作，并没有多表联查的操作。
+
+#### 10.3.1 使用 MyBatis-Plus-Join 框架
+
+pom.xml 的 dependencies 标签中添加如下依赖：
+
+```xml
+        <dependency>
+            <groupId>com.github.yulichang</groupId>
+            <artifactId>mybatis-plus-join-boot-starter</artifactId>
+            <version>1.4.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.gavlyukovskiy</groupId>
+            <artifactId>p6spy-spring-boot-starter</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+```
+
+接口代码：请对照下面的内容理解
+
+```java
+//================= 对应的 SQL ===================//
+new MPJLambdaWrapper<Exam>()
+
+    // SELECT exam.* FROM exam
+    .selectAll(Exam.class)
+
+    // #{id} 表示外部传入的参数
+    // WHERE exam.id = #{id}
+    .eq(Exam::getId, id)
+
+    // 不对应 SQL
+    .selectAssociation(Course.class, ExamInfo::getCourse)
+
+    // LEFT JOIN course ON course.id = exam.course_id
+    .leftJoin(Course.class, Course::getId, Exam::getCourseId)
+
+    // 不对应 SQL
+    .selectAssociation(Student.class, ExamInfo::getStudent)
+
+    // LEFT JOIN student ON student.id = exam.course_id
+    .leftJoin(Student.class, Student::getId, Exam::getStudentId)
+```
+
+```java
+
+    /*
+        # 要查询的字段
+        # s.* 表示 student 表中的所有字段，其他同理
+        SELECT s.*, c.*, e.*
+        # exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 c 和 s 同理
+        FROM exam
+                 # 连接查询
+                 # 		JOIN course ：连接到 course 表
+                 # 		ON c.id = e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+                 # 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+                 LEFT JOIN course c ON c.id = e.course_id
+                 LEFT JOIN student s ON e.student_id = s.id
+     */
+    @GetMapping("{id}")
+    public ExamInfo getById(@PathVariable("id") Long id) {
+        // selectJoinOne，多表联查，只查一行的数据
+        return examService.selectJoinOne(ExamInfo.class,
+                // SQL 包装器
+                new MPJLambdaWrapper<Exam>()
+                        // 查询 Exam 表的所有数据，这里只能填主表
+                        .selectAll(Exam.class)
+                        // 查询条件
+                        // Exam::getId 表示 exam 表的 id 字段
+                        // eq 即相等 equal 的缩写
+                        // 所以这个条件就是：当 exam 表的 id 字段 等于 id（这个id是接口参数，前端传的）
+                        .eq(Exam::getId, id)
+                        /*
+                            selectAssociation：指定映射的关系，一对一的时候使用
+                                A 对 B（包括一对一、多对一、一对多、多对多）
+                                    A：指的是 from 关键字后面跟的表
+                                    B：指的是 left join 关键字后面跟的表
+                            这里的主表是 exam，还需要 join 一张 course 表，exam 和 course 表是什么关系？
+                                一场考试那肯定是针对某一个课程的
+                                所以这里是 一对一
+
+                            第一个参数：指定要 join 进来的表 所对应的实体类
+                                这里是要 join course 表，所以填 Course.class
+                            第二个参数：指定查出来的课程信息，存放到哪个字段
+                                ExamInfo::getCourse ：表示 ExamInfo 类的 course 字段
+                         */
+                        .selectAssociation(Course.class, ExamInfo::getCourse)
+                        /*
+                            leftJoin：拼接 left join 这条 SQL
+                            第一个参数：
+                                指定要 join 进来的表 所对应的实体类
+                            第二个参数：
+                                指定 ON 关键字 左边的 字段，使用 Course::getId 表示 course 表的 id 字段
+                            第三个参数：
+                                指定 ON 关键字 右边的 字段，使用 Exam::getCourseId 表示 exam 表的 course_id 字段
+                         */
+                        .leftJoin(Course.class, Course::getId, Exam::getCourseId)
+                        .selectAssociation(Student.class, ExamInfo::getStudent)
+                        .leftJoin(Student.class, Student::getId, Exam::getStudentId)
+
+                //================= 对应的 SQL ===================//
+                /*
+                new MPJLambdaWrapper<Exam>()
+                
+                        // SELECT exam.* FROM exam
+                        .selectAll(Exam.class)
+                        
+                        // #{id} 表示外部传入的参数
+                        // WHERE exam.id = #{id}
+                        .eq(Exam::getId, id)
+                        
+                        // 不对应 SQL
+                        .selectAssociation(Course.class, ExamInfo::getCourse)
+                        
+                        // LEFT JOIN course ON course.id = exam.course_id
+                        .leftJoin(Course.class, Course::getId, Exam::getCourseId)
+                        
+                        // 不对应 SQL
+                        .selectAssociation(Student.class, ExamInfo::getStudent)
+                        
+                        // LEFT JOIN student ON student.id = exam.course_id
+                        .leftJoin(Student.class, Student::getId, Exam::getStudentId)
+                 */
+        );
+    }
+```
+
+
+
+#### 10.3.2 使用 MybatisPlus + SQL
+
+##### 10.3.2.1 添加 ExamMapper.xml 文件
+
+添加在 resources/mapper 目录下面
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xfdzcoder.springbootdemo.mapper.ExamMapper">
+
+    <select id="selectInfoById" resultType="com.xfdzcoder.springbootdemo.entity.ExamInfo"
+            parameterType="java.lang.Long">
+        # 要查询的字段
+        # s.* 表示 student 表中的所有字段，其他同理
+        SELECT *,
+                c.id as 'course.id',
+                c.name as 'course.name',
+                c.teacher as 'course.teacher',
+                c.score as 'course.score',
+                s.id as 'student.id',
+                s.student_no as 'student.student_no',
+                s.student_name as 'student.student_name',
+                s.gender as 'student.gender',
+                s.age as 'student.age',
+                s.enrollment_year as 'student.enrollment_year'
+        # exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 c 和 s 同理
+        FROM exam e
+                 # 连接查询
+                 # 		JOIN course ：连接到 course 表
+                 # 		ON c.id = e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+                 # 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+                 LEFT JOIN course c ON c.id = e.course_id
+                 LEFT JOIN student s ON e.student_id = s.id
+    </select>
+
+</mapper>
+```
+
+然后在 ExamMapper 类中定义这个方法
+
+```java
+@Mapper
+public interface ExamMapper extends MPJBaseMapper<Exam> {
+
+    ExamInfo selectInfoById(@Param("id") Long id);
+
+}
+```
+
+然后即可在 controller 中进行调用即可
+
+controller 代码：
+
+```java
+    @Autowired
+    private ExamMapper examMapper;
+    
+    @GetMapping("/xml/{id}")
+    public ExamInfo getByIdXML(@PathVariable("id") Long id) {
+        return examMapper.selectInfoById(id);
+    }
+```
+
+不要忘了注入 ExamMapper 接口。
+
+分页查询同理，主要是 SQL 语句的编写。这里就省略了。
+
+## 11 Vue 项目的搭建
+
+// TODO
