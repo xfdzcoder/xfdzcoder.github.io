@@ -770,13 +770,14 @@ public class StudentController {
 
 ```java
     @PostMapping
-    public String save(Student student) {
+	// 如果方法参数上是一个对象，不是基本类型的包装类或者 String，那么就需要添加 @RequestBody 注解
+    public String save(@RequestBody Student student) {
         studentService.save(student);
         return "success";
     }
     
     @PutMapping
-    public String update(Student student) {
+    public String update(@RequestBody Student student) {
         studentService.updateById(student);
         return "success";
     }
@@ -806,5 +807,121 @@ public class StudentController {
 
 ## 9 Apifox 的使用
 
-// TODO 明天再写
+先加入项目：
 
+[new_player 在 Apifox 邀请你加入项目 springboot-demo ](https://app.apifox.com/invite/project?token=5jyqOhJrvtT19Ylq3cS5y)
+
+可以直接使用网页版，也可以下载应用程序。加入项目后，先介绍一下 apifox 的界面
+
+![image-20240723142546696](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-26-07-f337a68b5a10f944389f98287b459bd1-image-20240723142546696-a437e0.png)
+
+这里再放一张后端 Controller 的接口代码图，对照看一下
+
+![image-20240723143559628](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-36-00-ef71518959d17569b1bd74c4817de75f-image-20240723143559628-6adc4c.png)
+
+### 9.1 发送请求
+
+### 9.1.1 POST/PUT 请求
+
+打开新增的接口页面，然后点击运行，进入运行页面，如下图所示：
+
+![image-20240723144144468](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-41-45-31e47e5e10340a8f41230416f2fe7b1a-image-20240723144144468-21b6b6.png)
+
+既然是要新增，那么肯定要填这个学生对应的信息，那怎么填呢？填哪？
+
+前面介绍过 POST/PUT 请求的参数是放在一个叫做请求体的地方，请求体在 apifox 的页面中就表现为 Body，表示请求体的意思，当然 apifox 已经默认帮我们选中 Body 了。
+
+![image-20240723144328760](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-43-29-18fe6cb2e9c7a93eaf3b4fcaa3302677-image-20240723144328760-ef17f9.png)
+
+Body 下面一行能看到还有很多的小分类，比如 none（啥也木有）、form-data（表单数据）等等，我们要用的就是 json 这个类型。前后端的交互都使用 JSON 进行。显然 apifox 也帮我们自动选中了。那么下一步就点击自动生成，看看 apifox 会给我们生成什么参数。
+
+![image-20240723144501437](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-45-02-0ccc791ce2c864a5d1031d5dc047e809-image-20240723144501437-c1126e.png)
+
+可以看到自动生成的参数是这种格式的，这种格式就是 json 格式，我们只需要修改对应的值就行（当然你就这么传也不是不行），也可以像我一样稍作修改，使这个参数看起来更合理
+
+![image-20240723144722383](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-47-23-ae7b42b6da2143eb51d3838531ccffe6-image-20240723144722383-b34689.png)
+
+然后点击发送，对了，发送前别忘了**启动项目。**
+
+然后就可以看到，下方已经返回回来了我们在 StudentController 中的 save 方法中返回的 success 字符串
+
+![image-20240723145511587](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-55-12-135f5f6e78f2f35e1f3bc4e9fb42c338-image-20240723145511587-a0c9cf.png)
+
+然后我们手动查看一下数据库，看看是否插入成功？
+
+![image-20240723145621575](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-56-22-2a373cdc33751cc7611865dd2ac5a259-image-20240723145621575-e7cee3.png)
+
+可以看到也是成功插入了，修改同理，这里就不再演示了。只是修改的时候要注意 id 字段，**请求参数中的 id 一定要是数据库中真实存在的 id。**
+
+### 9.1.2 GET/DELETE 请求
+
+先看最简单的 分页查询请求吧，点击运行之后，可以看到参数都已经帮我们填充好了，pageNo 是 1，pageSize 是 10，那我们直接点发送即可，看看返回的数据。
+
+![image-20240723145838069](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-58-39-55ea63fc226687e2feb0177513dfc8a0-image-20240723145838069-ce6daf.png)
+
+能够看到这是可以成功进行分页查询的，但是当前数据库中就一条记录，所以 records 字段的值也只有一条记录。
+
+同时，这里也有和 POST/PUT 不同的地方，POST/PUT 的请求参数是在 Body 请求体里面的，而这个 GET 请求却是在 Param 中
+
+Param 具体在哪呢？
+
+随便打开一个网页，这里以bing.com为例
+
+![image-20240723150242846](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-02-43-36ef5caebc9e5e2dca6f39e9af845567-image-20240723150242846-fd2998.png)
+
+可以看到地址栏上的 URL：`https://www.bing.com/search?q=apifox&toWww=1&redig=C089F763E28D4CCF9E1050B953E32175`
+
+格式是这样的：协议://域名:端口/接口地址（或者叫 URI）?key=value&key1=value1&....keyn=valuen
+
+问号后面的 key=value 这种键值对的格式的，就是 param 了，只是 apifox 为了美观，没有展示出来。
+
+也就是说，GET/DELETE 的请求方法中的参数，都会像 q=apifox 一样拼接在 uri 后面，并用 ? 和 uri 分隔。参数和参数之间使用 & 分隔。
+
+所以，我们也可以直接在地址栏中输入下面这个地址：`localhost:8080/student?pageNo=1&pageSize=10`
+
+可以看到返回结果和 apifox 中一模一样。
+
+![image-20240723150828712](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-08-29-23ed7dee4b2c758911fa24c1f48c6a22-image-20240723150828712-db6916.png)
+
+下面来看另一种传参的方式（这种老师一般不会讲，因为是我们采用的是 Restful 规范），也就是 根据id查询 接口。
+
+打开其运行页面，可以看到还是在 Param 中，但是 Query 里面没有一个参数，反而是多了一个叫 Path 参数的东西，这个就叫路径参数。
+
+顾名思义，就是把参数放在请求地址上。
+
+这里的请求地址后面跟了一个 `{id}` ，这个是一个通配符，和 Java 后端的 Controller 中一样。
+
+![image-20240723151046101](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-10-47-d3453b7645ee63b76441c51c9b8132d1-image-20240723151046101-f6861a.png)
+
+大括号中的单词就是参数名称，是和 Path 参数中的参数名一一对应的，apifox 会把参数值替换到 `{id}` 的位置，那我们先发送一下，看看会返回啥。
+
+是不是啥也没有，空的，那我们稍微修改一下接口，修改后的接口如下：
+
+```java
+    @GetMapping("{id}")
+    public Object getById(@PathVariable("id") Long id) {
+        Student student = studentService.getById(id);
+        if (student == null) {
+            return "id 为 " + id + " 的学生不存在";
+        }
+        return student;
+    }
+```
+
+然后重新运行项目，再发一个请求看看
+
+![image-20240723151836312](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-18-37-97bf99485a40f08d29df2ee4e99edfab-image-20240723151836312-4596d8.png)
+
+有没有想起来前面提到过，**更新的时候 id 一定要填写数据库中实际存在的**，那么查询的时候也是这样，数据库中有 id 为 1 的数据吗？显然没有，所以我们修改一下 id 的参数值，你的参数值和我的一定不一样，所以请不要偷懒。
+
+可以看到，参数值修改为正确的之后，就能够查出来对应的学生数据了。
+
+![image-20240723152016920](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-20-17-94b4b80cdb976f91a54c67c26d21123b-image-20240723152016920-a4826f.png)
+
+那么同理，删除接口也是一样的调用方式，这一步就交给你了，请你调用删除接口后，再回来查询一下看看是否能够查到。
+
+删除后，能够看到已经查询不到了。
+
+![image-20240723152310911](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-23-11-55e772eb0cf351cd216edc612b88b60b-image-20240723152310911-6330c1.png)
+
+好了你已经成功掌握了 Apifox 的基本用法。
