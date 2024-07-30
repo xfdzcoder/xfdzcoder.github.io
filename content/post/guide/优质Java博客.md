@@ -19,6 +19,8 @@ categories: [Guide]
 
 [代码随想录 (programmercarl.com)](https://www.programmercarl.com/)
 
+[小林coding (xiaolincoding.com)](https://xiaolincoding.com/)
+
 [Java 全栈知识体系 (pdai.tech)](https://pdai.tech/)
 
 [美团技术团队 (meituan.com)](https://tech.meituan.com/)
