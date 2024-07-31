@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JUC on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/tags/juc/</link>
+    <description>Recent content in JUC on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Wed, 31 Jul 2024 20:03:17 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/juc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>synchronized 的升级机制</title>
+      <link>http://localhost:1313/7224233674005610509/</link>
+      <pubDate>Tue, 30 Jul 2024 11:12:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610509/</guid>
+      <description>引言 都 4202 年了，不会还有人以为 synchronized 就是重量级锁吧~，参考：浅析synchronized锁升级的原理与实现 - 小新成长之路 - 博客园 (cnblogs.com) 在看本章之前，您</description>
+    </item>
+  </channel>
+</rss>

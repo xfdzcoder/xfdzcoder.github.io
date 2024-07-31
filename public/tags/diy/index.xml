@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DIY on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/tags/diy/</link>
+    <description>Recent content in DIY on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Mon, 03 Apr 2023 15:26:56 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/diy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WindowsTerminal美化教程</title>
+      <link>http://localhost:1313/7224233674005610496/</link>
+      <pubDate>Mon, 03 Apr 2023 15:26:56 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610496/</guid>
+      <description>美化 terminal 窗口</description>
+    </item>
+  </channel>
+</rss>

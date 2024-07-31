@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="Java核心技术卷二阅读笔记（1.2 ~ 3.9）" />
+    <meta property="og:title" content="Java核心技术卷二阅读笔记（1.2 ~ 3.9）" />
+    <meta property="twitter:title" content="Java核心技术卷二阅读笔记（1.2 ~ 3.9）" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Java核心技术卷二阅读笔记（1.2 ~ 3.9） | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224233674005610503/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                    </div>
+                    <h1>Java核心技术卷二阅读笔记（1.2 ~ 3.9）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Thursday, May 12, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<h1 id="12---stream的惰性">1.2 - Stream的惰性</h1>
+<blockquote>
+<p>因为在执行流的操作时，我们并没用修改流背后的集合。流并没有修改其数据，数据一直储存在单独的集合中。如果修改了该集合，那么流的操作就会变成不可预知的。准确的讲，因为中间的流操作是惰性的，所以在终止操作得以执行时，集合有可能已经发生了变化。</p>
+</blockquote>
+<h1 id="13---filtermapflatmap方法">1.3 - filter、map、flatMap方法</h1>
+<ul>
+<li>
+<p><strong><code>Stream&lt;T&gt; filter(Predicate&lt;? super T&gt; predicate)</code></strong></p>
+<ul>
+<li>返回由与给定谓词匹配的此流的元素组成的流。这是一个中间操作。</li>
+<li>参形：predicate – 一个无干扰的、无状态的谓词，应用于每个元素以确定是否应该包含它</li>
+<li>返回值：新流</li>
+</ul>
+</li>
+<li>
+<p><strong><code>default Stream&lt;T&gt; takeWhile(Predicate&lt;? super T&gt; predicate) {}</code>  Java 9</strong></p>
+<ul>
+<li>
+<p>如果此流是有序的，则返回一个流，该流由从该流中提取的与给定谓词匹配的元素的最长前缀组成。否则，如果此流是无序的，则返回一个流，该流由从该流中获取的与给定谓词匹配的元素的子集组成。
+如果此流已排序，则最长前缀是此流中与给定谓词匹配的元素的连续序列。序列的第一个元素是这个流的第一个元素，紧跟在序列最后一个元素之后的元素与给定的谓词不匹配。
+如果这个流是无序的，并且这个流的一些（但不是全部）元素匹配给定的谓词，那么这个操作的行为是不确定的；它可以自由地获取匹配元素的任何子集（包括空集）。
+如果此流的所有元素都与给定谓词匹配，则此操作将获取所有元素（结果与输入相同），或者如果流中没有元素与给定谓词匹配，则与此流是有序还是无序无关被采取（结果是一个空流）。
+这是一个短路有状态的中间操作。</p>
+</li>
+<li>
+<p>参形：predicate – 一个无干扰、无状态的谓词，应用于元素以确定元素的最长前缀。</p>
+</li>
+<li>
+<p>返回值：新流</p>
+</li>
+<li>
+<p>API说明：</p>
+<p>虽然takeWhile()通常是顺序流管道上的廉价操作，但在有序并行管道上可能会非常昂贵，因为该操作不仅要返回任何有效前缀，还要返回遇到顺序中元素的最长前缀。如果您的情况的语义允许，使用无序流源（例如generate(Supplier) ）或使用unordered()删除排序约束可能会导致并行管道中的takeWhile()显着加速。如果需要与遇到顺序保持一致，并且您在并行管道中使用takeWhile()时遇到性能或内存利用率不佳的情况，则使用 sequence() 切换到sequential()执行可能会提高性能。</p>
+</li>
+<li>
+<p>实现要求：
+默认实现获取此流的spliterator ，包装该拆分器以支持此操作在遍历时的语义，并返回与包装的拆分器关联的新流。返回的流保留了该流的执行特性（即根据isParallel()并行或顺序执行），但包装的拆分器可能选择不支持拆分。当返回的流关闭时，将调用返回的流和此流的关闭处理程序。</p>
+</li>
+<li>
+<p>自：9</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&lt;R&gt; Stream&lt;R&gt; map(Function&lt;? super T, ? extends R&gt; mapper)</code></strong></p>
+<ul>
+<li>返回由将给定函数应用于此流的元素的结果组成的流。这是一个中间操作。</li>
+<li>参形：mapper – 一个无干扰、无状态的函数，应用于每个元素</li>
+<li>类型形参：&lt;R&gt; – 新流的元素类型</li>
+<li>返回值：新流</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&lt;R&gt; Stream&lt;R&gt; flatMap(Function&lt;? super T, ? extends Stream&lt;? extends R&gt;&gt; mapper)</code></strong></p>
+<ul>
+<li>
+<p>返回一个流，其中包含将此流的每个元素替换为通过将提供的映射函数应用于每个元素而生成的映射流的内容的结果。每个映射流在其内容被放入该流后closed 。 （如果映射流为null ，则使用空流。）
+这是一个中间操作。</p>
+</li>
+<li>
+<p>参形：mapper – 一个无干扰、无状态的函数，适用于每个元素，产生新值流</p>
+</li>
+<li>
+<p>类型形参：&lt;R&gt; – 新流的元素类型</p>
+</li>
+<li>
+<p>返回值：新流</p>
+</li>
+<li>
+<p>API说明：
+flatMap()操作具有对流的元素应用一对多转换的效果，然后将生成的元素展平为新的流。
+例子。
+如果orders是一个采购订单流，并且每个采购订单都包含一系列行项目，那么下面会生成一个流，其中包含所有订单中的所有行项目：</p>
+<p><code>orders.flatMap(order -&gt; order.getLineItems().stream())...</code></p>
+<p>如果path是文件的路径，则以下内容会生成该文件中包含的words流：</p>
+<p><code>Stream&lt;String&gt; lines = Files.lines(path, StandardCharsets.UTF_8);</code>
+<code>Stream&lt;String&gt; words = lines.flatMap(line -&gt; Stream.of(line.split(&quot; +&quot;)));</code></p>
+<p>传递给flatMap的mapper函数使用简单的正则表达式将一行拆分为一个单词数组，然后从该数组创建一个单词流。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="注">注：</h2>
+<p>filter 和 takeWhile 的区别：说人话就是，filter会对所有元素进行筛选，takeWhile 会被第一个不符合给打断，后面无论是否符合都不再进行过滤。</p>
+<h1 id="17---optional-类型">1.7 - Optional 类型</h1>
+<h2 id="171---获取-optional-的值">1.7.1 - 获取 Optional 的值</h2>
+<blockquote>
+<p>有效的使用 Optional 的关键是要使用这样的方法：它在值不存在的情况下会产生一个替代物，而只有在值存在的情况下才会使用这个值。</p>
+<ul>
+<li>API :
+<ul>
+<li><code>T orElse(T other)</code>
+<ul>
+<li>产生这个 Optional 的值，或者在<strong>该 Optional 为空时，产生 other</strong></li>
+</ul>
+</li>
+<li><code>T orElseGet(Supplier&lt;? extends T&gt; other)</code>
+<ul>
+<li>产生这个 Optional 的值，或者在<strong>该 Optional 为空时，产生调用 other 的结果</strong></li>
+</ul>
+</li>
+<li><code>&lt;X extends Throwable&gt; T orElseThrow(Supplier&lt;? extends X&gt; exceptionSupplier)</code>
+<ul>
+<li>产生这个 Optional 的值，或者在<strong>该 Optional 为空时，抛出 exceptionSupplier</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="172---消费-optional-的值">1.7.2 - 消费 Optional 的值</h2>
+<blockquote>
+<ul>
+<li>API :
+<ul>
+<li><code>void ifPresent(Consumer&lt;? super T&gt; action)</code>
+<ul>
+<li><strong>如果该 Optional 不为 null，就将它的值传递给 action</strong></li>
+</ul>
+</li>
+<li><code>void ifPresentOrElse(Consumer&lt;? super T&gt; action, Runnable emptyAction)</code>
+<ul>
+<li><strong>如果该 Optional 不为 null，就将它的值传递给 action，否则调用 emptyAction</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="174---关于-optional-类型正确用法的提示">1.7.4 - 关于 Optional 类型正确用法的提示：</h2>
+<ul>
+<li>Optional 类型的变量永远都不应该为 null。</li>
+<li>不要使用 Optional 类型的域。其代价是额外多出来一个对象，在类的内部，使用 null 表示缺失的域更易于操作。</li>
+<li>不要在集合中放置 Optional 对象，并且不要将他们用作 map 的键。</li>
+</ul>
+<h2 id="175---创建-optional-的值">1.7.5 - 创建 Optional 的值</h2>
+<blockquote>
+<ul>
+<li>API :
+<ul>
+<li><code>static &lt;T&gt; Optional&lt;T&gt; of(T Value)</code>-<em>r</em>
+<ul>
+<li>产生一个具有给定值的 Optional ，<strong>若 value 为 null ，那么会抛出一个 NPE。</strong></li>
+</ul>
+</li>
+<li><code>static &lt;T&gt; Optional&lt;T&gt; ofNullable(T value)</code>
+<ul>
+<li>产生一个具有给定值的 Optional ，<strong>若 value 为 null ，那么产生一个空的 Optional。</strong></li>
+</ul>
+</li>
+<li><code>static &lt;T&gt; Optional&lt;T&gt; empty()</code>
+<ul>
+<li>产生一个空的 Optional。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="176---map-和-flatmap">1.7.6 - map 和 flatMap</h2>
+<blockquote>
+<ul>
+<li>
+<p>API :</p>
+<ul>
+<li>
+<p><code>public&lt;U&gt; Optional&lt;U&gt; map(Function&lt;? super T, ? extends U&gt; mapper)</code></p>
+<ul>
+<li>
+<p><strong>如果存在值，则对其应用提供的映射函数</strong>，如果结果为非 null，则返回描述结果的Optional 。否则返回一个空的Optional 。</p>
+</li>
+<li>
+<p>参形：mapper – 应用于值的映射函数（如果存在）</p>
+</li>
+<li>
+<p>类型形参：&lt;U&gt; – 映射函数结果的类型</p>
+</li>
+<li>
+<p>返回值：Optional描述将映射函数应用于此Optional的值的结果，如果存在值，否则为空Optional</p>
+</li>
+<li>
+<p>抛出：NullPointerException – 如果映射函数为 null</p>
+</li>
+<li>
+<p>API说明：
+此方法支持对可选值进行后处理，无需显式检查返回状态。例如，以下代码遍历文件名流，选择一个尚未处理的文件，然后打开该文件，返回Optional&lt;FileInputStream&gt; ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Optional<span style="color:#ff79c6">&lt;</span>FileInputStream<span style="color:#ff79c6">&gt;</span> fis <span style="color:#ff79c6">=</span>
+</span></span><span style="display:flex;"><span>     names.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">filter</span>(name <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">!</span>isProcessedYet(name))
+</span></span><span style="display:flex;"><span>                   .<span style="color:#50fa7b">findFirst</span>()
+</span></span><span style="display:flex;"><span>                   .<span style="color:#50fa7b">map</span>(name <span style="color:#ff79c6">-&gt;</span> <span style="color:#ff79c6">new</span> FileInputStream(name));
+</span></span></code></pre></div><p>在这里， findFirst返回一个Optional<!-- raw HTML omitted --> ，然后map返回一个Optional<!-- raw HTML omitted -->用于所需文件（如果存在）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>public&lt;U&gt; Optional&lt;U&gt; flatMap(Function&lt;? super T, Optional&lt;U&gt;&gt; mapper)</code></p>
+<ul>
+<li>如果存在值，则将提供的Optional轴承映射函数应用于它，返回该结果，否则返回空Optional 。此方法类似于map(Function) ，但提供的映射器的结果已经是Optional ，<strong>如果被调用， flatMap不会用附加的Optional包装它。</strong></li>
+<li>参形：mapper – 应用于值的映射函数，如果存在映射函数</li>
+<li>类型形参：&lt;U&gt; – Optional返回的类型参数</li>
+<li>返回值：如果存在值，则将Optional轴承映射函数应用于此Optional的值的结果，否则为空Optional</li>
+<li>抛出：NullPointerException – 如果映射函数为 null 或返回 null 结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="异同点">异同点：</h3>
+<ul>
+<li>
+<h4 id="同">同：</h4>
+<ul>
+<li>都会将 Optional 的值应用于 mapper 函数</li>
+</ul>
+</li>
+<li>
+<h4 id="异">异：</h4>
+<ul>
+<li>map 将 Optional 的值应用于 mapper 函数之后会使用 Optional 进行封装。</li>
+<li>flatMap  Optional 的值应用于 mapper 函数之后不会使用 Optional 进行封装。</li>
+</ul>
+</li>
+</ul>
+<h1 id="18---收集结果到-collection-中">1.8 - 收集结果到 Collection 中</h1>
+<p>处理完流之后，往往需要查看其结果，除了常用的foreach遍历之外，还可能会需要将流中的数据收集到另一个数据结构中，此时有一个便捷的方法可以使用：</p>
+<blockquote>
+<ul>
+<li>
+<p>API :</p>
+<ul>
+<li><code>&lt;R, A&gt; R collect(Collector&lt;? super T, A, R&gt; collector)</code></li>
+<li><strong>使用Collector对此流的元素执行可变归约操作。</strong> Collector封装了用作collect(Supplier, BiConsumer, BiConsumer)参数的函数，允许重用收集策略和组合收集操作，例如多级分组或分区。
+如果流是并行的，并且Collector是concurrent的，并且流是无序的或收集器是unordered的，则将执行并发归约（有关并发归约的详细信息，请参阅Collector 。）
+这是终端操作。
+当并行执行时，可以实例化、填充和合并多个中间结果，以保持可变数据结构的隔离。<strong>因此，即使与非线程安全的数据结构（例如ArrayList ）并行执行，也不需要额外的同步来进行并行归约。</strong></li>
+</ul>
+</li>
+<li>
+<p>参形：收集器 - 描述减少的Collector</p>
+</li>
+<li>
+<p>类型形参：</p>
+<ul>
+<li>&lt;R&gt; – 结果的类型</li>
+<li>&lt;A&gt; – Collector的中间累积类型</li>
+</ul>
+</li>
+<li>
+<p>返回值：减少的结果</p>
+</li>
+<li>
+<p>API说明：
+以下会将字符串累积到 ArrayList 中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> asList <span style="color:#ff79c6">=</span> stringStream.<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">toList</span>());
+</span></span></code></pre></div><p>以下可以控制获得的集的种类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> asList <span style="color:#ff79c6">=</span> stringStream.<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">toCollection</span>(TreeSet::<span style="color:#ff79c6">new</span>));
+</span></span></code></pre></div><p>或者通过连接操作收集流中所有字符串：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> List<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;</span> asList <span style="color:#ff79c6">=</span> stringStream.<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">joining</span>(<span style="color:#f1fa8c">&#34;,&#34;</span>);
+</span></span></code></pre></div></li>
+</ul>
+</blockquote>
+<p>#1.9 - 收集结果到 Map 中</p>
+<p>注：</p>
+<ul>
+<li>
+<p>通常情况下，Map 的键是流中对象的某个唯一存在的属性，而 Map 的值则为 该对象，因此第二个参数可以使用 <code>Function.identity()</code></p>
+</li>
+<li>
+<p>收集到 Map 中时若多个元素具有相同的键，那么收集器将抛出一个 <code>IllegalStateException</code> ，此时需要引入第三个参数来解决这个冲突（即指定一个值放入 Map，可以是已经存在的，也可以是新的）</p>
+</li>
+<li>
+<p>其次，此时元素不再是按照流中的顺序收集的，但这通常不会有什么问题。</p>
+</li>
+</ul>
+<h1 id="110---groupingby">1.10 - groupingBy</h1>
+<blockquote>
+<ul>
+<li>API :
+<ul>
+<li><code>public static &lt;T, K&gt; Collector&lt;T, ?, Map&lt;K, List&lt;T&gt;&gt;&gt; groupingBy(Function&lt;? super T, ? extends K&gt; classifier)</code>
+<ul>
+<li><strong>返回一个Collector ，对T类型的输入元素执行“分组依据”操作，根据分类函数对元素进行分组，并在Map中返回结果。</strong>
+分类函数将元素映射到某个键类型K 。收集器生成一个Map&lt;K, List<!-- raw HTML omitted -->&gt; ，其键是将分类函数应用于输入元素所产生的值，其对应值是List ，其中包含映射到分类函数下关联键的输入元素.
+不保证返回的Map或List对象的类型、可变性、可序列化性或线程安全性。</li>
+<li>参形：分类器 - 将输入元素映射到键的分类器函数</li>
+<li>类型形参：
+&lt;T&gt; – 输入元素的类型
+&lt;K&gt; – 键的类型</li>
+<li>返回值：实现 group-by 操作的Collector</li>
+<li>实现要求：这会产生类似于以下内容的结果：<code> groupingBy(classifier, toList());</code></li>
+<li>实现说明：
+返回的Collector不是并发的。对于并行流管道， combiner功能通过将键从一个映射合并到另一个映射来操作，这可能是一项昂贵的操作。如果不需要保留元素在生成的Map收集器中出现的顺序，则使用groupingByConcurrent(Function)可能会提供更好的并行性能。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>
+<p>下面将按城市对Person对象进行分类：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> Map<span style="color:#ff79c6">&lt;</span>String, List<span style="color:#ff79c6">&lt;</span>Person<span style="color:#ff79c6">&gt;&gt;</span> peopleByCity
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">=</span> personStream.<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">groupingBy</span>(Person::getCity));
+</span></span></code></pre></div></li>
+<li>
+<p>下面将按州和城市对Person对象进行分类，将两个Collector级联在一起：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#ff79c6">&lt;</span>String, Map<span style="color:#ff79c6">&lt;</span>String, List<span style="color:#ff79c6">&lt;</span>Person<span style="color:#ff79c6">&gt;&gt;&gt;</span> peopleByStateAndCity
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">=</span> personStream.<span style="color:#50fa7b">collect</span>(Collectors.<span style="color:#50fa7b">groupingBy</span>(Person::getState,
+</span></span><span style="display:flex;"><span>                                                  Collectors.<span style="color:#50fa7b">groupingBy</span>(Person::getCity)));
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="111---下游收集器">1.11 - 下游收集器</h1>
+<blockquote>
+<ul>
+<li>
+<p>API :</p>
+<ul>
+<li>
+<p><code>public static &lt;T, K, A, D&gt; Collector&lt;T, ?, Map&lt;K, D&gt;&gt; groupingBy(Function&lt;? super T, ? extends K&gt; classifier, Collector&lt;? super T, A, D&gt; downstream)</code></p>
+<ul>
+<li>
+<p>返回一个Collector ，对T类型的输入元素实现级联“分组依据”操作，根据分类函数对元素进行分组，然后使用指定的下游Collector对与给定键关联的值执行归约操作。
+<strong>分类函数将元素映射到某个键类型K 。下游收集器对T类型的元素进行操作并产生D类型的结果。结果收集器产生一个Map&lt;K, D&gt; 。</strong>
+不保证返回的Map的类型、可变性、可序列化性或线程安全性。
+例如，要计算每个城市的人的姓氏集：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> Map<span style="color:#ff79c6">&lt;</span>City, Set<span style="color:#ff79c6">&lt;</span>String<span style="color:#ff79c6">&gt;&gt;</span> namesByCity
+</span></span><span style="display:flex;"><span>     <span style="color:#ff79c6">=</span> people.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">collect</span>(groupingBy(Person::getCity,
+</span></span><span style="display:flex;"><span>                                          mapping(Person::getLastName, toSet())));
+</span></span></code></pre></div></li>
+<li>
+<p>参形：</p>
+<p>分类器 - 将输入元素映射到键的分类器函数</p>
+<p>下游 - 实施下游减少的Collector</p>
+</li>
+<li>
+<p>类型形参：</p>
+<p>&lt;T&gt; – 输入元素的类型
+&lt;K&gt; – 键的类型
+&lt;A&gt; – 下游收集器的中间累积类型
+&lt;D&gt; – 下游归约的结果类型</p>
+</li>
+<li>
+<p>返回值：
+实现级联分组操作的Collector</p>
+</li>
+<li>
+<p>实现说明：
+返回的Collector不是并发的。对于并行流管道， combiner功能通过将键从一个映射合并到另一个映射来操作，这可能是一项昂贵的操作。如果不需要保留元素呈现给下游收集器的顺序，则使用groupingByConcurrent(Function, Collector)可能会提供更好的并行性能。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="113---基本类型流">1.13 - 基本类型流</h1>
+<blockquote>
+<p>到目前为止，我们都是将整数收集到 <code>Stream&lt;Integer&gt;</code> 中，但其实这是极其低效的（因为需要大量的拆箱装箱）。而流库中有专门的 IntStream、LongStream、DoubleStream。</p>
+</blockquote>
+<ul>
+<li>byte、short、char、int、boolean 可以使用 IntStream</li>
+<li>float、double 可以使用 DoubleStream</li>
+</ul>
+<h2 id="基本流与对象流的差异">基本流与对象流的差异：</h2>
+<ul>
+<li>toArray 方法会返回基本类型数组</li>
+<li>产生可选结果的方法会返回一个 OptionalInt、OptionalLong、OptionalDouble。</li>
+<li>具有 sum、average、max、min 方法。</li>
+<li>summaryStatistics 方法会产生一个类型为 IntSummaryStatistics、LongSummaryStatistics、DoubleSummaryStatistics 的对象。</li>
+<li>Random 类具有 ints、longs、doubles 方法，它们返回由随机数构成的基本类型流。但如果需要并行流中的随机数，那么需要使用 SplittableRandom 类。</li>
+</ul>
+<h1 id="213---关于文件路径分隔符">2.1.3 - 关于文件路径分隔符</h1>
+<blockquote>
+<p>由于反斜杠字符在 Java 字符串中是转义字符，因此要确保在 Windows 风格的路径名中使用 <code>\\</code> 。当然也可以使用 <code>/</code> ，但并不推荐这样做，因为 Windows 系统函数的行为会与时俱进的发生变化。因此，对于可移植的程序来说，应该使用程序所运行平台的文件分隔符，我们可以通过常量字符串 <code>java.io.File.separator</code> 来获得它。</p>
+</blockquote>
+<h1 id="218---字符编码方式">2.1.8 - 字符编码方式</h1>
+<p>直接放大佬blog链接：<a href="https://www.cnblogs.com/chenwenbiao/archive/2011/08/11/2134503.html">UTF-8编码规则（转） - 奋斗者 - 博客园 (cnblogs.com)</a></p>
+<h1 id="221---dataoutput-与-datainput-中的-writeutf-和-readutf-的区别">2.2.1 - DataOutput 与 DataInput 中的 writeUTF() 和 readUTF() 的区别</h1>
+<ul>
+<li><code>writeUTF(String s)</code> 写出由 “ 修订过的 UTF-8 ” 格式的字符构成的字符串。</li>
+<li><code>writeUTF(String s)</code> 读入由 “ 修订过的 UTF-8 ” 格式的字符构成的字符串。</li>
+</ul>
+<h2 id="什么是--修订过的-utf-8--">什么是 “ 修订过的 UTF-8 ” ？？？</h2>
+<blockquote>
+<p>其中，Unicode 码元序列首先用 UTF-16 表示，然后再使用 UTF-8 规则进行编码。修订后的编码方式对于编码大于 0xFFFF 的字符的处理有所不同，这是为了向后兼容再 Unicode 还没有超过 16 位时构建的虚拟机。</p>
+<p>因为没有其他方法会使用 UTF-8 的这种修订，所以你**只应该在写出用于 Java 虚拟机的字符串时才使用 writeUTF 方法。**例如，当你需要编写一个生成字节码的程序时。</p>
+</blockquote>
+<p>（暗示 编译器？？？）</p>
+<h1 id="234---序列化单例和类型安全的枚举">2.3.4 - 序列化单例和类型安全的枚举</h1>
+<blockquote>
+<p>在序列化和反序列化时，如果目标对象是唯一的，那么你必须加倍当心。这通常会在实现单例和类型安全的枚举是发生。如果你使用Java语言的 enum 结构，那么你就不必担心序列化，它能够正常工作。但是，假如你在维护遗留代码，其中包含下面这样的枚举类型：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 此类和 卷二 上的实例不一样但是很类似</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Orientation</span> <span style="color:#8be9fd;font-style:italic">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String name;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Orientation A <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Orientation(<span style="color:#f1fa8c">&#34;A&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> Orientation B <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Orientation(<span style="color:#f1fa8c">&#34;B&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#50fa7b">Orientation</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">name</span> <span style="color:#ff79c6">=</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>这种风格在 enum 出现之前是很普遍的。</p>
+</blockquote>
+<p>现在我们来序列化和反序列化看看会发生什么？</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String args<span style="color:#ff79c6">[]</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> (ObjectOutputStream oos <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ObjectOutputStream(<span style="color:#ff79c6">new</span> FileOutputStream(<span style="color:#f1fa8c">&#34;study\\src\\test01\\ObjectOutPut.txt&#34;</span>));
+</span></span><span style="display:flex;"><span>        ObjectInputStream ois <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ObjectInputStream(<span style="color:#ff79c6">new</span> FileInputStream(<span style="color:#f1fa8c">&#34;study\\src\\test01\\ObjectOutPut.txt&#34;</span>))) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Orientation o <span style="color:#ff79c6">=</span> Orientation.<span style="color:#50fa7b">A</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        oos.<span style="color:#50fa7b">writeObject</span>(o);
+</span></span><span style="display:flex;"><span>        oos.<span style="color:#50fa7b">flush</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Orientation o1 <span style="color:#ff79c6">=</span> (Orientation) ois.<span style="color:#50fa7b">readObject</span>();
+</span></span><span style="display:flex;"><span>        System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(o1 <span style="color:#ff79c6">==</span> Orientation.<span style="color:#50fa7b">A</span>); <span style="color:#6272a4">// false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (Exception e) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>**当经过一次序列化和反序列化之后，反序列化得到的对象将 != 和 Orientation 中的常量。**它与任何预定义的常量都不等同。</p>
+<p>即使该类的构造器是私有的，但反序列化也可以创建新的对象！</p>
+<p>为了解决这个问题，你需要定义一种称为 readResolve 的特殊序列化方法。如果定义了 readResolve 方法，在对象被序列化之后就会调用它。它必须返回一个对象，而该对象之后会称为 readObject() 的返回值。</p>
+</blockquote>
+<p>增加的 readResolve() 如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">readResolve</span>() <span style="color:#8be9fd;font-style:italic">throws</span> ObjectStreamException {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (name.<span style="color:#50fa7b">equals</span>(<span style="color:#f1fa8c">&#34;A&#34;</span>)) <span style="color:#ff79c6">return</span> Orientation.<span style="color:#50fa7b">A</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (name.<span style="color:#50fa7b">equals</span>(<span style="color:#f1fa8c">&#34;B&#34;</span>)) <span style="color:#ff79c6">return</span> Orientation.<span style="color:#50fa7b">B</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>好了，现在就不会破坏单例模式了。</p>
+<h2 id="那么为什么定义了一个方法就不会破坏单例模式了呢">那么为什么定义了一个方法就不会破坏单例模式了呢？？</h2>
+<p>在 ObjectInputStream 类中的 readOrdinaryObject() 中有一段代码会做如下判定：</p>
+<ul>
+<li>若被序列化的类没有定义 readResolve 方法，那么就直接返回 obj。</li>
+<li>若被序列化的类定义了 readResolve 方法，那么会调用其方法获得正确的单例对象，并将其赋值给 obj 进行返回。</li>
+</ul>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-40-588142a9608832b6d7bee5818fc283bc-202301061540955-ab8a85.png" alt="image-20220601211021600">
+
+</p>
+<p>放上一段大佬的blog : <a href="https://blog.csdn.net/qq_39304851/article/details/115823991?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-115823991-blog-50982956.pc_relevant_scanpaymentv1&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-115823991-blog-50982956.pc_relevant_scanpaymentv1&amp;utm_relevant_index=1">(50条消息) readResolve()原理_Pinker_Q的博客-CSDN博客_readresolve</a></p>
+<h1 id="236---为克隆使用序列化">2.3.6 - 为克隆使用序列化</h1>
+<p>在对象被序列化和反序列化之后得到的一个新对象是对现有对象的一个 <strong>深拷贝</strong> 。在此过程中可以使用 ByteArrayOutputStream 将数据保存到字节数组中。</p>
+<h1 id="241---path-java-7-">2.4.1 - Path (Java 7 +)</h1>
+<table>
+<thead>
+<tr>
+<th>方法签名</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean</code></td>
+<td><code>endsWith(Path other)</code>  测试此路径是否以给定的路径结束。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>endsWith(String other)</code>  测试此路径是否以 <code>Path</code>结束，通过转换给定的路径字符串，完全按照 <a href="../../../java/nio/file/Path.html#endsWith-java.nio.file.Path-"><code>endsWith(Path)</code></a>方法指定的方式构建。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>equals(Object other)</code>  测试此路径与给定对象的相等性。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>getFileName()</code>  将此路径表示的文件或目录的名称返回为 <code>Path</code>对象。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>getParent()</code>  返回 <em>父路径</em> ，或 <code>null</code>如果此路径没有父。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>getRoot()</code>  返回此路径的根组分作为 <code>Path</code>对象，或 <code>null</code>如果该路径不具有根组件。</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>hashCode()</code>  计算此路径的哈希码。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>isAbsolute()</code>  告诉这条路是否是绝对的。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>normalize()</code>  返回一个路径，该路径是冗余名称元素的消除。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>relativize(Path other)</code>  构造此路径和给定路径之间的相对路径。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>resolve(Path other)</code>  根据这条路径解决给定的路径。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>resolve(String other)</code>  一个给定的路径字符串转换为 <code>Path</code>并解析它针对此  <code>Path</code>在完全按规定的方式 <a href="../../../java/nio/file/Path.html#resolve-java.nio.file.Path-"><code>resolve</code></a>方法。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>resolveSibling(Path other)</code>  根据此路径的 <a href="../../../java/nio/file/Path.html#getParent--"><code>parent</code></a>路径解决给定的路径。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>resolveSibling(String other)</code>  将给定的路径字符串转换为 <code>Path</code> ，并按照 <a href="../../../java/nio/file/Path.html#resolveSibling-java.nio.file.Path-"><code>resolveSibling</code></a>方法指定的方式将其解析为该路径的  <a href="../../../java/nio/file/Path.html#getParent--"><code>parent</code></a>路径。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>startsWith(Path other)</code>  测试此路径是否以给定的路径开始。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>startsWith(String other)</code>  测试此路径是否以 <code>Path</code> ，通过转换给定的路径字符串，按照 <a href="../../../java/nio/file/Path.html#startsWith-java.nio.file.Path-"><code>startsWith(Path)</code></a>方法指定的方式构建。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>subpath(int beginIndex,  int endIndex)</code>  返回一个相对的 <code>Path</code> ，它是该路径的名称元素的子序列。</td>
+</tr>
+<tr>
+<td><code>Path</code></td>
+<td><code>toAbsolutePath()</code>  返回表示此路径的绝对路径的 <code>Path</code>对象。</td>
+</tr>
+<tr>
+<td><code>File</code></td>
+<td><code>toFile()</code>  返回表示此路径的<a href="../../../java/io/File.html"><code>File</code></a>对象。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>toString()</code>  返回此路径的字符串表示形式。</td>
+</tr>
+<tr>
+<td><code>URI</code></td>
+<td><code>toUri()</code>  返回一个URI来表示此路径。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="246---访问目录中的项">2.4.6 - 访问目录中的项</h1>
+<p>当我们希望访问一个目录下的所有结构（包括目录和文件）时，第一时间想到的是 <code>Files.list()</code> 来递归调用，但我们有一个更简便的方法可以帮助我们遍历：</p>
+<ul>
+<li>
+<p>API :</p>
+<ul>
+<li>
+<p><code>public static Stream&lt;Path&gt; walk(Path start, FileVisitOption... options) throws IOException</code></p>
+<ul>
+<li>
+<p>返回一个<code>Stream</code>  ，它通过走根据给定起始文件的文件树懒惰地填充<code>Path</code> 。文件树以<strong>深度优先</strong>的方式遍历，流中的元素是<code>Path</code>对象，如<code>resolving</code>所示，相对路径为<code>start</code> 。这个方法的工作原理就像调用它相当于评估表达式： <code>walk(start, Integer.MAX_VALUE, options)</code>换句话说，它访问文件树的所有级别。返回的流封装一个或多个<code>DirectoryStream</code> s。 如果需要的文件系统资源的及时处置，该<code>try</code> -with资源结构应该被用来确保数据流的<code>close</code>流操作完成后调用方法。  在封闭的流上运行将导致<code>IllegalStateException</code>。</p>
+</li>
+<li>
+<p>参数</p>
+<p><code>start</code> - 起始文件</p>
+<p><code>options</code> - 配置遍历的选项</p>
+</li>
+<li>
+<p>结果</p>
+<p><code>Stream</code>的<code>Path</code></p>
+</li>
+<li>
+<p>异常</p>
+<p><code>SecurityException</code> -  如果安全管理员拒绝访问起始文件。 在默认提供程序的情况下， <code>checkRead</code>方法被调用来检查对该目录的读访问。</p>
+<p><code>IOException</code> - 如果在访问起始文件时抛出I  / O错误。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>不过，遗憾的是不能通过此方法进行删除目录树，因为你必须先删除子目录，但这并不是不可克服的。下一节将展示如何解决。</p>
+<h1 id="247---使用目录流">2.4.7 - 使用目录流</h1>
+<p>上一节的 walk 方法会以深度优先的方式遍历所有目录，但我们有时并不需要所有目录，这个时候就需要更加 <strong>细粒度</strong> 的控制。也就是 <code>Files.newDirectoryStream</code> ，它会产生一个 <code>DirectoryStream</code> ，但<strong>它并不是 Stream 的子接口</strong>，而是专门用于目录遍历的接口，<strong>他是 Iterable 的子接口</strong>，并且可以使用 <strong>glob 模式</strong>来过滤文件。</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>匹配路径组成部分中 0 个或 多个字符</td>
+<td>*.java 匹配当前目录中的所有 java 文件</td>
+</tr>
+<tr>
+<td>**</td>
+<td>匹配跨目录边界的 0 个或多个字符</td>
+<td>**.java 匹配在所有子目录中的所有 java 文件</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配一个字符</td>
+<td>????.java 匹配所有 四个字母的 java 文件（不包括扩展名）</td>
+</tr>
+<tr>
+<td>[&hellip;]</td>
+<td>匹配<strong>一个字符合集</strong>，可以使用连线符[0-9]和取反符[!0-9]</td>
+<td>Test[0-9A-F].java 匹配Textx.java ，其中 x 是一个 16进制数字</td>
+</tr>
+<tr>
+<td>{&hellip;}</td>
+<td>匹配由逗号隔开的 <strong>多个可选项之一</strong></td>
+<td>*.{java,class} 匹配所有的 java 文件 和 class 文件</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义上述任意模式中的字符以及 \ 字符</td>
+<td>*\** 匹配所有文件名中包含 * 的文件（此处不应该复制使用）</td>
+</tr>
+</tbody>
+</table>
+<p>如果想要访问某个目录的所有子孙成员，可以转而调用 <code>walkFileTree</code> 方法，并向其传递一个 <code>FileVisitor</code> 类型的对象（比如 <code>SimpleFileVisitor</code> 对象），这个对象会得到以下通知：</p>
+<ul>
+<li>**在遇到一个文件或目录时：**会调用 <code>FileVisitResult visitFile(T file, BasicFileAttributes attrs) throws IOException;</code></li>
+<li><strong>在一个目录被处理前：</strong><code>FileVisitResult preVisitDirectory(T dir, BasicFileAttributes attrs) throws IOException;</code></li>
+<li><strong>在一个目录被处理之后：</strong><code>FileVisitResult postVisitDirectory(T dir, IOException exc) throws IOException;</code></li>
+<li><strong>在试图访问文件或目录时发生错误，例如没有权限打开目录：</strong> <code>FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException</code></li>
+</ul>
+<p>对于上述每一种情况，都可以指定是否希望执行下面的操作：</p>
+<ul>
+<li><strong>继续访问下一个文件：</strong><code>FileVisitResult.CONTINUE</code></li>
+<li>继续访问，但是<strong>不再访问这个目录下面的任何项了：</strong><code>FileVisitResult.SKIP_SUBTREE</code></li>
+<li>继续访问，但是<strong>不再访问这个文件的兄弟文件（同级文件）：</strong><code>FileVisitResult.SKIP_SIBLINGS</code></li>
+<li><strong>终止访问：</strong><code>FileVisitResult.TERMINATE</code></li>
+</ul>
+<h1 id="25---内存映射文件">2.5 - 内存映射文件</h1>
+<blockquote>
+<p>大多数操作系统都可以利用虚拟内存来实现将一个文件或者文件的一部分 “ 映射 ” 到内存中。然后，这个文件就可以被当作内存数组一样地访问，这比传统的文件操作要快得多。</p>
+</blockquote>
+<h2 id="251---如何使用内存映射文件">2.5.1 - 如何使用内存映射文件</h2>
+<blockquote>
+<p>java.nio 包使内存映射变得非常简单，下面就是我们需要做的：</p>
+</blockquote>
+<ol>
+<li>
+<p>从文件中获得一个通道（channel），通道是用于磁盘文件的一种抽象，它使我们可以访问诸如内存映射、文件加锁机制以及文件间快速数据传递等操作系统特性。</p>
+<p><code>FileChannel channel = FileChannel.open(path, options)</code></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-26-5f6dd7fa5073c215ae7841013bc16121-202301061540956-018e11.png" alt="image-20220603092015487">
+
+</p>
+<ol start="2">
+<li>
+<p>然后调用 <code>FileChannel</code> 类的 <code>map</code> 方法从这个通道中获得一个 <code>ByteBuffer</code> 。同时你可以指定想要映射的<strong>文件区域</strong>与<strong>映射模式</strong>，支持的模式有三种：</p>
+<ul>
+<li>
+<p><strong><code>FileChannel.MapMode.READ_ONLY</code> <strong>：所产生的缓冲区是</strong>只读的</strong>，任何对该缓冲区写入的尝试都会导致 ReadOnlyBufferException 异常。</p>
+</li>
+<li>
+<p><strong><code>FileChannel.MapMode.READ_WRITE</code></strong>：所产生的缓冲区是<strong>可写的</strong>， 任何修改都会在<strong>某个时刻</strong>写回到文件中。注意，其他映射同一个文件的程序可能<strong>不能立即看到这些修改</strong>，多个程序同时进行文件映射的行为是依赖于操作系统的。</p>
+</li>
+<li>
+<p><strong><code>FileChannel.MapMode.PRIVATE</code></strong>：所产生的缓冲区是<strong>可写的</strong>，但是任何修改对这个缓冲区来说都是私有的，不会传播到文件中。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>另外，还记得在 <strong>2.1.8 - 字符编码方式</strong> 中提到的对二进制数据的排序机制么，Java 对二进制数据使用 <strong>高位在前</strong> 的排序机制。</p>
+<ul>
+<li>如果要查询缓冲区中的字节顺序，可以如下调用：
+<ul>
+<li><code>ByteOrder b = buffer.order();</code></li>
+</ul>
+</li>
+<li>如果要设置字节顺序，可以如下调用：
+<ul>
+<li><code>buffer.order(ByteOrder.LITTLE_ENDIAN);</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="26---文件加锁机制">2.6 - 文件加锁机制</h1>
+<blockquote>
+<p>文件锁可以控制对文件或文件中某个范围的字节的访问。</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="如何锁定一个文件">如何锁定一个文件？</h3>
+<ul>
+<li>
+<p>调用 FileChannel 类的 lock 或 tryLock 方法：</p>
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  FileChannel channel <span style="color:#ff79c6">=</span> FileChannel.<span style="color:#50fa7b">open</span>(path);
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// 无参</span>
+</span></span><span style="display:flex;"><span>  FileLock lock <span style="color:#ff79c6">=</span> channel.<span style="color:#50fa7b">lock</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// 有参的方法签名：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">// shared : true请求共享锁，在这种情况下，此通道必须打开以供读取（可能还有写入）； false请求排他锁，在这种情况下，此通道必须打开以进行写入（可能还有读取）</span>
+</span></span><span style="display:flex;"><span>  FileLock <span style="color:#50fa7b">lock</span>(<span style="color:#8be9fd">long</span> start, <span style="color:#8be9fd">long</span> size, <span style="color:#8be9fd">boolean</span> shared);
+</span></span></code></pre></div><p><strong>此调用会阻塞直至可获得锁。</strong></p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  FileChannel channel <span style="color:#ff79c6">=</span> FileChannel.<span style="color:#50fa7b">open</span>(path);
+</span></span><span style="display:flex;"><span>  FileLock lock <span style="color:#ff79c6">=</span> channel.<span style="color:#50fa7b">tryLock</span>();
+</span></span></code></pre></div><p><strong>此调用将立即返回，要么返回锁，要么返回 null</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>注意 lock 方法抛出的异常：</p>
+<ul>
+<li>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-24-f83beaa94c3e209721f49b6d3b62cce1-202301061540957-7e76dc.png" alt="image-20220603101534792">
+
+</p>
+<p><strong>说明文件锁和对象锁完全是两回事！！</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="文件什么时候解锁">文件什么时候解锁？</h3>
+<ul>
+<li>通道关闭。</li>
+<li>在锁上调用了 <code>release</code> 方法</li>
+</ul>
+</li>
+<li>
+<h3 id="注-1">注：</h3>
+<ul>
+<li>文件加锁机制是依赖于操作系统的。</li>
+<li>在某些系统中，文件加锁仅仅是 <strong>建议性</strong> 的，不一定会生效。</li>
+<li>在某些系统中，不能在锁定一个文件的同时将其映射到内存中。</li>
+<li>文件锁是整个 Java 虚拟机持有的。也就是说当<strong>一个由JVM启动 的程序 或 一个线程</strong>请求某个区域的文件锁时，若该文件区域的锁已经被<strong>一个由同一个JVM启动的 另一个程序 或 另一个线程</strong> 锁持有，那么将抛出 <code>OverlappingFileLockException</code></li>
+<li>在一些系统中，关闭一个通道会释放由 Java 虚拟机持有的 底层文件 上的所有锁。因此，在同一个锁定文件上应避免使用多个通道。</li>
+<li>在网络文件系统上锁定文件是高度依赖于系统的，因此应该尽量避免。</li>
+</ul>
+</li>
+</ul>
+<h1 id="27---正则表达式基础">2.7 - 正则表达式基础</h1>
+<p>以下截图来自于 B站韩顺平老师的 <a href="https://www.bilibili.com/video/BV1Eq4y1E79W?spm_id_from=333.337.search-card.all.click">【韩顺平讲Java】Java 正则表达式专题 -正则 正则表达式 元字符 限定符 Pattern Matcher 分组 捕获 反向引用等_哔哩哔哩_bilibili</a></p>
+<p>书上很全面，但是也要取其精华，不然太多了也记不住。。。</p>
+<p><strong>所以建议去看韩顺平老师的视频，用代码来练习。</strong></p>
+<h2 id="语法介绍">语法介绍：</h2>
+<h4 id="按照功能分类大致">按照功能分类：（大致</h4>
+<ol>
+<li>限定符</li>
+<li>选择匹配符</li>
+<li>分组组合和反向引用符</li>
+<li>特殊字符</li>
+<li>字符匹配符</li>
+<li>定位符</li>
+</ol>
+<h4 id="元字符转意号-">元字符：转意号 \\</h4>
+<p>需要用到转意符号的字符：. * + ( ) $ / \ ? [ ] ^ { }</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-21-7f7d770c29d8e86cd971c7c7a8d8aa8c-202301061540958-64a726.png" alt="image-20220519182832851">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-19-e00ceb732b06eb749943f8e36e3bab35-202301061540959-ca0618.png" alt="image-20220519182909022">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-18-26de4c501e99cb6872d5d88b1c419824-202301061540960-cd20d4.png" alt="image-20220519183135313">
+
+</p>
+<h4 id="选择匹配符">选择匹配符：|</h4>
+<h4 id="限定符">限定符：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-16-20aa43ae02d514130ce17f3bca551b8f-202301061540961-cdebcf.png" alt="image-20220519183157030">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-15-a3ea47f9c1804f20f10982bd206f8214-202301061540962-79c2a7.png" alt="image-20220519183223148">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-13-4d144d2ee370e757b0c392552290af3b-202301061540963-349255.png" alt="image-20220519183252516">
+
+</p>
+<h4 id="定位符">定位符：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-12-8bf10b408c5c83dd66e0d158fdb8f2be-202301061540964-ebe29f.png" alt="image-20220519183316246">
+
+</p>
+<h4 id="捕获分组">捕获分组：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-10-012f280ea55b41294e0d9582894ca437-202301061540965-cdb153.png" alt="image-20220519183341772">
+
+</p>
+<h4 id="非捕获分组">非捕获分组：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-38-09-e5919f67770f9dd760a290d2070f64de-202301061540966-c1a3d0.png" alt="image-20220519183357292">
+
+</p>
+<h1 id="33---解析-xml-文档">3.3 - 解析 XML 文档</h1>
+<ol>
+<li>
+<p>首先要获取文档对象</p>
+<ul>
+<li>这里引用尚硅谷 JavaWeb 教程中的一段代码：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 解析 applicationController 配置文件 （path 是 String 类型的，不是 Path 类型的</span>
+</span></span><span style="display:flex;"><span>InputStream resourceAsStream <span style="color:#ff79c6">=</span> getClass().<span style="color:#50fa7b">getClassLoader</span>().<span style="color:#50fa7b">getResourceAsStream</span>(path);
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 创建 DocumentBuilderFactory 对象</span>
+</span></span><span style="display:flex;"><span>DocumentBuilderFactory documentBuilderFactory <span style="color:#ff79c6">=</span> DocumentBuilderFactory.<span style="color:#50fa7b">newInstance</span>();
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 创建 DocumentBuilder 对象</span>
+</span></span><span style="display:flex;"><span>DocumentBuilder documentBuilder <span style="color:#ff79c6">=</span> documentBuilderFactory.<span style="color:#50fa7b">newDocumentBuilder</span>();
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 创建 Document 对象</span>
+</span></span><span style="display:flex;"><span>Document document <span style="color:#ff79c6">=</span> documentBuilder.<span style="color:#50fa7b">parse</span>(resourceAsStream);
+</span></span></code></pre></div></li>
+<li>
+<p>然后就可以开始解析文档了</p>
+<ul>
+<li>
+<p>下面列出一些常用的 API ：</p>
+<ul>
+<li>
+<p>Document :</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法名、方法参数 及 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Element</code></td>
+<td><code>getDocumentElement()</code>  这是一个方便属性，允许直接访问作为文档的文档元素的子节点。</td>
+</tr>
+<tr>
+<td><code>Element</code></td>
+<td><code>getElementById(String elementId)</code>  返回 <code>Element</code>具有与给定值的ID属性。</td>
+</tr>
+<tr>
+<td><code>NodeList</code></td>
+<td><code>getElementsByTagName(String tagname)</code>  以文件顺序返回 <code>NodeList</code>所有  <code>Elements</code>的给定标签名称，并包含在文档中。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>getInputEncoding()</code>  指定在解析时用于此文档的编码的属性。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Element :</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法名、方法参数 及 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>String</code></td>
+<td><code>getAttribute(String name)</code>  按名称检索属性值。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>NodeList :</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法名、方法参数 及 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Node</code></td>
+<td><code>item(int index)</code>  返回 <code>index</code>中的index项。</td>
+</tr>
+<tr>
+<td><code>int</code></td>
+<td><code>getLength()</code>  列表中的节点数。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Node :</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法名、方法参数 及 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>static short ELEMENT_NODE</code></td>
+<td>节点是 <code>Element</code> 。</td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td><code>getNodeType()</code>  代表基础对象的类型的代码，如上所定义。</td>
+</tr>
+<tr>
+<td><code>NodeList</code></td>
+<td><code>getChildNodes()</code>  A <code>NodeList</code>包含此节点的所有子节点。</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>另外需要注意的是：</p>
+<ul>
+<li>
+<p><strong>标签与标签间的空白字符也是子元素。</strong></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-37-56-4e8485990749476927ea6e0df56dde19-202301061540967-f25fd0.png" alt="image-20220603115119716">
+
+</p>
+<p><strong>bean 标签的</strong> <strong>子标签 实际上有三个</strong>：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-37-54-67c2f0a4f65024b32deef2005f91fd06-202301061540968-60af38.png" alt="image-20220603115349182">
+
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="341---文档类型的定义-dtd">3.4.1 - 文档类型的定义 DTD</h1>
+<p>这里放上大佬的blog：<a href="https://blog.csdn.net/qq_61313896/article/details/125081976"> J2EE 快速入门之第四章 XML_DTD定义讲解_靖康之耻的博客-CSDN博客</a></p>
+<p>好了现在已经会编写DTD了，那么就可以配置解析器以充分的利用它们了。下面是一些相关的 API ：</p>
+<ul>
+<li>
+<p><code>documentBuilderFactory.setValidating(true);</code> 可以开启 DTD 验证。</p>
+</li>
+<li>
+<p><code>documentBuilderFactory.setIgnoringElementContentWhitespace(true);</code> 可以忽略掉 ”可忽略的空格“</p>
+</li>
+<li>
+<p><code>documentBuilder.setErrorHandler(//...);</code> 可以设置错误处理器，可以将错误打印到日志中。</p>
+</li>
+</ul>
+<h1 id="342---xml-schema">3.4.2 - XML Schema</h1>
+<p>详见 ：<a href="https://www.w3.org/TR/xmlschema-0/">XML 架构第 0 部分：入门第二版 (w3.org)</a></p>
+<h1 id="35---使用-xpath-来定位信息">3.5 - 使用 XPath 来定位信息</h1>
+<p>详见 ：<a href="https://www.w3.org/TR/xpath/">xpath 封面 - W3C</a></p>
+<p>或者 ：<a href="https://zvon.org/xxl/XPathTutorial/General/examples.html">XPath 教程 (zvon.org)</a></p>
+<p>计算 XPath 表达式的方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 创建工厂对象</span>
+</span></span><span style="display:flex;"><span>XPathFactory xPathFactory <span style="color:#ff79c6">=</span> XPathFactory.<span style="color:#50fa7b">newInstance</span>();
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 从工厂中获取一个 XPath 对象</span>
+</span></span><span style="display:flex;"><span>XPath xPath <span style="color:#ff79c6">=</span> xPathFactory.<span style="color:#50fa7b">newXPath</span>();
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>方法名 方法参数 以及 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>XPathExpression</code></td>
+<td><code>compile(String expression)</code>  编译XPath表达式供以后评估。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>evaluate(String expression, InputSource source)</code>  计算指定的上下文中的XPath表达式 <code>InputSource</code>并返回结果作为  <code>String</code> 。</td>
+</tr>
+<tr>
+<td><code>Object</code></td>
+<td><code>evaluate(String expression, InputSource source, QName returnType)</code>  计算指定的上下文中的XPath表达式 <code>InputSource</code>并返回其结果作为指定的类型。</td>
+</tr>
+<tr>
+<td><code>String</code></td>
+<td><code>evaluate(String expression, Object item)</code>  评估指定上下文中的XPath表达式，并将结果作为 <code>String</code> 。</td>
+</tr>
+<tr>
+<td><code>Object</code></td>
+<td><code>evaluate(String expression, Object item, QName returnType)</code>  在指定的上下文中评估一个 <code>XPath</code>表达式，并将结果作为指定的类型返回。</td>
+</tr>
+<tr>
+<td><code>NamespaceContext</code></td>
+<td><code>getNamespaceContext()</code>  返回当前命名空间上下文。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>需要注意的是：</strong></p>
+<p><code>evaluate</code> 方法中含有第三个参数 <code>QName returnType</code> 的方法会有以下异常：</p>
+<p>IllegalArgumentException – <strong>如果returnType不是XPathConstants中定义的类型之一</strong></p>
+<h1 id="37---sax-解析器">3.7 - SAX 解析器</h1>
+<h2 id="371---使用-sax-解析器">3.7.1 - 使用 SAX 解析器</h2>
+<h2 id="372---使用-stax-解析器">3.7.2 - 使用 StAX 解析器</h2>
+<h1 id="38---使用-dom-树生成-xml-文档">3.8 - 使用 DOM 树生成 XML 文档</h1>
+<h1 id="384---使用-stax-写出-xml文档">3.8.4 - 使用 StAX 写出 XML文档</h1>
+<h1 id="385---生成-svg-文件">3.8.5 - 生成 SVG 文件</h1>
+<h1 id="39---xsl-转换">3.9 - XSL 转换</h1>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610508/" data-toggle="tooltip" data-placement="top" title="JDK 的动态代理之源码 DEBUG">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7224233674005610504/" data-toggle="tooltip" data-placement="top" title="Java核心技术卷二阅读笔记（4.1 ~ ）">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

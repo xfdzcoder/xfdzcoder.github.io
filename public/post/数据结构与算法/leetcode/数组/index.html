@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="数组" />
+    <meta property="og:title" content="数组" />
+    <meta property="twitter:title" content="数组" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>数组 | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E6%95%B0%E7%BB%84/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1>数组</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Monday, January 16, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="数组">数组</h1>
+<h2 id="删除排序数组中的重复项">删除排序数组中的重复项</h2>
+<p><a href="https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x2gy9m/">初级算法 - LeetBook - 力扣（LeetCode）删除排序数组中的重复项</a></p>
+<h3 id="思路双指针看题解才知道叫双指针">思路：双指针（看题解才知道叫双指针）</h3>
+<p>设 int len = 0; 然后循环遍历该数组，找到和 nums[len] 不相同的数，将其赋值给 nums[len + 1]。此时数组中前两个元素已经合法，所以开始用第二个元素和后面的进行比较是否相等。</p>
+<p>以相同的元素为一个片段，由于其已经升序排列，第一个片段的元素应该放在第0位，第二个片段的元素应该放在第1位，第三个片段的元素应该放在第2位&hellip;&hellip;以此类推。所以我们只需要找到此片段的后一个片段的元素，并把它放到相应位置（就是第几个片段）上。</p>
+<h3 id="代码实现">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">removeDuplicates</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 1; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>           <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>len<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">!=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>) {
+</span></span><span style="display:flex;"><span>               nums<span style="color:#ff79c6">[++</span>len<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>           }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> len <span style="color:#ff79c6">+</span> 1;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-dd694dd8f13d3f3f79bf4264202ea977-image-20220519174658378-ba1e79.png" alt="image-20220519174658378">
+
+</p>
+<h3 id="优化">优化：</h3>
+<h4 id="优化一">优化一：</h4>
+<p>作者：<a href="https://leetcode-cn.com/u/max-lfsznscofe/">max-lfsznscofe - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-25b59c299bf1c30bf6d9c8bd0604fee0-image-20220519174949531-a3aeda.png" alt="image-20220519174949531">
+
+</p>
+<h3 id="理解">理解：</h3>
+<p>未曾设想的注意点。。。</p>
+<h2 id="买卖股票的最佳时机-ii">买卖股票的最佳时机 II</h2>
+<h3 id="思路">思路：</h3>
+<p>经过上一题的点拨，一看就想到了双指针。同样的思路，当快指针指到递增区间的极大值时，就计算利润，并让慢指针指向快指针的下一个位置，也就是下一个递增区间的起始点。</p>
+<h3 id="代码实现-1">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">maxProfit</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> prices) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> slow <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> sum <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> prices.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">+</span> 1 <span style="color:#ff79c6">==</span> prices.<span style="color:#50fa7b">length</span>) {
+</span></span><span style="display:flex;"><span>                sum <span style="color:#ff79c6">+=</span> prices<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">-</span> prices<span style="color:#ff79c6">[</span>slow<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (prices<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">+</span> 1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">&lt;</span> prices<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>) {
+</span></span><span style="display:flex;"><span>                    sum <span style="color:#ff79c6">+=</span> prices<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">-</span> prices<span style="color:#ff79c6">[</span>slow<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                    slow <span style="color:#ff79c6">=</span> i <span style="color:#ff79c6">+</span> 1;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> sum;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-1">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-f3e099203c9829731d5d24b72948e68a-image-20220519175053790-3e6bf5.png" alt="image-20220519175053790">
+
+</p>
+<h3 id="优化-1">优化：</h3>
+<h4 id="优化一贪心算法">优化一：贪心算法</h4>
+<p>作者：<a href="https://leetcode-cn.com/u/jyd/">jyd - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-5b9067fe40d2353a2fa274b1559d5c59-image-20220519175207805-b8539b.png" alt="image-20220519175207805">
+
+</p>
+<h5 id="理解-1">理解：</h5>
+<p>化整为零了。
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-1411b1c6d66fc924fe98c116b1335df1-image-20220519175238431-aa3d2a.png" alt="image-20220519175238431">
+
+</p>
+<p>惊艳到我了。高中都是这个公式逆化简为pn - p1，从未想过可以反过来带入实际问题。</p>
+<h4 id="优化二动态规划">优化二：动态规划</h4>
+<p>暂时没学到，暂时搁置。</p>
+<h2 id="旋转数组-">旋转数组 *</h2>
+<h3 id="思路-1">思路：</h3>
+<p>把转动时会越界的 k 个元素存放到一个长度为 k 的新数组里，然后开始移动，移动完毕了再从新数组里放回去。</p>
+<h3 id="代码实现-2">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">rotate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums, <span style="color:#8be9fd">int</span> k) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        k <span style="color:#ff79c6">=</span> k <span style="color:#ff79c6">%</span> len;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>k<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> len <span style="color:#ff79c6">-</span> 1, x <span style="color:#ff79c6">=</span> k <span style="color:#ff79c6">-</span> 1; i <span style="color:#ff79c6">&gt;=</span> 0; i<span style="color:#ff79c6">--</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">+</span> k <span style="color:#ff79c6">&gt;=</span> len) {
+</span></span><span style="display:flex;"><span>                arr<span style="color:#ff79c6">[</span>x<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                x<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                nums<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">+</span> k<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> k; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> arr<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-2">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-ee0e2a30703a36a5fa29d067db245f7c-image-20220519175312517-5d01ce.png" alt="image-20220519175312517">
+
+</p>
+<h3 id="优化-2">优化：</h3>
+<h4 id="优化一使用额外数组">优化一：使用额外数组</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-1a20a2a2b3538b92bf454aea8e437857-image-20220519175430899-45d473.png" alt="image-20220519175430899">
+
+</p>
+<h4 id="优化二环状替换">优化二：环状替换</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-1612fff899e1064890c49fa170a3e83d-image-20220519175456302-5ab75e.png" alt="image-20220519175456302">
+
+</p>
+<h4 id="优化三数组翻转">优化三：数组翻转</h4>
+<h5 id="思路-2">思路：</h5>
+<ol>
+<li>首先对整个数组实行翻转，这样子原数组中需要翻转的子数组，就会跑到数组最前面。</li>
+<li>这时候，从 k<em>k</em> 处分隔数组，左右两数组，各自进行翻转即可。</li>
+</ol>
+<h5 id="图解">图解：</h5>
+<p>图解作者：<a href="https://leetcode-cn.com/u/demigodliu/">demigodliu - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-65b7d45a296b1f2a28cda2bc6caf66ad-image-20220519175543044-2a5d4a.png" alt="image-20220519175543044">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-002be85ab44d7dca3f7b168be211437f-image-20220519175550138-40d1a7.png" alt="image-20220519175550138">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-d95f38116e4e85e49f06d0973ddfe8e3-image-20220519175556424-daf18b.png" alt="image-20220519175556424">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-bc26de399f8810580dbb61d6ea39e4ee-image-20220519175605300-151cd6.png" alt="image-20220519175605300">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-11e88cd6df690fd290aaf6a9c7c1c97f-image-20220519175613747-0de242.png" alt="image-20220519175613747">
+
+</p>
+<h5 id="代码实现-3">代码实现：</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">rotate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums, <span style="color:#8be9fd">int</span> k) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        k <span style="color:#ff79c6">=</span> k <span style="color:#ff79c6">%</span> len;
+</span></span><span style="display:flex;"><span>        reserve(nums, 0, len <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>        reserve(nums, 0, k <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>        reserve(nums, k, len <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">reserve</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr, <span style="color:#8be9fd">int</span> start, <span style="color:#8be9fd">int</span> end) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> count <span style="color:#ff79c6">=</span> (end <span style="color:#ff79c6">-</span> start <span style="color:#ff79c6">+</span> 1) <span style="color:#ff79c6">/</span> 2;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> count; i<span style="color:#ff79c6">++</span>, start<span style="color:#ff79c6">++</span>, end<span style="color:#ff79c6">--</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> temp <span style="color:#ff79c6">=</span> arr<span style="color:#ff79c6">[</span>start<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            arr<span style="color:#ff79c6">[</span>start<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> arr<span style="color:#ff79c6">[</span>end<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            arr<span style="color:#ff79c6">[</span>end<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="成绩-3">成绩：</h5>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-0ab9aa6b307d1f0541de1e90fb694f09-image-20220519175645498-d33fca.png" alt="image-20220519175645498">
+
+</p>
+<h2 id="存在重复元素">存在重复元素</h2>
+<h3 id="思路-3">思路：</h3>
+<p>双指针遍历数组，发现有相同元素就返回 false；&mdash;&gt; <strong>超时。</strong></p>
+<h3 id="改进">改进：</h3>
+<p>遍历前进行排序，就只需要进行一次遍历即可完成。</p>
+<h4 id="代码实现-4">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">containsDuplicate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        Arrays.<span style="color:#50fa7b">sort</span>(nums);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 1; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> nums<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span>) {
+</span></span><span style="display:flex;"><span>                result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-4">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-b048f6a04743be15ff1805049d6ebd40-image-20220519175714792-4659ac.png" alt="image-20220519175714792">
+
+</p>
+<h3 id="改进-1">改进：</h3>
+<p>上一个方法用时太长，再次改进：将数组元素放进一个 Set 集合里，如果添加失败就说明出现重复元素。</p>
+<h4 id="代码实现-5">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">containsDuplicate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        Set<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> set <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashSet<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span> set.<span style="color:#50fa7b">add</span>(nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>)) {
+</span></span><span style="display:flex;"><span>                result <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-5">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-18c7fdde4d9395fa99f748fd02f8caaa-image-20220519175729786-d504be.png" alt="image-20220519175729786">
+
+</p>
+<h3 id="改进-2">改进：</h3>
+<p>先排序再放入 Set 会发生什么？</p>
+<p>更慢了。。。22ms；</p>
+<h3 id="改进-3">改进：</h3>
+<p>不设置局部变量 result 了，直接进行return！</p>
+<h4 id="代码实现-6">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">containsDuplicate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        Set<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> set <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashSet<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span> set.<span style="color:#50fa7b">add</span>(nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-6">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-be851f9badcf4cc0c1aa6f19393c286c-image-20220519175750600-276762.png" alt="image-20220519175750600">
+
+</p>
+<h3 id="优化-3">优化：</h3>
+<p>缩短代码，但是时间复杂度和空间复杂度据说偏高。奇怪的API又增加了。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-a8b9e854a3704af19688b245416452bd-image-20220519175846572-a96a5a.png" alt="image-20220519175846572">
+
+</p>
+<h2 id="只出现一次的数字-">只出现一次的数字 *</h2>
+<h3 id="思路-4">思路：</h3>
+<p>排序后再遍历，找出单身狗。</p>
+<h4 id="代码实现-7">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">singleNumber</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        Arrays.<span style="color:#50fa7b">sort</span>(nums);
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> len <span style="color:#ff79c6">-</span> 1;) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">!=</span> nums<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">+</span> 1<span style="color:#ff79c6">]</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            i <span style="color:#ff79c6">+=</span> 2;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> nums<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-7">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-50b78f68617d240bd5675a8459a2c8d0-image-20220519175913670-78e953.png" alt="image-20220519175913670">
+
+</p>
+<h3 id="改进-4">改进：</h3>
+<p>无。。。</p>
+<h3 id="优化异或运算-">优化：异或运算 ^</h3>
+<p>异或运算有以下三个性质：</p>
+<ol>
+<li>任何数和 0做异或运算，结果仍然是原来的数，即 a⊕0=a。</li>
+<li>任何数和其自身做异或运算，结果是 0，即 a⊕a=0。</li>
+<li>异或运算满足交换律和结合律，即 a⊕b⊕a=b⊕a⊕a=b⊕(a⊕a)=b⊕0=b。</li>
+</ol>
+<h4 id="代码实现-8">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span> <span style="color:#50fa7b">singleNumber</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> result <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            result <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> result;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-8">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-26a4fd987957e03ecd0199df115b34a8-image-20220519175929127-132d9d.png" alt="image-20220519175929127">
+
+</p>
+<h2 id="两个数组的交集-ii-">两个数组的交集 II *</h2>
+<h3 id="思路-5">思路：</h3>
+<p>用 map1 保存 nums1 的所有元素，重复次数放在value</p>
+<p>用 map2 保存 nums2 的所有元素，重复次数放在value</p>
+<p>然后遍历 map1 ，寻找和 map2 的交集，并将其添加到一个list集合中，添加多少次由两者的value的较小值决定。</p>
+<p>最后再把 list 中的值放进数组</p>
+<h3 id="代码实现-9">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">intersect</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums1, <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums2) {
+</span></span><span style="display:flex;"><span>        Map<span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;</span> map1 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> k : nums1) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (map1.<span style="color:#50fa7b">containsKey</span>(k)) {
+</span></span><span style="display:flex;"><span>                map1.<span style="color:#50fa7b">put</span>(k, map1.<span style="color:#50fa7b">get</span>(k) <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                map1.<span style="color:#50fa7b">put</span>(k, 1);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        Map<span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;</span> map2 <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j : nums2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (map2.<span style="color:#50fa7b">containsKey</span>(j)) {
+</span></span><span style="display:flex;"><span>                map2.<span style="color:#50fa7b">put</span>(j, map2.<span style="color:#50fa7b">get</span>(j) <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                map2.<span style="color:#50fa7b">put</span>(j, 1);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#ff79c6">&lt;</span>Map.<span style="color:#50fa7b">Entry</span><span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;&gt;</span> entrySet <span style="color:#ff79c6">=</span> map1.<span style="color:#50fa7b">entrySet</span>();
+</span></span><span style="display:flex;"><span>        List<span style="color:#ff79c6">&lt;</span>Integer<span style="color:#ff79c6">&gt;</span> list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (Map.<span style="color:#50fa7b">Entry</span><span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;</span> entry : entrySet) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> key <span style="color:#ff79c6">=</span> (<span style="color:#8be9fd">int</span>) entry.<span style="color:#50fa7b">getKey</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (map2.<span style="color:#50fa7b">containsKey</span>(key)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> count <span style="color:#ff79c6">=</span> Math.<span style="color:#50fa7b">min</span>(map2.<span style="color:#50fa7b">get</span>(key), (Integer) entry.<span style="color:#50fa7b">getValue</span>());
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> count; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                    list.<span style="color:#50fa7b">add</span>(key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>list.<span style="color:#50fa7b">size</span>()<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> list.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            arr<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> list.<span style="color:#50fa7b">get</span>(i);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> arr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-9">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-41387fc41abb6226242642f00d9c945b-image-20220519175947886-0ff40d.png" alt="image-20220519175947886">
+
+</p>
+<h3 id="优化一哈希表的使用优化">优化一：哈希表的使用优化</h3>
+<ol>
+<li>为了降低空间复杂度，首先遍历较短的数组并在哈希表中记录每个数字以及对应出现的次数，然后遍历较长的数组得到交集。</li>
+<li>只使用一个哈希表，遍历第二个数组时在哈希表上做次数的相应更改即可。</li>
+</ol>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-536b452e05f84f1e3a1ac0ecff1c5556-image-20220519180022066-9d5408.png" alt="image-20220519180022066">
+
+</p>
+<h3 id="优化二排序--双指针">优化二：排序 + 双指针</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-b9102887848b9e19121122f9bb9ee9c5-image-20220519180041208-07a1e9.png" alt="image-20220519180041208">
+
+</p>
+<h4 id="理解-2">理解：</h4>
+<p>就像两条腿爬断层楼梯，两条腿就是两个指针，指针踩的阶梯较高的话就等等另一个低位置的指针，直到两者相等，将其放入一个数组。</p>
+<h3 id="优化三用数组当哈希表用">优化三：用数组当哈希表用</h3>
+<p><a href="https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/solution/by-2hu0-j4pl/">两个数组的交集|| 思路清晰 - 两个数组的交集 II - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p>数组的角标表示第一个数组的值；角标对应的值表示值出现的次数。出现 0 次表示不存在。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-2fb19b1c0363b6be2300063eb2105563-image-20220519180132293-acf9a3.png" alt="image-20220519180132293">
+
+</p>
+<h2 id="加一">加一</h2>
+<h3 id="思路-6">思路：</h3>
+<p>观察可发现，只有当第 0 位为 9 时才有可能会发生数组长度的改变，所以我们用一个boolean变量来进行判断。</p>
+<p>然后开始倒着遍历数组，加一后若大于十就将其前一位加一。超出数组长度则不考虑。</p>
+<p>最后判断是否可能越界，如果 isOver &amp;&amp; digits[0] == 0 就说明加到最后数组长度需要变化，于是定义一个新数组，让其第 0 位等于 1，后续复制 digits[] 即可。否则直接返回 digits；</p>
+<h3 id="代码实现-10">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">plusOne</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> digits) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> digits.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> isOver <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (digits<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> 9) {
+</span></span><span style="display:flex;"><span>            isOver <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> temp <span style="color:#ff79c6">=</span> digits<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+</span> 1;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> len <span style="color:#ff79c6">-</span> 1; i <span style="color:#ff79c6">&gt;=</span> 0; i<span style="color:#ff79c6">--</span>) {
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (temp <span style="color:#ff79c6">&gt;=</span> 10) {
+</span></span><span style="display:flex;"><span>                digits<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> temp <span style="color:#ff79c6">%</span> 10;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span>                    temp <span style="color:#ff79c6">=</span> digits<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+</span> 1;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                digits<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> temp;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">&gt;=</span> 0) {
+</span></span><span style="display:flex;"><span>                    temp <span style="color:#ff79c6">=</span> digits<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (isOver <span style="color:#ff79c6">&amp;&amp;</span> digits<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> 0) {
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">+</span> 1<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            arr<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> 1;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 1; i <span style="color:#ff79c6">&lt;</span> len <span style="color:#ff79c6">+</span> 1; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                arr<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> digits<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> arr;
+</span></span><span style="display:flex;"><span>        } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> digits;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-10">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-d6b59a97c13ce1b6aa6b5b788e808ceb-image-20220519180201081-8562eb.png" alt="image-20220519180201081">
+
+</p>
+<h3 id="优化一找出最长的后缀-9">优化一：找出最长的后缀 9</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-804ba5e725ba102d101f82a5ba35b0c9-image-20220519180232814-fda0cd.png" alt="image-20220519180232814">
+
+</p>
+<h4 id="代码实现看完题解思路写的">代码实现：（看完题解思路写的）</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">plusOne</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> digits) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> digits.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (digits<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">!=</span> 9) {
+</span></span><span style="display:flex;"><span>            digits<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> digits;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> len <span style="color:#ff79c6">-</span> 1;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (digits<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> 9) {
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">--</span>;
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">+</span> 1<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                arr<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> 1;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> arr;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        digits<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+=</span> 1;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> i <span style="color:#ff79c6">+</span> 1; j <span style="color:#ff79c6">&lt;</span> len; j <span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            digits<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> digits;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-11">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-9c9dce0916a87d9041d33d3a109d1d99-image-20220519180253266-c70ee0.png" alt="image-20220519180253266">
+
+</p>
+<h4 id="题解成绩">题解成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-5e89788146a4ecd512ec3bc194fe4a13-image-20220519180312592-8fc851.png" alt="image-20220519180312592">
+
+</p>
+<h3 id="优化二">优化二：</h3>
+<p>思路来源：<a href="https://leetcode-cn.com/u/shi-dai-wh/">https://leetcode-cn.com/problems/plus-one/solution/java-shu-xue-jie-ti-by-yhhzw/461904</a></p>
+<p>在一的基础上进行优化：遍历时当前元素为 9 则直接赋值0，无需找到不为 9 的元素后再次遍历。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-6e30bd6a1b46679f34b1452f292c623c-image-20220519180342689-5cf82b.png" alt="image-20220519180342689">
+
+</p>
+<h2 id="移动零">移动零</h2>
+<h3 id="思路-7">思路：</h3>
+<p>用 count 来记录不为 0 的元素所应该存在的角标。例如 nums = [0, 1, 0, 3, 12] 中 ，1 应该在 0 位置，3 应该在 1 位置， 12 应该在 3 位置；</p>
+<p>然后循环遍历数组，将元素依次放进正确的位置。</p>
+<h3 id="代码实现-11">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">moveZeroes</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> count <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span>1;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> len; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">!=</span> 0) {
+</span></span><span style="display:flex;"><span>                count<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">!=</span> count) {
+</span></span><span style="display:flex;"><span>                    nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                    nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                    nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }   
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-12">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-d7da5a4bedf36dd461d52efc9c73cb85-image-20220519180406404-61beef.png" alt="image-20220519180406404">
+
+</p>
+<h3 id="反向优化">反向优化：</h3>
+<h4 id="思路-8">思路：</h4>
+<p>用 i 来找 0，j 来找 非 0 元素。从前往后遍历，找到一个 0 之后就去 i 后面找到非零元素并交换位置。</p>
+<h4 id="代码实现-12">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">moveZeroes</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">while</span> (i <span style="color:#ff79c6">&lt;</span> len) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> 0) {
+</span></span><span style="display:flex;"><span>                j <span style="color:#ff79c6">=</span> i <span style="color:#ff79c6">+</span> 1;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (; j <span style="color:#ff79c6">&lt;</span> len; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">!=</span> 0) {
+</span></span><span style="display:flex;"><span>                        nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                        nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                        nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            i<span style="color:#ff79c6">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-13">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-bcde83ae3c22c151fe12d83c423cb36b-image-20220519180424799-1c71ae.png" alt="image-20220519180424799">
+
+</p>
+<h3 id="优化一-1">优化一：</h3>
+<h4 id="思路-9">思路：</h4>
+<p>既然知道后面都是 0 ，那就无需交换了，直接进行赋值。</p>
+<p>原代码的交换代码换成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>nums<span style="color:#ff79c6">[</span>count<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> 0; 
+</span></span></code></pre></div><h4 id="成绩-14">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-203d4694d17f1e948c99119e66c81f57-image-20220519180448800-f5630d.png" alt="image-20220519180448800">
+
+</p>
+<h2 id="两数之和-">两数之和 *</h2>
+<h3 id="思路-10">思路：</h3>
+<p>两重for循环遍历数组，找到符合条件的值。</p>
+<h4 id="代码实现-13">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">twoSum</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums, <span style="color:#8be9fd">int</span> target) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> nums.<span style="color:#50fa7b">length</span>;        
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>2<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        out:<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> len <span style="color:#ff79c6">-</span> 1; i<span style="color:#ff79c6">++</span>) {           
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> i <span style="color:#ff79c6">+</span> 1; j <span style="color:#ff79c6">&lt;</span> len; j<span style="color:#ff79c6">++</span>) {               
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (nums<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">==</span> target) {
+</span></span><span style="display:flex;"><span>                    arr<span style="color:#ff79c6">[</span>0<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> i;
+</span></span><span style="display:flex;"><span>                    arr<span style="color:#ff79c6">[</span>1<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> j;
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">break</span> out;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> arr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-15">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-dbed2fc61dd44168473965335afe6d85-image-20220519180506959-e0aa29.png" alt="image-20220519180506959">
+
+</p>
+<h3 id="优化一使用哈希表">优化一：使用哈希表</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-2093a6f9623100acb7e54d055d9163c5-image-20220519180529736-856df5.png" alt="image-20220519180529736">
+
+</p>
+<h4 id="代码实现-14">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">twoSum</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span> nums, <span style="color:#8be9fd">int</span> target) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (nums.<span style="color:#50fa7b">length</span> <span style="color:#ff79c6">==</span> 2) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span>{0, 1};
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Map<span style="color:#ff79c6">&lt;</span>Integer, Integer<span style="color:#ff79c6">&gt;</span> map <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> HashMap<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> nums.<span style="color:#50fa7b">length</span>; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (map.<span style="color:#50fa7b">containsKey</span>(target <span style="color:#ff79c6">-</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span>{i, map.<span style="color:#50fa7b">get</span>(target <span style="color:#ff79c6">-</span> nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>)};
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                map.<span style="color:#50fa7b">put</span>(nums<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">]</span>, i);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[]</span>{0,0};
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-16">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-dedb8817a2f2e05bcc0ba10a9abb5d41-image-20220519180546193-ea498b.png" alt="image-20220519180546193">
+
+</p>
+<h2 id="有效的数独">有效的数独</h2>
+<h3 id="思路-11">思路：</h3>
+<p>用三个 Map 来存储每一行和每一列和每一个小九宫格内的数字出现的次数。Map&lt;Integre, Integer&gt; Map&lt;数字, 出现的次数&gt;</p>
+<h3 id="代码实现-15">代码实现：</h3>
+<p>实现失败</p>
+<h3 id="反思">反思：</h3>
+<p>题目第三点看成对角线上不能有重复的元数，导致代码过于复杂，并且失败了。</p>
+<h3 id="优化一使用数组来替代map">优化一：使用数组来替代Map</h3>
+<p>用int[][] rows = new int[9][9]; 来储存每一行的数字以及出现的次数。注：[第几行][出现的数字] = 出现的次数</p>
+<p>用int[][] cols = new int[9][9];来储存每一行的数字以及出现的次数。注：[第几列][出现的数字] = 出现的次数</p>
+<p>用int[][][] area = new int[3][3][9];来储存每一个小九宫格内的数字以及出现的次数。注：[第几列][出现的数字] = 出现的次数</p>
+<h4 id="代码实现-16">代码实现：</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isValidSudoku</span>(<span style="color:#8be9fd">char</span><span style="color:#ff79c6">[][]</span> board) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[][]</span> rows <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>9<span style="color:#ff79c6">][</span>9<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[][]</span> cols <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>9<span style="color:#ff79c6">][</span>9<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[][][]</span> area <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd">int</span><span style="color:#ff79c6">[</span>3<span style="color:#ff79c6">][</span>3<span style="color:#ff79c6">][</span>9<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> index <span style="color:#ff79c6">=</span> 0;
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> 9; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> 9; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (<span style="color:#f1fa8c">&#39;.&#39;</span> <span style="color:#ff79c6">!=</span> board<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#8be9fd">int</span> num <span style="color:#ff79c6">=</span> board<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">-</span> <span style="color:#f1fa8c">&#39;0&#39;</span> <span style="color:#ff79c6">-</span> 1;
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">++</span>rows<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>num<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">++</span>cols<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">][</span>num<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">++</span>area<span style="color:#ff79c6">[</span>i <span style="color:#ff79c6">/</span> 3<span style="color:#ff79c6">][</span>j <span style="color:#ff79c6">/</span> 3<span style="color:#ff79c6">][</span>num<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>                        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="成绩-17">成绩：</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-8ed1614eae5bb093a95934bc9cc9eb27-image-20220519180609711-7f2578.png" alt="image-20220519180609711">
+
+</p>
+<h2 id="旋转图像">旋转图像</h2>
+<h3 id="思路-12">思路：</h3>
+<p>经历过旋转数组的锻炼，不禁联想是不是也可也翻转数组实现。于是发现：向右旋转90度就分两步：</p>
+<ol>
+<li>把数组上下翻转。</li>
+<li>用一条左上角到右下角的斜线分割数组，并以这条斜线为基准翻转数组。</li>
+</ol>
+<h3 id="代码实现-17">代码实现：</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Solution</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">rotate</span>(<span style="color:#8be9fd">int</span><span style="color:#ff79c6">[][]</span> matrix) {
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> len <span style="color:#ff79c6">=</span> matrix.<span style="color:#50fa7b">length</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 上下颠倒</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> len <span style="color:#ff79c6">/</span> 2; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> len; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">-</span> i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">-</span> i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">-</span> i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>len <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">-</span> i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 和斜对角的正确位置交换</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> len; i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> j <span style="color:#ff79c6">=</span> 0; j <span style="color:#ff79c6">&lt;</span> i; j<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">][</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">][</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">][</span>i<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>                matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">=</span> matrix<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">][</span>j<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">^</span> matrix<span style="color:#ff79c6">[</span>j<span style="color:#ff79c6">][</span>i<span style="color:#ff79c6">]</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="成绩-18">成绩：</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F09-36-03-dc873ce9283fed1bbd9820a4e8875e79-image-20220519180635475-adbbbd.png" alt="image-20220519180635475">
+
+</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E9%93%BE%E8%A1%A8/" data-toggle="tooltip" data-placement="top" title="链表">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/leetcode/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-toggle="tooltip" data-placement="top" title="字符串">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

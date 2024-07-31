@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题" />
+    <meta property="og:title" content="自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题" />
+    <meta property="twitter:title" content="自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题 | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224233674005610510/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                    </div>
+                    <h1>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Tuesday, May 30, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h1 id="自定义-multiparameterbody-解决-post-请求时接收多参数问题">自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题</h1>
+<h2 id="背景">背景：</h2>
+<h3 id="单参数时">单参数时：</h3>
+<p>当前端只使用 <code>POST</code> 传一个 <code>String</code> 时一般是这样的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>axios({
+</span></span><span style="display:flex;"><span>    url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/xxx&#39;</span>,
+</span></span><span style="display:flex;"><span>    method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;POST&#39;</span>,
+</span></span><span style="display:flex;"><span>    data<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>        str<span style="color:#ff79c6">:</span> param
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>此时只能定义一个实体类对象，其中包含一个 <code>String</code> 类型的属性进行接收，因为 <code>mvc</code> 会将请求体的整体映射为一个对象，所以不能直接使用 <code>String</code> 进行接收。</p>
+<h3 id="多参数时">多参数时：</h3>
+<p>举个栗子，最常见的登录请求，前端需要传三个参数，<code>username</code>, <code>password</code>, <code>captcha</code>。而普通的 <code>User</code> 类中又没有 captcha，所以这个时候要是不想新建一个类，那么就需要自定义注解。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>axios({
+</span></span><span style="display:flex;"><span>    url<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/xxx&#39;</span>,
+</span></span><span style="display:flex;"><span>    method<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;POST&#39;</span>,
+</span></span><span style="display:flex;"><span>    data<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>        user<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            username<span style="color:#ff79c6">:</span> loginUser.username,
+</span></span><span style="display:flex;"><span>            password<span style="color:#ff79c6">:</span> loginUser.password
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        captcha<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;xxx&#39;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h2 id="思路">思路：</h2>
+<p>将最外层对象解开，将其属性作为一个参数进行接收。</p>
+<h2 id="代码">代码：</h2>
+<p>代码是之前网上找到的，忘记出处了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.xiaozhao.xiaozhaoserver.web.annotation;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.annotation.ElementType;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.annotation.Retention;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.annotation.RetentionPolicy;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.lang.annotation.Target;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2022-12-16 9:25:38
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Target(ElementType.<span style="color:#50fa7b">PARAMETER</span>)
+</span></span><span style="display:flex;"><span>@Retention(RetentionPolicy.<span style="color:#50fa7b">RUNTIME</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> @interface MultiParameterBody {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * {@link #name()} 的别名
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#50fa7b">value</span>() <span style="color:#ff79c6">default</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 参数的别名
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    String <span style="color:#50fa7b">name</span>() <span style="color:#ff79c6">default</span> <span style="color:#f1fa8c">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 参数是否为必须的
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">required</span>() <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 当 value 的值或者参数名不匹配时，是否允许解析最外层属性得到该对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">parseAllFields</span>() <span style="color:#ff79c6">default</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.xiaozhao.xiaozhaoserver.web.annotation.handle;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.fasterxml.jackson.core.JsonParser;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.fasterxml.jackson.databind.JsonNode;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.fasterxml.jackson.databind.ObjectMapper;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.xiaozhao.xiaozhaoserver.service.exception.BadParameterException;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.xiaozhao.xiaozhaoserver.web.annotation.MultiParameterBody;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.apache.commons.io.IOUtils;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.apache.commons.lang3.StringUtils;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.jetbrains.annotations.NotNull;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.beans.factory.annotation.Autowired;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.core.MethodParameter;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.stereotype.Component;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.util.Assert;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.util.ClassUtils;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.util.ObjectUtils;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.support.WebDataBinderFactory;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.context.request.NativeWebRequest;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.method.support.HandlerMethodArgumentResolver;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.method.support.ModelAndViewContainer;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> javax.servlet.http.HttpServletRequest;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Objects;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2022-12-16 10:08:15
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Component
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">MultiParameterBodyResolver</span> <span style="color:#8be9fd;font-style:italic">implements</span> HandlerMethodArgumentResolver {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 在 request 域中缓存请求体的键名称，
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> String JSON_REQUEST_BODY <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;JSON_REQUEST_BODY&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 注入 ObjectMapper
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Autowired
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> ObjectMapper objectMapper;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">supportsParameter</span>(MethodParameter parameter) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> parameter.<span style="color:#50fa7b">hasParameterAnnotation</span>(MultiParameterBody.<span style="color:#50fa7b">class</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">resolveArgument</span>(@NotNull MethodParameter parameter, ModelAndViewContainer mavContainer,
+</span></span><span style="display:flex;"><span>                                  @NotNull NativeWebRequest webRequest, WebDataBinderFactory binderFactory) <span style="color:#8be9fd;font-style:italic">throws</span> Exception {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Object result;
+</span></span><span style="display:flex;"><span>        Object value;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 获取请求对象</span>
+</span></span><span style="display:flex;"><span>        HttpServletRequest request <span style="color:#ff79c6">=</span> webRequest.<span style="color:#50fa7b">getNativeRequest</span>(HttpServletRequest.<span style="color:#50fa7b">class</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 查看是否存在缓存，如果前面有参数被标注过 @MultiParameterBody 并且成功解析，那么此处应存在请求体</span>
+</span></span><span style="display:flex;"><span>        String requestBody <span style="color:#ff79c6">=</span> (String) webRequest.<span style="color:#50fa7b">getAttribute</span>(JSON_REQUEST_BODY, NativeWebRequest.<span style="color:#50fa7b">SCOPE_REQUEST</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (ObjectUtils.<span style="color:#50fa7b">isEmpty</span>(requestBody)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 第一次解析，请求体中没有值</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">try</span> (BufferedReader br <span style="color:#ff79c6">=</span> Objects.<span style="color:#50fa7b">requireNonNull</span>(request).<span style="color:#50fa7b">getReader</span>()) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 使用工具类将 缓冲输入流 读取到 responseBody 中</span>
+</span></span><span style="display:flex;"><span>                requestBody <span style="color:#ff79c6">=</span> IOUtils.<span style="color:#50fa7b">toString</span>(br);
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 加入请求域，作为缓存</span>
+</span></span><span style="display:flex;"><span>                webRequest.<span style="color:#50fa7b">setAttribute</span>(JSON_REQUEST_BODY, requestBody, NativeWebRequest.<span style="color:#50fa7b">SCOPE_REQUEST</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> RuntimeException(e);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 进行配置</span>
+</span></span><span style="display:flex;"><span>        objectMapper.<span style="color:#50fa7b">configure</span>(JsonParser.<span style="color:#50fa7b">Feature</span>.<span style="color:#50fa7b">ALLOW_UNQUOTED_FIELD_NAMES</span>, <span style="color:#ff79c6">true</span>);
+</span></span><span style="display:flex;"><span>        JsonNode rootNode <span style="color:#ff79c6">=</span> objectMapper.<span style="color:#50fa7b">readTree</span>(requestBody);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// JSON 串为空抛出异常</span>
+</span></span><span style="display:flex;"><span>        Assert.<span style="color:#50fa7b">notNull</span>(rootNode, <span style="color:#f1fa8c">&#34;参数为&#34;</span> <span style="color:#ff79c6">+</span> requestBody <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; null&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 获取注解</span>
+</span></span><span style="display:flex;"><span>        MultiParameterBody multiParameterBody <span style="color:#ff79c6">=</span> parameter.<span style="color:#50fa7b">getParameterAnnotation</span>(MultiParameterBody.<span style="color:#50fa7b">class</span>);
+</span></span><span style="display:flex;"><span>        Assert.<span style="color:#50fa7b">notNull</span>(multiParameterBody, <span style="color:#f1fa8c">&#34;参数&#34;</span> <span style="color:#ff79c6">+</span> requestBody <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;不存在 MultiRequestBody 注解&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        String key <span style="color:#ff79c6">=</span> multiParameterBody.<span style="color:#50fa7b">value</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 根据注解 value 解析 JSON 串，如果没有根据参数的名字解析 JSON</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>StringUtils.<span style="color:#50fa7b">isNoneBlank</span>(key)) {
+</span></span><span style="display:flex;"><span>            key <span style="color:#ff79c6">=</span> parameter.<span style="color:#50fa7b">getParameterName</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        value <span style="color:#ff79c6">=</span> rootNode.<span style="color:#50fa7b">get</span>(key);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果为参数必填但未根据 key 成功得到对应 value 抛出异常</span>
+</span></span><span style="display:flex;"><span>        Assert.<span style="color:#50fa7b">isTrue</span>(multiParameterBody.<span style="color:#50fa7b">required</span>() <span style="color:#ff79c6">&amp;&amp;</span> ObjectUtils.<span style="color:#50fa7b">isEmpty</span>(value), key <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;为必填参数，但为空&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 获取参数的类型</span>
+</span></span><span style="display:flex;"><span>        Class<span style="color:#ff79c6">&lt;?&gt;</span> parameterType <span style="color:#ff79c6">=</span> parameter.<span style="color:#50fa7b">getParameterType</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 成功从 JSON 解析到对应 key 的 value</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>ObjectUtils.<span style="color:#50fa7b">isEmpty</span>(value)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> objectMapper.<span style="color:#50fa7b">readValue</span>(value.<span style="color:#50fa7b">toString</span>(), parameterType);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 未从 JSON 解析到对应 key（可能是注解的 value 或者是参数名字） 的值，要么没传值，要么传的名字不对</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果参数为基本数据类型，且为必传参数抛出异常</span>
+</span></span><span style="display:flex;"><span>        Assert.<span style="color:#50fa7b">isTrue</span>((ClassUtils.<span style="color:#50fa7b">isPrimitiveWrapper</span>(parameterType) <span style="color:#ff79c6">&amp;&amp;</span> multiParameterBody.<span style="color:#50fa7b">required</span>()), String.<span style="color:#50fa7b">format</span>(<span style="color:#f1fa8c">&#34;必填参数 %s 没有找到&#34;</span>, key));
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 参数非基本数据类型，如果不允许解析外层属性，且为必传参数 报错抛出异常</span>
+</span></span><span style="display:flex;"><span>        Assert.<span style="color:#50fa7b">isTrue</span>(<span style="color:#ff79c6">!</span> ClassUtils.<span style="color:#50fa7b">isPrimitiveWrapper</span>(parameterType) <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#ff79c6">!</span> multiParameterBody.<span style="color:#50fa7b">parseAllFields</span>() <span style="color:#ff79c6">&amp;&amp;</span> multiParameterBody.<span style="color:#50fa7b">required</span>(), 
+</span></span><span style="display:flex;"><span>                String.<span style="color:#50fa7b">format</span>(<span style="color:#f1fa8c">&#34;必填参数 %s 没有找到&#34;</span>, key));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 既然找不到对应参数，而且非基本类型，我们可以解析外层属性，将整个 JSON 作为参数进行解析。解析失败会抛出异常</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#ff79c6">=</span> objectMapper.<span style="color:#50fa7b">readValue</span>(requestBody, parameterType);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 必填参数若为 null 则 抛出异常</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (multiParameterBody.<span style="color:#50fa7b">required</span>() <span style="color:#ff79c6">&amp;&amp;</span> ObjectUtils.<span style="color:#50fa7b">isEmpty</span>(result)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">throw</span> <span style="color:#ff79c6">new</span> BadParameterException(<span style="color:#f1fa8c">&#34;必填参数 &#34;</span> <span style="color:#ff79c6">+</span> parameter.<span style="color:#50fa7b">getParameterName</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; 为 null&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610511/" data-toggle="tooltip" data-placement="top" title="IDEA 与 服务器 Linux 开发">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/" data-toggle="tooltip" data-placement="top" title="优质Java站点">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

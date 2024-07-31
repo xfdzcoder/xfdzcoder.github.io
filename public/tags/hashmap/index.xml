@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HashMap on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/tags/hashmap/</link>
+    <description>Recent content in HashMap on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <atom:link href="http://localhost:1313/tags/hashmap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>跟着老韩读源码</title>
+      <link>http://localhost:1313/post/java/java%E5%9F%BA%E7%A1%80/hashset%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/java/java%E5%9F%BA%E7%A1%80/hashset%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</guid>
+      <description>P521-P525 跟着老韩读源码 感谢韩顺平老师！ 下面是视频地址 【零基础 快速学Java】韩顺平 零基础30天学会Java_哔哩哔哩_bilibili 干就完了！ 以</description>
+    </item>
+  </channel>
+</rss>

@@ -1,13 +1,12 @@
 ---
-title: 'Synchronized 的升级机制'
-
+url: /7224233674005610509
+title: 'synchronized 的升级机制'
 date: 2024-07-30T11:12:26+08:00
-
+lastmod: 2024-07-31T20:03:17+08:00
 draft: false
-
 summary: ""
-
 categories: [Java]
+tags: ['top', 'JUC']
 ---
 
 <hr>

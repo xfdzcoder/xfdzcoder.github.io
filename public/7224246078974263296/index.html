@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="SpringSecurity之用户认证" />
+    <meta property="og:title" content="SpringSecurity之用户认证" />
+    <meta property="twitter:title" content="SpringSecurity之用户认证" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>SpringSecurity之用户认证 | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224246078974263296/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                    </div>
+                    <h1>SpringSecurity之用户认证</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Thursday, November 23, 2023
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="基础">基础：</h2>
+<p>Spring Security 是一个专注于为 Java 应用程序提供身份认证和授权的框架。<!-- raw HTML omitted -->推荐使用权限认证方式配置：SSM + Shiro;Springboot+SpringSecurity</p>
+<ul>
+<li>身份认证（authentication），即验证用户身份的合法性，以判断用户能否登录。</li>
+<li>授权（authorization），即验证用户是否有权限访问某些资源或者执行某些操作。</li>
+</ul>
+<h2 id="实质">实质：</h2>
+<p>实质上SpringSecurity在进行身份认证方面主要通过一系列的过滤器链来实现的，我们加入SpringSecurity项目的时候可以看到控制台会输出DefaultSecurityFilterChain打印出来默认的过滤器链。如果我们想要对相应的地方做修改，只需修改过滤器即可，在过滤器链完成过程中加入我们的业务代码逻辑即可。</p>
+<h2 id="springsecurity核心过滤器链">SpringSecurity核心过滤器链</h2>
+<p>我们看视频常会看到说有15个基本过滤器链(Filter)，但是我们常用的也就那几个。</p>
+<h2 id="浅要说一下什么是过滤器链">浅要说一下：什么是过滤器链？</h2>
+<p>Filter 可以在服务器作出响应前拦截用户请求，并在拦截后修改 request 和 response，可实现一次编码、多处应用。Filter 主要有以下两点作用：</p>
+<ul>
+<li>拦截请求：在 HttpServletRequest 到达 Servlet 之前进行拦截，查看和修改 HttpServletRequest 的 Header 和数据。</li>
+<li>拦截响应：在 HttpServletResponse 到达客户端之前完成拦截，查看和修改 HttpServletResponse 的 Header 和数据。</li>
+</ul>
+<p>过滤器链作为SpringSecurity的核心，我从网上找来一个图，可以很好的解释一下过滤器链的执行流程：<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-15-32-0c3446bc29e5620132b13fb25e30d03d-1681009049525-8efc1cae-2b9b-447d-a1a5-665b9f5234c8-fee2a1.webp" alt="">
+
+</p>
+<h2 id="springsecuity-部分过滤器的执行流程">SpringSecuity 部分过滤器的执行流程：</h2>
+<ul>
+<li><strong>SecurityContextPersistenceFilter</strong>：整个 Spring Security 过滤器链的开端。主要有两点作用：（1）当请求到来时，检查 Session中是否存在 SecurityContext，若不存在，则创建一个新的 SecurityContext；（2）在请求结束时，将 SecurityContext 放入 Session 中，并清空 SecurityContextHolder。</li>
+<li><strong>UsernamePasswordAuthenticationFilte</strong>r：继承自抽象类 AbstractAuthenticationProcessingFilter。当进行表单登录时，该 Filter 将用户名和密码封装成UsernamePasswordAuthenticationToken 进行验证。</li>
+<li><strong>AnonymousAuthenticationFilter</strong>：匿名身份过滤器，一般用于匿名登录。当前面的 Filter 认证后依然没有用户信息时，该Filter会生成一个匿名身份 AnonymousAuthenticationToken。</li>
+<li><strong>ExceptionTranslationFilter</strong>：异常转换过滤器，用于处理 FilterSecurityInterceptor 抛出的异常。但是只会处理两类异常：AuthenticationException 和 AccessDeniedException，其它的异常它会继续抛出。</li>
+</ul>
+<h2 id="了解了springsecurity的执行流程之后我们先来认识一下其中的核心组件">了解了SpringSecurity的执行流程之后，我们先来认识一下其中的核心组件：</h2>
+<ul>
+<li><strong>SecurityContextHolder</strong>：用于获取 <strong>SecurityContext</strong> 的静态工具类，是Spring Security 存储身份验证者详细信息的位置。</li>
+<li><strong>SecurityContext：</strong> 上下文对象，Authentication 对象会放在里面。</li>
+<li><strong>Authentication：</strong> 认证接口，定义了认证对象的数据形式。</li>
+<li><strong>AuthenticationManager：</strong> 用于校验 Authentication，返回一个认证完成后的 Authentication 对象。</li>
+</ul>
+<p>我们可以随时获取SecurityContext上下文对象，这样我们可以更改其中的权限认证信息，这是很重要的，当时写社团在线平台就不知道这个想了好久。离大谱。</p>
+<p>SecurityContextHolder 用于存储安全上下文（SecurityContext）的信息。而如何保证用户信息的安全，Spring Security 采用“用户信息和线程绑定”的策略，SecurityContextHolder 默认采用 ThreadLocal 机制保存用户的 SecurityContext，在使用中可以通过 SecurityContextHolder 工具轻松获取用户安全上下文。这意味着，只要是针对某个使用者的逻辑执行都是在同一个线程中进行，Spring Security 会在用户登录时自动绑定认证信息到当前线程，在用户退出时也会自动清除当前线程的认证信息。<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-15-24-4c14143489857f24a4399f7bf3329846-1681009450012-e3a239ee-65be-4359-a14a-62450c711b69-156e22.webp" alt="">
+
+<!-- raw HTML omitted -->其中，getAuthentication() 返回认证信息，getPrincipal() 返回身份信息。 SecurityContext 是从 SecurityContextHolder 获得的。SecurityContext 包含一个 Authentication对象。</p>
+<h2 id="springsecurity的认证流程">SpringSecurity的认证流程</h2>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-15-24-81c82bb37a09a8ba7d0b8fe7556cb7e1-1681009548373-dbf960e4-c6f3-41c6-a05e-04142fbbe791-6bea0a.webp" alt="">
+
+</p>
+<p>根据这张图，这样来看我的代码，就能很清晰了，我们需要实现UserDetailsSerivce的loadUserByUsername()方法，我们在这个方法里面进行查询数据库，判断用户是否存在来进行登录认证操作，同时我们的返回的UserDetails实体类是Security框架自带的，我们可以继承他，然后返回我们自己的实体类，注意返回的UserDetails.</p>
+<h3 id="官方话如下">官方话如下：</h3>
+<p>结合上面的时序图，让我们先熟悉下 Spring Security 的认证流程：</p>
+<ol>
+<li>用户进行认证，用户名和密码被 SecurityFilterChain 中的 UsernamePasswordAuthenticationFilter 过滤器拦截，并将请求封装为 Authentication，其默认实现类是 UsernamePasswordAuthenticationToken。</li>
+<li>将封装的 UsernamePasswordAuthenticationToken 提交至 AuthenticationManager（认证管理器）进行认证。</li>
+<li>认证成功后， AuthenticationManager（身份管理器）会返回一个包含用户身份信息的 Authentication 实例（包括身份信息，细节信息，但密码通常会被移除）。</li>
+<li>SecurityContextHolder （安全上下文容器）将认证成功的 Authentication 存储到 SecurityContext（安全上下文）中。</li>
+</ol>
+<blockquote>
+<p>其中，AuthenticationManager 接口是认证相关的核心接口，ProviderManager 是它的实现类。因为 Spring Security 支持多种认证方式，所以 ProviderManager 维护着一个List<!-- raw HTML omitted --> 列表，包含多种认证方式，最终实际的认证工作就是由列表中的 AuthenticationProvider 完成的。其中最常见的 web 表单认证的对应的 AuthenticationProvider 实现类为 DaoAuthenticationProvider，它的内部又维护着一个 UserDetailsService负责获取 UserDetails。最终 AuthenticationProvider 将 UserDetails 填充至 Authentication。</p>
+</blockquote>
+<h2 id="用户密码过滤器usernamepasswordauthenticationfilter">用户密码过滤器（UsernamePasswordAuthenticationFilter）：</h2>
+<p>以用户名密码认证为例 ，请求被 UsernamePasswordAuthenticationFilter 过滤器拦截，UsernamePasswordAuthenticationFilter 根据Request 中提交的用户名和密码创建一个 Token(UsernamePasswordAuthenticationToken)。</p>
+<h2 id="usernamepasswordauthenticationtoken这玩意是啥">UsernamePasswordAuthenticationToken这玩意是啥？</h2>
+<p>实质上：UsernamePasswordAuthenticationToken 的核心就是两个构造方法，分别用于初始化未认证和认证的 Token。</p>
+<h3 id="官方话">官方话：</h3>
+<p>这一步是身份认证的核心，下面进行详细讲解：</p>
+<ol>
+<li>未认证的 UsernamePasswordAuthenticationToken（携带用户名、密码信息）被提交给 AuthenticationManager。AuthenticationManager 的实现类 ProviderManager 负责对认证请求链 AuthenticationProviders 进行管理。</li>
+<li>ProviderManager 通过循环的方式，发现 DaoAuthenticationProvider 的类型符合，使用 DaoAuthenticationProvider 进行认证。</li>
+<li>DaoAuthenticationProvider 从 UserDetailsService 中查找 UserDetails。</li>
+<li>DaoAuthenticationProvider 使用 PasswordEncoder 验证上一步返回的 UserDetails 中的用户密码。</li>
+<li>当身份验证成功， Authentication 返回一个已认证的 UsernamePasswordAuthenticationToken ，其中包含 UserDetailsService 返回的 UserDetails 信息。最终，认证成功的 UsernamePasswordAuthenticationToken 添加到 SecurityContextHolder 完成账号密码的身份认证。</li>
+</ol>
+<p>看下这图就了解差不多了：<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-15-44-9659ba01498c1ed564910e585b10922c-1681010032189-39c349fc-d08e-468f-9bec-dc03ae521dbf-a5070c.webp" alt="">
+
+</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610512/" data-toggle="tooltip" data-placement="top" title="SpringBoot 调用第三方接口时的公私钥管理">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7224233674005610513/" data-toggle="tooltip" data-placement="top" title="SpringBoot 整合 七牛云存储">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

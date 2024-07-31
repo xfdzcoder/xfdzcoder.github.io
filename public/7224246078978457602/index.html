@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="红黑树" />
+    <meta property="og:title" content="红黑树" />
+    <meta property="twitter:title" content="红黑树" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="B&#43;树的学习" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>红黑树 | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224246078978457602/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                    </div>
+                    <h1>红黑树</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Tuesday, July 26, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="0-预备知识">0. 预备知识</h2>
+<ul>
+<li><strong>AVL 树</strong></li>
+<li><strong>2-3-4 树</strong></li>
+</ul>
+<h2 id="1-前言">1. 前言</h2>
+<p>红黑树（Red Black Tree） 是一种自平衡二叉查找树。红黑树是在1972年由<a href="https://baike.baidu.com/item/Rudolf%20Bayer/3014716?fromModule=lemma_inlink">Rudolf Bayer</a>发明的，当时被称为平衡二叉B树（symmetric binary B-trees）。后来，在1978年被 Leo J. Guibas 和 Robert Sedgewick 修改为如今的“红黑树”。<!-- raw HTML omitted -->红黑树是一种平衡二叉查找树的变体，它的左右子树高差有可能大于 1，所以红黑树不是严格意义上的<a href="https://baike.baidu.com/item/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/10421057?fromModule=lemma_inlink">平衡二叉树</a>（AVL），但 对之进行平衡的代价较低， 其平均统计性能要强于 AVL 。</p>
+<blockquote>
+<p>作者说：正是因为 AVL 树的平衡条件过于严格，导致频繁修改数据时会导致大量的旋转操作，从而影响性能。而红黑树利用改变结点颜色达到了减少了旋转操作次数，所以其平均统计性能要强于 AVL。</p>
+</blockquote>
+<h2 id="2-红黑树特征">2. 红黑树特征</h2>
+<ol>
+<li>结点是红色或黑色。</li>
+<li>根结点是黑色。</li>
+<li>所有叶子都是黑色。（叶子是NIL结点）</li>
+<li>每个红色结点的两个子结点都是黑色。（从每个叶子到根的所有路径上不能有两个连续的红色结点）</li>
+<li>从任一结点到其每个叶子的所有路径都包含相同数目的黑色结点。</li>
+</ol>
+<p><strong>关于特征原理解释，详见：</strong><a href="https://www.bilibili.com/video/BV135411h7wJ?p=1">1-红黑树前置知识-二叉排序树常见操作详解_哔哩哔哩_bilibili</a><!-- raw HTML omitted -->由上视频可知，一颗红黑树对应着唯一一颗 2-3-4树，一颗 2-3-4树对应多颗红黑树。两者结点转换关系如下：<!-- raw HTML omitted -->
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958504848-ea3a5640-eece-49fb-9d7b-e97a5c916a96.png#averageHue=%23f3eeed&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=377&amp;id=u6d32506c&amp;originHeight=377&amp;originWidth=988&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37424&amp;status=done&amp;style=none&amp;taskId=uc28ad20c-8b00-4b1b-9315-2fb585fd802&amp;title=&amp;width=988" alt="image.png">
+
+</p>
+<h2 id="3-插入结合-2-3-4-tree-进行理解">3. 插入（结合 2-3-4 Tree 进行理解）</h2>
+<p>这里我们通过顺序插入** {50, 60, 70, 80, 90, 100} **来进行理解<!-- raw HTML omitted -->下图都按照以下结构：<!-- raw HTML omitted -->
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958209783-20921756-09a4-434d-8d20-e1879d37f1e0.png#averageHue=%23f2f1f0&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=114&amp;id=u8bf60580&amp;originHeight=114&amp;originWidth=1273&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=21366&amp;status=done&amp;style=none&amp;taskId=u38bc2c1b-7318-4157-a8f6-bdc870e6da6&amp;title=&amp;width=1273" alt="image.png">
+
+</p>
+<h3 id="31-插入-50">3.1 插入 50</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958227237-d6986bbe-32c6-425b-9932-53fe09a56be4.png#averageHue=%23eeeeee&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=143&amp;id=ue2be7aed&amp;originHeight=143&amp;originWidth=1119&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9345&amp;status=done&amp;style=none&amp;taskId=u772ba5af-b3ab-49e6-8486-88c15c000cd&amp;title=&amp;width=1119" alt="image.png">
+
+</p>
+<h3 id="32-插入-60">3.2 插入 60</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958237851-d0f16621-a38b-4614-891b-7956f983d3bb.png#averageHue=%23f2ecec&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=229&amp;id=u00eb899a&amp;originHeight=229&amp;originWidth=1217&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=20107&amp;status=done&amp;style=none&amp;taskId=u992c2d1c-ff44-4364-9d7c-9cde9113c53&amp;title=&amp;width=1217" alt="image.png">
+
+</p>
+<h3 id="33-插入-70">3.3 插入 70</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958255631-03eb4843-a8fa-45e9-9cec-ca98baf3677d.png#averageHue=%23f4ebeb&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=301&amp;id=ucafb91ce&amp;originHeight=301&amp;originWidth=1320&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=27052&amp;status=done&amp;style=none&amp;taskId=u87337b4f-6660-4da8-b1f4-45a3d424bdc&amp;title=&amp;width=1320" alt="image.png">
+
+<!-- raw HTML omitted -->此时插入70后需要左旋。</p>
+<h3 id="34-插入-80">3.4 插入 80</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958558040-d95a7b0b-a1c2-41d7-b1b8-fe047563f3c1.png#averageHue=%23f0e7e7&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=330&amp;id=u77320e2c&amp;originHeight=330&amp;originWidth=1379&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=33432&amp;status=done&amp;style=none&amp;taskId=u439384ea-5bcb-4d4a-b0df-6417ac3692a&amp;title=&amp;width=1379" alt="image.png">
+
+<!-- raw HTML omitted -->此时直接改变颜色即可</p>
+<h3 id="35-插入-90">3.5 插入 90</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958596172-6229b328-4840-47b3-8fe1-c11e53436151.png#averageHue=%23ede5e5&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=361&amp;id=ue681dd9e&amp;originHeight=361&amp;originWidth=1437&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37596&amp;status=done&amp;style=none&amp;taskId=u648331b1-eadc-4ad1-81d2-4ff700ecd10&amp;title=&amp;width=1437" alt="image.png">
+
+<!-- raw HTML omitted -->需要左旋</p>
+<h3 id="36-插入-100">3.6 插入 100</h3>
+<p>
+  <img src="https://cdn.nlark.com/yuque/0/2023/png/34254608/1674958627474-356ef75b-5bfd-416d-b4f9-bcbe12f1f021.png#averageHue=%23ebe3e3&amp;clientId=ub8aaa0ed-567a-4&amp;from=paste&amp;height=379&amp;id=ub1359094&amp;originHeight=379&amp;originWidth=1503&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=52373&amp;status=done&amp;style=none&amp;taskId=uc5933afb-8d2c-4187-bd5d-00e9f14fa8a&amp;title=&amp;width=1503" alt="image.png">
+
+<!-- raw HTML omitted -->此时，若使用 AVL 树存储数据，那么就要进行一次左旋，而红黑树利用改变结点颜色避免了一次左旋，树也差不多是平衡的。</p>
+<h3 id="结论">结论</h3>
+<p>观察上述插入过程，可以发现：</p>
+<h4 id="插入过程">插入过程</h4>
+<ol>
+<li>插入的结点始终是红色（根节点除外）</li>
+<li>若父结点的兄弟结点存在，则改变颜色即可，无需旋转
+<ol>
+<li>例如插入 80、100 时</li>
+</ol>
+</li>
+<li>若父结点的兄弟结点不存在，则需要根据树的偏移情况进行旋转，旋转完成之后再修改颜色
+<ol>
+<li>例如插入 70、90 时</li>
+</ol>
+</li>
+</ol>
+<h4 id="颜色改变">颜色改变</h4>
+<p>分两种情况：</p>
+<blockquote>
+<p>旋转通常只涉及三结点，在 AVL 中，我们会在三结点的上结点发现树不平衡，需要旋转，而在红黑树中，我们会在三结点的中结点发现需要旋转。所以下面两点中的 当前节点 指的是旋转三结点的中结点</p>
+</blockquote>
+<ol>
+<li>旋转后改变颜色
+<ol>
+<li>三结点通过 L、R、LR、RL 旋转完成之后都是 一上二下式，所以旋转完成之后修改父结点为黑色，下方两个子结点为 红色即可。</li>
+</ol>
+</li>
+<li>不旋转，直接改变颜色
+<ol>
+<li>这种情况是父结点有兄弟结点，则直接将父结点设为红色（注意父结点是根节点的情况），当前结点和兄弟结点设为黑色即可。</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-删除">4. 删除</h2>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610504/" data-toggle="tooltip" data-placement="top" title="Java核心技术卷二阅读笔记（4.1 ~ ）">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7224233674005610498/" data-toggle="tooltip" data-placement="top" title="B-Tree">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

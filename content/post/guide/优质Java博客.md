@@ -1,14 +1,10 @@
 ---
-
 title: '优质Java站点'
-
-date: 2024-07-17T21:47:40+08:00
-
+date: 2023-07-17T21:47:40+08:00
 draft: false
-
 summary: "汇总一下Java学习路上的优质Java站点，持续更新……"
-
 categories: [Guide]
+tags: ['top']
 ---
 
 <hr>

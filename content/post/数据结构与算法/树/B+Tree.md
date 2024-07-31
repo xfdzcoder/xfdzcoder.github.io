@@ -1,12 +1,11 @@
 ---
+url: /7224233674005610499
 title: 'B+Tree'
-
 date: 2024-07-19T14:47:00+08:00
-
 draft: false
-
 summary: "B+树的学习"
 categories: [数据结构与算法]
+tags: ['树']
 ---
 
 <hr>

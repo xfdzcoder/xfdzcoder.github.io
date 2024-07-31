@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="B-Tree" />
+    <meta property="og:title" content="B-Tree" />
+    <meta property="twitter:title" content="B-Tree" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="完成了B树的代码实现" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>B-Tree | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224233674005610498/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                    </div>
+                    <h1>B-Tree</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Friday, August 12, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<h2 id="0-预备知识">0. 预备知识</h2>
+<ul>
+<li>二叉树</li>
+<li>排序二叉树</li>
+<li>AVL树</li>
+</ul>
+<h2 id="1-前言"><strong>1. 前言</strong></h2>
+<p>我们始终假设可以把整个数据结构存储在内存中。可是，如果数据多到内存装不下，这就意味着必须把数据放在磁盘上，显然这些数据结构不再适用。<!-- raw HTML omitted -->问题在于磁盘的I/O速度是远远不如内存访问速度的，然而从一棵树中查找到某个元素，必须从根节点一层层往下找，这每一次查找便是一次I/O操作。为了提高性能，就必须要减少查找的次数。<!-- raw HTML omitted -->如能减少树的高度、增加每个节点中的元素数，便是种有效的解决方案。实现这种想法的一种方法是使用B树。</p>
+<h2 id="2-相关概念">2. 相关概念</h2>
+<ul>
+<li><strong>内部节点（internal）</strong>：除根节点和叶子节点之外的节点叫做内部节点。它们即有父节点，也有子节点。</li>
+<li><strong>键</strong>：B树中的存储元素是键，是用于指向数据记录的指针。键的值是用于存储真正的数据记录。一个节点中可以拥有多个键。</li>
+<li><strong>阶</strong>：B树的阶为最大子节点数量，其比键的数量大1。我们一般称一个B树为M阶的B树，那么该B树最多拥有M个子节点，节点中最多拥有M-1个键。</li>
+<li>**B树：**是一种自平衡的树，能够保持数据有序。这种数据结构能够让查找数据、顺序访问、插入数据及删除的动作，都在对数时间内完成。
+<ul>
+<li>每个节点最多有 M 个子节点；每个内部节点最少有 ⌈M/2⌉ 个子节点（⌈x⌉为向上取整符号）；如果根节点不是叶子节点，那么它至少有两个子节点。</li>
+<li>具有 N 个子节点的非叶子节点拥有 N-1 个键。</li>
+<li>非根节点的键值数量在 t - 1 到 2t - 1中，其中 t = Math.ceil(M/2);</li>
+<li>所有叶子节点必须处于同一层上。</li>
+<li>B树的阶是预先定义好的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-插入">3. 插入</h2>
+<h3 id="步骤描述">步骤描述：</h3>
+<ol>
+<li>如果该节点上的元素数未满，则将新元素插入到该节点，并保持节点中元素的顺序。</li>
+<li>如果该节点上的元素已满，则需要将该节点平均地分裂成两个节点：
+<ol>
+<li>从该节点中的元素和新元素选出一个中位数</li>
+<li>小于中位数的元素放到左边节点，大于中位数的元素放到右边节点，中位数做为分隔值。</li>
+<li>分隔值被插入到父节点中（增加了树的高度），这可能会导致父节点的分裂，分裂父节点时又可能会使它的父节点分裂，以此类推。如果分裂一直上升到根节点，那么就创建一个新的根节点，它有一个分隔值和两个子节点。（这就是根节点并不像内部节点一样有最少子节点数量限制的原因）</li>
+</ol>
+</li>
+</ol>
+<h3 id="图示">图示：</h3>
+<blockquote>
+<p>我们通过顺序插入1 - 17到一颗5阶B树中来学习结点的分裂过程</p>
+</blockquote>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-46-43-df2a1e7c3e951f13c12477bdd77bbf3c-1-f1e15d.jpg" alt="">
+
+<!-- raw HTML omitted -->看不懂上述题解的，很正常，我第一次也没看懂，看懂了的那么恭喜你可以跳过下面这一小部分了。</p>
+<h3 id="详细分析">详细分析</h3>
+<h4 id="情况一">情况一：</h4>
+<p>首先分析一下最简单的情况：分裂根节点<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-47-32-41fceef47fbf8bb4e1648702f01a97e8-2-3c81ed.jpg" alt="image.png">
+
+<!-- raw HTML omitted --><strong>详细描述：</strong><!-- raw HTML omitted -->由于插入的键值5，导致结点长度超过了上限。故将其拆分为三部分：左节点、中间结点（即新的根节点）、右节点。左节点的键值为中间键值的左边的所有键值，右节点同理，然后使其中间结点中键值3的两侧子结点依次为 左节点、右节点。然后将中间结点赋值给根结点，完成分裂。<!-- raw HTML omitted --><strong>问答：</strong></p>
+<ul>
+<li>结点长度超过了上限 是什么？
+<ul>
+<li>由于示例是5阶树，所以每个结点最多有 5 - 1 个键值</li>
+</ul>
+</li>
+<li>为什么上移中间结点？
+<ul>
+<li>因为B树是一颗有序的多路平衡查找树，所以为了使其有序且平衡，这里选择中间结点为父结点</li>
+</ul>
+</li>
+</ul>
+<h4 id="情况二">情况二：</h4>
+<p>分裂边上的叶子节点<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-47-45-bf3c7c40938a3faa5fe62058f95300e4-3-3cfce3.jpg" alt="image.png">
+
+</p>
+<h4 id="情况三">情况三：</h4>
+<p>分裂中间的叶子节点<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-47-54-503aff8f24a5c6b45cb5a450fb7d4249-4-e38a2c.jpg" alt="image.png">
+
+<!-- raw HTML omitted -->这里要注意的就是，在递归的过程中，需要记录一下当前结点在父结点的第几个索引。</p>
+<h3 id="代码实现">代码实现</h3>
+<p>通过上述分析，一个结点需要包含以下元素：</p>
+<ul>
+<li>一个存放键值的数组</li>
+<li>一个存放子结点引用的数组</li>
+</ul>
+<p>还需要分析一下键值和键值两端的引用的索引关系<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-48-06-85c13f8b3c0dadddc44fe2aea598eea4-5-1c8c0a.jpg" alt="image.png">
+
+<!-- raw HTML omitted -->由图可见，假设键值的索引为 n，那么其左侧的子结点引用也为 n，右侧的子结点引用为 n + 1<!-- raw HTML omitted -->Node类设计好了，还有BalanceTree类，<!-- raw HTML omitted -->BalanceTree类暂时来说需要的就是该B树的阶数，所以构造器应该有一个参数<!-- raw HTML omitted -->下面就可以进行代码实现了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> _09_tree;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Objects;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description: 实现 B-Tree 的基本功能
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-01-23 17:32:35
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">BalanceTree</span><span style="color:#ff79c6">&lt;</span>T <span style="color:#8be9fd;font-style:italic">extends</span> Comparable<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Node head;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">int</span> rank;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">BalanceTree</span>(<span style="color:#8be9fd">int</span> rank) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">rank</span> <span style="color:#ff79c6">=</span> rank;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">add</span>(T key) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(head)) {
+</span></span><span style="display:flex;"><span>            head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node(<span style="color:#ff79c6">null</span>, key, <span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        doAdd(head, <span style="color:#ff79c6">null</span>, <span style="color:#ff79c6">-</span>1, key);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 实现向 B树 中插入数据
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param node 当前正在进行比较的结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param father 当前正在进行比较的结点的父结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param linkIndex 当前结点在父结点的引用列表中的索引位置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param key 需要新增的键值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @SuppressWarnings(<span style="color:#f1fa8c">&#34;ConstantConditions&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doAdd</span>(Node node, Node father, <span style="color:#8be9fd">int</span> linkIndex, T key) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            T nodeKey <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i);
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> cmp <span style="color:#ff79c6">=</span> key.<span style="color:#50fa7b">compareTo</span>(nodeKey);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 往左</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// key &lt;= nodeKey</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (cmp <span style="color:#ff79c6">&lt;=</span> 0) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果是叶子结点</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(i, key);
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    doAdd(node.<span style="color:#50fa7b">getLeftNode</span>(i), node, i, key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 如果是最后一个键值，那么就需要判断最后一个键值的右子结点</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">==</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(i <span style="color:#ff79c6">+</span> 1, key);
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    doAdd(node.<span style="color:#50fa7b">getRightNode</span>(i), node, i <span style="color:#ff79c6">+</span> 1, key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果当前结点超出了上限，需要调整</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isOverflow</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 分裂</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(father)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 当前节点是根结点，需要新建根结点</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> middleIndex <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2;
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 初始化三个结点</span>
+</span></span><span style="display:flex;"><span>                Node left <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node right <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node newHead <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 根据中间键值拆分</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&gt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                        newHead.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 完善新的根节点</span>
+</span></span><span style="display:flex;"><span>                newHead.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(left);
+</span></span><span style="display:flex;"><span>                newHead.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(right);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">head</span> <span style="color:#ff79c6">=</span> newHead;
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 获取中间键值的索引</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> middleIndex <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2;
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 初始化左右子结点，此处由于已经有了父结点，所以无需重复初始化父结点</span>
+</span></span><span style="display:flex;"><span>                Node left <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node right <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 根据中间键值进行拆分</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&gt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 将中间键值添加到父结点的键值列表中</span>
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(linkIndex, node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(middleIndex));
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 修改引用列表</span>
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">set</span>(linkIndex, left);
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(linkIndex <span style="color:#ff79c6">+</span> 1, right);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> middleOrder();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String <span style="color:#50fa7b">middleOrder</span>() {
+</span></span><span style="display:flex;"><span>        StringBuilder stringBuilder <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> StringBuilder(<span style="color:#f1fa8c">&#34;[&#34;</span>);
+</span></span><span style="display:flex;"><span>        doMiddleOrder(head, stringBuilder);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (stringBuilder.<span style="color:#50fa7b">toString</span>().<span style="color:#50fa7b">endsWith</span>(<span style="color:#f1fa8c">&#34;, &#34;</span>)) {
+</span></span><span style="display:flex;"><span>            stringBuilder.<span style="color:#50fa7b">delete</span>(stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">-</span> 2, stringBuilder.<span style="color:#50fa7b">length</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;]&#34;</span>).<span style="color:#50fa7b">toString</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doMiddleOrder</span>(Node node, StringBuilder stringBuilder) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(node)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;[&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 遍历根节点索引</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 先往树的深处遍历，找到最小的结点</span>
+</span></span><span style="display:flex;"><span>            doMiddleOrder(node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(i), stringBuilder);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 然后添加元素</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                stringBuilder.<span style="color:#50fa7b">append</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i)).<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;, &#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>            stringBuilder.<span style="color:#50fa7b">delete</span>(stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">-</span> 2, stringBuilder.<span style="color:#50fa7b">length</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;], &#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Node</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 存放当前结点的所有键值。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 键两端对子结点的引用存放在 {@link #linkList} 中，假设键的索引为 n，那么其左子结点引用的索引为 n，右子结点的引用为 n + 1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> keyList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 存放当前结点的子结点引用。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#ff79c6">&lt;</span>Node<span style="color:#ff79c6">&gt;</span> linkList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> keyListMaxLength <span style="color:#ff79c6">=</span> rank <span style="color:#ff79c6">-</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> linkListMaxLength <span style="color:#ff79c6">=</span> rank;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Node</span>() {
+</span></span><span style="display:flex;"><span>            keyList <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>            linkList <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Node</span>(Node leftNode, T key, Node rightNode) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>();
+</span></span><span style="display:flex;"><span>            keyList.<span style="color:#50fa7b">add</span>(key);
+</span></span><span style="display:flex;"><span>            linkList.<span style="color:#50fa7b">add</span>(leftNode);
+</span></span><span style="display:flex;"><span>            linkList.<span style="color:#50fa7b">add</span>(rightNode);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @param keyIndex 键的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点中，索引为 keyIndex 的左子结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Node <span style="color:#50fa7b">getLeftNode</span>(<span style="color:#8be9fd">int</span> keyIndex) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (keyIndex <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">get</span>(keyIndex);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @param keyIndex 键的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点中，索引为 keyIndex 的左子结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Node <span style="color:#50fa7b">getRightNode</span>(<span style="color:#8be9fd">int</span> keyIndex) {
+</span></span><span style="display:flex;"><span>             <span style="color:#ff79c6">if</span> (keyIndex <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                 <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">get</span>(keyIndex <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>             <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点已经满了，即键的数量为 {@link #rank} - 1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isFull</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&gt;=</span> keyListMaxLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点是叶子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isLeaf</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">allMatch</span>(Objects::isNull);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点已经溢出了，需要调整
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isOverflow</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&gt;</span> keyListMaxLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点的中间键值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> T <span style="color:#50fa7b">getMiddleKey</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">get</span>(keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="4-删除">4. 删除</h2>
+<h3 id="步骤描述-1">步骤描述：</h3>
+<ul>
+<li>删除叶子节点中的关键字
+<ul>
+<li>搜索要删除的关键字，然后将其删除</li>
+<li>判断结点还是否符合条件（即结点的关键字个数是否在 [t - 1, 2t - 1]
+<ul>
+<li>若符合条件则跳过</li>
+<li>若不符合条件则向其兄弟节点借关键字。即将其父节点关键字下移至当前节点，将兄弟节点中关键字上移至父节点（若是左节点，上移最大关键字；若是右节点，上移最小关键字）
+<ul>
+<li>若兄弟节点也达到下限，则合并兄弟节点与分割键。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>删除内部节点中的关键字
+<ul>
+<li>删除内部节点的关键字可转换为删除叶子节点的关键字。即首先判断是否为叶子节点，否：则将子结点的关键字上移并覆盖当前的待删除关键字，然后继续递归删除子结点中上移的那个关键字。然后继续判断。。。</li>
+</ul>
+</li>
+</ul>
+<h3 id="图示-1">图示：</h3>
+<p>下图是一个5阶B树，我们通过删除15、14、17、5四个键，来观察删除过程（基本涵盖所有情况）。<!-- raw HTML omitted -->
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F10-48-26-2c13141d80b71dc1c594032b55a1e31c-6-13d957.jpg" alt="">
+
+</p>
+<h3 id="详细描述">详细描述：</h3>
+<p>详见代码</p>
+<h3 id="代码实现包括前面的插入代码">代码实现：（包括前面的插入代码）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> _09_tree;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.util.Objects;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description: 实现 B-Tree 的基本功能
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-01-23 17:32:35
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">BalanceTree</span><span style="color:#ff79c6">&lt;</span>T <span style="color:#8be9fd;font-style:italic">extends</span> Comparable<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Node head;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">int</span> rank;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">BalanceTree</span>(<span style="color:#8be9fd">int</span> rank) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">rank</span> <span style="color:#ff79c6">=</span> rank;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">add</span>(T key) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(head)) {
+</span></span><span style="display:flex;"><span>            head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node(<span style="color:#ff79c6">null</span>, key, <span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        doAdd(head, <span style="color:#ff79c6">null</span>, <span style="color:#ff79c6">-</span>1, key);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 实现向 B树 中插入数据
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param node 当前正在进行比较的结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param father 当前正在进行比较的结点的父结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param linkIndex 当前结点在父结点的引用列表中的索引位置
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param key 需要新增的键值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @SuppressWarnings(<span style="color:#f1fa8c">&#34;ConstantConditions&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doAdd</span>(Node node, Node father, <span style="color:#8be9fd">int</span> linkIndex, T key) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            T nodeKey <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i);
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> cmp <span style="color:#ff79c6">=</span> key.<span style="color:#50fa7b">compareTo</span>(nodeKey);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 往左</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// key &lt;= nodeKey</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (cmp <span style="color:#ff79c6">&lt;=</span> 0) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果是叶子结点</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(i, key);
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    doAdd(node.<span style="color:#50fa7b">getLeftNode</span>(i), node, i, key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 如果是最后一个键值，那么就需要判断最后一个键值的右子结点</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">==</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(i <span style="color:#ff79c6">+</span> 1, key);
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(<span style="color:#ff79c6">null</span>);
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    doAdd(node.<span style="color:#50fa7b">getRightNode</span>(i), node, i <span style="color:#ff79c6">+</span> 1, key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果当前结点超出了上限，需要调整</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isUpOverflow</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 分裂</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(father)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 当前节点是根结点，需要新建根结点</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> middleIndex <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2;
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 初始化三个结点</span>
+</span></span><span style="display:flex;"><span>                Node left <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node right <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node newHead <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 根据中间键值拆分</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&gt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                        newHead.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 完善新的根节点</span>
+</span></span><span style="display:flex;"><span>                newHead.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(left);
+</span></span><span style="display:flex;"><span>                newHead.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(right);
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">head</span> <span style="color:#ff79c6">=</span> newHead;
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 获取中间键值的索引</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8be9fd">int</span> middleIndex <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2;
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 初始化左右子结点，此处由于已经有了父结点，所以无需重复初始化父结点</span>
+</span></span><span style="display:flex;"><span>                Node left <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                Node right <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 根据中间键值进行拆分</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&gt;</span> middleIndex) {
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                        left.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getLeftNode</span>(i));
+</span></span><span style="display:flex;"><span>                        right.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(node.<span style="color:#50fa7b">getRightNode</span>(i));
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 将中间键值添加到父结点的键值列表中</span>
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(linkIndex, node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(middleIndex));
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 修改引用列表</span>
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">set</span>(linkIndex, left);
+</span></span><span style="display:flex;"><span>                father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">add</span>(linkIndex <span style="color:#ff79c6">+</span> 1, right);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param key 要删除的关键字
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 返回是否删除成功，当且仅当关键字不存在时返回 false
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">remove</span>(T key) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(key) <span style="color:#ff79c6">||</span> Objects.<span style="color:#50fa7b">isNull</span>(head)) <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 进行真正的删除操作</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> isSuccesses <span style="color:#ff79c6">=</span> doRemove(head, <span style="color:#ff79c6">null</span>, <span style="color:#ff79c6">-</span>1, key);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 判断本次删除之后根节点是否为空</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (head.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>            head <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> isSuccesses;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @SuppressWarnings(<span style="color:#f1fa8c">&#34;ConstantConditions&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">doRemove</span>(Node node, Node father, <span style="color:#8be9fd">int</span> linkIndex, T key) {
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">boolean</span> isSuccesses <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 循环遍历当前结点中的关键字</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 比较大小</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8be9fd">int</span> cmp <span style="color:#ff79c6">=</span> key.<span style="color:#50fa7b">compareTo</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i));
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// key &lt; node.keyList.get(i)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (cmp <span style="color:#ff79c6">&lt;</span> 0) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 往左</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 如果是叶子节点，说明该关键字不存在，故返回 false</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 递归删除</span>
+</span></span><span style="display:flex;"><span>                    isSuccesses <span style="color:#ff79c6">=</span> doRemove(node.<span style="color:#50fa7b">getLeftNode</span>(i), node, i, key);
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 递归删除之后默认</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// key == node.keyList.get(i)</span>
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (cmp <span style="color:#ff79c6">==</span> 0) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 判断是否为叶子节点</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 如果是叶子节点那么就直接删除</span>
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">remove</span>(key);
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">remove</span>(node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果是非叶子结点，那么就在其子结点找个替罪羊，然后继续递归删除其子结点的替罪羊</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 获取其子结点</span>
+</span></span><span style="display:flex;"><span>                    Node son <span style="color:#ff79c6">=</span> node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(i);
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 获取替罪羊关键字</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 为什么获取最大的一个？</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">//      因为，获取子结点时，是获取的当前关键字左侧的子结点，所以应使用该子结点的最大关键字来当替罪羊</span>
+</span></span><span style="display:flex;"><span>                    T scapegoat <span style="color:#ff79c6">=</span> son.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(son.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 使替罪羊关键字覆盖待删除关键字</span>
+</span></span><span style="display:flex;"><span>                    node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">set</span>(i, scapegoat);
+</span></span><span style="display:flex;"><span>                    <span style="color:#6272a4">// 递归删除替罪羊关键字</span>
+</span></span><span style="display:flex;"><span>                    doRemove(son, node, i, scapegoat);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 只要有相等的值，那么就一定删除成功</span>
+</span></span><span style="display:flex;"><span>                isSuccesses <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 如果是最后一个关键字，那么就需要判断是否需要向最后一个关键字的右子结点进行递归</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">==</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 如果是叶子节点，并且还未删除</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isLeaf</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>                } <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>                    isSuccesses <span style="color:#ff79c6">=</span> doRemove(node.<span style="color:#50fa7b">getRightNode</span>(i), node, i <span style="color:#ff79c6">+</span> 1, key);
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">break</span>;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (node.<span style="color:#50fa7b">isDownOverflow</span>() <span style="color:#ff79c6">&amp;&amp;</span> Objects.<span style="color:#50fa7b">nonNull</span>(father)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 向兄弟借</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span> borrowByBrother(node, father, linkIndex)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// 借不到，就和兄弟合并</span>
+</span></span><span style="display:flex;"><span>                merge(node, father, linkIndex);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> isSuccesses;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param node 要合并的结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param father 要合并的结点的父结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param linkIndex 要合并的结点在父结点的引用列表中的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">merge</span>(Node node, Node father, <span style="color:#8be9fd">int</span> linkIndex) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 合并后的新节点</span>
+</span></span><span style="display:flex;"><span>        Node newNode <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Node();
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果是第一个结点，那么就与其右兄弟合并</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (linkIndex <span style="color:#ff79c6">==</span> 0) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 获取右兄弟结点</span>
+</span></span><span style="display:flex;"><span>            Node rightBrotherNode <span style="color:#ff79c6">=</span> father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(linkIndex <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 合并关键字</span>
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">addAll</span>(node.<span style="color:#50fa7b">keyList</span>);
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">remove</span>(linkIndex));
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">addAll</span>(rightBrotherNode.<span style="color:#50fa7b">keyList</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 合并引用</span>
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">addAll</span>(node.<span style="color:#50fa7b">linkList</span>);
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">addAll</span>(rightBrotherNode.<span style="color:#50fa7b">linkList</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 修改父结点的引用</span>
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">set</span>(linkIndex, newNode);
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">remove</span>(linkIndex <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果不是第一个结点，那么必有左兄弟，那就和左兄弟合并</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 获取左兄弟结点</span>
+</span></span><span style="display:flex;"><span>            Node leftBrotherNode <span style="color:#ff79c6">=</span> father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(linkIndex <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 合并关键字</span>
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">addAll</span>(leftBrotherNode.<span style="color:#50fa7b">keyList</span>);
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">remove</span>(linkIndex <span style="color:#ff79c6">-</span> 1));
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">addAll</span>(node.<span style="color:#50fa7b">keyList</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 合并引用</span>
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">addAll</span>(leftBrotherNode.<span style="color:#50fa7b">linkList</span>);
+</span></span><span style="display:flex;"><span>            newNode.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">addAll</span>(node.<span style="color:#50fa7b">linkList</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 修改父结点的引用</span>
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">set</span>(linkIndex, newNode);
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">remove</span>(linkIndex <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 如果此次合并，向根节点借了关键字，导致了根节点关键字个数为 0，那么当前新节点就是根节点</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (head.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>            head <span style="color:#ff79c6">=</span> newNode;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param node 要向兄弟借关键字的结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param father 要向兄弟借关键字的结点的父结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param linkIndex 要向兄弟借关键字的结点在父结点的引用列表中的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 返回是否借到关键字
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">borrowByBrother</span>(Node node, Node father, <span style="color:#8be9fd">int</span> linkIndex) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 获取左侧兄弟结点</span>
+</span></span><span style="display:flex;"><span>        Node leftBrotherNode <span style="color:#ff79c6">=</span> father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(Math.<span style="color:#50fa7b">max</span>(linkIndex <span style="color:#ff79c6">-</span> 1, 0));
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 判断是否可以借到关键字</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">nonNull</span>(leftBrotherNode) <span style="color:#ff79c6">&amp;&amp;</span> leftBrotherNode.<span style="color:#50fa7b">canBorrow</span>()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 可以借到的话，先获取关键字（同时删除左侧结点的被借出去的关键字）</span>
+</span></span><span style="display:flex;"><span>            T leftBrotherKey <span style="color:#ff79c6">=</span> leftBrotherNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">remove</span>(leftBrotherNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 将当前结点对应的父结点中的关键字到关键字列表中</span>
+</span></span><span style="display:flex;"><span>            node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(0, father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(linkIndex <span style="color:#ff79c6">-</span> 1));
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 修改当前结点对应的父结点中的关键字为左兄弟借出去的结点</span>
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">set</span>(linkIndex <span style="color:#ff79c6">-</span> 1, leftBrotherKey);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 类似上面</span>
+</span></span><span style="display:flex;"><span>        Node rightBrotherNode <span style="color:#ff79c6">=</span> father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(Math.<span style="color:#50fa7b">min</span>(linkIndex <span style="color:#ff79c6">+</span> 1, father.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1));
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">nonNull</span>(rightBrotherNode) <span style="color:#ff79c6">&amp;&amp;</span> rightBrotherNode.<span style="color:#50fa7b">canBorrow</span>()) {
+</span></span><span style="display:flex;"><span>            T rightBrotherKey <span style="color:#ff79c6">=</span> rightBrotherNode.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">remove</span>(0);
+</span></span><span style="display:flex;"><span>            node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">add</span>(father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(linkIndex));
+</span></span><span style="display:flex;"><span>            father.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">set</span>(linkIndex, rightBrotherKey);
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> middleOrder();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String <span style="color:#50fa7b">middleOrder</span>() {
+</span></span><span style="display:flex;"><span>        StringBuilder stringBuilder <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> StringBuilder(<span style="color:#f1fa8c">&#34;[&#34;</span>);
+</span></span><span style="display:flex;"><span>        doMiddleOrder(head, stringBuilder);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (stringBuilder.<span style="color:#50fa7b">toString</span>().<span style="color:#50fa7b">endsWith</span>(<span style="color:#f1fa8c">&#34;, &#34;</span>)) {
+</span></span><span style="display:flex;"><span>            stringBuilder.<span style="color:#50fa7b">delete</span>(stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">-</span> 2, stringBuilder.<span style="color:#50fa7b">length</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;]&#34;</span>).<span style="color:#50fa7b">toString</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">doMiddleOrder</span>(Node node, StringBuilder stringBuilder) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (Objects.<span style="color:#50fa7b">isNull</span>(node)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;[&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 遍历根节点索引</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> 0; i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">size</span>(); i<span style="color:#ff79c6">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 先往树的深处遍历，找到最小的结点</span>
+</span></span><span style="display:flex;"><span>            doMiddleOrder(node.<span style="color:#50fa7b">linkList</span>.<span style="color:#50fa7b">get</span>(i), stringBuilder);
+</span></span><span style="display:flex;"><span>            <span style="color:#6272a4">// 然后添加元素</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (i <span style="color:#ff79c6">&lt;</span> node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                stringBuilder.<span style="color:#50fa7b">append</span>(node.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">get</span>(i)).<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;, &#34;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">&gt;</span> 1) {
+</span></span><span style="display:flex;"><span>            stringBuilder.<span style="color:#50fa7b">delete</span>(stringBuilder.<span style="color:#50fa7b">length</span>() <span style="color:#ff79c6">-</span> 2, stringBuilder.<span style="color:#50fa7b">length</span>());
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        stringBuilder.<span style="color:#50fa7b">append</span>(<span style="color:#f1fa8c">&#34;], &#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">Node</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 存放当前结点的所有键值。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 键两端对子结点的引用存放在 {@link #linkList} 中，假设键的索引为 n，那么其左子结点引用的索引为 2n，右子结点的引用为 2n + 1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> keyList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * 存放当前结点的子结点引用。
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#ff79c6">&lt;</span>Node<span style="color:#ff79c6">&gt;</span> linkList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> keyListMaxLength <span style="color:#ff79c6">=</span> rank <span style="color:#ff79c6">-</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> keyListMinLength <span style="color:#ff79c6">=</span> rank <span style="color:#ff79c6">&gt;&gt;</span> 1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd">int</span> linkListMaxLength <span style="color:#ff79c6">=</span> rank;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Node</span>() {
+</span></span><span style="display:flex;"><span>            keyList <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>            linkList <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ArrayList<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">Node</span>(Node leftNode, T key, Node rightNode) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">this</span>();
+</span></span><span style="display:flex;"><span>            keyList.<span style="color:#50fa7b">add</span>(key);
+</span></span><span style="display:flex;"><span>            linkList.<span style="color:#50fa7b">add</span>(leftNode);
+</span></span><span style="display:flex;"><span>            linkList.<span style="color:#50fa7b">add</span>(rightNode);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @param keyIndex 键的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点中，索引为 keyIndex 的左子结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Node <span style="color:#50fa7b">getLeftNode</span>(<span style="color:#8be9fd">int</span> keyIndex) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (keyIndex <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">get</span>(keyIndex);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @param keyIndex 键的索引
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点中，索引为 keyIndex 的左子结点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> Node <span style="color:#50fa7b">getRightNode</span>(<span style="color:#8be9fd">int</span> keyIndex) {
+</span></span><span style="display:flex;"><span>             <span style="color:#ff79c6">if</span> (keyIndex <span style="color:#ff79c6">&lt;</span> <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">keyList</span>.<span style="color:#50fa7b">size</span>()) {
+</span></span><span style="display:flex;"><span>                 <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">get</span>(keyIndex <span style="color:#ff79c6">+</span> 1);
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>             <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">null</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点已经满了，即键的数量为 {@link #rank} - 1
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isFull</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&gt;=</span> keyListMaxLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点是叶子节点
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isLeaf</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> linkList.<span style="color:#50fa7b">stream</span>().<span style="color:#50fa7b">allMatch</span>(Objects::isNull);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前结点已经向上溢出了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isUpOverflow</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&gt;</span> keyListMaxLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示当前节点已经向下溢出了
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">isDownOverflow</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&lt;</span> keyListMinLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回当前结点的中间键值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> T <span style="color:#50fa7b">getMiddleKey</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">get</span>(keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">/</span> 2);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         * @return 返回 true 表示能够出借一个键值
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">canBorrow</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> keyList.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">-</span> 1 <span style="color:#ff79c6">&gt;=</span> keyListMinLength;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="5-查找">5. 查找</h2>
+<p>搜索就类似其 toString 中的中序遍历，就不赘述了</p>
+<h2 id="参考资料">【参考资料】</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/340721689">『数据结构与算法』B树图文详解（含完整代码）</a><!-- raw HTML omitted --><a href="https://www.bilibili.com/video/BV1mY4y1W7pS/?spm_id_from=333.337.search-card.all.click">终于把B树搞明白了(一)_B树的引入，为什么会有B树_哔哩哔哩_bilibili</a><!-- raw HTML omitted --><a href="https://www.bilibili.com/video/BV15V411p7pi/?share_source=copy_web&amp;vd_source=a1b23ffdfdadc3e8d10dd2e65ef1bbd4">1. mysql面试题-深入理解B+树原理_哔哩哔哩_bilibili</a></p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224246078978457602/" data-toggle="tooltip" data-placement="top" title="红黑树">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7224237482966319104/" data-toggle="tooltip" data-placement="top" title="SpringBoot&#43;MybatisPlus快速入门">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

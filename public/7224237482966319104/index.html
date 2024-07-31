@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="SpringBoot&#43;MybatisPlus快速入门" />
+    <meta property="og:title" content="SpringBoot&#43;MybatisPlus快速入门" />
+    <meta property="twitter:title" content="SpringBoot&#43;MybatisPlus快速入门" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="快速从 Java 基础到 SpringBoot 后端开发" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>SpringBoot&#43;MybatisPlus快速入门 | XFDZ 的博客 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7224237482966319104/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive//">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about//">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                    </div>
+                    <h1>SpringBoot&#43;MybatisPlus快速入门</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Wednesday, September 28, 2022
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="0-准备工作">0 准备工作</h2>
+<p>需要准备的软件/环境：</p>
+<ul>
+<li>JDK1.8</li>
+<li>IDEA
+<ul>
+<li>我的是2024.1版，可能界面有所不同，但相差无几</li>
+</ul>
+</li>
+<li>Maven 3.x</li>
+<li>一台可上网的电脑</li>
+</ul>
+<p>配置：</p>
+<p>略</p>
+<h2 id="1-新建项目">1 新建项目</h2>
+<h3 id="11-打开新建项目页面">1.1 打开新建项目页面</h3>
+<h3 id="idea-file--new--project">IDEA: File &gt; New &gt; Project&hellip;</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-07-39-ff3c8defaa2f8940886243ee2382453a-image-20240722200718950-66b973.png" alt="image-20240722200718950">
+
+</p>
+<h3 id="12-选择-springboot-并填写项目配置">1.2 选择 SpringBoot 并填写项目配置</h3>
+<p>暂未填写配置时：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-08-21-08abd1f6f218ce469551a50cb4a30da9-image-20240722200820908-efcf61.png" alt="image-20240722200820908">
+
+</p>
+<p>配置说明：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-14-11-0cbe4a34275b9a999da7e3a02e1b1016-image-20240722201410954-e06ef7.png" alt="image-20240722201410954">
+
+</p>
+<p>配置示例：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-14-58-b5da9108709a914b28eab7468a89a749-image-20240722201457424-65d02a.png" alt="image-20240722201457424">
+
+</p>
+<h3 id="13-选择-springboot-版本和依赖版本">1.3 选择 springboot 版本和依赖版本</h3>
+<p>SpringBoot 版本一般选择 2.7.6，或者 2.x.x 的最高版本，不要选择 3.x.x 的</p>
+<p>其他的依赖都不用选择</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-15-56-adb7f684a11c3ad294915721d0516e48-image-20240722201555155-c983f4.png" alt="image-20240722201555155">
+
+</p>
+<h2 id="2-添加必备依赖">2 添加必备依赖</h2>
+<p>这里列出了部分常用的依赖项，可直接将 <code>pom.xml</code> 中的 <code>&lt;properties&gt; </code> <code>&lt;dependencies&gt;</code> 标签进行替换。记得关注其中的 TODO 注释标签，根据你的 MySQL 版本修改对应的依赖版本。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;properties&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;java.version&gt;</span>1.8<span style="color:#ff79c6">&lt;/java.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;project.build.sourceEncoding&gt;</span>UTF-8<span style="color:#ff79c6">&lt;/project.build.sourceEncoding&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;project.reporting.outputEncoding&gt;</span>UTF-8<span style="color:#ff79c6">&lt;/project.reporting.outputEncoding&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;spring-boot.version&gt;</span>2.7.6<span style="color:#ff79c6">&lt;/spring-boot.version&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;lombok.version&gt;</span>1.18.30<span style="color:#ff79c6">&lt;/lombok.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;hutool.version&gt;</span>5.8.22<span style="color:#ff79c6">&lt;/hutool.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;mybatis-plus.version&gt;</span>3.5.3.2<span style="color:#ff79c6">&lt;/mybatis-plus.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">&lt;!-- TODO 根据 MySQL 版本修改 --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;mysql.version&gt;</span>8.0.33<span style="color:#ff79c6">&lt;/mysql.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;druid.version&gt;</span>1.2.19<span style="color:#ff79c6">&lt;/druid.version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;swagger-annotations.version&gt;</span>2.2.9<span style="color:#ff79c6">&lt;/swagger-annotations.version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/properties&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;dependencies&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;scope&gt;</span>test<span style="color:#ff79c6">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">&lt;!--
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            代码生成的类库
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.projectlombok<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>lombok<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${lombok.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>cn.hutool<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>hutool-all<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${hutool.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>com.baomidou<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>mybatis-plus-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${mybatis-plus.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>mysql<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>mysql-connector-java<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${mysql.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>druid-spring-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${druid.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>io.swagger.core.v3<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>swagger-annotations<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${swagger-annotations.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>io.jsonwebtoken<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>jjwt<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>0.12.5<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-data-redis<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/dependencies&gt;</span>
+</span></span></code></pre></div><h2 id="3-创建数据库表">3 创建数据库表</h2>
+<p>这里就用一个 <code>student</code> 表来做示例。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">DATABASE</span> springboot_demo;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>USE springboot_demo;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> student
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    id               <span style="color:#8be9fd;font-style:italic">BIGINT</span> <span style="color:#ff79c6">PRIMARY</span> <span style="color:#ff79c6">KEY</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;主键&#39;</span>,
+</span></span><span style="display:flex;"><span>    student_no         <span style="color:#8be9fd;font-style:italic">INT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;学生编号&#39;</span>,
+</span></span><span style="display:flex;"><span>    student_name       <span style="color:#8be9fd;font-style:italic">VARCHAR</span>(<span style="color:#bd93f9">50</span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;学生姓名&#39;</span>,
+</span></span><span style="display:flex;"><span>    gender             <span style="color:#8be9fd;font-style:italic">VARCHAR</span>(<span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;性别&#39;</span>,
+</span></span><span style="display:flex;"><span>    age                <span style="color:#8be9fd;font-style:italic">INT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;年龄&#39;</span>,
+</span></span><span style="display:flex;"><span>    enrollment_year    <span style="color:#8be9fd;font-style:italic">INT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;入学年份&#39;</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;学生信息表&#39;</span>;
+</span></span></code></pre></div><p>通过 IDEA 连接至数据库，首先打开 IDEA 右侧工具栏的 database，点击左上角 + 号，选择 MySQL，输入你的 MySQL 信息并测试连接，测试成功后即可应用。</p>
+<p>应用后 IDEA 会默认打开一个控制台，请复制上述 SQL 语句到控制台中执行。</p>
+<h2 id="4-添加代码生成器插件">4 添加代码生成器插件</h2>
+<p>插件名称：EasyCode</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-27-40-77f659a4463632778f634e655d8e88d6-image-20240722202739758-827f87.png" alt="image-20240722202739758">
+
+</p>
+<p>打开 IDEA 的设置，选择其他设置，然后选择 EasyCode，复制下方配置，并点击从剪切板导入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;author&#34;</span> : <span style="color:#f1fa8c">&#34;makejava&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;version&#34;</span> : <span style="color:#f1fa8c">&#34;1.2.8&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;userSecure&#34;</span> : <span style="color:#f1fa8c">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;currTypeMapperGroupName&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;currTemplateGroupName&#34;</span> : <span style="color:#f1fa8c">&#34;MybatisPlus&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;currColumnConfigGroupName&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;currGlobalConfigGroupName&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;typeMapper&#34;</span> : {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;Default&#34;</span> : {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;elementList&#34;</span> : [ {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;varchar(\\(\\d+\\))?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.String&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;char(\\(\\d+\\))?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.String&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;(tiny|medium|long)*text&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.String&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;decimal(\\(\\d+,\\d+\\))?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Double&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;integer&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Integer&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;(tiny|small|medium)*int(\\(\\d+\\))?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Integer&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;int4&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Integer&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;int8&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Long&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;REGEX&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;bigint(\\(\\d+\\))?&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Long&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;date&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.time.LocalDate&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;datetime&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.time.LocalDateTime&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;timestamp&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.time.LocalDateTime&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;time&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.time.LocalTime&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;matchType&#34;</span> : <span style="color:#f1fa8c">&#34;ORDINARY&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;columnType&#34;</span> : <span style="color:#f1fa8c">&#34;boolean&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;javaType&#34;</span> : <span style="color:#f1fa8c">&#34;java.lang.Boolean&#34;</span>
+</span></span><span style="display:flex;"><span>      } ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;template&#34;</span> : {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;MybatisPlus&#34;</span> : {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;MybatisPlus&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;elementList&#34;</span> : [ {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;controller.java.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;code&#34;</span> : <span style="color:#f1fa8c">&#34;##导入宏定义\n$!{define.vm}\n\n##设置表后缀（宏定义）\n#setTableSuffix(\&#34;Controller\&#34;)\n\n##保存文件（宏定义）\n#save(\&#34;/controller\&#34;, \&#34;Controller.java\&#34;)\n\n##包路径（宏定义）\n#setPackageSuffix(\&#34;controller\&#34;)\n\n##定义服务名\n#set($serviceName = $!tool.append($!tool.firstLowerCase($!tableInfo.name), \&#34;Service\&#34;))\n\n##定义实体对象名\n#set($entityName = $!tool.firstLowerCase($!tableInfo.name))\n\nimport $!{tableInfo.savePackageName}.service.$!{tableInfo.name}Service;\nimport org.springframework.web.bind.annotation.*;\n\nimport javax.annotation.Resource;\n\n##表注释（宏定义）\n#tableComment(\&#34;表控制层\&#34;)\n@RestController\n@RequestMapping(\&#34;$!tool.firstLowerCase($!tableInfo.name)\&#34;)\npublic class $!{tableName} {\n    /**\n     * 服务对象\n     */\n    @Resource\n    private $!{tableInfo.name}Service $!{serviceName};\n\n    \n}\n&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;entity.java.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;code&#34;</span> : <span style="color:#f1fa8c">&#34;##导入宏定义\n$!{define.vm}\n\n##保存文件（宏定义）\n#save(\&#34;/entity\&#34;, \&#34;.java\&#34;)\n\n##包路径（宏定义）\n#setPackageSuffix(\&#34;entity\&#34;)\n\n##自动导入包（全局变量）\n$!{autoImport.vm}\nimport com.baomidou.mybatisplus.annotation.TableName;\n\nimport java.io.Serializable;\nimport lombok.AllArgsConstructor;\nimport lombok.Data;\nimport lombok.NoArgsConstructor;\nimport lombok.ToString;\n\n##表注释（宏定义）\n#tableComment(\&#34;表实体类\&#34;)\n\n@Data\n@ToString\n@NoArgsConstructor\n@AllArgsConstructor\n@TableName(\&#34;$!{tool.hump2Underline($tableInfo.name)}\&#34;)\npublic class $!{tableInfo.name} implements Serializable {\n\n    private static final long serialVersionUID = $!tool.serial();\n\n#foreach($column in $tableInfo.pkColumn)\n    #if(${column.comment})\n    /**\n     * ${column.comment}\n     */\n    #end\n    @Schema(description = \&#34;#if(${column.comment})${column.comment}#end\&#34;)\n    @TableId(type = IdType.ASSIGN_ID)\n    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n#end\n\n\n#foreach($column in $tableInfo.otherColumn)\n\n    #if(${column.comment})\n    /**\n     * ${column.comment}\n     */\n    #end\n    @Schema(description = \&#34;#if(${column.comment})${column.comment}#end\&#34;)\n    @TableField(\&#34;#if(${column.name})$!{tool.hump2Underline($column.name)}#end\&#34;)\n    private $!{tool.getClsNameByFullName($column.type)} $!{column.name};\n\n#end\n\n## #foreach($column in $tableInfo.fullColumn)\n## #getSetMethod($column)\n## #end\n## \n## #foreach($column in $tableInfo.pkColumn)\n##     /**\n##      * 获取主键值\n##      *\n##      * @return 主键值\n##      */\n##     @Override\n##     protected Serializable pkVal() {\n##         return this.$!column.name;\n##     }\n##     #break\n## #end\n}\n&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;service.java.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;code&#34;</span> : <span style="color:#f1fa8c">&#34;##导入宏定义\n$!{define.vm}\n\n##设置表后缀（宏定义）\n#setTableSuffix(\&#34;Service\&#34;)\n\n##保存文件（宏定义）\n#save(\&#34;/service\&#34;, \&#34;Service.java\&#34;)\n\n##包路径（宏定义）\n#setPackageSuffix(\&#34;service\&#34;)\n\nimport com.baomidou.mybatisplus.extension.service.IService;\nimport $!{tableInfo.savePackageName}.entity.$!tableInfo.name;\n\n##表注释（宏定义）\n#tableComment(\&#34;表服务接口\&#34;)\npublic interface $!{tableName} extends IService&lt;$!tableInfo.name&gt; {\n\n}\n&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;serviceImpl.java.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;code&#34;</span> : <span style="color:#f1fa8c">&#34;##导入宏定义\n$!{define.vm}\n\n##设置表后缀（宏定义）\n#setTableSuffix(\&#34;ServiceImpl\&#34;)\n\n##保存文件（宏定义）\n#save(\&#34;/service/impl\&#34;, \&#34;ServiceImpl.java\&#34;)\n\n##包路径（宏定义）\n#setPackageSuffix(\&#34;service.impl\&#34;)\n\nimport com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;\nimport $!{tableInfo.savePackageName}.mapper.$!{tableInfo.name}Mapper;\nimport $!{tableInfo.savePackageName}.entity.$!{tableInfo.name};\nimport $!{tableInfo.savePackageName}.service.$!{tableInfo.name}Service;\nimport org.springframework.stereotype.Service;\n\n##表注释（宏定义）\n#tableComment(\&#34;表服务实现类\&#34;)\n@Service(\&#34;$!tool.firstLowerCase($tableInfo.name)Service\&#34;)\npublic class $!{tableName} extends ServiceImpl&lt;$!{tableInfo.name}Mapper, $!{tableInfo.name}&gt; implements $!{tableInfo.name}Service {\n\n}\n&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;mapper.java.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;code&#34;</span> : <span style="color:#f1fa8c">&#34;##导入宏定义\n$!{define.vm}\n\n##设置表后缀（宏定义）\n#setTableSuffix(\&#34;Mapper\&#34;)\n\n##保存文件（宏定义）\n#save(\&#34;/mapper\&#34;, \&#34;Mapper.java\&#34;)\n\n##包路径（宏定义）\n#setPackageSuffix(\&#34;mapper\&#34;)\n\nimport com.baomidou.mybatisplus.core.mapper.BaseMapper;\nimport $!{tableInfo.savePackageName}.entity.$!tableInfo.name;\n\nimport org.apache.ibatis.annotations.Mapper;\n\n##表注释（宏定义）\n#tableComment(\&#34;表数据库访问层\&#34;)\n@Mapper\npublic interface $!{tableName} extends BaseMapper&lt;$!tableInfo.name&gt; {\n\n}\n&#34;</span>
+</span></span><span style="display:flex;"><span>      } ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;columnConfig&#34;</span> : {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;Default&#34;</span> : {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;elementList&#34;</span> : [ {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;title&#34;</span> : <span style="color:#f1fa8c">&#34;disable&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;type&#34;</span> : <span style="color:#f1fa8c">&#34;BOOLEAN&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;selectValue&#34;</span> : <span style="color:#f1fa8c">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;title&#34;</span> : <span style="color:#f1fa8c">&#34;support&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;type&#34;</span> : <span style="color:#f1fa8c">&#34;SELECT&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;selectValue&#34;</span> : <span style="color:#f1fa8c">&#34;add,edit,query,del,ui&#34;</span>
+</span></span><span style="display:flex;"><span>      } ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;globalConfig&#34;</span> : {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;Default&#34;</span> : {
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;Default&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">&#34;elementList&#34;</span> : [ {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;autoImport.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;value&#34;</span> : <span style="color:#f1fa8c">&#34;##自动导入包（仅导入实体属性需要的包，通常用于实体类）\n#foreach($import in $importList)\nimport $!import;\n#end&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;define.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;value&#34;</span> : <span style="color:#f1fa8c">&#34;##（Velocity宏定义）\n\n##定义设置表名后缀的宏定义，调用方式：#setTableSuffix(\&#34;Test\&#34;)\n#macro(setTableSuffix $suffix)\n    #set($tableName = $!tool.append($tableInfo.name, $suffix))\n#end\n\n##定义设置包名后缀的宏定义，调用方式：#setPackageSuffix(\&#34;Test\&#34;)\n#macro(setPackageSuffix $suffix)\n#if($suffix!=\&#34;\&#34;)package #end#if($tableInfo.savePackageName!=\&#34;\&#34;)$!{tableInfo.savePackageName}.#{end}$!suffix;\n#end\n\n##定义直接保存路径与文件名简化的宏定义，调用方式：#save(\&#34;/entity\&#34;, \&#34;.java\&#34;)\n#macro(save $path $fileName)\n    $!callback.setSavePath($tool.append($tableInfo.savePath, $path))\n    $!callback.setFileName($tool.append($tableInfo.name, $fileName))\n#end\n\n##定义表注释的宏定义，调用方式：#tableComment(\&#34;注释信息\&#34;)\n#macro(tableComment $desc)\n/**\n * $!{tableInfo.comment}($!{tableInfo.name})$desc\n *\n * @author $!author\n * @since $!time.currTime()\n */\n#end\n\n##定义GET，SET方法的宏定义，调用方式：#getSetMethod($column)\n#macro(getSetMethod $column)\n\n    public $!{tool.getClsNameByFullName($column.type)} get$!{tool.firstUpperCase($column.name)}() {\n        return $!{column.name};\n    }\n\n    public void set$!{tool.firstUpperCase($column.name)}($!{tool.getClsNameByFullName($column.type)} $!{column.name}) {\n        this.$!{column.name} = $!{column.name};\n    }\n#end&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;init.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;value&#34;</span> : <span style="color:#f1fa8c">&#34;##初始化区域\n\n##去掉表的t_前缀\n$!tableInfo.setName($tool.getClassName($tableInfo.obj.name.replaceFirst(\&#34;book_\&#34;,\&#34;\&#34;)))\n\n##参考阿里巴巴开发手册，POJO 类中布尔类型的变量，都不要加 is 前缀，否则部分框架解析会引起序列化错误\n#foreach($column in $tableInfo.fullColumn)\n#if($column.name.startsWith(\&#34;is\&#34;) &amp;&amp; $column.type.equals(\&#34;java.lang.Boolean\&#34;))\n    $!column.setName($tool.firstLowerCase($column.name.substring(2)))\n#end\n#end\n\n##实现动态排除列\n#set($temp = $tool.newHashSet(\&#34;testCreateTime\&#34;, \&#34;otherColumn\&#34;))\n#foreach($item in $temp)\n    #set($newList = $tool.newArrayList())\n    #foreach($column in $tableInfo.fullColumn)\n        #if($column.name!=$item)\n            ##带有反回值的方法调用时使用$tool.call来消除返回值\n            $tool.call($newList.add($column))\n        #end\n    #end\n    ##重新保存\n    $tableInfo.setFullColumn($newList)\n#end\n\n##对importList进行篡改\n#set($temp = $tool.newHashSet())\n#foreach($column in $tableInfo.fullColumn)\n    #if(!$column.type.startsWith(\&#34;java.lang.\&#34;))\n        ##带有反回值的方法调用时使用$tool.call来消除返回值\n        $tool.call($temp.add($column.type))\n    #end\n#end\n##覆盖\n#set($importList = $temp)&#34;</span>
+</span></span><span style="display:flex;"><span>      }, {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;name&#34;</span> : <span style="color:#f1fa8c">&#34;mybatisSupport.vm&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;value&#34;</span> : <span style="color:#f1fa8c">&#34;##针对Mybatis 进行支持，主要用于生成xml文件\n#foreach($column in $tableInfo.fullColumn)\n    ##储存列类型\n    $tool.call($column.ext.put(\&#34;sqlType\&#34;, $tool.getField($column.obj.dataType, \&#34;typeName\&#34;)))\n    #if($tool.newHashSet(\&#34;java.lang.String\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;VARCHAR\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.lang.Boolean\&#34;, \&#34;boolean\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;BOOLEAN\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.lang.Byte\&#34;, \&#34;byte\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;BYTE\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.lang.Integer\&#34;, \&#34;int\&#34;, \&#34;java.lang.Short\&#34;, \&#34;short\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;INTEGER\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.lang.Long\&#34;, \&#34;long\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;INTEGER\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.lang.Float\&#34;, \&#34;float\&#34;, \&#34;java.lang.Double\&#34;, \&#34;double\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;NUMERIC\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.util.Date\&#34;, \&#34;java.sql.Timestamp\&#34;, \&#34;java.time.Instant\&#34;, \&#34;java.time.LocalDateTime\&#34;, \&#34;java.time.OffsetDateTime\&#34;, \&#34;\tjava.time.ZonedDateTime\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;TIMESTAMP\&#34;)\n    #elseif($tool.newHashSet(\&#34;java.sql.Date\&#34;, \&#34;java.time.LocalDate\&#34;).contains($column.type))\n        #set($jdbcType=\&#34;TIMESTAMP\&#34;)\n    #else\n        ##其他类型\n        #set($jdbcType=\&#34;VARCHAR\&#34;)\n    #end\n    $tool.call($column.ext.put(\&#34;jdbcType\&#34;, $jdbcType))\n#end\n\n##定义宏，查询所有列\n#macro(allSqlColumn)#foreach($column in $tableInfo.fullColumn)$column.obj.name#if($velocityHasNext), #end#end#end\n&#34;</span>
+</span></span><span style="display:flex;"><span>      } ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="5-使用代码生成器插件">5 使用代码生成器插件</h2>
+<p>打开 IDEA 右侧 database 工具栏，选中 springboot_demo 数据库中的 student 表。如果没有数据库显示，那么请点集红框所示位置，然后勾选 springboot_demo 数据库即可。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-35-20-96e68ab0c05226b4fc4472cc16c0df60-image-20240722203519891-bb4879.png" alt="image-20240722203519891">
+
+</p>
+<p>选中 student 表之后，右击选择 Generate Code</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-43-32-e3e71d69951dfe95c21e56bbfe69e0fc-image-20240722204314274-0fdcb4.png" alt="image-20240722204314274">
+
+</p>
+<p>然后选择 Path</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-45-36-1d608abbdb5b398b34d3933888c5d770-image-20240722204535433-85a045.png" alt="image-20240722204535433">
+
+</p>
+<p>然后选择 Package，一定要先选择 Path，再选择 Package</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-45-04-3e7d63de94829d7c3199e979f209e825-image-20240722204503892-9bbb46.png" alt="image-20240722204503892">
+
+</p>
+<p>然后选择模板</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-46-42-40500f58bc389767142ba5b405886b22-image-20240722204642020-92b1ca.png" alt="image-20240722204642020">
+
+</p>
+<p>然后勾选配置</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-47-01-ca63d6cd88b8d50e3a4b1532e33588e8-image-20240722204700570-88efc8.png" alt="image-20240722204700570">
+
+</p>
+<p>然后点击 OK，即可生成代码</p>
+<p>生成的结构如下图所示：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-52-14-3011500ed1af8ae1ec8710d06fe317f2-image-20240722205154692-04b360.png" alt="image-20240722205154692">
+
+</p>
+<h2 id="6-添加-applicationyml-文件">6 添加 application.yml 文件</h2>
+<p>如果 <strong>java 目录的同级</strong>没有 resources 目录，请手动创建一个，如下图：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-53-06-1fa8eb37d61fb2e8b872448bbc1fa0a7-image-20240722205305799-0eb32b.png" alt="image-20240722205305799">
+
+</p>
+<p>然后在 resources 目录中新建 application.yml 文件，然后添加如下内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">datasource</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 如果你的 MySQL 版本是 5.x 请删掉 .cj 这个包，即换成 com.mysql.jdbc.Driver</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">driver-class-name</span>: com.mysql.cj.jdbc.Driver
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 请根据你的实际情况进行更改</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">url</span>: jdbc:mysql://localhost:3306/springboot_demo
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">username</span>: root
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">password</span>: 你的密码
+</span></span></code></pre></div><p>创建好后如下图所示：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F16-04-19-323349366be7884f5f9573bd80b04225-image-20240723160418577-551337.png" alt="image-20240723160418577">
+
+</p>
+<h2 id="7-启动项目">7 启动项目</h2>
+<p>打开 SpringbootDemoApplication 类，运行 main 方法即可启动后端服务。</p>
+<p>启动成功日志如下：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F22%2F20-57-55-df7b9d3a9b5730466058b3ac82dc38eb-image-20240722205755188-37c034.png" alt="image-20240722205755188">
+
+</p>
+<h2 id="8-开始编写接口">8 开始编写接口</h2>
+<p>打开 controller 包下的 <code>StudentController.java</code>。</p>
+<p>然后我们来了解一下 Controller 类的基本构成。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.xfdzcoder.springbootdemo.controller;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.xfdzcoder.springbootdemo.entity.Student;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.xfdzcoder.springbootdemo.service.StudentService;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.*;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> javax.annotation.Resource;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * 学生信息表(Student)表控制层
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author makejava
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @since 2024-07-22 20:48:33
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// @ResponseBody 和 @Controller 注解的组合注解，不懂也没事，反正每个 Controller 上都有</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// @ResponseBody：将返回的对象转换成 JSON 格式</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// @Controller：标记这个类是 Controller 类</span>
+</span></span><span style="display:flex;"><span>@RestController
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 定义这个 controller 的根路径</span>
+</span></span><span style="display:flex;"><span>@RequestMapping(<span style="color:#f1fa8c">&#34;student&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">StudentController</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 服务对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Resource
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> StudentService studentService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后还需要知道一些基础知识。</p>
+<h3 id="80-前置知识">8.0 前置知识</h3>
+<h4 id="801-http">8.0.1 HTTP</h4>
+<p>前端（浏览器）访问 Java后端服务的方式是通过 HTTP 协议来访问的，而 HTTP 协议定义了 8 种请求方法，我们常用的有 4 种，如下：</p>
+<ul>
+<li>GET
+<ul>
+<li>查询</li>
+</ul>
+</li>
+<li>POST
+<ul>
+<li>新增</li>
+</ul>
+</li>
+<li>PUT
+<ul>
+<li>修改</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>删除</li>
+</ul>
+</li>
+</ul>
+<p>可以看到四个 HTTP 方法分别对应了增删改查。那我们怎么标识一个接口的请求方法应该是什么呢？通过下面四个注解</p>
+<ul>
+<li>GetMapping</li>
+<li>PostMapping</li>
+<li>PutMapping</li>
+<li>DeleteMapping</li>
+</ul>
+<p>很好记吧，都是 GET、POST、PUT、DELETE</p>
+<p>那他们有什么不同呢？</p>
+<ul>
+<li>GET
+<ul>
+<li>不能携带对象，所有的参数都拼接在 URL 后面。</li>
+<li>所以这种接口的方法参数只能是基本数据类型的包装类和 String。</li>
+</ul>
+</li>
+<li>POST
+<ul>
+<li>可以携带对象，参数可以放在一个叫做请求体的地方，不知道是哪也没关系。</li>
+<li>所以这种接口的方法参数可以是一个 Student 对象。</li>
+</ul>
+</li>
+<li>PUT
+<ul>
+<li>可以携带对象，参数可以放在一个叫做请求体的地方，不知道是哪也没关系。</li>
+<li>所以这种接口的方法参数可以是一个 Student 对象。</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>不能携带对象，所有的参数都拼接在 URL 后面。</li>
+<li>所以这种接口的方法参数只能是基本数据类型的包装类和 String。</li>
+</ul>
+</li>
+</ul>
+<p>开始编写对 student 表的 CRUD 接口。</p>
+<h4 id="802-mybatisplus-之-iservice">8.0.2 MyBatisPlus 之 IService</h4>
+<p><a href="https://baomidou.com/guides/data-interface/#service-interface">持久层接口 | MyBatis-Plus (baomidou.com)</a></p>
+<p>我这里对其进行了稍微的修改，删去了部分不常用的，只需要掌握下面这几个方法即可</p>
+<blockquote>
+<p>IService](<a href="https://gitee.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-extension/src/main/java/com/baomidou/mybatisplus/extension/service/IService.java">https://gitee.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-extension/src/main/java/com/baomidou/mybatisplus/extension/service/IService.java</a>) 是 MyBatis-Plus 提供的一个通用 Service 层接口，它封装了常见的 CRUD 操作，包括插入、删除、查询和分页等。通过继承 IService 接口，可以快速实现对数据库的基本操作，同时保持代码的简洁性和可维护性。</p>
+<p>IService 接口中的方法命名遵循了一定的规范，如 get 用于查询单行，remove 用于删除，list 用于查询集合，page 用于分页查询，这样可以避免与 Mapper 层的方法混淆。</p>
+<p>提示</p>
+<ul>
+<li>泛型 <code>T</code> 为任意实体对象</li>
+<li>建议如果存在自定义通用 Service 方法的可能，请创建自己的 <code>IBaseService</code> 继承 <code>Mybatis-Plus</code> 提供的 <code>IService</code> 基类</li>
+<li>对象 <code>Wrapper</code> 为 <a href="https://baomidou.com/guides/wrapper">条件构造器</a></li>
+</ul>
+<h1 id="save">save</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 插入一条记录（选择字段，策略插入）</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">save</span>(T entity);
+</span></span></code></pre></div><p><strong>功能描述：</strong> 插入记录，根据实体对象的字段进行策略性插入。
+<strong>返回值：</strong> boolean，表示插入操作是否成功。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">T</td>
+<td style="text-align:center">entity</td>
+<td style="text-align:center">实体对象</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（save）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设有一个 User 实体对象</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User user <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> User();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>user.<span style="color:#50fa7b">setName</span>(<span style="color:#f1fa8c">&#34;John Doe&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>user.<span style="color:#50fa7b">setEmail</span>(<span style="color:#f1fa8c">&#34;john.doe@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> result <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">save</span>(user); <span style="color:#6272a4">// 调用 save 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (result) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User saved successfully.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Failed to save user.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">INSERT</span> <span style="color:#ff79c6">INTO</span> <span style="color:#ff79c6">user</span> (name, email) <span style="color:#ff79c6">VALUES</span> (<span style="color:#f1fa8c">&#39;John Doe&#39;</span>, <span style="color:#f1fa8c">&#39;john.doe@example.com&#39;</span>)
+</span></span></code></pre></div><h1 id="remove">remove</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 根据 ID 删除</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">removeById</span>(Serializable id);
+</span></span></code></pre></div><p><strong>功能描述：</strong> 通过指定条件删除符合条件的记录。
+<strong>返回值：</strong> boolean，表示删除操作是否成功。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Serializable</td>
+<td style="text-align:center">id</td>
+<td style="text-align:center">主键 ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（removeById）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设要删除 ID 为 1 的用户</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> result <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">removeById</span>(1); <span style="color:#6272a4">// 调用 removeById 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (result) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User deleted successfully.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Failed to delete user.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">DELETE</span> <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">user</span> <span style="color:#ff79c6">WHERE</span> id <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><h1 id="update">update</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 根据 ID 选择修改</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> <span style="color:#50fa7b">updateById</span>(T entity);
+</span></span></code></pre></div><p><strong>功能描述：</strong> 通过指定条件更新符合条件的记录。
+<strong>返回值：</strong> boolean，表示更新操作是否成功。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">T</td>
+<td style="text-align:center">entity</td>
+<td style="text-align:center">实体对象</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（updateById）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设有一个 User 实体对象，设置更新字段为 email，根据 ID 更新</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User updateEntity <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> User();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>updateEntity.<span style="color:#50fa7b">setId</span>(1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>updateEntity.<span style="color:#50fa7b">setEmail</span>(<span style="color:#f1fa8c">&#34;updated.email@example.com&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">boolean</span> result <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">updateById</span>(updateEntity); <span style="color:#6272a4">// 调用 updateById 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (result) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Record updated successfully.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Failed to update record.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">UPDATE</span> <span style="color:#ff79c6">user</span> <span style="color:#ff79c6">SET</span> email <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;updated.email@example.com&#39;</span> <span style="color:#ff79c6">WHERE</span> id <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><h1 id="get">get</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 根据 ID 查询</span>
+</span></span><span style="display:flex;"><span>T <span style="color:#50fa7b">getById</span>(Serializable id);
+</span></span></code></pre></div><p><strong>功能描述：</strong> 根据指定条件查询符合条件的记录。
+<strong>返回值：</strong> 查询结果，可能是实体对象、Map 对象或其他类型。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Serializable</td>
+<td style="text-align:center">id</td>
+<td style="text-align:center">主键 ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（getById）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设要查询 ID 为 1 的用户</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>User user <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">getById</span>(1); <span style="color:#6272a4">// 调用 getById 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (user <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User found: &#34;</span> <span style="color:#ff79c6">+</span> user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User not found.&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">user</span> <span style="color:#ff79c6">WHERE</span> id <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span></code></pre></div><h1 id="list">list</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 查询所有</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">list</span>();
+</span></span></code></pre></div><p><strong>功能描述：</strong> 查询符合条件的记录。
+<strong>返回值：</strong> 查询结果，可能是实体对象、Map 对象或其他类型。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（list）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 查询所有用户</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> users <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">list</span>(); <span style="color:#6272a4">// 调用 list 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> (User user : users) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User: &#34;</span> <span style="color:#ff79c6">+</span> user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">user</span>
+</span></span></code></pre></div><h1 id="page">page</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 无条件分页查询</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">page</span>(IPage<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> page);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// 条件分页查询</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">page</span>(IPage<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> page, Wrapper<span style="color:#ff79c6">&lt;</span>T<span style="color:#ff79c6">&gt;</span> queryWrapper);
+</span></span></code></pre></div><p><strong>功能描述：</strong> 分页查询符合条件的记录。
+<strong>返回值：</strong> 分页查询结果，包含记录列表和总记录数。
+<strong>参数说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">IPage<!-- raw HTML omitted --></td>
+<td style="text-align:center">page</td>
+<td style="text-align:center">翻页对象</td>
+</tr>
+<tr>
+<td style="text-align:center">Wrapper<!-- raw HTML omitted --></td>
+<td style="text-align:center">queryWrapper</td>
+<td style="text-align:center">实体对象封装操作类 QueryWrapper</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例（page）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设要进行无条件的分页查询，每页显示10条记录，查询第1页</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> page <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Page<span style="color:#ff79c6">&lt;&gt;</span>(1, 10);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> userPage <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">page</span>(page); <span style="color:#6272a4">// 调用 page 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> userList <span style="color:#ff79c6">=</span> userPage.<span style="color:#50fa7b">getRecords</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">long</span> total <span style="color:#ff79c6">=</span> userPage.<span style="color:#50fa7b">getTotal</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Total users: &#34;</span> <span style="color:#ff79c6">+</span> total);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> (User user : userList) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User: &#34;</span> <span style="color:#ff79c6">+</span> user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">user</span> <span style="color:#ff79c6">LIMIT</span> <span style="color:#bd93f9">10</span> <span style="color:#ff79c6">OFFSET</span> <span style="color:#bd93f9">0</span>
+</span></span></code></pre></div><p><strong>示例（page QueryWrapper 形式）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">// 假设有一个 QueryWrapper 对象，设置查询条件为 age &gt; 25，进行有条件的分页查询</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> page <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Page<span style="color:#ff79c6">&lt;&gt;</span>(1, 10);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>QueryWrapper<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> queryWrapper <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> QueryWrapper<span style="color:#ff79c6">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>queryWrapper.<span style="color:#50fa7b">gt</span>(<span style="color:#f1fa8c">&#34;age&#34;</span>, 25);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>IPage<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> userPage <span style="color:#ff79c6">=</span> userService.<span style="color:#50fa7b">page</span>(page, queryWrapper); <span style="color:#6272a4">// 调用 page 方法</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>List<span style="color:#ff79c6">&lt;</span>User<span style="color:#ff79c6">&gt;</span> userList <span style="color:#ff79c6">=</span> userPage.<span style="color:#50fa7b">getRecords</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd">long</span> total <span style="color:#ff79c6">=</span> userPage.<span style="color:#50fa7b">getTotal</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;Total users (age &gt; 25): &#34;</span> <span style="color:#ff79c6">+</span> total);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> (User user : userList) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   System.<span style="color:#50fa7b">out</span>.<span style="color:#50fa7b">println</span>(<span style="color:#f1fa8c">&#34;User: &#34;</span> <span style="color:#ff79c6">+</span> user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>生成的 SQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span> <span style="color:#ff79c6">FROM</span> <span style="color:#ff79c6">user</span> <span style="color:#ff79c6">WHERE</span> age <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">25</span> <span style="color:#ff79c6">LIMIT</span> <span style="color:#bd93f9">10</span> <span style="color:#ff79c6">OFFSET</span> <span style="color:#bd93f9">0</span>
+</span></span></code></pre></div></blockquote>
+<h3 id="81-接口示例">8.1 接口示例</h3>
+<p>这里要注意一下导的包：</p>
+<ul>
+<li>Page 类是 <code>com.baomidou.mybatisplus.extension.plugins.pagination.Page</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    @PostMapping
+</span></span><span style="display:flex;"><span>	<span style="color:#6272a4">// 如果方法参数上是一个对象，不是基本类型的包装类或者 String，那么就需要添加 @RequestBody 注解</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">save</span>(@RequestBody Student student) {
+</span></span><span style="display:flex;"><span>        studentService.<span style="color:#50fa7b">save</span>(student);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;success&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @PutMapping
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">update</span>(@RequestBody Student student) {
+</span></span><span style="display:flex;"><span>        studentService.<span style="color:#50fa7b">updateById</span>(student);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;success&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        这里的 {id} 是一个匹配符，表示匹配一个路径参数。放在这里的含义就是：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">            匹配 /student/xxx 的请求，并且 xxx 就是 id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        方法参数中通过 @PathVariable(&#34;id&#34;) 来将 Long id 这个参数和 url 上的 xxx 进行绑定匹配，springboot 会自动将 xxx 传给这个方法参数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @DeleteMapping(<span style="color:#f1fa8c">&#34;{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> String <span style="color:#50fa7b">delete</span>(@PathVariable(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id) {
+</span></span><span style="display:flex;"><span>        studentService.<span style="color:#50fa7b">removeById</span>(id);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;success&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Student <span style="color:#50fa7b">getById</span>(@PathVariable(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> studentService.<span style="color:#50fa7b">getById</span>(id);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @GetMapping
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Page<span style="color:#ff79c6">&lt;</span>Student<span style="color:#ff79c6">&gt;</span> <span style="color:#50fa7b">page</span>(Integer pageNo, Integer pageSize) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> studentService.<span style="color:#50fa7b">page</span>(Page.<span style="color:#50fa7b">of</span>(pageNo, pageSize));
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="9-apifox-的使用">9 Apifox 的使用</h2>
+<p>先加入项目：</p>
+<p><a href="https://app.apifox.com/invite/project?token=5jyqOhJrvtT19Ylq3cS5y">new_player 在 Apifox 邀请你加入项目 springboot-demo </a></p>
+<p>可以直接使用网页版（<strong>使用网页版在发送请求前记得下载插件或者下载桌面版</strong>），也可以下载应用程序。加入项目后，先介绍一下 apifox 的界面</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-26-07-f337a68b5a10f944389f98287b459bd1-image-20240723142546696-a437e0.png" alt="image-20240723142546696">
+
+</p>
+<p>这里再放一张后端 Controller 的接口代码图，对照看一下</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-36-00-ef71518959d17569b1bd74c4817de75f-image-20240723143559628-6adc4c.png" alt="image-20240723143559628">
+
+</p>
+<h3 id="91-发送请求">9.1 发送请求</h3>
+<p><strong>使用网页版在发送请求前记得下载插件或者下载桌面版</strong></p>
+<h3 id="911-postput-请求">9.1.1 POST/PUT 请求</h3>
+<p>打开新增的接口页面，然后点击运行，进入运行页面，如下图所示：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-41-45-31e47e5e10340a8f41230416f2fe7b1a-image-20240723144144468-21b6b6.png" alt="image-20240723144144468">
+
+</p>
+<p>既然是要新增，那么肯定要填这个学生对应的信息，那怎么填呢？填哪？</p>
+<p>前面介绍过 POST/PUT 请求的参数是放在一个叫做请求体的地方，请求体在 apifox 的页面中就表现为 Body，表示请求体的意思，当然 apifox 已经默认帮我们选中 Body 了。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-43-29-18fe6cb2e9c7a93eaf3b4fcaa3302677-image-20240723144328760-ef17f9.png" alt="image-20240723144328760">
+
+</p>
+<p>Body 下面一行能看到还有很多的小分类，比如 none（啥也木有）、form-data（表单数据）等等，我们要用的就是 json 这个类型。前后端的交互都使用 JSON 进行。显然 apifox 也帮我们自动选中了。那么下一步就点击自动生成，看看 apifox 会给我们生成什么参数。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-45-02-0ccc791ce2c864a5d1031d5dc047e809-image-20240723144501437-c1126e.png" alt="image-20240723144501437">
+
+</p>
+<p>可以看到自动生成的参数是这种格式的，这种格式就是 json 格式，我们只需要修改对应的值就行（当然你就这么传也不是不行），也可以像我一样稍作修改，使这个参数看起来更合理</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-47-23-ae7b42b6da2143eb51d3838531ccffe6-image-20240723144722383-b34689.png" alt="image-20240723144722383">
+
+</p>
+<p>然后点击发送，对了，发送前别忘了<strong>启动项目。</strong></p>
+<p>然后就可以看到，下方已经返回回来了我们在 StudentController 中的 save 方法中返回的 success 字符串</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-55-12-135f5f6e78f2f35e1f3bc4e9fb42c338-image-20240723145511587-a0c9cf.png" alt="image-20240723145511587">
+
+</p>
+<p>然后我们手动查看一下数据库，看看是否插入成功？</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-56-22-2a373cdc33751cc7611865dd2ac5a259-image-20240723145621575-e7cee3.png" alt="image-20240723145621575">
+
+</p>
+<p>可以看到也是成功插入了，修改同理，这里就不再演示了。只是修改的时候要注意 id 字段，<strong>请求参数中的 id 一定要是数据库中真实存在的 id。</strong></p>
+<h3 id="912-getdelete-请求">9.1.2 GET/DELETE 请求</h3>
+<p>先看最简单的 分页查询请求吧，点击运行之后，可以看到参数都已经帮我们填充好了，pageNo 是 1，pageSize 是 10，那我们直接点发送即可，看看返回的数据。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F14-58-39-55ea63fc226687e2feb0177513dfc8a0-image-20240723145838069-ce6daf.png" alt="image-20240723145838069">
+
+</p>
+<p>能够看到这是可以成功进行分页查询的，但是当前数据库中就一条记录，所以 records 字段的值也只有一条记录。</p>
+<p>同时，这里也有和 POST/PUT 不同的地方，POST/PUT 的请求参数是在 Body 请求体里面的，而这个 GET 请求却是在 Param 中</p>
+<p>Param 具体在哪呢？</p>
+<p>随便打开一个网页，这里以bing.com为例</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-02-43-36ef5caebc9e5e2dca6f39e9af845567-image-20240723150242846-fd2998.png" alt="image-20240723150242846">
+
+</p>
+<p>可以看到地址栏上的 URL：<code>https://www.bing.com/search?q=apifox&amp;toWww=1&amp;redig=C089F763E28D4CCF9E1050B953E32175</code></p>
+<p>格式是这样的：协议://域名:端口/接口地址（或者叫 URI）?key=value&amp;key1=value1&amp;&hellip;.keyn=valuen</p>
+<p>问号后面的 key=value 这种键值对的格式的，就是 param 了，只是 apifox 为了美观，没有展示出来。</p>
+<p>也就是说，GET/DELETE 的请求方法中的参数，都会像 q=apifox 一样拼接在 uri 后面，并用 ? 和 uri 分隔。参数和参数之间使用 &amp; 分隔。</p>
+<p>所以，我们也可以直接在地址栏中输入下面这个地址：<code>localhost:8080/student?pageNo=1&amp;pageSize=10</code></p>
+<p>可以看到返回结果和 apifox 中一模一样。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-08-29-23ed7dee4b2c758911fa24c1f48c6a22-image-20240723150828712-db6916.png" alt="image-20240723150828712">
+
+</p>
+<p>下面来看另一种传参的方式（这种老师一般不会讲，因为是我们采用的是 Restful 规范），也就是 根据id查询 接口。</p>
+<p>打开其运行页面，可以看到还是在 Param 中，但是 Query 里面没有一个参数，反而是多了一个叫 Path 参数的东西，这个就叫路径参数。</p>
+<p>顾名思义，就是把参数放在请求地址上。</p>
+<p>这里的请求地址后面跟了一个 <code>{id}</code> ，这个是一个通配符，和 Java 后端的 Controller 中一样。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-10-47-d3453b7645ee63b76441c51c9b8132d1-image-20240723151046101-f6861a.png" alt="image-20240723151046101">
+
+</p>
+<p>大括号中的单词就是参数名称，是和 Path 参数中的参数名一一对应的，apifox 会把参数值替换到 <code>{id}</code> 的位置，那我们先发送一下，看看会返回啥。</p>
+<p>是不是啥也没有，空的，那我们稍微修改一下接口，修改后的接口如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">getById</span>(@PathVariable(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id) {
+</span></span><span style="display:flex;"><span>        Student student <span style="color:#ff79c6">=</span> studentService.<span style="color:#50fa7b">getById</span>(id);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (student <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">null</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;id 为 &#34;</span> <span style="color:#ff79c6">+</span> id <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34; 的学生不存在&#34;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> student;
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>然后重新运行项目，再发一个请求看看</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-18-37-97bf99485a40f08d29df2ee4e99edfab-image-20240723151836312-4596d8.png" alt="image-20240723151836312">
+
+</p>
+<p>有没有想起来前面提到过，<strong>更新的时候 id 一定要填写数据库中实际存在的</strong>，那么查询的时候也是这样，数据库中有 id 为 1 的数据吗？显然没有，所以我们修改一下 id 的参数值，你的参数值和我的一定不一样，所以请不要偷懒。</p>
+<p>可以看到，参数值修改为正确的之后，就能够查出来对应的学生数据了。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-20-17-94b4b80cdb976f91a54c67c26d21123b-image-20240723152016920-a4826f.png" alt="image-20240723152016920">
+
+</p>
+<p>那么同理，删除接口也是一样的调用方式，这一步就交给你了，请你调用删除接口后，再回来查询一下看看是否能够查到。</p>
+<p>删除后，能够看到已经查询不到了。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F15-23-11-55e772eb0cf351cd216edc612b88b60b-image-20240723152310911-6330c1.png" alt="image-20240723152310911">
+
+</p>
+<p>好了你已经成功掌握了 Apifox 的基本用法。</p>
+<h2 id="10-多表查询">10 多表查询</h2>
+<h3 id="101-引入新的表">10.1 引入新的表</h3>
+<p>现在我们就只有一张 student 表，所以我们再建一张表叫做课程表（course）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> course
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    id <span style="color:#8be9fd;font-style:italic">BIGINT</span> <span style="color:#ff79c6">PRIMARY</span> <span style="color:#ff79c6">KEY</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;主键 id&#39;</span>,
+</span></span><span style="display:flex;"><span>    name <span style="color:#8be9fd;font-style:italic">VARCHAR</span>(<span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;名称&#39;</span>,
+</span></span><span style="display:flex;"><span>    teacher <span style="color:#8be9fd;font-style:italic">VARCHAR</span>(<span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;老师&#39;</span>,
+</span></span><span style="display:flex;"><span>    score <span style="color:#8be9fd;font-style:italic">INT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;学分&#39;</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;课程表&#39;</span>;
+</span></span></code></pre></div><p>好了课程也有了，但是这两张表还没有任何关系，学生和课程什么时候会产生联系呢？上课？考试？都可以，但是这里选择考试吧，所以我们还需要一张考试表来联系学生和课程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">CREATE</span> <span style="color:#ff79c6">TABLE</span> exam
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>    id <span style="color:#8be9fd;font-style:italic">BIGINT</span> <span style="color:#ff79c6">PRIMARY</span> <span style="color:#ff79c6">KEY</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;主键 id&#39;</span>,
+</span></span><span style="display:flex;"><span>    student_id <span style="color:#8be9fd;font-style:italic">BIGINT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;指向 student 表中的 id&#39;</span>,
+</span></span><span style="display:flex;"><span>    course_id <span style="color:#8be9fd;font-style:italic">BIGINT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;指向 course 表中的 id&#39;</span>,
+</span></span><span style="display:flex;"><span>    score <span style="color:#8be9fd;font-style:italic">INT</span> <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;分数&#39;</span>
+</span></span><span style="display:flex;"><span>) <span style="color:#ff79c6">COMMENT</span> <span style="color:#f1fa8c">&#39;考试表&#39;</span>;
+</span></span></code></pre></div><p>然后就可以像之前一样直接生成代码了。（注：按住 shift 或者 ctrl 可以多选表，然后一起生成）</p>
+<p>生成完后目录结构如下图所示</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F23%2F16-43-48-38f5423d9984e0f85c0ebd615a931922-image-20240723164347424-82fe06.png" alt="image-20240723164347424">
+
+</p>
+<h3 id="102-完成-coursecontroller-的接口">10.2 完成 CourseController 的接口</h3>
+<p>这里就不贴代码了，自行完成。</p>
+<h3 id="103-完成-examcontroller-接口">10.3 完成 ExamController 接口</h3>
+<p>这里主要讲一下 ExamController 的查询接口，增删改都和前面一样只是对单表进行操作。</p>
+<p>在查询 exam 表的时候，如果我们希望把学生名字和课程名称都查出来，会发现其中有两个字段都是指向其他表的 id 字段，这个时候应该怎么查呢？</p>
+<p>这个时候就要用到SQL中的多表查询了，对应的 SQL 如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#ff79c6">#</span> 要查询的字段
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#</span> s.<span style="color:#ff79c6">*</span> 表示 student 表中的所有字段，其他同理
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">SELECT</span> s.<span style="color:#ff79c6">*</span>, <span style="color:#ff79c6">c</span>.<span style="color:#ff79c6">*</span>, e.<span style="color:#ff79c6">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">#</span> exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 <span style="color:#ff79c6">c</span> 和 s 同理
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">FROM</span> exam e
+</span></span><span style="display:flex;"><span>		 <span style="color:#ff79c6">#</span> 连接查询
+</span></span><span style="display:flex;"><span>		 <span style="color:#ff79c6">#</span> 		<span style="color:#ff79c6">JOIN</span> course ：连接到 course 表
+</span></span><span style="display:flex;"><span>		 <span style="color:#ff79c6">#</span> 		<span style="color:#ff79c6">ON</span> <span style="color:#ff79c6">c</span>.id <span style="color:#ff79c6">=</span> e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+</span></span><span style="display:flex;"><span>		 <span style="color:#ff79c6">#</span> 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+</span></span><span style="display:flex;"><span>         <span style="color:#ff79c6">LEFT</span> <span style="color:#ff79c6">JOIN</span> course <span style="color:#ff79c6">c</span> <span style="color:#ff79c6">ON</span> <span style="color:#ff79c6">c</span>.id <span style="color:#ff79c6">=</span> e.course_id
+</span></span><span style="display:flex;"><span>         <span style="color:#ff79c6">LEFT</span> <span style="color:#ff79c6">JOIN</span> student s <span style="color:#ff79c6">ON</span> e.student_id <span style="color:#ff79c6">=</span> s.id
+</span></span></code></pre></div><p>但我们还没有一个实体类能够同时包含 exam、student、course 三张表的数据，所以我们还需要新建一个实体类，就叫 ExamInfo 吧。</p>
+<p>在 entity 包下新建这样一个实体类</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.xfdzcoder.springbootdemo.entity;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.baomidou.mybatisplus.annotation.IdType;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.baomidou.mybatisplus.annotation.TableField;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.baomidou.mybatisplus.annotation.TableId;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> io.swagger.v3.oas.annotations.media.Schema;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.AllArgsConstructor;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.Data;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.NoArgsConstructor;
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.ToString;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@Data
+</span></span><span style="display:flex;"><span>@ToString
+</span></span><span style="display:flex;"><span>@NoArgsConstructor
+</span></span><span style="display:flex;"><span>@AllArgsConstructor
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ExamInfo</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 主键 id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Schema(description <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;主键 id&#34;</span>)
+</span></span><span style="display:flex;"><span>    @TableId(type <span style="color:#ff79c6">=</span> IdType.<span style="color:#50fa7b">ASSIGN_ID</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Long id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 学生 id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Schema(description <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;学生 id&#34;</span>)
+</span></span><span style="display:flex;"><span>    @TableField(<span style="color:#f1fa8c">&#34;student_id&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Long studentId;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 课程 id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Schema(description <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;课程 id&#34;</span>)
+</span></span><span style="display:flex;"><span>    @TableField(<span style="color:#f1fa8c">&#34;course_id&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Long courseId;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 分数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Schema(description <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;分数&#34;</span>)
+</span></span><span style="display:flex;"><span>    @TableField(<span style="color:#f1fa8c">&#34;score&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer score;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Course course;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Student student;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>可以看到，其实就是把 Exam 类复制过来了，然后新增了俩属性，类型分别是 Course 和 Student，这样就把另外两张表的属性也包含进来了。那么现在问题来了，怎么查呢？MyBatisPlus的 IService 接口只提供了简单的 CRUD 操作，并没有多表联查的操作。</p>
+<h4 id="1031-使用-mybatis-plus-join-框架">10.3.1 使用 MyBatis-Plus-Join 框架</h4>
+<p>pom.xml 的 dependencies 标签中添加如下依赖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>com.github.yulichang<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>mybatis-plus-join-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>1.4.13<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>com.github.gavlyukovskiy<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>p6spy-spring-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>1.8.1<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>接口代码：请对照下面的内容理解</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">//================= 对应的 SQL ===================//</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">new</span> MPJLambdaWrapper<span style="color:#ff79c6">&lt;</span>Exam<span style="color:#ff79c6">&gt;</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// SELECT exam.* FROM exam</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">selectAll</span>(Exam.<span style="color:#50fa7b">class</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// #{id} 表示外部传入的参数</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// WHERE exam.id = #{id}</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">eq</span>(Exam::getId, id)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 不对应 SQL</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">selectAssociation</span>(Course.<span style="color:#50fa7b">class</span>, ExamInfo::getCourse)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// LEFT JOIN course ON course.id = exam.course_id</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">leftJoin</span>(Course.<span style="color:#50fa7b">class</span>, Course::getId, Exam::getCourseId)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// 不对应 SQL</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">selectAssociation</span>(Student.<span style="color:#50fa7b">class</span>, ExamInfo::getStudent)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">// LEFT JOIN student ON student.id = exam.course_id</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#50fa7b">leftJoin</span>(Student.<span style="color:#50fa7b">class</span>, Student::getId, Exam::getStudentId)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        # 要查询的字段
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        # s.* 表示 student 表中的所有字段，其他同理
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        SELECT s.*, c.*, e.*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        # exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 c 和 s 同理
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">        FROM exam
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 # 连接查询
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 # 		JOIN course ：连接到 course 表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 # 		ON c.id = e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 # 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 LEFT JOIN course c ON c.id = e.course_id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 LEFT JOIN student s ON e.student_id = s.id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> ExamInfo <span style="color:#50fa7b">getById</span>(@PathVariable(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// selectJoinOne，多表联查，只查一行的数据</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> examService.<span style="color:#50fa7b">selectJoinOne</span>(ExamInfo.<span style="color:#50fa7b">class</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// SQL 包装器</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">new</span> MPJLambdaWrapper<span style="color:#ff79c6">&lt;</span>Exam<span style="color:#ff79c6">&gt;</span>()
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">// 查询 Exam 表的所有数据，这里只能填主表</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">selectAll</span>(Exam.<span style="color:#50fa7b">class</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">// 查询条件</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">// Exam::getId 表示 exam 表的 id 字段</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">// eq 即相等 equal 的缩写</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">// 所以这个条件就是：当 exam 表的 id 字段 等于 id（这个id是接口参数，前端传的）</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">eq</span>(Exam::getId, id)
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            selectAssociation：指定映射的关系，一对一的时候使用
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                A 对 B（包括一对一、多对一、一对多、多对多）
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                    A：指的是 from 关键字后面跟的表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                    B：指的是 left join 关键字后面跟的表
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            这里的主表是 exam，还需要 join 一张 course 表，exam 和 course 表是什么关系？
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                一场考试那肯定是针对某一个课程的
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                所以这里是 一对一
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            第一个参数：指定要 join 进来的表 所对应的实体类
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                这里是要 join course 表，所以填 Course.class
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            第二个参数：指定查出来的课程信息，存放到哪个字段
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                ExamInfo::getCourse ：表示 ExamInfo 类的 course 字段
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                         */</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">selectAssociation</span>(Course.<span style="color:#50fa7b">class</span>, ExamInfo::getCourse)
+</span></span><span style="display:flex;"><span>                        <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            leftJoin：拼接 left join 这条 SQL
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            第一个参数：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                指定要 join 进来的表 所对应的实体类
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            第二个参数：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                指定 ON 关键字 左边的 字段，使用 Course::getId 表示 course 表的 id 字段
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                            第三个参数：
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                                指定 ON 关键字 右边的 字段，使用 Exam::getCourseId 表示 exam 表的 course_id 字段
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                         */</span>
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">leftJoin</span>(Course.<span style="color:#50fa7b">class</span>, Course::getId, Exam::getCourseId)
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">selectAssociation</span>(Student.<span style="color:#50fa7b">class</span>, ExamInfo::getStudent)
+</span></span><span style="display:flex;"><span>                        .<span style="color:#50fa7b">leftJoin</span>(Student.<span style="color:#50fa7b">class</span>, Student::getId, Exam::getStudentId)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">//================= 对应的 SQL ===================//</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                new MPJLambdaWrapper&lt;Exam&gt;()
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // SELECT exam.* FROM exam
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .selectAll(Exam.class)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // #{id} 表示外部传入的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // WHERE exam.id = #{id}
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .eq(Exam::getId, id)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // 不对应 SQL
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .selectAssociation(Course.class, ExamInfo::getCourse)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // LEFT JOIN course ON course.id = exam.course_id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .leftJoin(Course.class, Course::getId, Exam::getCourseId)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // 不对应 SQL
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .selectAssociation(Student.class, ExamInfo::getStudent)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        // LEFT JOIN student ON student.id = exam.course_id
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                        .leftJoin(Student.class, Student::getId, Exam::getStudentId)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">                 */</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h4 id="1032-使用-mybatisplus--sql">10.3.2 使用 MybatisPlus + SQL</h4>
+<h5 id="10321-添加-exammapperxml-文件">10.3.2.1 添加 ExamMapper.xml 文件</h5>
+<p>添加在 resources/mapper 目录下面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE mapper PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">        &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;mapper</span> <span style="color:#50fa7b">namespace=</span><span style="color:#f1fa8c">&#34;com.xfdzcoder.springbootdemo.mapper.ExamMapper&#34;</span><span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;select</span> <span style="color:#50fa7b">id=</span><span style="color:#f1fa8c">&#34;selectInfoById&#34;</span> <span style="color:#50fa7b">resultType=</span><span style="color:#f1fa8c">&#34;com.xfdzcoder.springbootdemo.entity.ExamInfo&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#50fa7b">parameterType=</span><span style="color:#f1fa8c">&#34;java.lang.Long&#34;</span><span style="color:#ff79c6">&gt;</span>
+</span></span><span style="display:flex;"><span>        # 要查询的字段
+</span></span><span style="display:flex;"><span>        # s.* 表示 student 表中的所有字段，其他同理
+</span></span><span style="display:flex;"><span>        SELECT *,
+</span></span><span style="display:flex;"><span>                c.id as &#39;course.id&#39;,
+</span></span><span style="display:flex;"><span>                c.name as &#39;course.name&#39;,
+</span></span><span style="display:flex;"><span>                c.teacher as &#39;course.teacher&#39;,
+</span></span><span style="display:flex;"><span>                c.score as &#39;course.score&#39;,
+</span></span><span style="display:flex;"><span>                s.id as &#39;student.id&#39;,
+</span></span><span style="display:flex;"><span>                s.student_no as &#39;student.student_no&#39;,
+</span></span><span style="display:flex;"><span>                s.student_name as &#39;student.student_name&#39;,
+</span></span><span style="display:flex;"><span>                s.gender as &#39;student.gender&#39;,
+</span></span><span style="display:flex;"><span>                s.age as &#39;student.age&#39;,
+</span></span><span style="display:flex;"><span>                s.enrollment_year as &#39;student.enrollment_year&#39;
+</span></span><span style="display:flex;"><span>        # exam e 的含义是：给 exam 表取个别名叫 e，用 e 来代替 exam，下面 c 和 s 同理
+</span></span><span style="display:flex;"><span>        FROM exam e
+</span></span><span style="display:flex;"><span>                 # 连接查询
+</span></span><span style="display:flex;"><span>                 # 		JOIN course ：连接到 course 表
+</span></span><span style="display:flex;"><span>                 # 		ON c.id = e.course_id ：当 course 表的 id 和 exam 表的 course_id 相等的时候
+</span></span><span style="display:flex;"><span>                 # 连起来就是：当 course 表的 id 和 exam 表的 course_id 相等的时候，把对应行的数据查出来
+</span></span><span style="display:flex;"><span>                 LEFT JOIN course c ON c.id = e.course_id
+</span></span><span style="display:flex;"><span>                 LEFT JOIN student s ON e.student_id = s.id
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/select&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/mapper&gt;</span>
+</span></span></code></pre></div><p>然后在 ExamMapper 类中定义这个方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Mapper
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">ExamMapper</span> <span style="color:#8be9fd;font-style:italic">extends</span> MPJBaseMapper<span style="color:#ff79c6">&lt;</span>Exam<span style="color:#ff79c6">&gt;</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ExamInfo <span style="color:#50fa7b">selectInfoById</span>(@Param(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后即可在 controller 中进行调用即可</p>
+<p>controller 代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    @Autowired
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> ExamMapper examMapper;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;/xml/{id}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> ExamInfo <span style="color:#50fa7b">getByIdXML</span>(@PathVariable(<span style="color:#f1fa8c">&#34;id&#34;</span>) Long id) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> examMapper.<span style="color:#50fa7b">selectInfoById</span>(id);
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>不要忘了注入 ExamMapper 接口。</p>
+<p>分页查询同理，主要是 SQL 语句的编写。这里就省略了。</p>
+<h2 id="11-vue-项目的搭建">11 Vue 项目的搭建</h2>
+<p>// TODO</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610498/" data-toggle="tooltip" data-placement="top" title="B-Tree">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7224237482966319107/" data-toggle="tooltip" data-placement="top" title="SSM&#43;Shiro&#43;Redis纯注解环境搭建">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

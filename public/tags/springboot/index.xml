@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Springboot on XFDZ&#39;s Blog</title>
+    <link>http://localhost:1313/tags/springboot/</link>
+    <description>Recent content in Springboot on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Tue, 23 Jan 2024 20:58:26 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>@SuppressWarnings 注解</title>
+      <link>http://localhost:1313/7224237482966319108/</link>
+      <pubDate>Tue, 23 Jan 2024 20:58:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224237482966319108/</guid>
+      <description>例如： 抑制多类型的警告：@SuppressWarnings(&amp;ldquo;unchecked&amp;rdquo;,&amp;ldquo;rawtypes&amp;</description>
+    </item>
+    <item>
+      <title>springboot logbak-spring.xml 配置</title>
+      <link>http://localhost:1313/7224233674005610515/</link>
+      <pubDate>Thu, 18 Jan 2024 23:05:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610515/</guid>
+      <description>网上CV的一个配置，感觉很不错，收藏一下 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!-- scan：当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。</description>
+    </item>
+    <item>
+      <title>SpringBoot 整合 腾讯云 API</title>
+      <link>http://localhost:1313/7224233674005610514/</link>
+      <pubDate>Tue, 09 Jan 2024 19:22:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610514/</guid>
+      <description>SpringBoot 整合 腾讯云 API 此处假设腾讯云方面的配置大家都配置完毕了，下面直接开始与代码相关的。 0. 腾讯云 SDK 文档 Java-SDK 中心-腾讯云 (tencent.com) 1. 引入依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.tencentcloudapi&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tencentcloud-sdk-java&amp;lt;/artifactId&amp;gt; &amp;lt;!-- go to https://search.maven.org/search?q=tencentcloud-sdk-java and get</description>
+    </item>
+    <item>
+      <title>SpringBoot 整合 七牛云存储</title>
+      <link>http://localhost:1313/7224233674005610513/</link>
+      <pubDate>Sat, 30 Dec 2023 15:19:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610513/</guid>
+      <description>SpringBoot 整合 七牛云存储 七牛云的注册及配置这里就不赘述了。 0. 七牛云存储 JavaSDK 官方文档 Java SDK_SDK 下载_对象存储 - 七牛开发者中心 (qiniu.com) 1. 引入依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.qiniu&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;qiniu-java-sdk&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;[7.7.0, 7.10.99]&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 这里的ve</description>
+    </item>
+    <item>
+      <title>SpringSecurity之用户认证</title>
+      <link>http://localhost:1313/7224246078974263296/</link>
+      <pubDate>Thu, 23 Nov 2023 20:58:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224246078974263296/</guid>
+      <description>基础： Spring Security 是一个专注于为 Java 应用程序提供身份认证和授权的框架。推荐使用权限认证方式配置：SSM + Shiro;Springboot+SpringSecurity 身份认证（authentication），即</description>
+    </item>
+    <item>
+      <title>SpringBoot 调用第三方接口时的公私钥管理</title>
+      <link>http://localhost:1313/7224233674005610512/</link>
+      <pubDate>Sat, 16 Sep 2023 16:44:36 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610512/</guid>
+      <description>SpringBoot 调用第三方接口时的公私钥管理 前言 项目中或多或少的会使用到一些第三方的接口，而调用第三方接口一般会有密钥。例如微信小程序的 appid，sec</description>
+    </item>
+    <item>
+      <title>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题</title>
+      <link>http://localhost:1313/7224233674005610510/</link>
+      <pubDate>Tue, 30 May 2023 10:16:26 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610510/</guid>
+      <description>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题 背景： 单参数时： 当前端只使用 POST 传一个 String 时一般是这样的： axios({ url: &amp;#39;/xxx&amp;#39;, method: &amp;#39;POST&amp;#39;, data: { str: param } }) 此时只能定义一个实体类对象，其</description>
+    </item>
+    <item>
+      <title>IDEA 与 服务器 Linux 开发</title>
+      <link>http://localhost:1313/7224233674005610511/</link>
+      <pubDate>Thu, 25 May 2023 22:19:29 +0800</pubDate>
+      <guid>http://localhost:1313/7224233674005610511/</guid>
+      <description>IDEA 与 服务器 Linux 开发 最终效果：服务器上有一份与本地相同的代码。 目的： 可随时更新项目并将其运行起来测试。 避免了一个小更新也要在本地打包然后上传并运</description>
+    </item>
+  </channel>
+</rss>

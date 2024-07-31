@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-us">
-<head><script src="/home/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=home/livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="http://localhost:1313/home//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg">
-    <meta property="twitter:image" content="http://localhost:1313/home//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg" />
+    <meta property="og:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="http://localhost:1313//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
     
 
     
@@ -32,40 +32,40 @@
     
 
     <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
-    <link rel="shortcut icon" href="/home/img/favicon.ico">
+    <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>B&#43;Tree | XFDZ 的博客 | XFDZ Blog</title>
 
-    <link rel="canonical" href="/home/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b&#43;tree/">
+    <link rel="canonical" href="/post/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%A0%91/b&#43;tree/">
 
     
     
     
-    <link rel="stylesheet" href="/home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
     
-    <link rel="stylesheet" href="/home/css/hugo-theme-cleanwhite.min.css">
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
 
     
-    <link rel="stylesheet" href="/home/css/zanshang.css">
+    <link rel="stylesheet" href="/css/zanshang.css">
 
     
-    <link rel="stylesheet" href="/home/css/font-awesome.all.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
 
     
     
 
     
-    <script src="/home/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
     
-    <script src="/home/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     
-    <script src="/home/js/hux-blog.min.js"></script>
+    <script src="/js/hux-blog.min.js"></script>
 
     
-    <script src="/home/js/lazysizes.min.js"></script>
+    <script src="/js/lazysizes.min.js"></script>
 
     
     
@@ -88,7 +88,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href='/home/'>XFDZ&#39;s Blog</a>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
         </div>
 
         
@@ -96,40 +96,46 @@
         <div id="huxblog_navbar">
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+
                     <li>
-                        <a style="color: black" href='/home/'>主页</a>
+                        <a style="color: black" href="/tags/top">置顶</a>
                     </li>
+
                     
                         
                         <li>
-                            <a style="color: black" href="/home/categories/guide/">guide</a>
+                            <a style="color: black" href="/categories/guide/">guide</a>
                         </li>
                         
                         <li>
-                            <a style="color: black" href="/home/categories/java/">java</a>
+                            <a style="color: black" href="/categories/java/">java</a>
                         </li>
                         
                         <li>
-                            <a style="color: black" href="/home/categories/mysql/">mysql</a>
+                            <a style="color: black" href="/categories/mysql/">mysql</a>
                         </li>
                         
                         <li>
-                            <a style="color: black" href="/home/categories/%E6%95%99%E7%A8%8B/">教程</a>
+                            <a style="color: black" href="/categories/%E6%95%99%E7%A8%8B/">教程</a>
                         </li>
                         
                         <li>
-                            <a style="color: black" href="/home/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
                         </li>
                         
                     
 
                     
-                        <li><a style="color: black" href="/home/archive//">归档</a></li>
+                        <li><a style="color: black" href="/archive//">归档</a></li>
                     
-                        <li><a style="color: black" href="/home/about//">关于</a></li>
+                        <li><a style="color: black" href="/about//">关于</a></li>
                     
 		            <li>
-                        <a href="/home/search"><i class="fa fa-search" style="color: black"></i></a>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
 		           </li>
                 </ul>
             </div>
@@ -172,7 +178,7 @@
 
 <style type="text/css">
     header.intro-header {
-        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg')
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
     }
 </style>
 
@@ -254,56 +260,21 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"></code></pre></div>
 
                 
-                
-<div class="entry-shang text-center">
-    
-	    <p>「真诚赞赏，手留余香」</p>
-	
-	<button class="zs show-zs btn btn-bred">赞赏支持</button>
-</div>
-<div class="zs-modal-bg"></div>
-<div class="zs-modal-box">
-	<div class="zs-modal-head">
-		<button type="button" class="close">×</button>
-		<span class="author"><a href="http://localhost:1313/home/"><img src="/home/img/favicon.png" />XFDZ&#39;s Blog</a></span>
-        
-	        <p class="tip"><i></i><span>真诚赞赏，手留余香</span></p>
-		
- 
-	</div>
-	<div class="zs-modal-body">
-		<div class="zs-modal-btns">
-			<button class="btn btn-blink" data-num="2">2元</button>
-			<button class="btn btn-blink" data-num="5">5元</button>
-			<button class="btn btn-blink" data-num="10">10元</button>
-			<button class="btn btn-blink" data-num="50">50元</button>
-			<button class="btn btn-blink" data-num="100">100元</button>
-			<button class="btn btn-blink" data-num="1">任意金额</button>
-		</div>
-		<div class="zs-modal-pay">
-			<button class="btn btn-bred" id="pay-text">2元</button>
-			<p>使用<span id="pay-type">微信</span>扫描二维码完成支付</p>
-			<img src="/home/img/reward/wechat-2.png"  id="pay-image"/>
-		</div>
-	</div>
-	<div class="zs-modal-footer">
-		<label><input type="radio" name="zs-type" value="wechat" class="zs-type" checked="checked"><span ><span class="zs-wechat"><img src="/home/img/reward/wechat-btn.png"/></span></label>
-		<label><input type="radio" name="zs-type" value="alipay" class="zs-type" class="zs-alipay"><img src="/home/img/reward/alipay-btn.png"/></span></label>
-	</div>
-</div>
-<script type="text/javascript" src="/home/js/reward.js"></script>
-
-                
 
                 
                 <hr>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/home/post/%E6%95%99%E7%A8%8B/windowsterminal%E7%BE%8E%E5%8C%96%E6%95%99%E7%A8%8B/" data-toggle="tooltip" data-placement="top" title="WindowsTerminal美化教程">&larr;
+                        <a href="/post/mysql%E9%AB%98%E7%BA%A7/mysql%E4%B8%ADdatadir%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6/" data-toggle="tooltip" data-placement="top" title="mysql中datadir目录下的文件">&larr;
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/post/mysql%E9%AB%98%E7%BA%A7/%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%AD%98%E5%82%A8%E5%AF%B9%E5%BA%94%E9%A1%B5%E5%9C%B0%E5%9D%80/" data-toggle="tooltip" data-placement="top" title="二级索引为什么不直接存储对应页地址">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
                 
@@ -342,6 +313,12 @@
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
                         
                         
                     </div>
@@ -516,7 +493,7 @@
     
 
 
-    loadAsync("\/home\/js\/jquery.nav.js", function () {
+    loadAsync("\/js\/jquery.nav.js", function () {
         $('.catalog-body').onePageNav({
             currentClass: "active",
             changeHash: !1,
@@ -538,11 +515,4 @@
 
 
 
-<script>
-  console.log(location.pathname)
-  console.log(location.href)
-  if (location.pathname === '/home/') {
-    document.querySelector('.intro-header').style.height = '100vh'
-  }
-</script>
 </html>
