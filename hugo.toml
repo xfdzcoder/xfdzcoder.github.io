@@ -15,7 +15,7 @@ home = ["HTML", "RSS", "Algolia"]
 [params]
   # header_image = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F20%2F20-52-06-97135d344ee3b56ef06a0a6ee940f225-1298767-4de22c.jpg"
   header_image = "https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg"
-  SEOTitle = "XFDZ 的博客 | XFDZ Blog"
+  SEOTitle = "XFDZ Blog"
   description = "xfdzcoder"
   keyword = "xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java"
   slogan = "层楼终究误少年，自由早晚乱余生"
