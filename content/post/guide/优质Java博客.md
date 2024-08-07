@@ -15,6 +15,10 @@ tags: ['top']
 
 [代码随想录 (programmercarl.com)](https://www.programmercarl.com/)
 
+[zq99299/repository-summary: 仓库/笔记 越来越多，本人一些质量还不错的项目/笔记汇总 (github.com)](https://github.com/zq99299/repository-summary?tab=readme-ov-file)
+
+[凉茶 · 语雀 (yuque.com)](https://www.yuque.com/mrcode.cn)
+
 [小林coding (xiaolincoding.com)](https://xiaolincoding.com/)
 
 [Java 全栈知识体系 (pdai.tech)](https://pdai.tech/)
