@@ -9,6 +9,21 @@ tags: ['top', '毕业设计']
 ---
 
 <hr>
+# 成果文档
+
+包括一些学到的知识和遇到的问题的解决方式。
+
+[微服务环境搭建记录](xfdzcoder.github.io/7229097476379156480)
+
+由于买的服务器内存太小了，所以把游戏本重装成 Debian 12 然后当服务器用
+
+[戴尔G15安装CentOS7记录](xfdzcoder.github.io/7230148377613213696)
+
+这是学习Java动态编译代码笔记
+
+[Java动态编译](xfdzcoder.github.io/7230462713250488320)
+
+
 
 ## 简历部分
 
@@ -115,7 +130,7 @@ tags: ['top', '毕业设计']
 ##### 领域服务
 
 - ICodeInfo
-  - CodeInfo execute(CodeInfo codeInfo)：执行代码
+  - CodeInfo execute(CodeInfo codeInfo)：执行代码`
 - CommandBuilderStrategy
   - boolean support(String language)：判断当前策略是否支持该语言
   - String buildCommand(QuestionInfo param)：构造执行命令行
