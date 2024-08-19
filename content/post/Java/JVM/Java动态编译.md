@@ -109,7 +109,7 @@ public class CustomCompiler {
 自定义类加载器，从字节数组加载类。
 
 ```java
-package versions.java21.dynamic_compiler._03;
+package io.github.xfdzcoder.noj.framework.sandbox.java.complier;
 
 /**
  * 字节数组类加载器
@@ -117,12 +117,18 @@ package versions.java21.dynamic_compiler._03;
  * @author: xfdzcoder
  */
 public final class ByteArrayClassLoader extends ClassLoader {
+    
+    static {
+        registerAsParallelCapable();
+    }
 
     Class<?> loadClassFromByteArray(String name, byte[] byteCode) throws ClassNotFoundException {
         if (name == null || byteCode == null || name.isEmpty() || byteCode.length == 0) {
             throw new ClassNotFoundException("name or byteCode is null or empty");
         }
-        return defineClass(name, byteCode, 0, byteCode.length);
+        synchronized (getClassLoadingLock(name)) {
+            return defineClass(name, byteCode, 0, byteCode.length);
+        }
     }
 }
 

@@ -139,7 +139,7 @@ drwxr-xr-x  2 1001  127 4096 Jul  9 11:03 frp
 
 然后参考官网教程：[使用 systemd | frp (gofrp.org)](https://gofrp.org/zh-cn/docs/setup/systemd/)
 
+### 2.10 安装配置 Git
 
-
-
+详见：[微服务环境搭建记录](xfdzcoder.github.io/7229097476379156480)
 
