@@ -407,6 +407,6 @@ ExecStop=/opt/nacos/bin/shutdown.sh
 PrivateTmp=true
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.targets
 ```
 

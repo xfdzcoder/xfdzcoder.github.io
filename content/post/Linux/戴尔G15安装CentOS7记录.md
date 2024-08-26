@@ -139,7 +139,16 @@ drwxr-xr-x  2 1001  127 4096 Jul  9 11:03 frp
 
 然后参考官网教程：[使用 systemd | frp (gofrp.org)](https://gofrp.org/zh-cn/docs/setup/systemd/)
 
-### 2.10 安装配置 Git
+### 2.10 安装配置 Java、Git、Docker
 
 详见：[微服务环境搭建记录](xfdzcoder.github.io/7229097476379156480)
 
+### 2.11 配置 Docker 远程访问
+
+https://docs.docker.com/engine/daemon/remote-access/#enable-remote-access
+
+[转发 Unix 域套接字 | frp (gofrp.org)](https://gofrp.org/zh-cn/docs/examples/unix-domain-socket/)
+
+### 2.12 配置 FTP 服务
+
+[vsftpd 配置文件 — Linux latest 文档 (gnu-linux.readthedocs.io)](https://gnu-linux.readthedocs.io/zh/latest/Chapter02/90_vsftpd.html)
