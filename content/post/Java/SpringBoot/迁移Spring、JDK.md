@@ -112,6 +112,14 @@ public class WebConfiguration implements WebFluxConfigurer {
 }
 ```
 
+2024-09-06更：在 debug `Sa-Token` 的源代码时发现了一个较为直观的表述：
+
+`Sa-Token: 1.38.0` `cn.dev33.satoken.spring.pathmatch.SaPathPatternParserUtil#match` 
+
+![image-20240906103755543](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F06%2F10-38-10-c7e629d215cd26dd3a0f38d93a24e1a3-image-20240906103755543-93f0dc.png)
+
+
+
 ### 2. server.max-http-header-size
 
 > Previously, the `server.max-http-header-size` was treated inconsistently across the four supported embedded web servers. When using Jetty, Netty, or Undertow it would configure the max HTTP request header size. When using Tomcat it would configure the max HTTP request and response header sizes.
