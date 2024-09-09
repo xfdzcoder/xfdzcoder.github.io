@@ -4,7 +4,7 @@ title: 'mysql中datadir目录下的文件'
 date: 2024-07-19T09:52:52+08:00
 draft: false
 summary: 'MySQL5和8中的数据库目录结构的异同'
-categories: [MySQL]
+categories: [框架]
 tags: ['mysql']
 ---
 

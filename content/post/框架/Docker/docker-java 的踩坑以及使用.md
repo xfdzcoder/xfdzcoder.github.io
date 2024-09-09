@@ -4,7 +4,7 @@ title: 'docker-java 的踩坑以及使用'
 date: 2024-08-21T10:51:54+08:00
 draft: false
 summary: '关于回表的疑问'
-categories: [Docker]
+categories: [框架]
 tags: ['docker']
 ---
 

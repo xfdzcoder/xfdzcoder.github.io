@@ -5,7 +5,7 @@ date: 2024-09-07T20:47:17+08:00
 lastmod: 2024-09-09T21:49:29+08:00
 draft: false
 summary: ""
-categories: [其他]
+categories: [框架]
 tags: ['top', 'minio']
 ---
 
