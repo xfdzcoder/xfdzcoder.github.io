@@ -116,6 +116,7 @@ export const upload = async (file: File) => {
       data.forEach((value, key, map) => {
         formData.append(key, value)
       })
+      // 这一步必须放在最后
       formData.append('file', file, key)
       // 这一步是必须的，因为发送给Minio的Post请求不能携带多余的参数
       // 或者可以在后端传回上传凭证时封装为一个对象将两者分开
