@@ -33,6 +33,8 @@ https://github.com/kangaroo1122/minio-spring-boot-starter
 
 [POST 策略](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-HTTPPOSTConstructPolicy.html)
 
+[Minio基础 - Minio基础概念 | Elibaron学习笔记](https://www.elibaron.com/arch/minio/minio-concept.html)
+
 ## 流程图解
 
 ![image](https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F09%2F21-30-36-85281dc8f3aaf27a21b429e3c7c05a8a-85281dc8f3aaf27a21b429e3c7c05a8a-242384.png)
