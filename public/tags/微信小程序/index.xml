@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微信小程序 on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+    <description>Recent content in 微信小程序 on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Thu, 05 Sep 2024 10:21:43 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SpringBoot调用微信登录接口踩坑记录</title>
+      <link>https://xfdzcoder.github.io/7237283644606291968/</link>
+      <pubDate>Thu, 05 Sep 2024 10:21:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7237283644606291968/</guid>
+      <description>调用微信登录接口</description>
+    </item>
+  </channel>
+</rss>

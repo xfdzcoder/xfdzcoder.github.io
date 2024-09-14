@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>框架 on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/categories/%E6%A1%86%E6%9E%B6/</link>
+    <description>Recent content in 框架 on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Thu, 12 Sep 2024 14:20:04 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/categories/%E6%A1%86%E6%9E%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ForkJoinPool 的坑</title>
+      <link>https://xfdzcoder.github.io/7239880408618278912/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7239880408618278912/</guid>
+      <description>ForkJoinPool 的坑</description>
+    </item>
+    <item>
+      <title>Minio之前端直传</title>
+      <link>https://xfdzcoder.github.io/7238165878154502144/</link>
+      <pubDate>Sat, 07 Sep 2024 20:47:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7238165878154502144/</guid>
+      <description>引言 要不要前端直传？根据需求，这次准备搭建一个试试。 上传文件应该经过后端吗，还是直接上传至阿里oss? - 知乎 (zhihu.com) 已有技术： https://github.com/kangaroo1122/minio-spring-boot-starter 介绍 | MinIO-Plus (baldhead.cn) 相关文档</description>
+    </item>
+    <item>
+      <title>docker-java 的踩坑以及使用</title>
+      <link>https://xfdzcoder.github.io/7231855485589168128/</link>
+      <pubDate>Wed, 21 Aug 2024 10:51:54 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7231855485589168128/</guid>
+      <description>关于回表的疑问</description>
+    </item>
+    <item>
+      <title>二级索引为什么不直接存储对应页地址</title>
+      <link>https://xfdzcoder.github.io/7224246078978457600/</link>
+      <pubDate>Sun, 21 Jul 2024 09:32:14 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7224246078978457600/</guid>
+      <description>关于回表的疑问</description>
+    </item>
+    <item>
+      <title>mysql中datadir目录下的文件</title>
+      <link>https://xfdzcoder.github.io/7224246078978457601/</link>
+      <pubDate>Fri, 19 Jul 2024 09:52:52 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7224246078978457601/</guid>
+      <description>MySQL5和8中的数据库目录结构的异同</description>
+    </item>
+  </channel>
+</rss>

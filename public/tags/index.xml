@@ -2,101 +2,227 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://xfdzcoder.github.io/tags/</link>
     <description>Recent content in Tags on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Wed, 31 Jul 2024 20:03:17 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Sep 2024 14:20:04 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>JUC</title>
-      <link>http://localhost:1313/tags/juc/</link>
-      <pubDate>Tue, 30 Jul 2024 11:12:26 +0800</pubDate>
-      <guid>http://localhost:1313/tags/juc/</guid>
+      <title>CompletableFuture</title>
+      <link>https://xfdzcoder.github.io/tags/completablefuture/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/completablefuture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Dubbo</title>
+      <link>https://xfdzcoder.github.io/tags/dubbo/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/dubbo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ForkJoinPool</title>
+      <link>https://xfdzcoder.github.io/tags/forkjoinpool/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/forkjoinpool/</guid>
       <description></description>
     </item>
     <item>
       <title>Top</title>
-      <link>http://localhost:1313/tags/top/</link>
-      <pubDate>Tue, 30 Jul 2024 11:12:26 +0800</pubDate>
-      <guid>http://localhost:1313/tags/top/</guid>
+      <link>https://xfdzcoder.github.io/tags/top/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/top/</guid>
       <description></description>
     </item>
     <item>
-      <title>面经</title>
-      <link>http://localhost:1313/tags/%E9%9D%A2%E7%BB%8F/</link>
-      <pubDate>Sat, 27 Jul 2024 20:03:17 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E9%9D%A2%E7%BB%8F/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mysql</title>
-      <link>http://localhost:1313/tags/mysql/</link>
-      <pubDate>Sun, 21 Jul 2024 09:32:14 +0800</pubDate>
-      <guid>http://localhost:1313/tags/mysql/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>树</title>
-      <link>http://localhost:1313/tags/%E6%A0%91/</link>
-      <pubDate>Fri, 19 Jul 2024 14:47:00 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E6%A0%91/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Springcloud</title>
-      <link>http://localhost:1313/tags/springcloud/</link>
-      <pubDate>Thu, 30 May 2024 12:16:26 +0800</pubDate>
-      <guid>http://localhost:1313/tags/springcloud/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ssm</title>
-      <link>http://localhost:1313/tags/ssm/</link>
-      <pubDate>Fri, 22 Mar 2024 16:35:09 +0800</pubDate>
-      <guid>http://localhost:1313/tags/ssm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Springboot</title>
-      <link>http://localhost:1313/tags/springboot/</link>
-      <pubDate>Tue, 23 Jan 2024 20:58:26 +0800</pubDate>
-      <guid>http://localhost:1313/tags/springboot/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tools</title>
-      <link>http://localhost:1313/tags/tools/</link>
-      <pubDate>Fri, 28 Jul 2023 11:18:04 +0800</pubDate>
-      <guid>http://localhost:1313/tags/tools/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leetcode</title>
-      <link>http://localhost:1313/tags/leetcode/</link>
-      <pubDate>Sun, 12 Mar 2023 16:17:22 +0800</pubDate>
-      <guid>http://localhost:1313/tags/leetcode/</guid>
+      <title>Minio</title>
+      <link>https://xfdzcoder.github.io/tags/minio/</link>
+      <pubDate>Sat, 07 Sep 2024 20:47:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/minio/</guid>
       <description></description>
     </item>
     <item>
       <title>Springboot&#39;</title>
-      <link>http://localhost:1313/tags/springboot/</link>
-      <pubDate>Wed, 28 Sep 2022 23:01:48 +0800</pubDate>
-      <guid>http://localhost:1313/tags/springboot/</guid>
+      <link>https://xfdzcoder.github.io/tags/springboot/</link>
+      <pubDate>Thu, 05 Sep 2024 10:21:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/springboot/</guid>
       <description></description>
     </item>
     <item>
-      <title>阅读笔记</title>
-      <link>http://localhost:1313/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Thu, 23 Jun 2022 19:18:11 +0800</pubDate>
-      <guid>http://localhost:1313/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <title>微信小程序</title>
+      <link>https://xfdzcoder.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</link>
+      <pubDate>Thu, 05 Sep 2024 10:21:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>踩坑记录</title>
+      <link>https://xfdzcoder.github.io/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Thu, 05 Sep 2024 10:21:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>论文</title>
+      <link>https://xfdzcoder.github.io/tags/%E8%AE%BA%E6%96%87/</link>
+      <pubDate>Mon, 26 Aug 2024 08:52:21 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E8%AE%BA%E6%96%87/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vue</title>
+      <link>https://xfdzcoder.github.io/tags/vue/</link>
+      <pubDate>Sun, 25 Aug 2024 16:41:58 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/vue/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>https://xfdzcoder.github.io/tags/docker/</link>
+      <pubDate>Wed, 21 Aug 2024 10:51:54 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JVM</title>
+      <link>https://xfdzcoder.github.io/tags/jvm/</link>
+      <pubDate>Sat, 17 Aug 2024 14:37:33 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/jvm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Debian</title>
+      <link>https://xfdzcoder.github.io/tags/debian/</link>
+      <pubDate>Fri, 16 Aug 2024 17:48:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/debian/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Linux</title>
+      <link>https://xfdzcoder.github.io/tags/linux/</link>
+      <pubDate>Fri, 16 Aug 2024 17:48:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>微服务</title>
+      <link>https://xfdzcoder.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Tue, 13 Aug 2024 20:12:45 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Springboot</title>
+      <link>https://xfdzcoder.github.io/tags/springboot/</link>
+      <pubDate>Tue, 13 Aug 2024 18:10:37 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/springboot/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>升级指南</title>
+      <link>https://xfdzcoder.github.io/tags/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Tue, 13 Aug 2024 18:10:37 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>毕业设计</title>
+      <link>https://xfdzcoder.github.io/tags/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Fri, 09 Aug 2024 11:11:35 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1/</guid>
       <description></description>
     </item>
     <item>
       <title>Java基础</title>
-      <link>http://localhost:1313/tags/java%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Thu, 12 May 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/tags/java%E5%9F%BA%E7%A1%80/</guid>
+      <link>https://xfdzcoder.github.io/tags/java%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/java%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>异常</title>
+      <link>https://xfdzcoder.github.io/tags/%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E5%BC%82%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>错误实践</title>
+      <link>https://xfdzcoder.github.io/tags/%E9%94%99%E8%AF%AF%E5%AE%9E%E8%B7%B5/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E9%94%99%E8%AF%AF%E5%AE%9E%E8%B7%B5/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>行测</title>
+      <link>https://xfdzcoder.github.io/tags/%E8%A1%8C%E6%B5%8B/</link>
+      <pubDate>Fri, 02 Aug 2024 10:39:59 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E8%A1%8C%E6%B5%8B/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JUC</title>
+      <link>https://xfdzcoder.github.io/tags/juc/</link>
+      <pubDate>Tue, 30 Jul 2024 11:12:26 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/juc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>面经</title>
+      <link>https://xfdzcoder.github.io/tags/%E9%9D%A2%E7%BB%8F/</link>
+      <pubDate>Sat, 27 Jul 2024 20:03:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E9%9D%A2%E7%BB%8F/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mysql</title>
+      <link>https://xfdzcoder.github.io/tags/mysql/</link>
+      <pubDate>Sun, 21 Jul 2024 09:32:14 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>树</title>
+      <link>https://xfdzcoder.github.io/tags/%E6%A0%91/</link>
+      <pubDate>Fri, 19 Jul 2024 14:47:00 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E6%A0%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Springcloud</title>
+      <link>https://xfdzcoder.github.io/tags/springcloud/</link>
+      <pubDate>Thu, 30 May 2024 12:16:26 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/springcloud/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ssm</title>
+      <link>https://xfdzcoder.github.io/tags/ssm/</link>
+      <pubDate>Fri, 22 Mar 2024 16:35:09 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/ssm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tools</title>
+      <link>https://xfdzcoder.github.io/tags/tools/</link>
+      <pubDate>Fri, 28 Jul 2023 11:18:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/tools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leetcode</title>
+      <link>https://xfdzcoder.github.io/tags/leetcode/</link>
+      <pubDate>Sun, 12 Mar 2023 16:17:22 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>阅读笔记</title>
+      <link>https://xfdzcoder.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Thu, 23 Jun 2022 19:18:11 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
   </channel>

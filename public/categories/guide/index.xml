@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Guide on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/categories/guide/</link>
+    <link>https://xfdzcoder.github.io/categories/guide/</link>
     <description>Recent content in Guide on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Fri, 28 Jul 2023 11:18:04 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/guide/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xfdzcoder.github.io/categories/guide/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>多版本管理工具汇总</title>
-      <link>http://localhost:1313/post/guide/%E5%A4%9A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</link>
+      <link>https://xfdzcoder.github.io/7233392836865990656/</link>
       <pubDate>Fri, 28 Jul 2023 11:18:04 +0800</pubDate>
-      <guid>http://localhost:1313/post/guide/%E5%A4%9A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</guid>
+      <guid>https://xfdzcoder.github.io/7233392836865990656/</guid>
       <description>汇总一下版本管理工具，如 Jenv，nvm，conda 等</description>
     </item>
     <item>
       <title>优质Java站点</title>
-      <link>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://xfdzcoder.github.io/7233392836865990657/</link>
       <pubDate>Mon, 17 Jul 2023 21:47:40 +0800</pubDate>
-      <guid>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://xfdzcoder.github.io/7233392836865990657/</guid>
       <description>汇总一下Java学习路上的优质Java站点，持续更新……</description>
     </item>
     <item>
       <title>WindowsTerminal美化教程</title>
-      <link>http://localhost:1313/7224233674005610496/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610496/</link>
       <pubDate>Mon, 03 Apr 2023 15:26:56 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610496/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610496/</guid>
       <description>美化 terminal 窗口</description>
     </item>
   </channel>

@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="微服务环境搭建记录" />
+    <meta property="og:title" content="微服务环境搭建记录" />
+    <meta property="twitter:title" content="微服务环境搭建记录" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>微服务环境搭建记录 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7229097476379156480/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive/">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about/">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/linux" title="Linux">
+                            Linux
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1" title="微服务">
+                            微服务
+                        </a>
+                        
+                    </div>
+                    <h1>微服务环境搭建记录</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Tuesday, August 13, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<h1 id="环境说明">环境说明</h1>
+<p><strong>服务器版本</strong></p>
+<p>华为云 CentOS 7.9</p>
+<p><strong>SpringCloud 版本选择</strong></p>
+<p><a href="https://sca.aliyun.com/docs/2023/overview/version-explain/">版本发布说明 - Spring Cloud Alibaba官网 (aliyun.com)</a></p>
+<table>
+<thead>
+<tr>
+<th>Spring Cloud Alibaba Version</th>
+<th>Spring Cloud Version</th>
+<th>Spring Boot Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023.0.1.0*</td>
+<td>Spring Cloud 2023.0.1</td>
+<td>3.2.4</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Spring Cloud Alibaba Version</th>
+<th>Sentinel Version</th>
+<th>Nacos Version</th>
+<th>RocketMQ Version</th>
+<th style="text-align:left">Seata Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">2023.0.1.0</td>
+<td>1.8.6</td>
+<td>2.3.2</td>
+<td>5.1.4</td>
+<td style="text-align:left">2.0.0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="搭建记录">搭建记录</h1>
+<p>注：由于该服务器只供本人测试使用，为方便全程使用 root 用户。实际开发中请不要使用 root 用户。</p>
+<h2 id="1-重置服务器密码">1. 重置服务器密码</h2>
+<p>略</p>
+<h2 id="2-修改为密钥登录">2. 修改为密钥登录</h2>
+<p>登录服务器，进入 <code>.ssh</code> 目录，生成一对公钥私钥。这里我给文件名换成了 <code>id_rsa_root</code> ，用于表示是用于 root 用户登录使用。</p>
+<p>密码留空，直接回车即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd .ssh/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># ssh-keygen -t rsa</span>
+</span></span><span style="display:flex;"><span>Generating public/private rsa key pair.
+</span></span><span style="display:flex;"><span>Enter file in which to save the key <span style="color:#ff79c6">(</span>/root/.ssh/id_rsa<span style="color:#ff79c6">)</span>: id_rsa_root
+</span></span><span style="display:flex;"><span>Enter passphrase <span style="color:#ff79c6">(</span>empty <span style="color:#ff79c6">for</span> no passphrase<span style="color:#ff79c6">)</span>:
+</span></span><span style="display:flex;"><span>Enter same passphrase again:
+</span></span></code></pre></div><p>安装公钥</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cat id_rsa_root.pub &gt;&gt; authorized_keys</span>
+</span></span></code></pre></div><p>然后检查一下 <code>.ssh</code> 目录的权限是不是 700，<code>authorized_keys</code> 文件的权限是不是 600</p>
+<blockquote>
+<p>这里顺便复习一下 Linux 文件权限，先通过 <code>ll -a</code> 来看一下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># ll -a</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#bd93f9">20</span>
+</span></span><span style="display:flex;"><span>drwx------  <span style="color:#bd93f9">2</span> root root <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">13</span> 20:20 .
+</span></span><span style="display:flex;"><span>dr-xr-x---. <span style="color:#bd93f9">5</span> root root <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">13</span> 20:05 ..
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#bd93f9">1</span> root root  <span style="color:#bd93f9">400</span> Aug <span style="color:#bd93f9">13</span> 20:24 authorized_keys
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#bd93f9">1</span> root root <span style="color:#bd93f9">1679</span> Aug <span style="color:#bd93f9">13</span> 20:20 id_rsa_root
+</span></span><span style="display:flex;"><span>-rw-r--r--  <span style="color:#bd93f9">1</span> root root  <span style="color:#bd93f9">400</span> Aug <span style="color:#bd93f9">13</span> 20:20 id_rsa_root.pub
+</span></span></code></pre></div><p>d：表示是目录</p>
+<p>rwx：r读 w写 x执行，换成二进制的话就可以表示 0 - 7 的数。</p>
+<p>分为三组 u+g+o，第一组是 u 即 user，第二组是 g 即 group，第三组是 o 即 other</p>
+<p>例如 700 的权限：第一组u是rwx，也就是 111，第二组g是 000，第三组o是 000</p>
+<p>例如 600 的权限：第一组u是rw-，也就是 110，第二组g是 000，第三组o是 000</p>
+</blockquote>
+<p>下载私钥到本地</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>scp root@xxx.xxx.xxx.xxx:/root/.ssh/id_rsa_root D:<span style="color:#f1fa8c">\m</span>ore<span style="color:#f1fa8c">\p</span>rivate-key<span style="color:#f1fa8c">\h</span>uawei<span style="color:#f1fa8c">\i</span>d_rsa_root
+</span></span></code></pre></div><p>编辑 sshd 配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim /etc/ssh/sshd_config</span>
+</span></span></code></pre></div><p>需要修改的内容如下，不存在的配置直接新增即可。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6272a4"># 启用公告密钥配对认证方式</span>
+</span></span><span style="display:flex;"><span>PubkeyAuthentication yes
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 设定PublicKey文件路径</span>
+</span></span><span style="display:flex;"><span>AuthorizedKeysFile  %h/.ssh/authorized_keys
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 允许RSA密钥</span>
+</span></span><span style="display:flex;"><span>RSAAuthentication yes
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 禁止密码验证登录</span>
+</span></span><span style="display:flex;"><span>PasswordAuthentication no 
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 禁用root账户登录，非必要，但为了安全性，请配置。（如果你就是要使用 root，那么请忽略它）</span>
+</span></span><span style="display:flex;"><span>PermitRootLogin no
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 下面两个配置是为了防止使用 ssh 方式连接服务器时经常容易断连的问题</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 客户端的存活检测间隔，单位 秒</span>
+</span></span><span style="display:flex;"><span>ClientAliveInterval <span style="color:#bd93f9">60</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 失败检测的最大次数</span>
+</span></span><span style="display:flex;"><span>ClientAliveCountMax <span style="color:#bd93f9">3</span>
+</span></span></code></pre></div><p>重启 sshd 服务使配置生效</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># systemctl restart sshd</span>
+</span></span></code></pre></div><p>然后修改本地私钥文件的权限，首先打开 [属性] -&gt; [安全]</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F14%2F08-36-50-45475fcebf944dc310920d8fb10ef653-image-20240814083649790-0e399c.png" alt="image-20240814083649790">
+
+</p>
+<p>然后点击 [高级]，</p>
+<p>检查 [所有者] 是否为您常用的用户，如果不是，请点击更改然后通过输入您的用户名来检查名称，然后更改。</p>
+<p>点击 [禁用继承] [从此对象中删除已继承的权限] 来删除掉掉该文件从目录继承的权限</p>
+<p>在权限条目中为当前用户 [添加] 读取和执行的权限</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F14%2F08-37-10-f49262f3ff1d18877d3e79b229f9b733-image-20240814083709801-000da7.png" alt="image-20240814083709801">
+
+</p>
+<p>最终效果如下，点击应用是可能会报错，直接忽略即可，权限依然会修改成功。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F14%2F08-41-23-3769b6485b9731c235471aefcbafe354-image-20240814084122497-962b8a.png" alt="image-20240814084122497">
+
+</p>
+<p>然后就可以通过密钥进行登录了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ssh -i <span style="color:#f1fa8c">&#34;密钥文件位址&#34;</span> root@xxx.xxx.xxx.xxx
+</span></span></code></pre></div><blockquote>
+<p>我使用的是 PowerShell，这里顺便提一下如何设置函数并且使用。</p>
+<p><code>$PROFILE</code> 自动变量存储当前会话中可用的 PowerShell 配置文件的路径。</p>
+<p>有四种可能的配置文件可用于支持不同的用户范围和不同的 PowerShell 主机。 对于每个配置文件脚本，其完全限定的路径存储在以下成员属性 <code>$PROFILE</code>中。</p>
+<ul>
+<li><strong>AllUsersAllHosts</strong></li>
+<li><strong>AllUsersCurrentHost</strong></li>
+<li><strong>CurrentUserAllHosts</strong></li>
+<li><strong>CurrentUserCurrentHost</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>vim <span style="color:#8be9fd;font-style:italic">$PROFILE</span>.AllUsersAllHosts
+</span></span></code></pre></div><p>然后添加如下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">function</span> <span style="color:#8be9fd;font-style:italic">sshh</span> {
+</span></span><span style="display:flex;"><span>	ssh -i <span style="color:#f1fa8c">&#34;密钥文件位址&#34;</span> root<span style="color:#8be9fd;font-style:italic">@xxx</span>.xxx.xxx.xxx
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后就可以直接通过执行 <code>sshh</code> 来登录服务器了</p>
+</blockquote>
+<h2 id="3-修改更新-yum-源">3. 修改/更新 yum 源</h2>
+<p><a href="https://developer.aliyun.com/mirror/centos">centos镜像_centos下载地址_centos安装教程-阿里巴巴开源镜像站 (aliyun.com)</a></p>
+<p>按照其教程更换 yum 源即可</p>
+<h2 id="4-安装配置-git">4. 安装配置 Git</h2>
+<p><a href="https://git-scm.com/download/linux">Git (git-scm.com)</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install -y git
+</span></span></code></pre></div><p>配置 Git 账户和邮箱，这里填写你的 GitHub 用户名和邮箱，多 Git 平台的配置后面有时间再写</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global user.name <span style="color:#f1fa8c">&#34;Your Name&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global user.email <span style="color:#f1fa8c">&#34;email@example.com&#34;</span>
+</span></span></code></pre></div><p>配置 ssh 用于拉取远程仓库，首先生成一对公私钥</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd .ssh</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># ssh-keygen -t rsa -C &#34;xfdzcoder@gmail.com&#34;</span>
+</span></span><span style="display:flex;"><span>Generating public/private rsa key pair.
+</span></span><span style="display:flex;"><span>Enter file in which to save the key <span style="color:#ff79c6">(</span>/root/.ssh/id_rsa<span style="color:#ff79c6">)</span>: id_rsa_xfdzcoder_github
+</span></span><span style="display:flex;"><span>Enter passphrase <span style="color:#ff79c6">(</span>empty <span style="color:#ff79c6">for</span> no passphrase<span style="color:#ff79c6">)</span>:
+</span></span><span style="display:flex;"><span>Enter same passphrase again:
+</span></span></code></pre></div><p>然后把公钥配置到 GitHub 上，执行下面的命令会打印一串字符串，将其复制</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cat id_rsa_xfdzcoder_github.pub</span>
+</span></span></code></pre></div><p>打开 <a href="https://github.com">GitHub</a> ，进入设置，然后选择 <code>SSH and GPG keys</code></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F14%2F10-50-35-efa55ff8e0cf1259c68c1cd22b4e1ed4-image-20240814105015840-8d673d.png" alt="image-20240814105015840">
+
+</p>
+<p>点击右上角 <code>New SSH key</code> 新增一个 ssh 公钥，并将更改复制的公钥粘贴到 key 里面，Title 就可以随便取，但还是建议具有唯一性以及一定的含义以便维护</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F14%2F10-51-59-f0ef8284617ba9b6080f7d83c8b7d4b2-image-20240814105158823-a338ca.png" alt="image-20240814105158823">
+
+</p>
+<p>在 <code>.ssh</code> 目录下新建一个文件 <code>config</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim config</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6272a4"># Host 指定别名</span>
+</span></span><span style="display:flex;"><span>Host github.com
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 真正要连接的服务器</span>
+</span></span><span style="display:flex;"><span>    HostName github.com
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 默认就是 git 可以不写</span>
+</span></span><span style="display:flex;"><span>    User git
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 密钥文件位址</span>
+</span></span><span style="display:flex;"><span>    IdentityFile ~/.ssh/id_rsa_xfdzcoder_github
+</span></span></code></pre></div><p>然后通过如下命令测试是否配置成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac .ssh<span style="color:#ff79c6">]</span><span style="color:#6272a4"># ssh -T git@github.com</span>
+</span></span><span style="display:flex;"><span>Are you sure you want to <span style="color:#ff79c6">continue</span> connecting <span style="color:#ff79c6">(</span>yes/no<span style="color:#ff79c6">)</span>? yes
+</span></span><span style="display:flex;"><span>Hi xfdzcoder! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</span></span></code></pre></div><h2 id="5-安装-jenvjava-环境管理器">5. 安装 jenv—Java 环境管理器</h2>
+<p><a href="https://github.com/jenv/jenv">jenv/jenv: Manage your Java environment (github.com)</a></p>
+<p>linux下需要克隆Git仓库，我们把源代码放到 <code>/usr/local/share</code> 中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd /usr/local/share/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac src<span style="color:#ff79c6">]</span><span style="color:#6272a4"># git clone https://github.com/jenv/jenv.git</span>
+</span></span><span style="display:flex;"><span>Cloning into <span style="color:#f1fa8c">&#39;/usr/local/share/.jenv&#39;</span>...
+</span></span><span style="display:flex;"><span>remote: Enumerating objects: 1543, <span style="color:#ff79c6">done</span>.
+</span></span><span style="display:flex;"><span>remote: Counting objects: 100% <span style="color:#ff79c6">(</span>425/425<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">done</span>.
+</span></span><span style="display:flex;"><span>remote: Compressing objects: 100% <span style="color:#ff79c6">(</span>128/128<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">done</span>.
+</span></span><span style="display:flex;"><span>remote: Total <span style="color:#bd93f9">1543</span> <span style="color:#ff79c6">(</span>delta 340<span style="color:#ff79c6">)</span>, reused <span style="color:#bd93f9">297</span> <span style="color:#ff79c6">(</span>delta 297<span style="color:#ff79c6">)</span>, pack-reused <span style="color:#bd93f9">1118</span> <span style="color:#ff79c6">(</span>from 1<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>Receiving objects: 100% <span style="color:#ff79c6">(</span>1543/1543<span style="color:#ff79c6">)</span>, 508.00 KiB | <span style="color:#bd93f9">0</span> bytes/s, <span style="color:#ff79c6">done</span>.
+</span></span><span style="display:flex;"><span>Resolving deltas: 100% <span style="color:#ff79c6">(</span>768/768<span style="color:#ff79c6">)</span>, <span style="color:#ff79c6">done</span>.
+</span></span></code></pre></div><p>然后需要使其在 Shell 中生效，没错就是添加环境变量，顺便再复习一下 Linux 中配置文件加载的顺序吧：<a href="https://www.cnblogs.com/andy9468/p/13321905.html">Linux配置文件的生效顺序：profile、bashrc等 - 安迪9468 - 博客园 (cnblogs.com)</a></p>
+<p>由于需要全局生效，所以把 jenv 的环境变量配置在 <code>/etc/profile.d/jenv.sh</code> 中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim /etc/profile.d/jenv.sh</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">if</span> <span style="color:#ff79c6">[</span> -n <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$BASH_VERSION</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">]</span>; <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">export</span> <span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/usr/local/share/.jenv/bin:</span><span style="color:#8be9fd;font-style:italic">$PATH</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">eval</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>jenv init -<span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">elif</span> <span style="color:#ff79c6">[</span> -n <span style="color:#f1fa8c">&#34;</span><span style="color:#8be9fd;font-style:italic">$ZSH_VERSION</span><span style="color:#f1fa8c">&#34;</span> <span style="color:#ff79c6">]</span>; <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">export</span> <span style="color:#8be9fd;font-style:italic">PATH</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;/usr/local/share/.jenv/bin:</span><span style="color:#8be9fd;font-style:italic">$PATH</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">eval</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">$(</span>jenv init -<span style="color:#ff79c6">)</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;ERROR! Unsupported shell. Please configure manually.&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">fi</span>
+</span></span></code></pre></div><p>重载配置文件以使其生效</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac local<span style="color:#ff79c6">]</span><span style="color:#6272a4"># source /etc/profile</span>
+</span></span></code></pre></div><p>执行 <code>jenv</code> 查看是否配置成功</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac local<span style="color:#ff79c6">]</span><span style="color:#6272a4"># jenv</span>
+</span></span><span style="display:flex;"><span>jenv 0.5.7
+</span></span><span style="display:flex;"><span>Usage: jenv &lt;command&gt; <span style="color:#ff79c6">[</span>&lt;args&gt;<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Some useful jenv commands are:
+</span></span><span style="display:flex;"><span>   commands    List all available jenv commands
+</span></span><span style="display:flex;"><span>   <span style="color:#8be9fd;font-style:italic">local</span>       Set or show the <span style="color:#8be9fd;font-style:italic">local</span> application-specific Java version
+</span></span><span style="display:flex;"><span>   global      Set or show the global Java version
+</span></span><span style="display:flex;"><span>   shell       Set or show the shell-specific Java version
+</span></span><span style="display:flex;"><span>   rehash      Rehash jenv shims <span style="color:#ff79c6">(</span>run this after installing executables<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>   version     Show the current Java version and its origin
+</span></span><span style="display:flex;"><span>   versions    List all Java versions available to jenv
+</span></span><span style="display:flex;"><span>   which       Display the full path to an executable
+</span></span><span style="display:flex;"><span>   whence      List all Java versions that contain the given executable
+</span></span><span style="display:flex;"><span>   add         Add JDK into jenv. A <span style="color:#8be9fd;font-style:italic">alias</span> name will be generated by parsing <span style="color:#f1fa8c">&#34;java -version&#34;</span>
+</span></span><span style="display:flex;"><span>   remove      Remove JDK installations
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>See <span style="color:#f1fa8c">`</span>jenv <span style="color:#8be9fd;font-style:italic">help</span> &lt;command&gt;&#39; <span style="color:#ff79c6">for</span> information on a specific command.
+</span></span><span style="display:flex;"><span>For full documentation, see: https://github.com/jenv/jenv/blob/master/README.md
+</span></span></code></pre></div><p>启用 <code>export-plugin</code> 以使用 <code>JAVA_HOME</code> 这个环境变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac local<span style="color:#ff79c6">]</span><span style="color:#6272a4"># jenv enable-plugin export</span>
+</span></span><span style="display:flex;"><span>You may restart your session to activate jenv <span style="color:#8be9fd;font-style:italic">export</span> plugin
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">export</span> plugin activated
+</span></span></code></pre></div><p>然后就可以下载 JDK 然后使用 <code>jenv add</code> 命令添加 java 环境了。直接入 Oracle 官网 <a href="https://www.oracle.com/java/technologies/downloads/">Java Downloads | Oracle</a>，这边就只示例一下 JDK21 的下载</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir java</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz</span>
+</span></span><span style="display:flex;"><span>--2024-08-14 15:28:35--  https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
+</span></span><span style="display:flex;"><span>Resolving download.oracle.com <span style="color:#ff79c6">(</span>download.oracle.com<span style="color:#ff79c6">)</span>... 23.198.116.85
+</span></span><span style="display:flex;"><span>Connecting to download.oracle.com <span style="color:#ff79c6">(</span>download.oracle.com<span style="color:#ff79c6">)</span>|23.198.116.85|:443... connected.
+</span></span><span style="display:flex;"><span>HTTP request sent, awaiting response... <span style="color:#bd93f9">200</span> OK
+</span></span><span style="display:flex;"><span>Length: <span style="color:#bd93f9">197545777</span> <span style="color:#ff79c6">(</span>188M<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>application/x-gzip<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>Saving to: ‘jdk-21_linux-x64_bin.tar.gz’
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>100%<span style="color:#ff79c6">[==============================================================================</span>&gt;<span style="color:#ff79c6">]</span> 197,545,777 1.12MB/s   in 2m 29s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2024-08-14 15:31:05 <span style="color:#ff79c6">(</span>1.26 MB/s<span style="color:#ff79c6">)</span> - ‘jdk-21_linux-x64_bin.tar.gz’ saved <span style="color:#ff79c6">[</span>197545777/197545777<span style="color:#ff79c6">]</span>
+</span></span></code></pre></div><p>将 JDK 下载好之后解压到 <code>/usr/local/share</code> 中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># tar -xvzf jdk-21_linux-x64_bin.tar.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mv jdk-21.0.4/ java/jdk21</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># ll -a java/</span>
+</span></span><span style="display:flex;"><span>total <span style="color:#bd93f9">12</span>
+</span></span><span style="display:flex;"><span>drwxr-xr-x  <span style="color:#bd93f9">3</span> root root <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">14</span> 15:38 .
+</span></span><span style="display:flex;"><span>drwxr-xr-x. <span style="color:#bd93f9">7</span> root root <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">14</span> 15:38 ..
+</span></span><span style="display:flex;"><span>drwxr-xr-x  <span style="color:#bd93f9">9</span> root root <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">14</span> 15:36 jdk21
+</span></span></code></pre></div><p>通过 <code>jenv</code> 来添加 java 环境，并检查环境变量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># jenv add java/jdk21/</span>
+</span></span><span style="display:flex;"><span>oracle64-21.0.4 added
+</span></span><span style="display:flex;"><span>21.0.4 added
+</span></span><span style="display:flex;"><span>21.0 added
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">21</span> added
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># jenv versions</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#bd93f9">21</span>
+</span></span><span style="display:flex;"><span>  21.0
+</span></span><span style="display:flex;"><span>  21.0.4
+</span></span><span style="display:flex;"><span>  oracle64-21.0.4
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># jenv global 21</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># java -version</span>
+</span></span><span style="display:flex;"><span>java version <span style="color:#f1fa8c">&#34;21.0.4&#34;</span> 2024-07-16 LTS
+</span></span><span style="display:flex;"><span>Java<span style="color:#ff79c6">(</span>TM<span style="color:#ff79c6">)</span> SE Runtime Environment <span style="color:#ff79c6">(</span>build 21.0.4+8-LTS-274<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>Java HotSpot<span style="color:#ff79c6">(</span>TM<span style="color:#ff79c6">)</span> 64-Bit Server VM <span style="color:#ff79c6">(</span>build 21.0.4+8-LTS-274, mixed mode, sharing<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># echo $JAVA_HOME</span>
+</span></span><span style="display:flex;"><span>/root/.jenv/versions/21
+</span></span></code></pre></div><h2 id="6-安装-dockerce">6. 安装 DockerCE</h2>
+<p><a href="https://developer.aliyun.com/mirror/docker-ce">docker-ce镜像_docker-ce下载地址_docker-ce安装教程-阿里巴巴开源镜像站 (aliyun.com)</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># yum install -y yum-utils device-mapper-persistent-data lvm2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># sed -i &#39;s+download.docker.com+mirrors.aliyun.com/docker-ce+&#39; /etc/yum.repos.d/docker-ce.repo</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># yum makecache fast</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># yum -y install docker-ce</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># service docker start</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker version</span>
+</span></span><span style="display:flex;"><span>Client: Docker Engine - Community
+</span></span><span style="display:flex;"><span> Version:           26.1.4
+</span></span><span style="display:flex;"><span> API version:       1.45
+</span></span><span style="display:flex;"><span> Go version:        go1.21.11
+</span></span><span style="display:flex;"><span> Git commit:        5650f9b
+</span></span><span style="display:flex;"><span> Built:             Wed Jun  <span style="color:#bd93f9">5</span> 11:32:04 <span style="color:#bd93f9">2024</span>
+</span></span><span style="display:flex;"><span> OS/Arch:           linux/amd64
+</span></span><span style="display:flex;"><span> Context:           default
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Server: Docker Engine - Community
+</span></span><span style="display:flex;"><span> Engine:
+</span></span><span style="display:flex;"><span>  Version:          26.1.4
+</span></span><span style="display:flex;"><span>  API version:      1.45 <span style="color:#ff79c6">(</span>minimum version 1.24<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>  Go version:       go1.21.11
+</span></span><span style="display:flex;"><span>  Git commit:       de5c9cf
+</span></span><span style="display:flex;"><span>  Built:            Wed Jun  <span style="color:#bd93f9">5</span> 11:31:02 <span style="color:#bd93f9">2024</span>
+</span></span><span style="display:flex;"><span>  OS/Arch:          linux/amd64
+</span></span><span style="display:flex;"><span>  Experimental:     <span style="color:#8be9fd;font-style:italic">false</span>
+</span></span><span style="display:flex;"><span> containerd:
+</span></span><span style="display:flex;"><span>  Version:          1.6.33
+</span></span><span style="display:flex;"><span>  GitCommit:        d2d58213f83a351ca8f528a95fbd145f5654e957
+</span></span><span style="display:flex;"><span> runc:
+</span></span><span style="display:flex;"><span>  Version:          1.1.12
+</span></span><span style="display:flex;"><span>  GitCommit:        v1.1.12-0-g51d5e94
+</span></span><span style="display:flex;"><span> docker-init:
+</span></span><span style="display:flex;"><span>  Version:          0.19.0
+</span></span><span style="display:flex;"><span>  GitCommit:        de40ad0
+</span></span></code></pre></div><p>然后再配置 Docker 镜像仓库，因为24年6月之后 Docker 镜像仓库被封了一部分</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim /etc/docker/daemon.json</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;registry-mirrors&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://dockerhub.icu&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://mirror.aliyuncs.com&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://dockerproxy.com&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://mirror.baidubce.com&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://docker.m.daocloud.io&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;https://docker.nju.edu.cn&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>然后随便拉一个镜像试试</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># systemctl restart docker</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker pull hello-world</span>
+</span></span><span style="display:flex;"><span>Using default tag: latest
+</span></span><span style="display:flex;"><span>latest: Pulling from library/hello-world
+</span></span><span style="display:flex;"><span>c1ec31eb5944: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>Digest: sha256:53cc4d415d839c98be39331c948609b659ed725170ad2ca8eb36951288f81b75
+</span></span><span style="display:flex;"><span>Status: Downloaded newer image <span style="color:#ff79c6">for</span> hello-world:latest
+</span></span><span style="display:flex;"><span>docker.io/library/hello-world:latest
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker images</span>
+</span></span><span style="display:flex;"><span>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+</span></span><span style="display:flex;"><span>hello-world   latest    d2c94e258dcb   <span style="color:#bd93f9">15</span> months ago   13.3kB
+</span></span></code></pre></div><h2 id="7-安装-mysql">7. 安装 MySQL</h2>
+<p><a href="https://hub.docker.com/_/mysql/">mysql - Official Image | Docker Hub</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker pull mysql:8.4.0</span>
+</span></span></code></pre></div><p>然后创建配置文件、数据日志目录，然后启动 MySQL 容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd /opt/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir mysql</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd mysql/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac mysql<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir data</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac mysql<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir conf</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac mysql<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker run -p 1103:3306 -v /opt/mysql/conf:/etc/mysql/conf.d -v /opt/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 --name mysql -d mysql:8.4.0</span>
+</span></span><span style="display:flex;"><span>d72d52de8d007c979102b93bcd5f1635a698e4d42e1728131dd07f12d3031aad
+</span></span></code></pre></div><h3 id="71-修改-mysql-配置降低内存占用">7.1 修改 MySQL 配置降低内存占用</h3>
+<p>我的服务器是2核2G的，所以还需要降低一下 MySQL 的性能消耗</p>
+<p>[动画表情]先来看一下没改之前的内存占用情况</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker stats mysql</span>
+</span></span><span style="display:flex;"><span>CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     BLOCK I/O       PIDS
+</span></span><span style="display:flex;"><span>d1bcae055127   mysql     0.44%     477.7MiB / 1.794GiB   26.00%    656B / 0B   131MB / 282MB   <span style="color:#bd93f9">36</span>
+</span></span></code></pre></div><p>进入 mysql 容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac mysql<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim /opt/mysql/conf/my.cnf</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>mysqld<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">performance_schema_max_table_instances</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>  
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">table_definition_cache</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>    <span style="color:#6272a4">#缓存</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">performance_schema</span><span style="color:#ff79c6">=</span>off    <span style="color:#6272a4">#用于监控MySQL server在一个较低级别的运行过程中的资源消耗、资源东西</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">table_open_cache</span><span style="color:#ff79c6">=</span><span style="color:#bd93f9">32</span>    <span style="color:#6272a4">#打开表的缓存</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">innodb_buffer_pool_chunk_size</span><span style="color:#ff79c6">=</span>32M    <span style="color:#6272a4">#InnoDB缓冲池大小调整操作的块大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">innodb_buffer_pool_size</span><span style="color:#ff79c6">=</span>32M    <span style="color:#6272a4">#InnoDB 存储引擎的表数据和索引数据的最大内存缓冲区大小</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac mysql<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker restart mysql</span>
+</span></span></code></pre></div><p>然后再查看内存占用，少了一半，也差不多了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac share<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker stats mysql</span>
+</span></span><span style="display:flex;"><span>CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     BLOCK I/O         PIDS
+</span></span><span style="display:flex;"><span>d1bcae055127   mysql     0.45%     182.8MiB / 1.794GiB   9.95%     516B / 0B   36.3MB / 13.4MB   <span style="color:#bd93f9">36</span>
+</span></span></code></pre></div><h3 id="72-通过-yum-安装">7.2 通过 yum 安装</h3>
+<p>[MySQL ：： MySQL 8.4 参考手册 ：： 2.5.1 使用 MySQL Yum 仓库在 Linux 上安装 MySQL</p>
+<h2 id="8-安装-redis">8. 安装 Redis</h2>
+<p><a href="https://hub.docker.com/_/redis/">redis - Official Image | Docker Hub</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir redis</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker pull redis</span>
+</span></span><span style="display:flex;"><span>Using default tag: latest
+</span></span><span style="display:flex;"><span>latest: Pulling from library/redis
+</span></span><span style="display:flex;"><span>e4fff0779e6d: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>d1dde3db2ec5: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>1d321a003dde: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>d65aedb2f012: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>4018f93716a2: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>b0967b02e8cf: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>4f4fb700ef54: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>d288b86f5d06: Pull <span style="color:#8be9fd;font-style:italic">complete</span>
+</span></span><span style="display:flex;"><span>Digest: sha256:e30eac723e308f27e92cb609024b6be3ed2b2fb67899ec37043f743b169e17a5
+</span></span><span style="display:flex;"><span>Status: Downloaded newer image <span style="color:#ff79c6">for</span> redis:latest
+</span></span><span style="display:flex;"><span>docker.io/library/redis:latest
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd redis/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac redis<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir conf</span>
+</span></span></code></pre></div><p>然后创建 <code>redis.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac redis<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim conf/redis.conf</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#6272a4"># 配置密码</span>
+</span></span><span style="display:flex;"><span>requirepass <span style="color:#bd93f9">123456</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 允许所有主机访问</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">bind</span> 0.0.0.0
+</span></span></code></pre></div><p>启动 redis 容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac redis<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker run -p 3046:6379 -v /opt/redis/conf:/usr/local/etc/redis --name redis redis redis-server /usr/local/etc/redis/redis.conf</span>
+</span></span><span style="display:flex;"><span>35b512b0fa78daf2b1d73d2475eb784a6e9efc2f9aac4cee256ef9e720a6d924
+</span></span></code></pre></div><h2 id="9-安装-nacos-docker">9. 安装 Nacos-Docker</h2>
+<p><a href="https://nacos.io/zh-cn/docs/v2/quickstart/quick-start-docker.html">Nacos Docker 快速开始</a></p>
+<p>首先去 GitHub 仓库下载对应的版本，这里我选择 <code>2.3.2</code></p>
+<p><a href="https://github.com/nacos-group/nacos-docker/releases">Releases · nacos-group/nacos-docker (github.com)</a></p>
+<p>然后通过 scp 将下载到本地的包上传到服务器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scp -i <span style="color:#f1fa8c">&#34;密钥文件位置&#34;</span> D:<span style="color:#f1fa8c">\d</span>ownloads<span style="color:#f1fa8c">\e</span>dge<span style="color:#f1fa8c">\n</span>acos-docker-2.3.2.tar.gz root@xxx.xxx.xxx.xxx:/opt/
+</span></span><span style="display:flex;"><span>nacos-docker-2.3.2.tar.gz                                                             100%   15KB 295.1KB/s   00:00
+</span></span></code></pre></div><p>解压 nacos 压缩包</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># tar -xvzf nacos-docker-2.3.2.tar.gz</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mv nacos-docker-2.3.2 nacos</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd nacos/</span>
+</span></span></code></pre></div><p>创建一个容器网络，并将 mysql、redis 都加入进来，并查看容器在网络中的 IP</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker network create middleware</span>
+</span></span><span style="display:flex;"><span>77b8e932b389d5e59544da978e09d6b3eb9d0ab3cbf5e7f3b9fad76ce7288bcb
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker network connect middleware mysql</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker network connect middleware redis</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4">#  docker inspect -f=&#39;{{.Name}} {{.NetworkSettings.IPAddress}} {{.HostConfig.PortBindings}}&#39; $(docker ps -aq)</span>
+</span></span><span style="display:flex;"><span>/mysql 172.17.0.2 map<span style="color:#ff79c6">[</span>3306/tcp:<span style="color:#ff79c6">[{</span> 1103<span style="color:#ff79c6">}]]</span>
+</span></span><span style="display:flex;"><span>/redis 172.17.0.3 map<span style="color:#ff79c6">[</span>6379/tcp:<span style="color:#ff79c6">[{</span> 3046<span style="color:#ff79c6">}]]</span>
+</span></span></code></pre></div><p>修改 Nacos 连接的 MySQL 的配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim ../env/nacos-standlone-mysql.env</span>
+</span></span></code></pre></div><p>删掉数据库配置，后面通过 application.properties 进行指定，然后修改成下面的样子，JVM 参数设置的比较小，可自行设置。</p>
+<pre tabindex="0"><code>PREFER_HOST_MODE=hostname
+MODE=standalone
+SPRING_DATASOURCE_PLATFORM=mysql
+KeyRetrieval=true
+JVM_XMS=256M
+JVM_XMX=256M
+JVM_XMN=128M
+JVM_MS=32M
+JVM_MMS=80M
+</code></pre><p>修改 <code>docker-compose</code> 启动文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># vim standalone-mysql-8.yaml</span>
+</span></span></code></pre></div><p>修改内容：<code>services.nacos.volumes</code> 、<code>services.nacos.depends_on</code> 、<code>services.nacos.ports</code>、<code>services.nacos.container_name</code>、<code>services.nacos.networks</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">nacos</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">image</span>: nacos/nacos-server:${NACOS_VERSION}
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">networks</span>:
+</span></span><span style="display:flex;"><span>      - middleware
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">container_name</span>: nacos
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">env_file</span>:
+</span></span><span style="display:flex;"><span>      - ../env/nacos-standlone-mysql.env
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">volumes</span>:
+</span></span><span style="display:flex;"><span>      - /opt/nacos/logs/:/home/nacos/logs
+</span></span><span style="display:flex;"><span>      - /opt/nacos/conf/application.properties:/home/nacos/conf/application.properties
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f1fa8c">&#34;4404:8848&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f1fa8c">&#34;5404:9848&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">restart</span>: always
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">networks</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">middleware</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">external</span>: <span style="color:#ff79c6">true</span>
+</span></span></code></pre></div><p>回到 <code>/opt/nacos</code> 目录，创建 <code>conf</code> 、<code>logs</code> 目录，并将 properties 配置文件复制到 conf 中</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir conf</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir logs</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cp example/init.d/application.properties conf/</span>
+</span></span></code></pre></div><p>然后修改 <code>application.properties</code> 配置文件，要修改的 key 如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-properties" data-lang="properties"><span style="display:flex;"><span><span style="color:#6272a4"># 数据库用户名</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">db.user.0</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">xxxx</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 数据库密码</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">db.password.0</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">xxxx</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">nacos.core.auth.system.type</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">nacos</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">nacos.core.auth.enabled</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># 这个是登录时鉴权用的 JWT 的密钥，请自行生成。官方文档：https://nacos.io/docs/v2/guide/user/auth/</span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">nacos.core.auth.plugin.nacos.token.secret.key</span><span style="color:#ff79c6">=</span>
+</span></span></code></pre></div><p>然后执行初始化 MySQL 数据库脚本，这里的数据库名字是在 <code>env/nacos-standlone-mysql.env</code> 下定义的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac example<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker exec -it mysql bash</span>
+</span></span><span style="display:flex;"><span>bash-5.1# mysql -p
+</span></span><span style="display:flex;"><span>Enter password:
+</span></span><span style="display:flex;"><span>mysql&gt; create database nacos_devtest;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#bd93f9">1</span> row affected <span style="color:#ff79c6">(</span>0.00 sec<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; use nacos_devtest;
+</span></span><span style="display:flex;"><span>Database changed
+</span></span></code></pre></div><p>下载数据库 SQL 脚本：<a href="https://github.com/alibaba/nacos/blob/2.2.3/distribution/conf/mysql-schema.sql">nacos/distribution/conf/mysql-schema.sql at 2.2.3 · alibaba/nacos (github.com)</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># wget https://raw.githubusercontent.com/alibaba/nacos/2.2.3/distribution/conf/mysql-schema.sql</span>
+</span></span><span style="display:flex;"><span>--2024-08-15 14:03:17--  https://raw.githubusercontent.com/alibaba/nacos/2.2.3/distribution/conf/mysql-schema.sql
+</span></span><span style="display:flex;"><span>Resolving raw.githubusercontent.com <span style="color:#ff79c6">(</span>raw.githubusercontent.com<span style="color:#ff79c6">)</span>... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
+</span></span><span style="display:flex;"><span>Connecting to raw.githubusercontent.com <span style="color:#ff79c6">(</span>raw.githubusercontent.com<span style="color:#ff79c6">)</span>|185.199.108.133|:443... connected.
+</span></span><span style="display:flex;"><span>HTTP request sent, awaiting response... <span style="color:#bd93f9">200</span> OK
+</span></span><span style="display:flex;"><span>Length: <span style="color:#bd93f9">10825</span> <span style="color:#ff79c6">(</span>11K<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">[</span>text/plain<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>Saving to: ‘mysql-schema.sql’
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>100%<span style="color:#ff79c6">[==============================================================================</span>&gt;<span style="color:#ff79c6">]</span> 10,825      1.39KB/s   in 7.6s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2024-08-15 14:03:34 <span style="color:#ff79c6">(</span>1.39 KB/s<span style="color:#ff79c6">)</span> - ‘mysql-schema.sql’ saved <span style="color:#ff79c6">[</span>10825/10825<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker cp mysql-schema.sql mysql:/tmp/</span>
+</span></span><span style="display:flex;"><span>Successfully copied 12.8kB to mysql:/tmp/
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker exec -it mysql bash</span>
+</span></span><span style="display:flex;"><span>bash-5.1# <span style="color:#8be9fd;font-style:italic">cd</span> tmp/
+</span></span><span style="display:flex;"><span>bash-5.1# ls -al
+</span></span><span style="display:flex;"><span>total <span style="color:#bd93f9">20</span>
+</span></span><span style="display:flex;"><span>drwxrwxrwt <span style="color:#bd93f9">1</span> root root  <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">15</span> 06:07 .
+</span></span><span style="display:flex;"><span>drwxr-xr-x <span style="color:#bd93f9">1</span> root root  <span style="color:#bd93f9">4096</span> Aug <span style="color:#bd93f9">15</span> 06:07 ..
+</span></span><span style="display:flex;"><span>-rw-r--r-- <span style="color:#bd93f9">1</span> root root <span style="color:#bd93f9">10825</span> Aug <span style="color:#bd93f9">15</span> 06:03 mysql-schema.sql
+</span></span><span style="display:flex;"><span>bash-5.1# mysql -p nacos_devtest &lt; ./mysql-schema.sql
+</span></span><span style="display:flex;"><span>Enter password:
+</span></span></code></pre></div><p>执行完之后登录 MySQL 查看表数量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql&gt; show tables;
+</span></span><span style="display:flex;"><span>+-------------------------+
+</span></span><span style="display:flex;"><span>| Tables_in_nacos_devtest |
+</span></span><span style="display:flex;"><span>+-------------------------+
+</span></span><span style="display:flex;"><span>| config_info             |
+</span></span><span style="display:flex;"><span>| config_info_aggr        |
+</span></span><span style="display:flex;"><span>| config_info_beta        |
+</span></span><span style="display:flex;"><span>| config_info_tag         |
+</span></span><span style="display:flex;"><span>| config_tags_relation    |
+</span></span><span style="display:flex;"><span>| group_capacity          |
+</span></span><span style="display:flex;"><span>| his_config_info         |
+</span></span><span style="display:flex;"><span>| permissions             |
+</span></span><span style="display:flex;"><span>| roles                   |
+</span></span><span style="display:flex;"><span>| tenant_capacity         |
+</span></span><span style="display:flex;"><span>| tenant_info             |
+</span></span><span style="display:flex;"><span>| users                   |
+</span></span><span style="display:flex;"><span>+-------------------------+
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">12</span> rows in <span style="color:#8be9fd;font-style:italic">set</span> <span style="color:#ff79c6">(</span>0.01 sec<span style="color:#ff79c6">)</span>
+</span></span></code></pre></div><p>退回到服务器中启动 nacos 容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac nacos<span style="color:#ff79c6">]</span><span style="color:#6272a4"># docker compose -f example/standalone-mysql-8.yaml up -d</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>+<span style="color:#ff79c6">]</span> Running 1/0
+</span></span><span style="display:flex;"><span> ✔ Container nacos  Running
+</span></span></code></pre></div><p>然后去服务器控制台放行 4404 端口，并访问 <code>ip:4404/nacos</code> ，默认用户名和密码是 nacos，nacos</p>
+<h2 id="10-安装-frp">10. 安装 frp</h2>
+<p><a href="https://gofrp.org/zh-cn/docs/overview/">概览 | frp (gofrp.org)</a></p>
+<p>进入 <code>/opt</code> 目录，新建文件夹 <code>frp</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac ~<span style="color:#ff79c6">]</span><span style="color:#6272a4"># cd /opt/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>root@hcss-ecs-9eac opt<span style="color:#ff79c6">]</span><span style="color:#6272a4"># mkdir frp</span>
+</span></span></code></pre></div><p>下载 frp 到本地然后上传到服务器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scph D:<span style="color:#f1fa8c">\d</span>ownloads<span style="color:#f1fa8c">\i</span>dm<span style="color:#f1fa8c">\f</span>rp_0.59.0_linux_amd64_4.tar.gz root@123.60.150.67:/opt/frp/
+</span></span><span style="display:flex;"><span>frp_0.59.0_linux_amd64_4.tar.gz                                                       100%   12MB   1.7MB/s   00:06
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7229066755950288896/" data-toggle="tooltip" data-placement="top" title="升级到SpringBoot3、JDK21">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7230148377613213696/" data-toggle="tooltip" data-placement="top" title="戴尔G15安装Debian12记录">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

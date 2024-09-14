@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/debian/</link>
+    <description>Recent content in Debian on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Fri, 16 Aug 2024 17:48:43 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>戴尔G15安装Debian12记录</title>
+      <link>https://xfdzcoder.github.io/7230148377613213696/</link>
+      <pubDate>Fri, 16 Aug 2024 17:48:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7230148377613213696/</guid>
+      <description>1. 安装 Debian 12 打开ISO文件后，单击UltraISO菜单中的“启动”，在弹出的下拉菜单中选择“写入硬盘映像”，然后格式化后写入即可 开机动画时按 F2</description>
+    </item>
+  </channel>
+</rss>

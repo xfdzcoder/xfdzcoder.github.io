@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Minio on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/minio/</link>
+    <description>Recent content in Minio on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Mon, 09 Sep 2024 21:49:29 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/minio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Minio之前端直传</title>
+      <link>https://xfdzcoder.github.io/7238165878154502144/</link>
+      <pubDate>Sat, 07 Sep 2024 20:47:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7238165878154502144/</guid>
+      <description>引言 要不要前端直传？根据需求，这次准备搭建一个试试。 上传文件应该经过后端吗，还是直接上传至阿里oss? - 知乎 (zhihu.com) 已有技术： https://github.com/kangaroo1122/minio-spring-boot-starter 介绍 | MinIO-Plus (baldhead.cn) 相关文档</description>
+    </item>
+  </channel>
+</rss>

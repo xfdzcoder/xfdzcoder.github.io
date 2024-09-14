@@ -2,31 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java基础 on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/tags/java%E5%9F%BA%E7%A1%80/</link>
+    <link>https://xfdzcoder.github.io/tags/java%E5%9F%BA%E7%A1%80/</link>
     <description>Recent content in Java基础 on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Thu, 12 May 2022 14:13:04 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/java%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Aug 2024 09:08:05 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/java%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>异常堆栈日志的填充时机</title>
+      <link>https://xfdzcoder.github.io/7227127412671160320/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7227127412671160320/</guid>
+      <description>记一次开发中的错误实践</description>
+    </item>
+    <item>
+      <title>SecurityManager的应用</title>
+      <link>https://xfdzcoder.github.io/7226540759879557120/</link>
+      <pubDate>Tue, 06 Aug 2024 18:53:26 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7226540759879557120/</guid>
+      <description>SecurityManager的作用，他的类文档已经解释的很完善了。下面主要记录一下策略文件。 Java SecurityManager初识 | Spoock 下面记</description>
+    </item>
     <item>
       <title>JDK 的动态代理之源码 DEBUG</title>
-      <link>http://localhost:1313/7224233674005610508/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610508/</link>
       <pubDate>Thu, 12 May 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610508/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610508/</guid>
       <description>废话不多说，上案例代码： public class Main { public static void main(String[] args) { // 先不用管，后面会提到 System.setProperty(&amp;#34;sun.misc.ProxyGenerator.saveGeneratedFiles&amp;#34;, &amp;#34;true&amp;#34;); // 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载 // 并且实现 F 接口 // 该</description>
     </item>
     <item>
       <title>正则表达式</title>
-      <link>http://localhost:1313/7224233674005610507/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610507/</link>
       <pubDate>Thu, 03 Mar 2022 19:11:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610507/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610507/</guid>
       <description>正则表达式 语法介绍： 按照功能分类：（大致 限定符 选择匹配符 分组组合和反向引用符 特殊字符 字符匹配符 定位符 元字符：转意号 \\ 需要用到转意符号的字符：</description>
     </item>
     <item>
       <title>HashSet 源码分析</title>
-      <link>http://localhost:1313/7224237482966319106/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319106/</link>
       <pubDate>Mon, 17 Jan 2022 22:46:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319106/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319106/</guid>
       <description>P521-P525 跟着老韩读源码 感谢韩顺平老师！ 下面是视频地址 【零基础 快速学Java】韩顺平 零基础30天学会Java_哔哩哔哩_bilibili 干就完了！ 以</description>
     </item>
   </channel>

@@ -1,6 +1,11 @@
 param (
     [string]$message = "new post"
 )
+# 本地构建
+hugo
+
+# 构建 algolia 索引
+npm run algolia
 
 # 添加所有文件到 Git
 Write-Host "add all files..."

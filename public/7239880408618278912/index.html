@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="ForkJoinPool 的坑" />
+    <meta property="og:title" content="ForkJoinPool 的坑" />
+    <meta property="twitter:title" content="ForkJoinPool 的坑" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="ForkJoinPool 的坑" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>ForkJoinPool 的坑 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7239880408618278912/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive/">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about/">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/dubbo" title="dubbo">
+                            dubbo
+                        </a>
+                        
+                        <a class="tag" href="/tags/completablefuture" title="CompletableFuture">
+                            CompletableFuture
+                        </a>
+                        
+                        <a class="tag" href="/tags/forkjoinpool" title="ForkJoinPool">
+                            ForkJoinPool
+                        </a>
+                        
+                    </div>
+                    <h1>ForkJoinPool 的坑</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Thursday, September 12, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="结论">结论</h2>
+<p><code>CompletableFuture</code> 中默认的 <code>ForkJoinPool</code>  使用的 <code>ForkJoinPool.commonPool()</code> 线程池创建的线程的上下文类加载器是 <code>AppClassLoader</code> ，<code>AppClassLoader</code> 无法读取 <code>SpringBoot</code> 的 Jar 包 <code>BOOT-INF/lib</code> 下的 <code>MySQL</code> 驱动，导致无法找到驱动创建连接。</p>
+<p>解决：</p>
+<p>自定义线程池即可。</p>
+<h2 id="过程">过程</h2>
+<h5 id="长文警告">长文警告</h5>
+<p>在毕业设计中想学习一下 <code>dubbo</code> 的基本使用，然后就上官网看<a href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/spring-boot/">3 - 基于 Spring Boot Starter 开发微服务应用 | Apache Dubbo</a>了，官网还提供了<a href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/registry/nacos/">Nacos | Apache Dubbo</a>，但是在使用过程中出现了一些问题</p>
+<p>问题1：通过 Dubbo 的异步调用时出现错误：</p>
+<pre tabindex="0"><code>Caused by: java.sql.SQLException: Unable to find a driver that accepts jdbc:mysql://xxx.xxx.xxx.xxx:xxxx/noj
+        at com.p6spy.engine.spy.P6SpyDriver.findPassthru(P6SpyDriver.java:131)
+        at com.p6spy.engine.spy.P6SpyDriver.connect(P6SpyDriver.java:87)
+        at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+        at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+        at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+        at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+        at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+        at com.zaxxer.hikari.pool.HikariPool.&lt;init&gt;(HikariPool.java:100)
+        at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+        at com.p6spy.engine.spy.P6DataSource.getConnection(P6DataSource.java:300)
+        at org.springframework.jdbc.datasource.DelegatingDataSource.getConnection(DelegatingDataSource.java:101)
+        at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+        at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+        at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+        ... 39 common frames omitted
+</code></pre><p>提示找不到mysql的驱动，但我一想这怎么可能呢？于是写了一个 Test 接口进行测试，测试接口可以查询数据库，一番搜索也没有找到解决方案，于是只能自己 debug，debug 的首选位置放在 <code>P6SpyDriver.findPassthru</code> 中，可以看到代码不多，大致意思就是从已经注册的驱动类里面找到可以和url匹配的，那么问题一定在 <code>registeredDrivers</code> 里</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F11-41-20-12ef271c7c623525aaa081c37d40359e-image-20240912114119782-299ee7.png" alt="image-20240912114119782">
+
+</p>
+<p><code>registeredDrivers</code> 的方法如下，一个for循环，里面还有一个很熟悉的老朋友 <code>DriverManager.getDrivers()</code> ，<code>DriverManageer</code> 应该只在学习 <code>JDBC</code> 的时候接触过，然后就没用过了，追入看看</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F11-41-50-7abb9a131dc8921afc59d4ad153e5929-image-20240912114149269-54ea9f.png" alt="image-20240912114149269">
+
+</p>
+<p>从这里就能看到确实是在加载驱动，而且会调用 <code>ensureDriversInitialized</code> 进行加载</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F11-42-35-e91da59f6a04907aa6b963f8ac730277-image-20240912114235024-c79f68.png" alt="image-20240912114235024">
+
+</p>
+<p>进来之后可以看到，这里使用了一个双检锁，判断是否已经初始化过，并且这里已经初始化了，这不对，一定是在前面被初始化了，于是倒回去找找在哪</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-47-04-7df19d4a113cbbe2e4be73c07e3cdc6c-image-20240912114439556-c0eded.png" alt="image-20240912114439556">
+
+</p>
+<p>然后就会发现，在现在是正在初始化 <code>HikariPool</code> ，并且在调用 <code>checkFailFast</code> 之前还调用了 <code>super(config)</code> ，会不会是在初始化父连接池的时候提前把驱动初始化了，因为驱动的加载显然不应该交由子类完成，于是重启一遍之后继续追入  <code>super(config)</code> （之所以重启是因为需要让驱动重新恢复到未初始化的状态，如果已经初始化了那么Class已经被JVM加载，无法进行后续的 <code>debug</code>）</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F11-46-33-117d61831697568a6d3f1994f2778335-image-20240912114632296-5d580c.png" alt="image-20240912114632296">
+
+</p>
+<p>进入到 <code>super(config)</code> 我们可以发现他的父类是 PoolBase，并且在这里面也进行了一个初始化数据源的操作，进入看看</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-26-57-872f7fde559434afab9539fcec413e58-image-20240912122640365-db2942.png" alt="image-20240912122640365">
+
+</p>
+<p>这里会创建一个数据源，再进</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-28-03-61a84006cf1f15d9599a6f86ca88431e-image-20240912122802384-260bd1.png" alt="image-20240912122802384">
+
+</p>
+<p>在这个 <code>DriverDataSource</code> 的构造器中可以发现一个 <code>DriverManager.getDrivers();</code> ，这就真相大白了，这边已经提前进行初始化了。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-29-32-c8f2aa87f9f10576f4ac151bdf59206f-image-20240912122931349-554be7.png" alt="image-20240912122931349">
+
+</p>
+<p>这个时候就可以看到已经是 false 了，该方法的注释解释道：</p>
+<blockquote>
+<p>通过检查 System 属性来加载初始 JDBC 驱动程序 jdbc.drivers，然后使用 {@code ServiceLoader} 机制</p>
+</blockquote>
+<p><code>jdbc.drivers</code> 我们一般没有设置过，也就是说会使用 SPI 机制来加载 MySQL 驱动</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-31-56-66da427e00fd49ef9a044d29d7c8341e-image-20240912123155764-5ec154.png" alt="image-20240912123155764">
+
+</p>
+<p>那么我们看看 <code>mysql-connector-j</code> 中是否通过 SPI 进行了注册，通过查看驱动 jar 包可以发现确实是注册了，而且其内容就是 <code>com.mysql.cj.jdbc.Driver</code></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-34-24-fbd2bf145cd24884674dd1b7ac7f2f28-image-20240912123423411-6a4b88.png" alt="image-20240912123423411">
+
+</p>
+<p>既然如此，我们直接进入到 SPI 的部分，这里同样是通过 <code>AccessController.doPrivileged</code> 进行调用的，进入 load 看看做了什么</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-35-49-2590379fcad89ed463a84440361be898-image-20240912123549117-5c67e1.png" alt="image-20240912123549117">
+
+</p>
+<p>可以看到这边是获取了当前线程的上下文类加载器，他是 <code>jdk.internal.loader.ClassLoaders$AppClassLoader@4aa298b7</code>，也就是应用程序类加载器</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-47-53-79d370cdfa9fc6b39a65239f9d251ccb-image-20240912123653185-abec26.png" alt="image-20240912123653185">
+
+</p>
+<p>坑来！这就是找不到mysql驱动的原因！</p>
+<p>SpringBoot 应用打成 jar 包后，默认会把依赖的 jar 包放进 <code>BOOT-INF/lib</code> 中，如下图：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-41-09-bbd67372399392b6bbbd8e318b7296d2-image-20240912124108398-60ae66.png" alt="image-20240912124108398">
+
+</p>
+<p>但是应用程序类加载器并不知道，所以无法找到这个mysql驱动的jar包。</p>
+<p>那为什么平时我们使用的时候可以正常运行呢？</p>
+<p>因为我们执行 controller 和 service 的代码都是由 spring 提供的，这些线程的类加载器是 tomcat 提供的，而 springboot 对tomcat 进行了封装，所以这些lib库可以由spring的类加载器进行加载，如下图，可以看到 tomcat 类加载器的父级就是 spring 的 <code>LaunchedClassLoader</code>。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-44-16-122addd8b2772ba55024deeb98e92dfa-122addd8b2772ba55024deeb98e92dfa-5596cd.png" alt="img">
+
+</p>
+<p>找到了问题所在就好溯源了，原因是因为在最开始的时候（代码如下图），dubbo 的服务实现类中使用了 <code>CompletableFuture</code> ，并且没有指定线程池，默认会使用 <code>ForkJoinPool.commonPool()</code> ，而这个线程池的上下文类加载器就是应用类加载器。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F12-47-34-7ec27263a8f1433d1be2752a6c90c3a8-image-20240912124733226-70482e.png" alt="image-20240912124733226">
+
+</p>
+<p>找到了原因，那么就好解决了，只需要自己定义一个线程池（本来想偷懒用ForkJoinPool没想到搬起石头砸自己的脚了），其中的 <code>DubboServiceThreadFactory</code> 只是指定了一下线程名称</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F09%2F12%2F14-06-29-fcb8c360882a77d8ab8000fd2ab8e851-image-20240912140628145-2df0d3.png" alt="image-20240912140628145">
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author xfdzcoder
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">DubboServiceThreadFactory</span> <span style="color:#8be9fd;font-style:italic">implements</span> ThreadFactory {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> String prefix;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> ThreadGroup group;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">final</span> AtomicInteger threadId <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AtomicInteger(0);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> AtomicInteger factoryId <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> AtomicInteger(0);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#50fa7b">DubboServiceThreadFactory</span>(String prefix) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">group</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> ThreadGroup(Thread.<span style="color:#50fa7b">currentThread</span>().<span style="color:#50fa7b">getThreadGroup</span>(), <span style="color:#f1fa8c">&#34;Custom-DubboService-&#34;</span> <span style="color:#ff79c6">+</span> factoryId.<span style="color:#50fa7b">incrementAndGet</span>());
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">prefix</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Dubbo-&#34;</span> <span style="color:#ff79c6">+</span> prefix <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;-&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Thread <span style="color:#50fa7b">newThread</span>(Runnable r) {
+</span></span><span style="display:flex;"><span>        Objects.<span style="color:#50fa7b">requireNonNull</span>(r, <span style="color:#f1fa8c">&#34;runnable is null&#34;</span>);
+</span></span><span style="display:flex;"><span>        Thread thread <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Thread(group, r);
+</span></span><span style="display:flex;"><span>        thread.<span style="color:#50fa7b">setName</span>(prefix <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;[#&#34;</span> <span style="color:#ff79c6">+</span> threadId.<span style="color:#50fa7b">incrementAndGet</span>() <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#34;]&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> thread;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>？？什么？为什么自定义一个就可以解决？</p>
+<p>因为 <code>Thread</code> 的构造器中有下面这么一段代码，在这里会使用父线程（也就是由Spring创建的线程）中的 <code>contextClassLoader</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>		<span style="color:#6272a4">// thread locals</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>attached) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> ((characteristics <span style="color:#ff79c6">&amp;</span> NO_INHERIT_THREAD_LOCALS) <span style="color:#ff79c6">==</span> 0) {
+</span></span><span style="display:flex;"><span>                ThreadLocal.<span style="color:#50fa7b">ThreadLocalMap</span> parentMap <span style="color:#ff79c6">=</span> parent.<span style="color:#50fa7b">inheritableThreadLocals</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (parentMap <span style="color:#ff79c6">!=</span> <span style="color:#ff79c6">null</span> <span style="color:#ff79c6">&amp;&amp;</span> parentMap.<span style="color:#50fa7b">size</span>() <span style="color:#ff79c6">&gt;</span> 0) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">inheritableThreadLocals</span> <span style="color:#ff79c6">=</span> ThreadLocal.<span style="color:#50fa7b">createInheritedMap</span>(parentMap);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">if</span> (VM.<span style="color:#50fa7b">isBooted</span>()) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">contextClassLoader</span> <span style="color:#ff79c6">=</span> contextClassLoader(parent);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            } <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (VM.<span style="color:#50fa7b">isBooted</span>()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#6272a4">// default CCL to the system class loader when not inheriting</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">this</span>.<span style="color:#50fa7b">contextClassLoader</span> <span style="color:#ff79c6">=</span> ClassLoader.<span style="color:#50fa7b">getSystemClassLoader</span>();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7238165878154502144/" data-toggle="tooltip" data-placement="top" title="Minio之前端直传">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

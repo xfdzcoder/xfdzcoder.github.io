@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Springcloud on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/tags/springcloud/</link>
+    <link>https://xfdzcoder.github.io/tags/springcloud/</link>
     <description>Recent content in Springcloud on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Thu, 30 May 2024 12:16:26 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/springcloud/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xfdzcoder.github.io/tags/springcloud/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从0到N搭建微服务项目</title>
-      <link>http://localhost:1313/7224237482966319107/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319107/</link>
       <pubDate>Thu, 30 May 2024 12:16:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319107/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319107/</guid>
       <description>0 技术体系 ： SpringCloud SpringCloud Alibaba SpringCloud Alibaba Nacos SpringCloud Feign SpringCloud Gateway 1 模块设计 cloud01-demo api-gateway API 网关模块。集中了所有服务的接口，并根据请求url将请求转发到对应的微服务上 user-services-module 用户服务。负责处</description>
     </item>
   </channel>

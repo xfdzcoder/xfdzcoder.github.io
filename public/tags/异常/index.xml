@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>异常 on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/%E5%BC%82%E5%B8%B8/</link>
+    <description>Recent content in 异常 on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Thu, 08 Aug 2024 09:08:05 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/%E5%BC%82%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>异常堆栈日志的填充时机</title>
+      <link>https://xfdzcoder.github.io/7227127412671160320/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7227127412671160320/</guid>
+      <description>记一次开发中的错误实践</description>
+    </item>
+  </channel>
+</rss>

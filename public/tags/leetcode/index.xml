@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Leetcode on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/tags/leetcode/</link>
+    <link>https://xfdzcoder.github.io/tags/leetcode/</link>
     <description>Recent content in Leetcode on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Sun, 12 Mar 2023 16:17:22 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xfdzcoder.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>字符串</title>
-      <link>http://localhost:1313/7224233674005610502/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610502/</link>
       <pubDate>Sun, 12 Mar 2023 16:17:22 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610502/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610502/</guid>
       <description>字符串 反转字符串* 思路： 遍历半个数组，首位进行位置互换。 代码实现： class Solution { public void reverseString(char[] s) { int len = s.length; for (int i = 0; i &amp;lt; len / 2; i++) { char temp = s[i]; s[i] = s[len - 1 - i]; s[len -</description>
     </item>
     <item>
       <title>数组</title>
-      <link>http://localhost:1313/7224233674005610501/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610501/</link>
       <pubDate>Mon, 16 Jan 2023 23:14:12 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610501/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610501/</guid>
       <description>数组 删除排序数组中的重复项 初级算法 - LeetBook - 力扣（LeetCode）删除排序数组中的重复项 思路：双指针（看题解才知道叫双指针） 设 int len = 0; 然后循环</description>
     </item>
     <item>
       <title>链表</title>
-      <link>http://localhost:1313/7224233674005610500/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610500/</link>
       <pubDate>Wed, 04 Jan 2023 19:11:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610500/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610500/</guid>
       <description>链表： 删除链表中的节点 思路： 将待删除节点的下一个节点的数据赋值给待删除结点，然后把下一个节点进行常规删除。 代码实现： /** * Definition for singly-linked list. * public class ListNode { *</description>
     </item>
   </channel>

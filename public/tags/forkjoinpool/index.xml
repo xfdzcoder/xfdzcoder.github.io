@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ForkJoinPool on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/forkjoinpool/</link>
+    <description>Recent content in ForkJoinPool on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Thu, 12 Sep 2024 14:20:04 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/forkjoinpool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ForkJoinPool 的坑</title>
+      <link>https://xfdzcoder.github.io/7239880408618278912/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7239880408618278912/</guid>
+      <description>ForkJoinPool 的坑</description>
+    </item>
+  </channel>
+</rss>

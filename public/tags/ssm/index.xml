@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ssm on XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/tags/ssm/</link>
+    <link>https://xfdzcoder.github.io/tags/ssm/</link>
     <description>Recent content in Ssm on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
     <lastBuildDate>Fri, 22 Mar 2024 16:35:09 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ssm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xfdzcoder.github.io/tags/ssm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SpringMVC中整合的Jackson从请求体解析参数流程的源码分析</title>
-      <link>http://localhost:1313/7224237482966319105/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319105/</link>
       <pubDate>Fri, 22 Mar 2024 16:35:09 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319105/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319105/</guid>
       <description>SpringMVC中整合的Jackson从请求体解析参数流程的源码分析 环境： springboot: 2.7.6 废话不多写，发车了。 还是从老熟人DispatcherServ</description>
     </item>
     <item>
       <title>SSM&#43;Shiro&#43;Redis纯注解环境搭建</title>
-      <link>http://localhost:1313/7224237482966319107/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319107/</link>
       <pubDate>Wed, 23 Nov 2022 16:18:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319107/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319107/</guid>
       <description>首先根据业务拆分成 Permission 和 Club 两个模块。然后在父工程中添加依赖： 1. SpringWeb开发 1.1 添加依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-webmvc&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.2.22.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-jdbc&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 1.2 添加容器启动配置</description>
     </item>
   </channel>

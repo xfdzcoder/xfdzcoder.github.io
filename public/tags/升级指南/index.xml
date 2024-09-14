@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>升级指南 on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/</link>
+    <description>Recent content in 升级指南 on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Tue, 13 Aug 2024 18:10:37 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>升级到SpringBoot3、JDK21</title>
+      <link>https://xfdzcoder.github.io/7229066755950288896/</link>
+      <pubDate>Tue, 13 Aug 2024 18:10:37 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7229066755950288896/</guid>
+      <description>迁移指南： Spring-Boot-3.0-Migration-Guide Spring 方面 1. URL 映射更改 Spring MVC and WebFlux URL Matching Changes As of Spring Framework 6.0, the trailing slash matching configuration option has been deprecated and its default value set to false. This means that previously, the following controller would match both &amp;ldquo;GET /some/greeting&amp;rdquo; and &amp;ldquo;GET /some/greeting/&amp;rdquo;: @RestController public class MyController { @GetMapping(&amp;#34;/some/greeting&amp;#34;) public String greeting() { return &amp;#34;Hello&amp;#34;;</description>
+    </item>
+  </channel>
+</rss>

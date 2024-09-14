@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="行测——判断推理" />
+    <meta property="og:title" content="行测——判断推理" />
+    <meta property="twitter:title" content="行测——判断推理" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="行测笔记" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>行测——判断推理 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/1722566399310/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive/">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about/">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E8%A1%8C%E6%B5%8B" title="行测">
+                            行测
+                        </a>
+                        
+                    </div>
+                    <h1>行测——判断推理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Friday, August 2, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<p>课程地址：<a href="https://www.bilibili.com/video/BV12t4115735">判断推理《行测》系统课（全国通用）（适用2024年和2025年备考学生）——刘文超_哔哩哔哩_bilibili</a></p>
+<h2 id="介绍">介绍</h2>
+<p>判断推理四大题型</p>
+<ul>
+<li>图形推理</li>
+<li>类比推理</li>
+<li>定义判断</li>
+<li>逻辑推理</li>
+</ul>
+<h2 id="图形推理">图形推理</h2>
+<h3 id="命题形式">命题形式</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F10-45-43-d437154a1e3e9bf071c53f67ca044bd2-image-20240802104521785-1cac23.png" alt="image-20240802104521785">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F10-48-10-b7f031dff35218d7f1ce99b6e97172a3-image-20240802104809154-7dc64c.png" alt="image-20240802104809154">
+
+</p>
+<ul>
+<li>一组图
+<ul>
+<li>从左往右找规律</li>
+</ul>
+</li>
+<li>两组图
+<ul>
+<li>第一组用来找规律，第二组用来应用规律</li>
+</ul>
+</li>
+<li>九宫格
+<ul>
+<li>90%都是横着看，拨号盘的顺序。横着看：第一组找规律，第二组验证规律，第三组应用规律</li>
+</ul>
+</li>
+<li>分组分类
+<ul>
+<li>三三分组直接找规律</li>
+</ul>
+</li>
+<li>空间重构
+<ul>
+<li>建立三维模型</li>
+</ul>
+</li>
+</ul>
+<h3 id="考点">考点</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F10-50-09-fe24dc4a4c65e5d98d960ab63e525003-image-20240802105008145-c18f32.png" alt="image-20240802105008145">
+
+</p>
+<h3 id="位置规律-元素组成相同">位置规律-元素组成相同</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F10-51-28-597a5b4b401798c0f908173ad738395b-image-20240802105127201-ad4aeb.png" alt="image-20240802105127201">
+
+</p>
+<p>考点：</p>
+<ul>
+<li>平移</li>
+<li>旋转、反转</li>
+</ul>
+<h4 id="平移">平移</h4>
+<ol>
+<li>方向：直线（上下，左右，斜对角线）、绕圈（顺逆时针）</li>
+<li>常见步数：恒定、递增（1，2，3，4……）</li>
+</ol>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-00-58-516d03e3e513f092835de30e024c2b71-image-20240802110057686-4e4b9e.png" alt="image-20240802110057686">
+
+</p>
+<h5 id="例">例</h5>
+<p>第一二组的规律不一定完全一样。就像下面这道题（答案选 C），左边的规律是（按列看）：下移、下移，不动，上移。但是右边的第四列却不符合上移这个规律。</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-09-31-66732ff0bc75a94cffff07f9216ab8d6-image-20240802110930085-7a8244.png" alt="image-20240802110930085">
+
+</p>
+<h4 id="旋转">旋转</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-20-00-e2de942e8d59d532d3c1e981270d8149-image-20240802111959454-25b9f5.png" alt="image-20240802111959454">
+
+</p>
+<h4 id="翻转">翻转</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-21-56-a51d27d5e6e65ef8eda02b64d646b49e-image-20240802112155042-932043.png" alt="image-20240802112155042">
+
+</p>
+<h5 id="例-1">例</h5>
+<p><strong>旋转+翻转</strong></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-27-13-e14a96856410119caf45cfbb92be52d4-image-20240802112712817-33b127.png" alt="image-20240802112712817">
+
+</p>
+<h4 id="总结">总结</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F11-42-00-98025477545884bc6c003674db02ca96-image-20240802114159595-67814c.png" alt="image-20240802114159595">
+
+</p>
+<h3 id="样式规律-元素组成相似">样式规律-元素组成相似</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F14-45-35-4b30e61720c30698d3a7e525d59f6fb0-image-20240802144534241-7f3c6c.png" alt="image-20240802144534241">
+
+</p>
+<p>考点：</p>
+<h4 id="加减同异">加减同异</h4>
+<ol>
+<li>
+<p>相加、相减</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F14-51-23-a72a3ce6e19c53e864bcf9df89f43390-image-20240802145122966-60fe92.png" alt="image-20240802145122966">
+
+</p>
+<p>第一个图和第二个图加起来等于第三个图，相减反之。</p>
+</li>
+<li>
+<p><strong>求异（去同求异）</strong></p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F14-51-59-83e70bc63259eeb15b1d0306ba9c8874-image-20240802145158540-924b6f.png" alt="image-20240802145158540">
+
+</p>
+<p><strong>第一个图和第二个图中，去掉相同的部分，留下不相同的部分</strong>，即去同求异</p>
+</li>
+<li>
+<p>求同（去异求同）</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F02%2F14-52-57-ed34e99ac82b259eed1928aaa147ba2d-image-20240802145256919-dcb0aa.png" alt="image-20240802145256919">
+
+</p>
+<p>和去同求异恰恰相反，这个是留下两者相同的元素。</p>
+</li>
+</ol>
+<h4 id="黑白运算">黑白运算</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F09-12-44-41fd26e3e0491a7228a9a6070eb89094-image-20240803091222380-d6c938.png" alt="image-20240803091222380">
+
+</p>
+<p>黑白运算：</p>
+<p>比如相同位置的三个色块具有如下规律：（怎么感觉有点像逻辑运算）</p>
+<ul>
+<li>黑 + 白 = 白（0 ^ 1 = 1）</li>
+<li>白 + 黑 = 白（1 ^ 0 = 1）</li>
+<li>白 + 白 = 黑（1 ^ 1 = 0）</li>
+</ul>
+<h4 id="总结-1">总结</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F09-32-19-36658fb6ecea7e66cba495f4c34e9223-image-20240803093218290-275a90.png" alt="image-20240803093218290">
+
+</p>
+<h3 id="属性规律-元素组成不相同不相似">属性规律-元素组成不相同、不相似</h3>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F09-34-53-6ae26a53075586529d9878c739cb30b9-image-20240803093452078-fe5f2b.png" alt="image-20240803093452078">
+
+</p>
+<h4 id="对称性">对称性</h4>
+<ol>
+<li>
+<p>轴对称（方向和数量）</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F09-36-24-f70d6b49ec39269b781a382b6572184f-image-20240803093623402-d885d3.png" alt="image-20240803093623402">
+
+</p>
+</li>
+<li>
+<p>中心对称</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F09-38-03-cd8a7f6dfa0196670607bbb4f78646c9-image-20240803093803009-66362b.png" alt="image-20240803093803009">
+
+</p>
+</li>
+</ol>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F10-06-24-73e322b39cad498580701002ec309042-image-20240803100623428-a66b3d.png" alt="image-20240803100623428">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F10-09-31-3e8616bba0e6ab0dec4605991ccb4fba-image-20240803100929973-525eaa.png" alt="image-20240803100929973">
+
+</p>
+<h4 id="曲直性">曲直性</h4>
+<ol>
+<li>
+<p>全曲线</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F12-35-22-45e9c630c6a1a16f1eb5f16ed931ce14-image-20240803123501901-f9307d.png" alt="image-20240803123501901">
+
+</p>
+</li>
+<li>
+<p>全直线</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F12-35-35-8a8eb497ea853230e97b96aafab75d73-image-20240803123516627-e8c8f5.png" alt="image-20240803123516627">
+
+</p>
+<h4 id="开闭性考的很少">开闭性（考的很少）</h4>
+</li>
+<li>
+<p>全封闭</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F12-41-32-bf7e5718a87049557a53cb4a5aaf8b63-image-20240803124131901-cc30f7.png" alt="image-20240803124131901">
+
+</p>
+</li>
+<li>
+<p>全开放</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F12-41-42-db24e12effa6982d7b03013c525781ab-image-20240803124141646-cab32e.png" alt="image-20240803124141646">
+
+</p>
+</li>
+</ol>
+<h4 id="总结-2">总结</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F12-58-24-291da601ebb33e0810e5be222c16a930-image-20240803125823322-42b444.png" alt="image-20240803125823322">
+
+</p>
+<h3 id="数量规律-数量规律明显元素组成不相同不相似">数量规律-数量规律明显、元素组成不相同、不相似</h3>
+<p>考点：点、线、面、素、角</p>
+<h4 id="点数量">点数量</h4>
+<p>即线与线的交点</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F14-24-51-7e655e63baab8d82f0235d1b56370680-image-20240803142449999-afb184.png" alt="image-20240803142449999">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F14-26-45-0950ad7701196edac43e75f6f6af37c1-image-20240803142644316-2c3856.png" alt="image-20240803142644316">
+
+</p>
+<h4 id="线数量">线数量</h4>
+<p>右图是<strong>两</strong>条直线</p>
+<p>图6是<strong>一条</strong>曲线</p>
+<p>图7是<strong>两</strong>条曲线 ，因为中间有一个折点</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F03%2F18-57-22-ba6adff2e50864d0263ac55635b74220-image-20240803185700250-465dce.png" alt="image-20240803185700250">
+
+</p>
+<h4 id="笔画问题">笔画问题</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-16-33-96684fc8ae17ab0a3441108b48c16a44-image-20240804141610437-e4abcc.png" alt="image-20240804141610437">
+
+</p>
+<h5 id="一笔画">一笔画</h5>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-28-36-f287e2ba687d98d9ffbae2f6b8d08837-image-20240804142835772-c9cf29.png" alt="image-20240804142835772">
+
+</p>
+<h5 id="多笔画">多笔画</h5>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-32-47-b8870c41cd8899247b12a888a6ea7f36-image-20240804143246818-26f0e9.png" alt="image-20240804143246818">
+
+</p>
+<h5 id="总结-3">总结</h5>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-54-38-0b5dcf070afe866c6b2eab3fac5f7c5b-image-20240804145437985-941652.png" alt="image-20240804145437985">
+
+</p>
+<h4 id="面数量">面数量</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-55-21-6d2e6fb6c13d162acc288dafd38c3207-image-20240804145520897-25e208.png" alt="image-20240804145520897">
+
+</p>
+<p>判断方法：</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F14-57-30-af34a9f34faec65e76c83175b8dece3e-image-20240804145729569-434235.png" alt="image-20240804145729569">
+
+</p>
+<h4 id="素数量">素数量</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F15-01-56-5b336a4e82a8ec9142a994d6657e4fc6-image-20240804150155406-d94cba.png" alt="image-20240804150155406">
+
+</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F15-15-35-24d4991012a1066ea8437734ad87b09d-image-20240804151534291-0b1c80.png" alt="image-20240804151534291">
+
+</p>
+<h5 id="总结-4">总结</h5>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F16-11-41-9e2c7839d6b5a30aac92ed9162154050-image-20240804161140334-811c5a.png" alt="image-20240804161140334">
+
+</p>
+<h4 id="角数量">角数量</h4>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F08%2F04%2F16-14-00-482939e0067f883e03421ae0f7fb31b2-image-20240804161359734-f7366e.png" alt="image-20240804161359734">
+
+</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7224233674005610509/" data-toggle="tooltip" data-placement="top" title="synchronized 的升级机制">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/7226540759879557120/" data-toggle="tooltip" data-placement="top" title="SecurityManager的应用">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

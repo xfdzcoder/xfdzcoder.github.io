@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content in 前端 on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Sun, 25 Aug 2024 16:41:58 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vite&#43;Vue快速入门</title>
+      <link>https://xfdzcoder.github.io/7233392836865990658/</link>
+      <pubDate>Sun, 25 Aug 2024 16:41:58 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7233392836865990658/</guid>
+      <description>快速入门</description>
+    </item>
+  </channel>
+</rss>

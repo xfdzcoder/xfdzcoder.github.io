@@ -2,269 +2,374 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>XFDZ&#39;s Blog</title>
-    <link>http://localhost:1313/</link>
+    <link>https://xfdzcoder.github.io/</link>
     <description>Recent content on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Wed, 31 Jul 2024 20:03:17 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Sep 2024 14:20:04 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ForkJoinPool 的坑</title>
+      <link>https://xfdzcoder.github.io/7239880408618278912/</link>
+      <pubDate>Thu, 12 Sep 2024 14:20:04 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7239880408618278912/</guid>
+      <description>ForkJoinPool 的坑</description>
+    </item>
+    <item>
+      <title>Minio之前端直传</title>
+      <link>https://xfdzcoder.github.io/7238165878154502144/</link>
+      <pubDate>Sat, 07 Sep 2024 20:47:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7238165878154502144/</guid>
+      <description>引言 要不要前端直传？根据需求，这次准备搭建一个试试。 上传文件应该经过后端吗，还是直接上传至阿里oss? - 知乎 (zhihu.com) 已有技术： https://github.com/kangaroo1122/minio-spring-boot-starter 介绍 | MinIO-Plus (baldhead.cn) 相关文档</description>
+    </item>
+    <item>
+      <title>SpringBoot调用微信登录接口踩坑记录</title>
+      <link>https://xfdzcoder.github.io/7237283644606291968/</link>
+      <pubDate>Thu, 05 Sep 2024 10:21:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7237283644606291968/</guid>
+      <description>调用微信登录接口</description>
+    </item>
+    <item>
+      <title>英文文献检索</title>
+      <link>https://xfdzcoder.github.io/7233637412079968256/</link>
+      <pubDate>Mon, 26 Aug 2024 08:52:21 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7233637412079968256/</guid>
+      <description>英文文献检索下载方式</description>
+    </item>
+    <item>
+      <title>Vite&#43;Vue快速入门</title>
+      <link>https://xfdzcoder.github.io/7233392836865990658/</link>
+      <pubDate>Sun, 25 Aug 2024 16:41:58 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7233392836865990658/</guid>
+      <description>快速入门</description>
+    </item>
+    <item>
+      <title>docker-java 的踩坑以及使用</title>
+      <link>https://xfdzcoder.github.io/7231855485589168128/</link>
+      <pubDate>Wed, 21 Aug 2024 10:51:54 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7231855485589168128/</guid>
+      <description>关于回表的疑问</description>
+    </item>
+    <item>
+      <title>Java动态编译</title>
+      <link>https://xfdzcoder.github.io/7230462713250488320/</link>
+      <pubDate>Sat, 17 Aug 2024 14:37:33 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7230462713250488320/</guid>
+      <description>成果 实现了动态的、完全在内存中的编译 Java 源代码，没有操作本地文件的 IO 消耗。 通过自定义类加载器实现了从字节数组加载类，而不是从文件，减少了不必要</description>
+    </item>
+    <item>
+      <title>戴尔G15安装Debian12记录</title>
+      <link>https://xfdzcoder.github.io/7230148377613213696/</link>
+      <pubDate>Fri, 16 Aug 2024 17:48:43 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7230148377613213696/</guid>
+      <description>1. 安装 Debian 12 打开ISO文件后，单击UltraISO菜单中的“启动”，在弹出的下拉菜单中选择“写入硬盘映像”，然后格式化后写入即可 开机动画时按 F2</description>
+    </item>
+    <item>
+      <title>微服务环境搭建记录</title>
+      <link>https://xfdzcoder.github.io/7229097476379156480/</link>
+      <pubDate>Tue, 13 Aug 2024 20:12:45 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7229097476379156480/</guid>
+      <description>环境说明 服务器版本 华为云 CentOS 7.9 SpringCloud 版本选择 版本发布说明 - Spring Cloud Alibaba官网 (aliyun.com) Spring Cloud Alibaba Version Spring Cloud Version Spring Boot Version 2023.0.1.0* Spring Cloud 2023.0.1 3.2.4 Spring Cloud Alibaba Version Sentinel Version Nacos Version RocketMQ Version Seata Version 2023.0.1.0 1.8.6 2.3.2 5.1.4 2.0.0</description>
+    </item>
+    <item>
+      <title>升级到SpringBoot3、JDK21</title>
+      <link>https://xfdzcoder.github.io/7229066755950288896/</link>
+      <pubDate>Tue, 13 Aug 2024 18:10:37 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7229066755950288896/</guid>
+      <description>迁移指南： Spring-Boot-3.0-Migration-Guide Spring 方面 1. URL 映射更改 Spring MVC and WebFlux URL Matching Changes As of Spring Framework 6.0, the trailing slash matching configuration option has been deprecated and its default value set to false. This means that previously, the following controller would match both &amp;ldquo;GET /some/greeting&amp;rdquo; and &amp;ldquo;GET /some/greeting/&amp;rdquo;: @RestController public class MyController { @GetMapping(&amp;#34;/some/greeting&amp;#34;) public String greeting() { return &amp;#34;Hello&amp;#34;;</description>
+    </item>
+    <item>
+      <title>NOJ——AI智能判题系统</title>
+      <link>https://xfdzcoder.github.io/7228614255380045824/</link>
+      <pubDate>Fri, 09 Aug 2024 11:11:35 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7228614255380045824/</guid>
+      <description>AI助力传统OJ走上智能化转型的新道路，在新的道路上持续不断的挖掘新质生产力</description>
+    </item>
+    <item>
+      <title>异常堆栈日志的填充时机</title>
+      <link>https://xfdzcoder.github.io/7227127412671160320/</link>
+      <pubDate>Thu, 08 Aug 2024 09:08:05 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7227127412671160320/</guid>
+      <description>记一次开发中的错误实践</description>
+    </item>
+    <item>
+      <title>SecurityManager的应用</title>
+      <link>https://xfdzcoder.github.io/7226540759879557120/</link>
+      <pubDate>Tue, 06 Aug 2024 18:53:26 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7226540759879557120/</guid>
+      <description>SecurityManager的作用，他的类文档已经解释的很完善了。下面主要记录一下策略文件。 Java SecurityManager初识 | Spoock 下面记</description>
+    </item>
+    <item>
+      <title>行测——判断推理</title>
+      <link>https://xfdzcoder.github.io/1722566399310/</link>
+      <pubDate>Fri, 02 Aug 2024 10:39:59 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/1722566399310/</guid>
+      <description>行测笔记</description>
+    </item>
     <item>
       <title>synchronized 的升级机制</title>
-      <link>http://localhost:1313/7224233674005610509/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610509/</link>
       <pubDate>Tue, 30 Jul 2024 11:12:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610509/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610509/</guid>
       <description>引言 都 4202 年了，不会还有人以为 synchronized 就是重量级锁吧~，参考：浅析synchronized锁升级的原理与实现 - 小新成长之路 - 博客园 (cnblogs.com) 在看本章之前，您</description>
     </item>
     <item>
       <title>一面面经</title>
-      <link>http://localhost:1313/7224233674005610497/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610497/</link>
       <pubDate>Sat, 27 Jul 2024 20:03:17 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610497/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610497/</guid>
       <description>记录牛友的面试经历，并自己搜集整理了一些答案仅供参考</description>
     </item>
     <item>
       <title>二级索引为什么不直接存储对应页地址</title>
-      <link>http://localhost:1313/7224246078978457600/</link>
+      <link>https://xfdzcoder.github.io/7224246078978457600/</link>
       <pubDate>Sun, 21 Jul 2024 09:32:14 +0800</pubDate>
-      <guid>http://localhost:1313/7224246078978457600/</guid>
+      <guid>https://xfdzcoder.github.io/7224246078978457600/</guid>
       <description>关于回表的疑问</description>
     </item>
     <item>
       <title>B&#43;Tree</title>
-      <link>http://localhost:1313/7224233674005610499/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610499/</link>
       <pubDate>Fri, 19 Jul 2024 14:47:00 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610499/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610499/</guid>
       <description>B+树的学习</description>
     </item>
     <item>
       <title>mysql中datadir目录下的文件</title>
-      <link>http://localhost:1313/7224246078978457601/</link>
+      <link>https://xfdzcoder.github.io/7224246078978457601/</link>
       <pubDate>Fri, 19 Jul 2024 09:52:52 +0800</pubDate>
-      <guid>http://localhost:1313/7224246078978457601/</guid>
+      <guid>https://xfdzcoder.github.io/7224246078978457601/</guid>
       <description>MySQL5和8中的数据库目录结构的异同</description>
     </item>
     <item>
       <title>从0到N搭建微服务项目</title>
-      <link>http://localhost:1313/7224237482966319107/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319107/</link>
       <pubDate>Thu, 30 May 2024 12:16:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319107/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319107/</guid>
       <description>0 技术体系 ： SpringCloud SpringCloud Alibaba SpringCloud Alibaba Nacos SpringCloud Feign SpringCloud Gateway 1 模块设计 cloud01-demo api-gateway API 网关模块。集中了所有服务的接口，并根据请求url将请求转发到对应的微服务上 user-services-module 用户服务。负责处</description>
     </item>
     <item>
       <title>SpringMVC中整合的Jackson从请求体解析参数流程的源码分析</title>
-      <link>http://localhost:1313/7224237482966319105/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319105/</link>
       <pubDate>Fri, 22 Mar 2024 16:35:09 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319105/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319105/</guid>
       <description>SpringMVC中整合的Jackson从请求体解析参数流程的源码分析 环境： springboot: 2.7.6 废话不多写，发车了。 还是从老熟人DispatcherServ</description>
     </item>
     <item>
       <title>@SuppressWarnings 注解</title>
-      <link>http://localhost:1313/7224237482966319108/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319108/</link>
       <pubDate>Tue, 23 Jan 2024 20:58:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319108/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319108/</guid>
       <description>例如： 抑制多类型的警告：@SuppressWarnings(&amp;ldquo;unchecked&amp;rdquo;,&amp;ldquo;rawtypes&amp;</description>
     </item>
     <item>
       <title>springboot logbak-spring.xml 配置</title>
-      <link>http://localhost:1313/7224233674005610515/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610515/</link>
       <pubDate>Thu, 18 Jan 2024 23:05:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610515/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610515/</guid>
       <description>网上CV的一个配置，感觉很不错，收藏一下 &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!-- scan：当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。</description>
     </item>
     <item>
       <title>SpringBoot 整合 腾讯云 API</title>
-      <link>http://localhost:1313/7224233674005610514/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610514/</link>
       <pubDate>Tue, 09 Jan 2024 19:22:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610514/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610514/</guid>
       <description>SpringBoot 整合 腾讯云 API 此处假设腾讯云方面的配置大家都配置完毕了，下面直接开始与代码相关的。 0. 腾讯云 SDK 文档 Java-SDK 中心-腾讯云 (tencent.com) 1. 引入依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.tencentcloudapi&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;tencentcloud-sdk-java&amp;lt;/artifactId&amp;gt; &amp;lt;!-- go to https://search.maven.org/search?q=tencentcloud-sdk-java and get</description>
     </item>
     <item>
       <title>SpringBoot 整合 七牛云存储</title>
-      <link>http://localhost:1313/7224233674005610513/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610513/</link>
       <pubDate>Sat, 30 Dec 2023 15:19:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610513/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610513/</guid>
       <description>SpringBoot 整合 七牛云存储 七牛云的注册及配置这里就不赘述了。 0. 七牛云存储 JavaSDK 官方文档 Java SDK_SDK 下载_对象存储 - 七牛开发者中心 (qiniu.com) 1. 引入依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;com.qiniu&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;qiniu-java-sdk&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;[7.7.0, 7.10.99]&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 这里的ve</description>
     </item>
     <item>
       <title>SpringSecurity之用户认证</title>
-      <link>http://localhost:1313/7224246078974263296/</link>
+      <link>https://xfdzcoder.github.io/7224246078974263296/</link>
       <pubDate>Thu, 23 Nov 2023 20:58:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224246078974263296/</guid>
+      <guid>https://xfdzcoder.github.io/7224246078974263296/</guid>
       <description>基础： Spring Security 是一个专注于为 Java 应用程序提供身份认证和授权的框架。推荐使用权限认证方式配置：SSM + Shiro;Springboot+SpringSecurity 身份认证（authentication），即</description>
     </item>
     <item>
       <title>SpringBoot 调用第三方接口时的公私钥管理</title>
-      <link>http://localhost:1313/7224233674005610512/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610512/</link>
       <pubDate>Sat, 16 Sep 2023 16:44:36 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610512/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610512/</guid>
       <description>SpringBoot 调用第三方接口时的公私钥管理 前言 项目中或多或少的会使用到一些第三方的接口，而调用第三方接口一般会有密钥。例如微信小程序的 appid，sec</description>
     </item>
     <item>
       <title>多版本管理工具汇总</title>
-      <link>http://localhost:1313/post/guide/%E5%A4%9A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</link>
+      <link>https://xfdzcoder.github.io/7233392836865990656/</link>
       <pubDate>Fri, 28 Jul 2023 11:18:04 +0800</pubDate>
-      <guid>http://localhost:1313/post/guide/%E5%A4%9A%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%B1%87%E6%80%BB/</guid>
+      <guid>https://xfdzcoder.github.io/7233392836865990656/</guid>
       <description>汇总一下版本管理工具，如 Jenv，nvm，conda 等</description>
     </item>
     <item>
       <title>优质Java站点</title>
-      <link>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://xfdzcoder.github.io/7233392836865990657/</link>
       <pubDate>Mon, 17 Jul 2023 21:47:40 +0800</pubDate>
-      <guid>http://localhost:1313/post/guide/%E4%BC%98%E8%B4%A8java%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://xfdzcoder.github.io/7233392836865990657/</guid>
       <description>汇总一下Java学习路上的优质Java站点，持续更新……</description>
     </item>
     <item>
       <title>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题</title>
-      <link>http://localhost:1313/7224233674005610510/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610510/</link>
       <pubDate>Tue, 30 May 2023 10:16:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610510/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610510/</guid>
       <description>自定义 @MultiParameterBody 解决 POST 请求时接收多参数问题 背景： 单参数时： 当前端只使用 POST 传一个 String 时一般是这样的： axios({ url: &amp;#39;/xxx&amp;#39;, method: &amp;#39;POST&amp;#39;, data: { str: param } }) 此时只能定义一个实体类对象，其</description>
     </item>
     <item>
       <title>IDEA 与 服务器 Linux 开发</title>
-      <link>http://localhost:1313/7224233674005610511/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610511/</link>
       <pubDate>Thu, 25 May 2023 22:19:29 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610511/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610511/</guid>
       <description>IDEA 与 服务器 Linux 开发 最终效果：服务器上有一份与本地相同的代码。 目的： 可随时更新项目并将其运行起来测试。 避免了一个小更新也要在本地打包然后上传并运</description>
     </item>
     <item>
       <title>WindowsTerminal美化教程</title>
-      <link>http://localhost:1313/7224233674005610496/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610496/</link>
       <pubDate>Mon, 03 Apr 2023 15:26:56 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610496/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610496/</guid>
       <description>美化 terminal 窗口</description>
     </item>
     <item>
       <title>字符串</title>
-      <link>http://localhost:1313/7224233674005610502/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610502/</link>
       <pubDate>Sun, 12 Mar 2023 16:17:22 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610502/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610502/</guid>
       <description>字符串 反转字符串* 思路： 遍历半个数组，首位进行位置互换。 代码实现： class Solution { public void reverseString(char[] s) { int len = s.length; for (int i = 0; i &amp;lt; len / 2; i++) { char temp = s[i]; s[i] = s[len - 1 - i]; s[len -</description>
     </item>
     <item>
       <title>数组</title>
-      <link>http://localhost:1313/7224233674005610501/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610501/</link>
       <pubDate>Mon, 16 Jan 2023 23:14:12 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610501/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610501/</guid>
       <description>数组 删除排序数组中的重复项 初级算法 - LeetBook - 力扣（LeetCode）删除排序数组中的重复项 思路：双指针（看题解才知道叫双指针） 设 int len = 0; 然后循环</description>
     </item>
     <item>
       <title>链表</title>
-      <link>http://localhost:1313/7224233674005610500/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610500/</link>
       <pubDate>Wed, 04 Jan 2023 19:11:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610500/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610500/</guid>
       <description>链表： 删除链表中的节点 思路： 将待删除节点的下一个节点的数据赋值给待删除结点，然后把下一个节点进行常规删除。 代码实现： /** * Definition for singly-linked list. * public class ListNode { *</description>
     </item>
     <item>
       <title>SSM&#43;Shiro&#43;Redis纯注解环境搭建</title>
-      <link>http://localhost:1313/7224237482966319107/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319107/</link>
       <pubDate>Wed, 23 Nov 2022 16:18:26 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319107/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319107/</guid>
       <description>首先根据业务拆分成 Permission 和 Club 两个模块。然后在父工程中添加依赖： 1. SpringWeb开发 1.1 添加依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-webmvc&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.2.22.RELEASE&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-jdbc&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;${spring.version}&amp;lt;/version&amp;gt; &amp;lt;/dependency&amp;gt; 1.2 添加容器启动配置</description>
     </item>
     <item>
       <title>SpringBoot&#43;MybatisPlus快速入门</title>
-      <link>http://localhost:1313/7224237482966319104/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319104/</link>
       <pubDate>Wed, 28 Sep 2022 23:01:48 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319104/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319104/</guid>
       <description>快速从 Java 基础到 SpringBoot 后端开发</description>
     </item>
     <item>
       <title>B-Tree</title>
-      <link>http://localhost:1313/7224233674005610498/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610498/</link>
       <pubDate>Fri, 12 Aug 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610498/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610498/</guid>
       <description>完成了B树的代码实现</description>
     </item>
     <item>
       <title>红黑树</title>
-      <link>http://localhost:1313/7224246078978457602/</link>
+      <link>https://xfdzcoder.github.io/7224246078978457602/</link>
       <pubDate>Tue, 26 Jul 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224246078978457602/</guid>
+      <guid>https://xfdzcoder.github.io/7224246078978457602/</guid>
       <description>B+树的学习</description>
     </item>
     <item>
       <title>Java核心技术卷二阅读笔记（4.1 ~ ）</title>
-      <link>http://localhost:1313/7224233674005610504/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610504/</link>
       <pubDate>Thu, 23 Jun 2022 19:18:11 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610504/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610504/</guid>
       <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
     </item>
     <item>
       <title>Java核心技术卷二阅读笔记（1.2 ~ 3.9）</title>
-      <link>http://localhost:1313/7224233674005610503/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610503/</link>
       <pubDate>Thu, 12 May 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610503/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610503/</guid>
       <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
     </item>
     <item>
       <title>JDK 的动态代理之源码 DEBUG</title>
-      <link>http://localhost:1313/7224233674005610508/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610508/</link>
       <pubDate>Thu, 12 May 2022 14:13:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610508/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610508/</guid>
       <description>废话不多说，上案例代码： public class Main { public static void main(String[] args) { // 先不用管，后面会提到 System.setProperty(&amp;#34;sun.misc.ProxyGenerator.saveGeneratedFiles&amp;#34;, &amp;#34;true&amp;#34;); // 创建一个代理类，该代理类由 Main.class.getClassLoader() 获取到的类加载器加载 // 并且实现 F 接口 // 该</description>
     </item>
     <item>
       <title>Java核心技术卷一阅读笔记（7.3 ~ 9.5.3）</title>
-      <link>http://localhost:1313/7224233674005610506/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610506/</link>
       <pubDate>Sun, 20 Mar 2022 22:12:04 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610506/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610506/</guid>
       <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
     </item>
     <item>
-      <title>正则表达式</title>
-      <link>http://localhost:1313/7224233674005610507/</link>
+      <title>CentOS环境安装</title>
+      <link>https://xfdzcoder.github.io/7226941030816325632/</link>
       <pubDate>Thu, 03 Mar 2022 19:11:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610507/</guid>
+      <guid>https://xfdzcoder.github.io/7226941030816325632/</guid>
+      <description>CentOS 环境安装 系统：CentOS 7.6 1 更新 yum yum update -y 2 安装 Java 访问 Orcal 官网 Java Downloads | Oracle 下载合适的版本 arch 或 uname -m 命令可查看服务器架构类型 通过 scp 命令将 jdk 上传到 服务</description>
+    </item>
+    <item>
+      <title>正则表达式</title>
+      <link>https://xfdzcoder.github.io/7224233674005610507/</link>
+      <pubDate>Thu, 03 Mar 2022 19:11:45 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7224233674005610507/</guid>
       <description>正则表达式 语法介绍： 按照功能分类：（大致 限定符 选择匹配符 分组组合和反向引用符 特殊字符 字符匹配符 定位符 元字符：转意号 \\ 需要用到转意符号的字符：</description>
     </item>
     <item>
       <title>HashSet 源码分析</title>
-      <link>http://localhost:1313/7224237482966319106/</link>
+      <link>https://xfdzcoder.github.io/7224237482966319106/</link>
       <pubDate>Mon, 17 Jan 2022 22:46:45 +0800</pubDate>
-      <guid>http://localhost:1313/7224237482966319106/</guid>
+      <guid>https://xfdzcoder.github.io/7224237482966319106/</guid>
       <description>P521-P525 跟着老韩读源码 感谢韩顺平老师！ 下面是视频地址 【零基础 快速学Java】韩顺平 零基础30天学会Java_哔哩哔哩_bilibili 干就完了！ 以</description>
     </item>
     <item>
       <title>Java核心技术卷一阅读笔记（1.1 ~ 7.2.5）</title>
-      <link>http://localhost:1313/7224233674005610505/</link>
+      <link>https://xfdzcoder.github.io/7224233674005610505/</link>
       <pubDate>Wed, 22 Dec 2021 21:33:09 +0800</pubDate>
-      <guid>http://localhost:1313/7224233674005610505/</guid>
+      <guid>https://xfdzcoder.github.io/7224233674005610505/</guid>
       <description>《Java核心技术卷》阅读笔记，主要记录了自己学习过程中的遗漏点</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://xfdzcoder.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>关于我 一个在校的 JavaCoder。 技术栈 主要学习方向是以 Spring 生态为主的 Web 后端开发。技术栈如下： 详细一点来说： Java 集合： 线程不安全的：Array</description>
+      <guid>https://xfdzcoder.github.io/about/</guid>
+      <description>关于我 一个在校的 JavaCoder。 项目能力 能够使用 Vite + Vue 全家桶 + Axios + 组件库 进行前端开发，使用 SpringBoot + MybatisPlus 进行后端开发，使用 MySQL 作为数据库从零开始开</description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%B8%89%E9%9D%A2/</link>
+      <link>https://xfdzcoder.github.io/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%B8%89%E9%9D%A2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%B8%89%E9%9D%A2/</guid>
+      <guid>https://xfdzcoder.github.io/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%B8%89%E9%9D%A2/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/</link>
+      <link>https://xfdzcoder.github.io/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/</guid>
+      <guid>https://xfdzcoder.github.io/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/</guid>
       <description></description>
     </item>
     <item>
       <title></title>
-      <link>http://localhost:1313/search/placeholder/</link>
+      <link>https://xfdzcoder.github.io/search/placeholder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/search/placeholder/</guid>
+      <guid>https://xfdzcoder.github.io/search/placeholder/</guid>
       <description></description>
     </item>
     <item>
       <title>Posts Archive</title>
-      <link>http://localhost:1313/archive/</link>
+      <link>https://xfdzcoder.github.io/archive/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/archive/</guid>
+      <guid>https://xfdzcoder.github.io/archive/</guid>
       <description></description>
     </item>
   </channel>
