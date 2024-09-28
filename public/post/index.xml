@@ -6,8 +6,29 @@
     <description>Recent content in Posts on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Thu, 12 Sep 2024 14:20:04 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 28 Sep 2024 09:11:59 +0800</lastBuildDate>
     <atom:link href="https://xfdzcoder.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>私有局域网搭建开发环境其四——自建GitLab</title>
+      <link>https://xfdzcoder.github.io/7245597786396205056/</link>
+      <pubDate>Sat, 28 Sep 2024 09:11:59 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7245597786396205056/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>私有局域网搭建开发环境其三——dnsmasq自建DNS服务器</title>
+      <link>https://xfdzcoder.github.io/7245597786396205056/</link>
+      <pubDate>Sat, 28 Sep 2024 08:59:17 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7245597786396205056/</guid>
+      <description>参考文献 dnsmasq 详解及配置 - 老王的自留地 | ivo Blog (ivo-wang.github.io) Index of / (dnsmasq.org) 我的配置： log-queries cache-size=2000 clear-on-reload resolv-file=/etc/resolv.dnsupstream.conf 自定义域名在 /etc/hosts 文件中定义 /etc/resolv.dnsupstream.conf 文件定义上游DNS服务器，然后在 /etc/resolv.conf 中新增 nameserver 本机</description>
+    </item>
+    <item>
+      <title>私有局域网搭建开发环境其二——Zerotier搭建虚拟局域网</title>
+      <link>https://xfdzcoder.github.io/7245436255238922240/</link>
+      <pubDate>Fri, 27 Sep 2024 22:16:32 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7245436255238922240/</guid>
+      <description>安装 ZeroTier Documentation 按照官方文档教程安装即可 配置Moon 需要所有设备均可访问的一个设备，比如具有公网IP的服务器，或者你所有设备都在一个真实局域网（那也</description>
+    </item>
     <item>
       <title>ForkJoinPool 的坑</title>
       <link>https://xfdzcoder.github.io/7239880408618278912/</link>
@@ -58,7 +79,7 @@
       <description>成果 实现了动态的、完全在内存中的编译 Java 源代码，没有操作本地文件的 IO 消耗。 通过自定义类加载器实现了从字节数组加载类，而不是从文件，减少了不必要</description>
     </item>
     <item>
-      <title>戴尔G15安装Debian12记录</title>
+      <title>私有局域网搭建开发环境其一——戴尔G15安装Debian12记录</title>
       <link>https://xfdzcoder.github.io/7230148377613213696/</link>
       <pubDate>Fri, 16 Aug 2024 17:48:43 +0800</pubDate>
       <guid>https://xfdzcoder.github.io/7230148377613213696/</guid>

@@ -1,11 +1,12 @@
 ---
 url: /7230148377613213696
-title: '戴尔G15安装Debian12记录'
+title: '私有局域网搭建开发环境其一——戴尔G15安装Debian12记录'
 date: 2024-08-16T17:48:43+08:00
+lastmod: 2024-09-27T22:16:32+08:00
 draft: false
 summary: ""
 categories: [Java]
-tags: ['top', 'Linux', 'Debian']
+tags: ['top', 'Linux', 'Debian', '私有局域网搭建开发环境']
 ---
 
 ## 1. 安装 Debian 12
