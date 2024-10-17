@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on XFDZ&#39;s Blog</title>
+    <link>https://xfdzcoder.github.io/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on XFDZ&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>zh-us</language>
+    <lastBuildDate>Sat, 12 Oct 2024 16:13:18 +0800</lastBuildDate>
+    <atom:link href="https://xfdzcoder.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>私有局域网搭建开发环境其五——Kubernetes集群的搭建</title>
+      <link>https://xfdzcoder.github.io/7250780131470385152/</link>
+      <pubDate>Sat, 12 Oct 2024 16:13:18 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7250780131470385152/</guid>
+      <description>安装环境： Linux iZhp30asxbevz04dbsdd66Z 3.10.0-957.21.3.el7.x86_64 #1 SMP Tue Jun 18 16:35:19 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux Docker version 25.0.4, build 1a576c5 参考教程： 安装 kubeadm | Kubernetes 步骤 1. 安装容器运行时 这里选择使用Docker作为容器运行时，还需要安装</description>
+    </item>
+  </channel>
+</rss>
