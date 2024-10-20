@@ -257,6 +257,7 @@
 <li><a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">安装 kubeadm | Kubernetes</a></li>
 </ul>
 <h2 id="步骤">步骤</h2>
+<h3 id="0-切记不懂的配置不要瞎改因为瞎改踩了很多坑--_-">0. 切记！不懂的配置不要瞎改，因为瞎改踩了很多坑 -_-</h3>
 <h3 id="1-安装容器运行时">1. 安装容器运行时</h3>
 <p>这里选择使用Docker作为容器运行时，还需要安装 <a href="https://mirantis.github.io/cri-dockerd/">cri-dockerd (mirantis.github.io)</a>，原因详见<a href="https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime">安装 kubeadm | Kubernetes</a></p>
 <p>根据自己的系统进行安装即可</p>
@@ -308,7 +309,12 @@
 </code></pre><h4 id="the-connection-to-the-server-localhost8080-was-refused---did-you-specify-the-right-host-or-port">The connection to the server localhost:8080 was refused - did you specify the right host or port?</h4>
 <pre tabindex="0"><code>mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/kubelet.conf $HOME/.kube/config
-</code></pre>
+</code></pre><h4 id="metrixs-server无法正常运行">Metrixs-server无法正常运行</h4>
+<p>经过排查，原因出在网络上，节点之间无法互相访问，即A节点无法访问B节点的pod</p>
+<p><a href="https://www.cnblogs.com/ki11-9/articles/16659943.html">metrics-server无法正常运行（tls认证失败） - shelterCJJ - 博客园 (cnblogs.com)</a></p>
+<p>解决方案：指定flannel网卡</p>
+<p><a href="https://blog.csdn.net/weixin_42431069/article/details/106623341">kubernetes集群节点多网卡，calico/flannel组件如何指定网卡_calico指定网卡-CSDN博客</a></p>
+
 
                 
 
@@ -321,6 +327,11 @@ cp -i /etc/kubernetes/kubelet.conf $HOME/.kube/config
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/7253629079423852544/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其六——GitLab之CI工作流">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
                 
@@ -385,6 +396,10 @@ cp -i /etc/kubernetes/kubelet.conf $HOME/.kube/config
                         
                         
                         
+                        
+                        <a href="/tags/kubernetes" title="kubernetes">
+                            kubernetes
+                        </a>
                         
                         
                         

@@ -24,3 +24,9 @@ Debian12
 2. 减少内存占用：[降低gitlab的资源占用（直接干）_puma: cluster worker 减少-CSDN博客](https://blog.csdn.net/weixin_45272815/article/details/130033903)
    - 16G内存条件下：63.6% -> 36.7%
 
+### 安装GitLab-Runner
+
+这个的安装建议直接在物理机中安装而不是通过docker等容器化安装方式，可以避免很多不必要的麻烦。
+
+详见：[Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+

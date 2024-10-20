@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="私有局域网搭建开发环境其六——GitLab之CI工作流" />
+    <meta property="og:title" content="私有局域网搭建开发环境其六——GitLab之CI工作流" />
+    <meta property="twitter:title" content="私有局域网搭建开发环境其六——GitLab之CI工作流" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>私有局域网搭建开发环境其六——GitLab之CI工作流 | XFDZ Blog</title>
+
+    <link rel="canonical" href="/7253629079423852544/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive/">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about/">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        <a class="tag" href="/tags/linux" title="Linux">
+                            Linux
+                        </a>
+                        
+                        <a class="tag" href="/tags/%E7%A7%81%E6%9C%89%E5%B1%80%E5%9F%9F%E7%BD%91%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" title="私有局域网搭建开发环境">
+                            私有局域网搭建开发环境
+                        </a>
+                        
+                        <a class="tag" href="/tags/kubernetes" title="kubernetes">
+                            kubernetes
+                        </a>
+                        
+                    </div>
+                    <h1>私有局域网搭建开发环境其六——GitLab之CI工作流</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Sunday, October 20, 2024
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <!-- raw HTML omitted -->
+<h2 id="相关文档">相关文档</h2>
+<p>语法说明，常看常新，不会就查：https://docs.gitlab.com/17.4/ee/ci/yaml/index.html</p>
+<p>变量的使用，可以让流程更加易于维护：https://docs.gitlab.com/17.4/ee/ci/variables/index.html</p>
+<h2 id="配置记录">配置记录</h2>
+<p>下面记录一下我的简单的一个CI脚本，首先得了解一下目录结构，这个项目是一个多模块的微服务项目，common类的模块为公共类库模块</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>|-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|-- .git
+</span></span><span style="display:flex;"><span>|-- .gitignore
+</span></span><span style="display:flex;"><span>|-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|-- .gitmodules
+</span></span><span style="display:flex;"><span>|-- .idea
+</span></span><span style="display:flex;"><span>|-- .requests
+</span></span><span style="display:flex;"><span>|   |-- generated-requests.http
+</span></span><span style="display:flex;"><span>|   `-- http-client.env.json
+</span></span><span style="display:flex;"><span>|-- .run
+</span></span><span style="display:flex;"><span>|   |-- Template JUnit.run.xml
+</span></span><span style="display:flex;"><span>|   |-- Template Spring Boot.run.xml
+</span></span><span style="display:flex;"><span>|   `-- server
+</span></span><span style="display:flex;"><span>|       |-- debug.sh
+</span></span><span style="display:flex;"><span>|       `-- run.sh
+</span></span><span style="display:flex;"><span>|-- README.md
+</span></span><span style="display:flex;"><span>|-- common
+</span></span><span style="display:flex;"><span>|   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |-- .git
+</span></span><span style="display:flex;"><span>|   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |-- common-cache
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- common-dao
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- common-dependencies
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- common-dubbo
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- common-file
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- common-web
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   `-- pom.xml
+</span></span><span style="display:flex;"><span>|-- conf
+</span></span><span style="display:flex;"><span>|   |-- EasyCodeConfig.json
+</span></span><span style="display:flex;"><span>|   |-- config-dev-server.yml
+</span></span><span style="display:flex;"><span>|   |-- config-dev.yml
+</span></span><span style="display:flex;"><span>|   |-- example
+</span></span><span style="display:flex;"><span>|   |   |-- bootstrap.yml.example
+</span></span><span style="display:flex;"><span>|   |   |-- logback-spring.xml.example
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml.service.example
+</span></span><span style="display:flex;"><span>|   |   `-- sa-token.yml.example
+</span></span><span style="display:flex;"><span>|   |-- logback-spring.xml
+</span></span><span style="display:flex;"><span>|   |-- sql
+</span></span><span style="display:flex;"><span>|   |   |-- code-sandbox.sql
+</span></span><span style="display:flex;"><span>|   |   |-- community.sql
+</span></span><span style="display:flex;"><span>|   |   |-- database-schema.sql
+</span></span><span style="display:flex;"><span>|   |   |-- manage-user.sql
+</span></span><span style="display:flex;"><span>|   |   |-- question.sql
+</span></span><span style="display:flex;"><span>|   |   |-- user-community.sql
+</span></span><span style="display:flex;"><span>|   |   `-- user.sql
+</span></span><span style="display:flex;"><span>|   `-- temp.bat
+</span></span><span style="display:flex;"><span>|-- docs
+</span></span><span style="display:flex;"><span>|   `-- README.md
+</span></span><span style="display:flex;"><span>|-- logs
+</span></span><span style="display:flex;"><span>|   |-- community
+</span></span><span style="display:flex;"><span>|   |   |-- community.2024-10-04.log
+</span></span><span style="display:flex;"><span>|   |   |-- community.2024-10-05.log
+</span></span><span style="display:flex;"><span>|   |   |-- community.2024-10-10.log
+</span></span><span style="display:flex;"><span>|   |   |-- community.2024-10-12.log
+</span></span><span style="display:flex;"><span>|   |   `-- community.log
+</span></span><span style="display:flex;"><span>|   |-- copilot
+</span></span><span style="display:flex;"><span>|   |   |-- copilot.2024-10-04.log
+</span></span><span style="display:flex;"><span>|   |   `-- copilot.log
+</span></span><span style="display:flex;"><span>|   |-- gateway
+</span></span><span style="display:flex;"><span>|   |   |-- gateway.2024-10-04.log
+</span></span><span style="display:flex;"><span>|   |   |-- gateway.2024-10-05.log
+</span></span><span style="display:flex;"><span>|   |   |-- gateway.2024-10-10.log
+</span></span><span style="display:flex;"><span>|   |   |-- gateway.2024-10-12.log
+</span></span><span style="display:flex;"><span>|   |   `-- gateway.log
+</span></span><span style="display:flex;"><span>|   |-- question
+</span></span><span style="display:flex;"><span>|   |   |-- question.2024-10-04.log
+</span></span><span style="display:flex;"><span>|   |   |-- question.2024-10-05.log
+</span></span><span style="display:flex;"><span>|   |   `-- question.log
+</span></span><span style="display:flex;"><span>|   |-- sandbox
+</span></span><span style="display:flex;"><span>|   |   `-- sandbox.log
+</span></span><span style="display:flex;"><span>|   `-- user
+</span></span><span style="display:flex;"><span>|       |-- user.2024-10-04.log
+</span></span><span style="display:flex;"><span>|       |-- user.2024-10-05.log
+</span></span><span style="display:flex;"><span>|       |-- user.2024-10-12.log
+</span></span><span style="display:flex;"><span>|       `-- user.log
+</span></span><span style="display:flex;"><span>|-- manage
+</span></span><span style="display:flex;"><span>|   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |-- manage-common
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- manage-common-cache
+</span></span><span style="display:flex;"><span>|   |   |-- manage-common-dependencies
+</span></span><span style="display:flex;"><span>|   |   `-- pom.xml
+</span></span><span style="display:flex;"><span>|   |-- manage-community
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- manage-gateway
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- manage-question
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- manage-user
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   `-- pom.xml
+</span></span><span style="display:flex;"><span>|-- mini
+</span></span><span style="display:flex;"><span>|   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |-- mini-common
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- mini-common-api
+</span></span><span style="display:flex;"><span>|   |   |-- mini-common-cache
+</span></span><span style="display:flex;"><span>|   |   |-- mini-common-dependencies
+</span></span><span style="display:flex;"><span>|   |   `-- pom.xml
+</span></span><span style="display:flex;"><span>|   |-- mini-community
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- mini-gateway
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- mini-question
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   |-- mini-user
+</span></span><span style="display:flex;"><span>|   |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- .git
+</span></span><span style="display:flex;"><span>|   |   |-- .gitignore
+</span></span><span style="display:flex;"><span>|   |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>|   |   |-- Dockerfile
+</span></span><span style="display:flex;"><span>|   |   |-- helm
+</span></span><span style="display:flex;"><span>|   |   |-- pom.xml
+</span></span><span style="display:flex;"><span>|   |   |-- src
+</span></span><span style="display:flex;"><span>|   |   `-- target
+</span></span><span style="display:flex;"><span>|   `-- pom.xml
+</span></span><span style="display:flex;"><span>|-- pom.xml
+</span></span><span style="display:flex;"><span>`-- universal
+</span></span><span style="display:flex;"><span>    |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>    |-- pom.xml
+</span></span><span style="display:flex;"><span>    |-- universal-code-sandbox
+</span></span><span style="display:flex;"><span>    |   |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>    |   |-- .git
+</span></span><span style="display:flex;"><span>    |   |-- .gitignore
+</span></span><span style="display:flex;"><span>    |   |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>    |   |-- pom.xml
+</span></span><span style="display:flex;"><span>    |   |-- universal-code-sandbox-api
+</span></span><span style="display:flex;"><span>    |   `-- universal-code-sandbox-docker
+</span></span><span style="display:flex;"><span>    `-- universal-copilot
+</span></span><span style="display:flex;"><span>        |-- .flattened-pom.xml
+</span></span><span style="display:flex;"><span>        |-- .git
+</span></span><span style="display:flex;"><span>        |-- .gitignore
+</span></span><span style="display:flex;"><span>        |-- .gitlab-ci.yml
+</span></span><span style="display:flex;"><span>        |-- pom.xml
+</span></span><span style="display:flex;"><span>        |-- universal-copilot-api
+</span></span><span style="display:flex;"><span>        `-- universal-copilot-spark
+</span></span></code></pre></div><p>主要文件说明：</p>
+<ul>
+<li><code>.flattened-pom.xml</code> 是 maven 的 flattened 插件生成的用于多模块项目中的版本管理的，详见：<a href="https://maven.apache.org/maven-ci-friendly.html">Maven – Maven CI 友好版本</a>，这个也应该单独写一篇文章介绍下，这方面没有介绍的比较详细的，大多数都只提 revision 但不提 flattened，（挖个坑</li>
+<li><code>.gitlab-ci.yml</code> 是流水线的配置文件</li>
+<li><code>Dockerfile</code> 是 docker 镜像构建的配置文件，主要相关的就三个</li>
+</ul>
+<p>主要模块说明：</p>
+<ul>
+<li>common、manage-common、user-common
+<ul>
+<li>分别是整个项目的公共模块、manage的公共模块、user的公共模块</li>
+</ul>
+</li>
+<li>manage
+<ul>
+<li>这下面主要是管理平台的模块，负责CRUD</li>
+</ul>
+</li>
+<li>user
+<ul>
+<li>这下面主要是门户端的模块，负责提供一些个性化查询等功能</li>
+</ul>
+</li>
+<li>universal
+<ul>
+<li>这下面主要是一些公共的服务，负责给其他服务调用的，调用通过Dubbo进行，所以能看到有专门的 api 模块</li>
+</ul>
+</li>
+</ul>
+<p>根据上面几个模块可以划分出三种不同的 CI 配置：</p>
+<ul>
+<li>web服务</li>
+<li>common 类，只需要 install</li>
+<li>universal，两个都要，api模块只需要install，但是也包含了需要运行的web服务</li>
+</ul>
+<p>web服务CI配置文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">variables</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">PROJECT_NAME</span>: mini-user
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">VARIABLES_FILE</span>: variables.txt
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">DOCKER_REGISTRY_DOMAIN</span>: 阿里云的容器镜像服务地址/noj/$PROJECT_NAME
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">stages</span>:
+</span></span><span style="display:flex;"><span>  - package
+</span></span><span style="display:flex;"><span>  - build
+</span></span><span style="display:flex;"><span>  - deploy
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#  - clean</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">package-maven</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: package
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - whoami
+</span></span><span style="display:flex;"><span>    - pwd
+</span></span><span style="display:flex;"><span>    - export JAVA_HOME=/opt/jdk/jdk21
+</span></span><span style="display:flex;"><span>    - echo JAVA_HOME
+</span></span><span style="display:flex;"><span>    - mvn install -f .flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">when</span>: on_success
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">expire_in</span>: 20min
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - target/*.jar
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_PIPELINE_SOURCE == &#34;push&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">build-docker</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: build
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: docker:cli
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">before_script</span>:
+</span></span><span style="display:flex;"><span>    - export BUILD_TIME=$(date &#34;+%Y%m%d%H%M%S&#34;)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">needs</span>: [package-maven]
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - echo $BUILD_TIME
+</span></span><span style="display:flex;"><span>    - export TAG=$CI_COMMIT_BRANCH-$BUILD_TIME
+</span></span><span style="display:flex;"><span>    - echo &#34;export TAG=$TAG&#34; &gt; $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>    - docker login -u=$DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_DOMAIN
+</span></span><span style="display:flex;"><span>    - docker build -t $DOCKER_REGISTRY_DOMAIN:$TAG .
+</span></span><span style="display:flex;"><span>    - docker push $DOCKER_REGISTRY_DOMAIN:$TAG
+</span></span><span style="display:flex;"><span>    - echo &#34;build success&#34;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^dev-/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: manual
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^develop/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: on_success
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">deploy-helm</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: deploy
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">needs</span>: [build-docker]
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - source $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>    - export RELEASE=$(echo $CI_COMMIT_BRANCH | sed &#34;s/[^[[:alnum:]]//g&#34;)
+</span></span><span style="display:flex;"><span>    - helm upgrade -n noj -i $PROJECT_NAME-$RELEASE ./helm/$PROJECT_NAME
+</span></span><span style="display:flex;"><span>      --set image.tag=$TAG --set nacos.serverAddr=$NACOS_SERVER_ADDR --set nacos.port=$NACOS_PORT
+</span></span><span style="display:flex;"><span>      --set nacos.username=$NACOS_USERNAME --set nacos.password=$NACOS_PASSWORD
+</span></span><span style="display:flex;"><span>      --set nacos.namespace=$NACOS_NAMESPACE --set image.repository=$DOCKER_REGISTRY_DOMAIN
+</span></span><span style="display:flex;"><span>    - echo &#39;deploy success!&#39;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^dev-/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: manual
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^develop/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: on_success
+</span></span></code></pre></div><p>common类的 CI：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">stages</span>:
+</span></span><span style="display:flex;"><span>  - package
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">package-maven</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: package
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - whoami
+</span></span><span style="display:flex;"><span>    - pwd
+</span></span><span style="display:flex;"><span>    - export JAVA_HOME=/opt/jdk/jdk21
+</span></span><span style="display:flex;"><span>    - echo JAVA_HOME
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-dao/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-dependencies/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-web/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-cache/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-file/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f ./common-dubbo/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_PIPELINE_SOURCE == &#34;push&#34;&#39;</span>
+</span></span></code></pre></div><p>universal类的和web服务类差不多，只是多一个打包api模块的步骤</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">variables</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">PROJECT_NAME</span>: universal-copilot-spark
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">VARIABLES_FILE</span>: variables.txt
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">DOCKER_REGISTRY_DOMAIN</span>: xx/noj/$PROJECT_NAME
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">stages</span>:
+</span></span><span style="display:flex;"><span>  - package
+</span></span><span style="display:flex;"><span>  - build
+</span></span><span style="display:flex;"><span>  - deploy
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#  - clean</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">package-maven</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: package
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - whoami
+</span></span><span style="display:flex;"><span>    - cd $PROJECT_NAME
+</span></span><span style="display:flex;"><span>    - pwd
+</span></span><span style="display:flex;"><span>    - export JAVA_HOME=/opt/jdk/jdk21
+</span></span><span style="display:flex;"><span>    - echo JAVA_HOME
+</span></span><span style="display:flex;"><span>    - mvn install -f ../universal-copilot-api/.flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>    - mvn install -f .flattened-pom.xml -am
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">when</span>: on_success
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">expire_in</span>: 20min
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - $PROJECT_NAME/target/*.jar
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_PIPELINE_SOURCE == &#34;push&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">build-docker</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: build
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">image</span>: docker:cli
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">before_script</span>:
+</span></span><span style="display:flex;"><span>    - export BUILD_TIME=$(date &#34;+%Y%m%d%H%M%S&#34;)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">needs</span>: [package-maven]
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - echo $BUILD_TIME
+</span></span><span style="display:flex;"><span>    - export TAG=$CI_COMMIT_BRANCH-$BUILD_TIME
+</span></span><span style="display:flex;"><span>    - echo &#34;export TAG=$TAG&#34; &gt; $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>    - cd $PROJECT_NAME
+</span></span><span style="display:flex;"><span>    - docker login -u=$DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_DOMAIN
+</span></span><span style="display:flex;"><span>    - docker build -t $DOCKER_REGISTRY_DOMAIN:$TAG .
+</span></span><span style="display:flex;"><span>    - docker push $DOCKER_REGISTRY_DOMAIN:$TAG
+</span></span><span style="display:flex;"><span>    - echo &#34;build success&#34;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^dev-/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: manual
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^develop/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: on_success
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">deploy-helm</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">stage</span>: deploy
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">needs</span>: [build-docker]
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">script</span>:
+</span></span><span style="display:flex;"><span>    - source $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>    - export RELEASE=$(echo $CI_COMMIT_BRANCH | sed &#34;s/[^[[:alnum:]]//g&#34;)
+</span></span><span style="display:flex;"><span>    - cd $PROJECT_NAME
+</span></span><span style="display:flex;"><span>    - helm upgrade -n noj -i $PROJECT_NAME-$RELEASE ./helm/$PROJECT_NAME
+</span></span><span style="display:flex;"><span>      --set image.tag=$TAG --set nacos.serverAddr=$NACOS_SERVER_ADDR --set nacos.port=$NACOS_PORT
+</span></span><span style="display:flex;"><span>      --set nacos.username=$NACOS_USERNAME --set nacos.password=$NACOS_PASSWORD
+</span></span><span style="display:flex;"><span>      --set nacos.namespace=$NACOS_NAMESPACE --set image.repository=$DOCKER_REGISTRY_DOMAIN
+</span></span><span style="display:flex;"><span>    - echo &#39;deploy success!&#39;
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">artifacts</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">paths</span>:
+</span></span><span style="display:flex;"><span>      - $VARIABLES_FILE
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">rules</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^dev-/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: manual
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">if</span>: <span style="color:#f1fa8c">&#39;$CI_COMMIT_BRANCH =~ /^develop/&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">when</span>: on_success
+</span></span></code></pre></div><h2 id="结语">结语</h2>
+<p>还是有很多可以改进的地方，不过大致也就这样，另外我的CI都是基于Shell的方式运行的，因为目前就一个电脑Shell是最方便的，如果换成容器的话，需要考虑maven仓库的缓存（自建maven私服）、docker in docker 的实现方式，这过于复杂了，目前初学就先跑通这个流程，升级优化慢慢来。</p>
+<p>另外，我用的是 java21，后面也会尝试一下 AOT 打包，毕竟现在确实启动速度确实很慢，内存也占挺多，下面是运行在我一个笔记本上的k8s里的资源消耗情况</p>
+<p>
+  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F10%2F20%2F13-25-15-f7dd6802bc6720e7a165806a27fc10e4-image-20241020132500517-03d6d4.png" alt="image-20241020132500517">
+
+</p>
+<p>可以看到10个java服务，2个nginx部署的前端，这还是没有任何访问量的情况下，JVM参数还设置了<code>-server -Xmx250m -Xms100m</code></p>
+<p>用 AOT 之后再看吧，好像也不好搞，又挖一个坑</p>
+<p>什么？少了Helm？这不就一个包管理器么，感觉跟maven一样，不过xml变成yml了，没啥区别，基本上和k8s的配置一一对应，然后支持 Go 模板语法罢了，这应该没啥好讲的</p>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/7250780131470385152/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其五——Kubernetes集群的搭建">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/debian" title="debian">
+                            debian
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/kubernetes" title="kubernetes">
+                            kubernetes
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E7%A7%81%E6%9C%89%E5%B1%80%E5%9F%9F%E7%BD%91%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" title="私有局域网搭建开发环境">
+                            私有局域网搭建开发环境
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

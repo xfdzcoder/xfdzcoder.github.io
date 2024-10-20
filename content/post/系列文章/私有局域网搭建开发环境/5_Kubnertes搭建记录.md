@@ -22,6 +22,8 @@ tags: ['top', 'Linux', '私有局域网搭建开发环境', 'kubernetes']
 
 ## 步骤
 
+### 0. 切记！不懂的配置不要瞎改，因为瞎改踩了很多坑 -_-
+
 ### 1. 安装容器运行时
 
 这里选择使用Docker作为容器运行时，还需要安装 [cri-dockerd (mirantis.github.io)](https://mirantis.github.io/cri-dockerd/)，原因详见[安装 kubeadm | Kubernetes](https://kubernetes.io/zh-cn/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime)
@@ -98,8 +100,6 @@ kubeadm join --config join.yaml -v=999
 yum -y install socat conntrack-tools
 ```
 
-
-
 #### The connection to the server localhost:8080 was refused - did you specify the right host or port?
 
 ```
@@ -107,3 +107,12 @@ mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/kubelet.conf $HOME/.kube/config
 ```
 
+#### Metrixs-server无法正常运行
+
+经过排查，原因出在网络上，节点之间无法互相访问，即A节点无法访问B节点的pod
+
+[metrics-server无法正常运行（tls认证失败） - shelterCJJ - 博客园 (cnblogs.com)](https://www.cnblogs.com/ki11-9/articles/16659943.html)
+
+解决方案：指定flannel网卡
+
+[kubernetes集群节点多网卡，calico/flannel组件如何指定网卡_calico指定网卡-CSDN博客](https://blog.csdn.net/weixin_42431069/article/details/106623341)
