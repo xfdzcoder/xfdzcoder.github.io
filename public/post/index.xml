@@ -6,8 +6,15 @@
     <description>Recent content in Posts on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Sun, 20 Oct 2024 12:52:24 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Nov 2024 21:09:49 +0800</lastBuildDate>
     <atom:link href="https://xfdzcoder.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>私有局域网搭建开发环境其七——SpringCloudAlibaba项目的Native构建</title>
+      <link>https://xfdzcoder.github.io/7258102899799007232/</link>
+      <pubDate>Fri, 01 Nov 2024 21:09:49 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7258102899799007232/</guid>
+      <description>作者说 耗时10天的空闲时间终于构建好了第一个模块，怪不得 Native Image 不推荐用于生产环境呢，该模块使用jar包直接运行启动耗时约10s，Native I</description>
+    </item>
     <item>
       <title>私有局域网搭建开发环境其六——GitLab之CI工作流</title>
       <link>https://xfdzcoder.github.io/7253629079423852544/</link>

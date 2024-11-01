@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:site_name" content="XFDZ&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    
+    <meta property="og:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg">
+    <meta property="twitter:image" content="https://xfdzcoder.github.io//https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg" />
+    
+
+    
+    <meta name="title" content="" />
+    <meta property="og:title" content="" />
+    <meta property="twitter:title" content="" />
+    
+
+    
+    <meta name="description" content="xfdzcoder">
+    <meta property="og:description" content="xfdzcoder" />
+    <meta property="twitter:description" content="xfdzcoder" />
+    
+
+    
+    <meta property="twitter:card" content="summary" />
+    
+    
+
+    <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>XFDZ Blog</title>
+
+    <link rel="canonical" href="/post/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/%E7%A7%81%E6%9C%89%E5%B1%80%E5%9F%9F%E7%BD%91%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/7_cloudalibaba%E9%A1%B9%E7%9B%AE%E7%9A%84native%E6%89%93%E5%8C%85/">
+
+    
+    
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hugo-theme-cleanwhite.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.all.min.css">
+
+    
+    
+
+    
+    <script src="/js/jquery.min.js"></script>
+
+    
+    <script src="/js/bootstrap.min.js"></script>
+
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    <script src="/js/lazysizes.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href='/'>XFDZ&#39;s Blog</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a style="color: black" href="/tags/top">置顶</a>
+                    </li>
+
+                    
+                        
+                        <li>
+                            <a style="color: black" href="/categories/guide/">guide</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/java/">java</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E6%A1%86%E6%9E%B6/">框架</a>
+                        </li>
+                        
+                        <li>
+                            <a style="color: black" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                        </li>
+                        
+                    
+
+                    
+                        <li><a style="color: black" href="/archive/">归档</a></li>
+                    
+                        <li><a style="color: black" href="/about/">关于</a></li>
+                    
+		            <li>
+                        <a href="/search"><i class="fa fa-search" style="color: black"></i></a>
+		           </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F08-09-22-5598d9e07b8da240227832543a6ad424-f7f79d10f2667c22055e2bdff4da17ee-f65e0b.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                    </div>
+                    <h1></h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                    XFDZ&#39;s Blog
+                             
+                            on 
+                            Monday, January 1, 0001
+                            
+                            
+                            
+                            
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="参考文献">参考文献</h2>
+<p><a href="https://developer.aliyun.com/article/1286879">走向Native化：Spring&amp;Dubbo AOT 技术示例与原理讲解-阿里云开发者社区</a></p>
+<h2 id="相关官网">相关官网</h2>
+<p><a href="https://www.graalvm.org/downloads">Download GraalVM</a></p>
+<p><a href="https://www.graalvm.org/latest/reference-manual/native-image/?spm=a2c6h.12873639.article-detail.9.51f151e8AzXUsW#install-native-image">Native Image</a></p>
+<p><a href="https://graalvm.github.io/native-build-tools/latest/maven-plugin.html">用于 GraalVM Native Image 构建的 Maven 插件</a></p>
+<p><a href="https://blog.csdn.net/jpkopkop/article/details/127675664">【避坑+实操】GraalVM、native-image、Visual Studio安装，环境变量的配置，GraalVM的demo初体验_native image 安装包-CSDN博客</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> -------&lt; io.github.xfdzcoder.noj.cloud.manage:manage-community &gt;--------
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Building manage-community 1.0.0                                  <span style="color:#ff79c6">[</span>16/32<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>   from manage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\p</span>om.xml
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --------------------------------<span style="color:#ff79c6">[</span> jar <span style="color:#ff79c6">]</span>---------------------------------
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- native:0.10.3:add-reachability-metadata <span style="color:#ff79c6">(</span>add-reachability-metadata<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.mysql:mysql-connector-j:8.3.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.mysql:mysql-connector-j:8.3.0<span style="color:#ff79c6">]</span>: Configuration directory is com.mysql<span style="color:#f1fa8c">\m</span>ysql-connector-j<span style="color:#f1fa8c">\8</span>.0.31
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.zaxxer:HikariCP:5.0.1<span style="color:#ff79c6">]</span>: Configuration directory is com.zaxxer<span style="color:#f1fa8c">\H</span>ikariCP<span style="color:#f1fa8c">\5</span>.0.1
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jetbrains.kotlin:kotlin-stdlib:1.9.23<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jetbrains.kotlin:kotlin-stdlib:1.9.23<span style="color:#ff79c6">]</span>: Configuration directory is org.jetbrains.kotlin<span style="color:#f1fa8c">\k</span>otlin-stdlib<span style="color:#f1fa8c">\1</span>.7.10
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-compress:1.26.2<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-compress:1.26.2<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.commons<span style="color:#f1fa8c">\c</span>ommons-compress<span style="color:#f1fa8c">\1</span>.23.0
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> jakarta.servlet:jakarta.servlet-api:6.0.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> jakarta.servlet:jakarta.servlet-api:6.0.0<span style="color:#ff79c6">]</span>: Configuration directory is jakarta.servlet<span style="color:#f1fa8c">\j</span>akarta.servlet-api<span style="color:#f1fa8c">\5</span>.0.0
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-common:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-common:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-common<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-handler:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-handler:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-handler<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-buffer:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-buffer:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-buffer<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-transport:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-transport:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-transport<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-pool2:2.12.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-pool2:2.12.0<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.commons<span style="color:#f1fa8c">\c</span>ommons-pool2<span style="color:#f1fa8c">\2</span>.11.1
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> ch.qos.logback:logback-classic:1.4.14<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> ch.qos.logback:logback-classic:1.4.14<span style="color:#ff79c6">]</span>: Configuration directory is ch.qos.logback<span style="color:#f1fa8c">\l</span>ogback-classic<span style="color:#f1fa8c">\1</span>.4.9
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.fasterxml.jackson.core:jackson-databind:2.15.4<span style="color:#ff79c6">]</span>: Configuration directory is com.fasterxml.jackson.core<span style="color:#f1fa8c">\j</span>ackson-databind<span style="color:#f1fa8c">\2</span>.15.2
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.tomcat.embed:tomcat-embed-core:10.1.19<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.tomcat.embed:tomcat-embed-core:10.1.19<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.tomcat.embed<span style="color:#f1fa8c">\t</span>omcat-embed-core<span style="color:#f1fa8c">\1</span>0.0.20
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory is org.hibernate.validator<span style="color:#f1fa8c">\h</span>ibernate-validator<span style="color:#f1fa8c">\7</span>.0.4.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Latest version not found!
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: missing.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jboss.logging:jboss-logging:3.5.3.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jboss.logging:jboss-logging:3.5.3.Final<span style="color:#ff79c6">]</span>: Configuration directory is org.jboss.logging<span style="color:#f1fa8c">\j</span>boss-logging<span style="color:#f1fa8c">\3</span>.5.0.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hdrhistogram:HdrHistogram:2.1.12<span style="color:#ff79c6">]</span>: Configuration directory is org.hdrhistogram<span style="color:#f1fa8c">\H</span>drHistogram<span style="color:#f1fa8c">\2</span>.1.12
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.httpcomponents:httpclient:4.5.14<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.httpcomponents<span style="color:#f1fa8c">\h</span>ttpclient<span style="color:#f1fa8c">\4</span>.5.14
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- resources:3.3.1:resources <span style="color:#ff79c6">(</span>default-resources<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Copying <span style="color:#bd93f9">1</span> resource from src<span style="color:#f1fa8c">\m</span>ain<span style="color:#f1fa8c">\r</span>esources to target<span style="color:#f1fa8c">\c</span>lasses
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- flatten:1.6.0:flatten <span style="color:#ff79c6">(</span>flatten<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Generating flattened POM of project io.github.xfdzcoder.noj.cloud.manage:manage-community:jar:1.0.0...
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- compiler:3.13.0:compile <span style="color:#ff79c6">(</span>default-compile<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Nothing to compile - all classes are up to date.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- resources:3.3.1:testResources <span style="color:#ff79c6">(</span>default-testResources<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> skip non existing resourceDirectory D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\s</span>rc<span style="color:#f1fa8c">\t</span>est<span style="color:#f1fa8c">\r</span>esources
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- compiler:3.13.0:testCompile <span style="color:#ff79c6">(</span>default-testCompile<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> No sources to compile
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- surefire:3.2.2:test <span style="color:#ff79c6">(</span>default-test<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span>  Parameter <span style="color:#f1fa8c">&#39;systemProperties&#39;</span> is deprecated: Use systemPropertyVariables instead.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Tests are skipped.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- native:0.10.3:test <span style="color:#ff79c6">(</span>test-native<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Skipping native-image tests <span style="color:#ff79c6">(</span>parameter <span style="color:#f1fa8c">&#39;skipTests&#39;</span> or <span style="color:#f1fa8c">&#39;skipNativeTests&#39;</span> is <span style="color:#8be9fd;font-style:italic">true</span><span style="color:#ff79c6">)</span>.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- spring-boot:3.2.4:process-aot <span style="color:#ff79c6">(</span>process-aot<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- jar:3.3.0:jar <span style="color:#ff79c6">(</span>default-jar<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Building jar: D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\m</span>anage-community.jar
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- spring-boot:3.2.4:repackage <span style="color:#ff79c6">(</span>repackage<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Replacing main artifact D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\m</span>anage-community.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> The original artifact has been renamed to D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\m</span>anage-community.jar.original
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> --- native:0.10.3:compile-no-fork <span style="color:#ff79c6">(</span>build-native<span style="color:#ff79c6">)</span> @ manage-community ---
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Found GraalVM installation from JAVA_HOME variable.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.mysql:mysql-connector-j:8.3.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.mysql:mysql-connector-j:8.3.0<span style="color:#ff79c6">]</span>: Configuration directory is com.mysql<span style="color:#f1fa8c">\m</span>ysql-connector-j<span style="color:#f1fa8c">\8</span>.0.31
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.zaxxer:HikariCP:5.0.1<span style="color:#ff79c6">]</span>: Configuration directory is com.zaxxer<span style="color:#f1fa8c">\H</span>ikariCP<span style="color:#f1fa8c">\5</span>.0.1
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jetbrains.kotlin:kotlin-stdlib:1.9.23<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jetbrains.kotlin:kotlin-stdlib:1.9.23<span style="color:#ff79c6">]</span>: Configuration directory is org.jetbrains.kotlin<span style="color:#f1fa8c">\k</span>otlin-stdlib<span style="color:#f1fa8c">\1</span>.7.10
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-compress:1.26.2<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-compress:1.26.2<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.commons<span style="color:#f1fa8c">\c</span>ommons-compress<span style="color:#f1fa8c">\1</span>.23.0
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> jakarta.servlet:jakarta.servlet-api:6.0.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> jakarta.servlet:jakarta.servlet-api:6.0.0<span style="color:#ff79c6">]</span>: Configuration directory is jakarta.servlet<span style="color:#f1fa8c">\j</span>akarta.servlet-api<span style="color:#f1fa8c">\5</span>.0.0
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-common:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-common:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-common<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-handler:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-handler:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-handler<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-buffer:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-buffer:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-buffer<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-transport:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> io.netty:netty-transport:4.1.107.Final<span style="color:#ff79c6">]</span>: Configuration directory is io.netty<span style="color:#f1fa8c">\n</span>etty-transport<span style="color:#f1fa8c">\4</span>.1.80.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-pool2:2.12.0<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.commons:commons-pool2:2.12.0<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.commons<span style="color:#f1fa8c">\c</span>ommons-pool2<span style="color:#f1fa8c">\2</span>.11.1
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> ch.qos.logback:logback-classic:1.4.14<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> ch.qos.logback:logback-classic:1.4.14<span style="color:#ff79c6">]</span>: Configuration directory is ch.qos.logback<span style="color:#f1fa8c">\l</span>ogback-classic<span style="color:#f1fa8c">\1</span>.4.9
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> com.fasterxml.jackson.core:jackson-databind:2.15.4<span style="color:#ff79c6">]</span>: Configuration directory is com.fasterxml.jackson.core<span style="color:#f1fa8c">\j</span>ackson-databind<span style="color:#f1fa8c">\2</span>.15.2
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.tomcat.embed:tomcat-embed-core:10.1.19<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.tomcat.embed:tomcat-embed-core:10.1.19<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.tomcat.embed<span style="color:#f1fa8c">\t</span>omcat-embed-core<span style="color:#f1fa8c">\1</span>0.0.20
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory is org.hibernate.validator<span style="color:#f1fa8c">\h</span>ibernate-validator<span style="color:#f1fa8c">\7</span>.0.4.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: Latest version not found!
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hibernate.validator:hibernate-validator:8.0.1.Final<span style="color:#ff79c6">]</span>: missing.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jboss.logging:jboss-logging:3.5.3.Final<span style="color:#ff79c6">]</span>: Configuration directory not found. Trying latest version.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.jboss.logging:jboss-logging:3.5.3.Final<span style="color:#ff79c6">]</span>: Configuration directory is org.jboss.logging<span style="color:#f1fa8c">\j</span>boss-logging<span style="color:#f1fa8c">\3</span>.5.0.Final
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.hdrhistogram:HdrHistogram:2.1.12<span style="color:#ff79c6">]</span>: Configuration directory is org.hdrhistogram<span style="color:#f1fa8c">\H</span>drHistogram<span style="color:#f1fa8c">\2</span>.1.12
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-common/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-buffer/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-transport/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-codec/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-handler/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-codec-http/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-transport-classes-epoll/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>WARNING<span style="color:#ff79c6">]</span> Properties file at <span style="color:#f1fa8c">&#39;jar:file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar!/META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-codec-http2/native-image.properties&#39;</span> does not match the recommended <span style="color:#f1fa8c">&#39;META-INF/native-image/com.alibaba.nacos/nacos-client/native-image.properties&#39;</span> layout.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">[</span>graalvm reachability metadata repository <span style="color:#ff79c6">for</span> org.apache.httpcomponents:httpclient:4.5.14<span style="color:#ff79c6">]</span>: Configuration directory is org.apache.httpcomponents<span style="color:#f1fa8c">\h</span>ttpclient<span style="color:#f1fa8c">\4</span>.5.14
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>INFO<span style="color:#ff79c6">]</span> Executing: D:<span style="color:#f1fa8c">\e</span>nvs<span style="color:#f1fa8c">\j</span>ava<span style="color:#f1fa8c">\g</span>raalvm21<span style="color:#f1fa8c">\b</span>in<span style="color:#f1fa8c">\n</span>ative-image.cmd @target<span style="color:#f1fa8c">\t</span>mp<span style="color:#f1fa8c">\n</span>ative-image-3832139194824435976.args io.github.xfdzcoder.noj.cloud.manage.community.ManageCommunityApplication
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ReflectionConfigurationResources=META-INF/native-image/io.grpc.netty.shaded.io.netty/netty-transport/reflection-config.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ReflectionConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-websocket/tomcat-reflection.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ReflectionConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-el/tomcat-reflection.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ResourceConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-core/tomcat-resource.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ReflectionConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-core/tomcat-reflection.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ResourceConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-el/tomcat-resource.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: The option <span style="color:#f1fa8c">&#39;-H:ResourceConfigurationResources=META-INF/native-image/org.apache.tomcat.embed/tomcat-embed-websocket/tomcat-resource.json&#39;</span> is experimental and must be enabled via <span style="color:#f1fa8c">&#39;-H:+UnlockExperimentalVMOptions&#39;</span> in the future.
+</span></span><span style="display:flex;"><span>Warning: Please re-evaluate whether any experimental option is required, and either remove or unlock it. The build output lists all active experimental options, including where they come from and possible alternatives. If you think an experimental option should be considered as stable, please file an issue.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">========================================================================================================================</span>
+</span></span><span style="display:flex;"><span>GraalVM Native Image: Generating <span style="color:#f1fa8c">&#39;manage-community&#39;</span> <span style="color:#ff79c6">(</span>executable<span style="color:#ff79c6">)</span>...
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">========================================================================================================================</span>
+</span></span><span style="display:flex;"><span>For detailed information and explanations on the build output, visit:
+</span></span><span style="display:flex;"><span>https://github.com/oracle/graal/blob/master/docs/reference-manual/native-image/BuildOutput.md
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>1/8<span style="color:#ff79c6">]</span> Initializing...                                                                                   <span style="color:#ff79c6">(</span>26.5s @ 0.28GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> Java version: 21.0.5+9-LTS, vendor version: Oracle GraalVM 21.0.5+9.1
+</span></span><span style="display:flex;"><span> Graal compiler: optimization level: 2, target machine: x86-64-v3, PGO: ML-inferred
+</span></span><span style="display:flex;"><span> C compiler: cl.exe <span style="color:#ff79c6">(</span>microsoft, x64, 19.41.34123<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> Garbage collector: Serial GC <span style="color:#ff79c6">(</span>max heap size: 80% of RAM<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#bd93f9">2</span> user-specific feature<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span>:
+</span></span><span style="display:flex;"><span> - com.oracle.svm.thirdparty.gson.GsonFeature
+</span></span><span style="display:flex;"><span> - org.springframework.aot.nativex.feature.PreComputeFieldFeature
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span> <span style="color:#bd93f9">2</span> experimental option<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span> unlocked:
+</span></span><span style="display:flex;"><span> - <span style="color:#f1fa8c">&#39;-H:ResourceConfigurationResources&#39;</span> <span style="color:#ff79c6">(</span>origin<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span>: <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-core\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-core/10.1.19/tomcat-embed-core-10.1.19.jar&#39;</span>, <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-websocket\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.19/tomcat-embed-websocket-10.1.19.jar&#39;</span>, <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-el\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-el/10.1.19/tomcat-embed-el-10.1.19.jar&#39;</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> - <span style="color:#f1fa8c">&#39;-H:ReflectionConfigurationResources&#39;</span> <span style="color:#ff79c6">(</span>origin<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span>: <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-core\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-core/10.1.19/tomcat-embed-core-10.1.19.jar&#39;</span>, <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-websocket\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-websocket/10.1.19/tomcat-embed-websocket-10.1.19.jar&#39;</span>, <span style="color:#f1fa8c">&#39;META-INF\native-image\org.apache.tomcat.embed\tomcat-embed-el\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/org/apache/tomcat/embed/tomcat-embed-el/10.1.19/tomcat-embed-el-10.1.19.jar&#39;</span>, <span style="color:#f1fa8c">&#39;META-INF\native-image\io.grpc.netty.shaded.io.netty\netty-transport\native-image.properties&#39;</span> in <span style="color:#f1fa8c">&#39;file:///D:/envs/maven/repo/com/alibaba/nacos/nacos-client/2.3.2/nacos-client-2.3.2.jar&#39;</span><span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Build resources:
+</span></span><span style="display:flex;"><span> - 11.88GB of memory <span style="color:#ff79c6">(</span>75.6% of 15.71GB system memory, determined at start<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> - <span style="color:#bd93f9">12</span> thread<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">(</span>100.0% of <span style="color:#bd93f9">12</span> available processor<span style="color:#ff79c6">(</span>s<span style="color:#ff79c6">)</span>, determined at start<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>SLF4J<span style="color:#ff79c6">(</span>W<span style="color:#ff79c6">)</span>: No SLF4J providers were found.
+</span></span><span style="display:flex;"><span>SLF4J<span style="color:#ff79c6">(</span>W<span style="color:#ff79c6">)</span>: Defaulting to no-operation <span style="color:#ff79c6">(</span>NOP<span style="color:#ff79c6">)</span> logger implementation
+</span></span><span style="display:flex;"><span>SLF4J<span style="color:#ff79c6">(</span>W<span style="color:#ff79c6">)</span>: See https://www.slf4j.org/codes.html#noProviders <span style="color:#ff79c6">for</span> further details.
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>2/8<span style="color:#ff79c6">]</span> Performing analysis...  <span style="color:#ff79c6">[</span>******<span style="color:#ff79c6">]</span>                                                                  <span style="color:#ff79c6">(</span>91.5s @ 2.85GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>   26,538 reachable types   <span style="color:#ff79c6">(</span>90.1% of   29,450 total<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>   41,373 reachable fields  <span style="color:#ff79c6">(</span>55.4% of   74,707 total<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>  146,324 reachable methods <span style="color:#ff79c6">(</span>60.5% of  241,806 total<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>    9,001 types, 1,219 fields, and 15,711 methods registered <span style="color:#ff79c6">for</span> reflection
+</span></span><span style="display:flex;"><span>       <span style="color:#bd93f9">90</span> types,    <span style="color:#bd93f9">71</span> fields, and    <span style="color:#bd93f9">77</span> methods registered <span style="color:#ff79c6">for</span> JNI access
+</span></span><span style="display:flex;"><span>        <span style="color:#bd93f9">5</span> native libraries: crypt32, ncrypt, psapi, version, winhttp
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>3/8<span style="color:#ff79c6">]</span> Building universe...                                                                              <span style="color:#ff79c6">(</span>11.1s @ 3.69GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>4/8<span style="color:#ff79c6">]</span> Parsing methods...      <span style="color:#ff79c6">[</span>*****<span style="color:#ff79c6">]</span>                                                                   <span style="color:#ff79c6">(</span>22.4s @ 2.12GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>5/8<span style="color:#ff79c6">]</span> Inlining methods...     <span style="color:#ff79c6">[</span>****<span style="color:#ff79c6">]</span>                                                                     <span style="color:#ff79c6">(</span>3.8s @ 3.09GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>6/8<span style="color:#ff79c6">]</span> Compiling methods...    <span style="color:#ff79c6">[</span>***********<span style="color:#ff79c6">]</span>                                                            <span style="color:#ff79c6">(</span>133.3s @ 3.58GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>7/8<span style="color:#ff79c6">]</span> Laying out methods...   <span style="color:#ff79c6">[</span>*****<span style="color:#ff79c6">]</span>                                                                   <span style="color:#ff79c6">(</span>26.3s @ 5.33GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span>8/8<span style="color:#ff79c6">]</span> Creating image...       <span style="color:#ff79c6">[</span>*****<span style="color:#ff79c6">]</span>                                                                   <span style="color:#ff79c6">(</span>27.6s @ 3.32GB<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span>  75.39MB <span style="color:#ff79c6">(</span>58.23%<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">for</span> code area:    88,557 compilation units
+</span></span><span style="display:flex;"><span>  53.18MB <span style="color:#ff79c6">(</span>41.07%<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">for</span> image heap:  612,314 objects and <span style="color:#bd93f9">370</span> resources
+</span></span><span style="display:flex;"><span> 915.83kB <span style="color:#ff79c6">(</span> 0.69%<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">for</span> other data
+</span></span><span style="display:flex;"><span> 129.46MB in total
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Top <span style="color:#bd93f9">10</span> origins of code area:                                Top <span style="color:#bd93f9">10</span> object types in image heap:
+</span></span><span style="display:flex;"><span>  17.88MB java.base                                           20.76MB byte<span style="color:#ff79c6">[]</span> <span style="color:#ff79c6">for</span> code metadata
+</span></span><span style="display:flex;"><span>   8.09MB nacos-client-2.3.2.jar                               9.33MB byte<span style="color:#ff79c6">[]</span> <span style="color:#ff79c6">for</span> java.lang.String
+</span></span><span style="display:flex;"><span>   6.25MB svm.jar <span style="color:#ff79c6">(</span>Native Image<span style="color:#ff79c6">)</span>                               5.04MB java.lang.Class
+</span></span><span style="display:flex;"><span>   4.28MB java.xml                                             4.40MB java.lang.String
+</span></span><span style="display:flex;"><span>   3.57MB jdk.proxy4                                           2.12MB byte<span style="color:#ff79c6">[]</span> <span style="color:#ff79c6">for</span> reflection metadata
+</span></span><span style="display:flex;"><span>   2.96MB lettuce-core-6.3.2.RELEASE.jar                       1.59MB byte<span style="color:#ff79c6">[]</span> <span style="color:#ff79c6">for</span> embedded resources
+</span></span><span style="display:flex;"><span>   2.76MB spring-data-redis-3.2.4.jar                          1.21MB com.oracle.svm.core.hub.DynamicHubCompanion
+</span></span><span style="display:flex;"><span>   2.66MB mysql-connector-j-8.3.0.jar                        990.00kB java.lang.reflect.Method
+</span></span><span style="display:flex;"><span>   2.40MB jackson-databind-2.15.4.jar                        969.26kB byte<span style="color:#ff79c6">[]</span> <span style="color:#ff79c6">for</span> general heap data
+</span></span><span style="display:flex;"><span>   2.14MB tomcat-embed-core-10.1.19.jar                      759.31kB c.o.svm.core.hub.DynamicHub<span style="color:#8be9fd;font-style:italic">$ReflectionMetadata</span>
+</span></span><span style="display:flex;"><span>  21.77MB <span style="color:#ff79c6">for</span> <span style="color:#bd93f9">135</span> more packages                                6.07MB <span style="color:#ff79c6">for</span> <span style="color:#bd93f9">4752</span> more object types
+</span></span><span style="display:flex;"><span>                              Use <span style="color:#f1fa8c">&#39;-H:+BuildReport&#39;</span> to create a report with more details.
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Security report:
+</span></span><span style="display:flex;"><span> - Binary includes Java deserialization.
+</span></span><span style="display:flex;"><span> - Use <span style="color:#f1fa8c">&#39;--enable-sbom&#39;</span> to embed a Software Bill of Materials <span style="color:#ff79c6">(</span>SBOM<span style="color:#ff79c6">)</span> in the binary.
+</span></span><span style="display:flex;"><span> - The log4j library has been detected, but the version is unavailable. Due to Log4Shell, please ensure log4j is at version 2.17.1 or later.
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Recommendations:
+</span></span><span style="display:flex;"><span> PGO:  Use Profile-Guided Optimizations <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;--pgo&#39;</span><span style="color:#ff79c6">)</span> <span style="color:#ff79c6">for</span> improved throughput.
+</span></span><span style="display:flex;"><span> INIT: Adopt <span style="color:#f1fa8c">&#39;--strict-image-heap&#39;</span> to prepare <span style="color:#ff79c6">for</span> the next GraalVM release.
+</span></span><span style="display:flex;"><span> HEAP: Set max heap <span style="color:#ff79c6">for</span> improved and more predictable memory usage.
+</span></span><span style="display:flex;"><span> CPU:  Enable more CPU features with <span style="color:#f1fa8c">&#39;-march=native&#39;</span> <span style="color:#ff79c6">for</span> improved performance.
+</span></span><span style="display:flex;"><span> QBM:  Use the quick build mode <span style="color:#ff79c6">(</span><span style="color:#f1fa8c">&#39;-Ob&#39;</span><span style="color:#ff79c6">)</span> to speed up builds during development.
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>                       50.2s <span style="color:#ff79c6">(</span>14.5% of total <span style="color:#8be9fd;font-style:italic">time</span><span style="color:#ff79c6">)</span> in <span style="color:#bd93f9">259</span> GCs | Peak RSS: 6.86GB | CPU load: 5.50
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Produced artifacts:
+</span></span><span style="display:flex;"><span> D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\i</span>nstrument.dll <span style="color:#ff79c6">(</span>jdk_library<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\j</span>aas.dll <span style="color:#ff79c6">(</span>jdk_library<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\m</span>anage-community.exe <span style="color:#ff79c6">(</span>executable<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span> D:<span style="color:#f1fa8c">\p</span>rojects<span style="color:#f1fa8c">\w</span>ork<span style="color:#f1fa8c">\x</span>fdzcoder<span style="color:#f1fa8c">\N</span>OJ<span style="color:#f1fa8c">\n</span>oj-cloud<span style="color:#f1fa8c">\m</span>anage<span style="color:#f1fa8c">\m</span>anage-community<span style="color:#f1fa8c">\t</span>arget<span style="color:#f1fa8c">\w</span>2k_lsa_auth.dll <span style="color:#ff79c6">(</span>jdk_library<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">========================================================================================================================</span>
+</span></span><span style="display:flex;"><span>Finished generating <span style="color:#f1fa8c">&#39;manage-community&#39;</span> in 5m 45s.
+</span></span></code></pre></div><h2 id="问题">问题</h2>
+<h3 id="问题1no-springconfigimport-property-has-been-defined">问题1：No spring.config.import property has been defined</h3>
+<pre tabindex="0"><code>❯ .\manage-community.exe
+22:02:14.743 [main] ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter --
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+No spring.config.import property has been defined
+
+Action:
+
+Add a spring.config.import=nacos: property to your configuration.
+        If configuration is not required add spring.config.import=optional:nacos: instead.
+        To disable this check, set spring.cloud.nacos.config.import-check.enabled=false.
+</code></pre><p>bootstrap.yml</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">server</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">port</span>: <span style="color:#bd93f9">5041</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">servlet</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">context-path</span>: /community
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">application</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">name</span>: community
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">cloud</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">nacos</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">server-addr</span>: ${nacos.server-addr}:${nacos.port}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">username</span>: ${nacos.username}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">password</span>: ${nacos.password}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">config</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">file-extension</span>: ${nacos.file-extension}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">group</span>: ${nacos.manage-group}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">namespace</span>: ${nacos.namespace}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">shared-configs</span>:
+</span></span><span style="display:flex;"><span>          - <span style="color:#ff79c6">data-id</span>: redis.yml
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">refresh</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">group</span>: ${nacos.common-group}
+</span></span><span style="display:flex;"><span>          - <span style="color:#ff79c6">data-id</span>: mysql.yml
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">refresh</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">group</span>: ${nacos.common-group}
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">discovery</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">group</span>: ${nacos.manage-group}
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">namespace</span>: ${nacos.namespace}
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">config</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">import</span>: optional:none
+</span></span></code></pre></div><h4 id="解决">解决</h4>
+<p>按照提示指定启动参数：</p>
+<pre tabindex="0"><code>❯ .\manage-community --spring.config.additional-location=D:\projects\work\xfdzcoder\NOJ\noj-cloud\conf\config-dev.yml --spring.config.import=optional:nacos:instead
+</code></pre><h3 id="问题2构建后缺失-servletwebserverfactory">问题2：构建后缺失 ServletWebServerFactory</h3>
+<pre tabindex="0"><code>❯ .\target\manage-community.exe --spring.config.import=optional:nacos:instead                                                                                                 
+  .   ____          _            __ _ _
+ /\\ / ___&#39;_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | &#39;_ | &#39;_| | &#39;_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  &#39;  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2024-10-24T19:22:26.676+08:00  INFO 20784 --- [           main] i.g.x.n.c.m.c.ManageCommunityApplication : Starting AOT-processed ManageCommunityApplication using Java 21.0.5 with PID 20784 (D:\projects\work\xfdzcoder\NOJ\noj-cloud\manage\manage-community\target\manage-community.exe started by xfdz in D:\projects\work\xfdzcoder\NOJ\noj-cloud\manage\manage-community)
+2024-10-24T19:22:26.676+08:00  INFO 20784 --- [           main] i.g.x.n.c.m.c.ManageCommunityApplication : No active profile set, falling back to 1 default profile: &#34;default&#34;
+2024-10-24T19:22:26.676+08:00  WARN 20784 --- [           main] c.a.c.n.c.NacosConfigDataLoader          : [Nacos Config] config[dataId=instead, group=DEFAULT_GROUP] is empty
+2024-10-24T19:22:26.677+08:00  WARN 20784 --- [           main] w.s.c.ServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-10-24T19:22:26.677+08:00 ERROR 20784 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   :
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web application could not be started as there was no org.springframework.boot.web.servlet.server.ServletWebServerFactory bean defined in the context.
+
+Action:
+
+Check your application&#39;s dependencies for a supported servlet web server.
+Check the configured web application type.
+</code></pre><h4 id="解决-1">解决</h4>
+<p>不能使用bootstrap，需要使用spring.config.import导入</p>
+<h3 id="问题3failed-to-generate-code-for-refreshscope">问题3：Failed to generate code for RefreshScope</h3>
+<pre tabindex="0"><code>Exception in thread &#34;main&#34; java.lang.IllegalArgumentException: Failed to generate code for &#39;org.springframework.cloud.context.scope.refresh.RefreshScope@6093d508&#39; with type org.springframework.cloud.context.scope.refresh.RefreshScope
+</code></pre><h4 id="解决-2">解决</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">cloud</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">refresh</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">enabled</span>: <span style="color:#ff79c6">false</span>
+</span></span></code></pre></div><h3 id="问题4communityinfomapper和mapperfactorybean的bean定义冲突">问题4：communityInfoMapper和MapperFactoryBean的bean定义冲突</h3>
+<pre tabindex="0"><code>org.springframework.context.annotation.ConflictingBeanDefinitionException: Annotation-specified bean name &#39;communityInfoMapper&#39; for bean class [io.github.xfdzcoder.noj.cloud.manage.community.mapper.CommunityInfoMapper] conflicts with existing, non-compatible bean definition of same name and class [org.mybatis.spring.mapper.MapperFactoryBean]
+</code></pre><h4 id="解决-3">解决</h4>
+<p><a href="https://blog.csdn.net/asddd44/article/details/137240340">spring-boot+native-image+整合myabtis-plus、spring-security_mybatis native-image-CSDN博客</a></p>
+<p><a href="https://github.com/baomidou/mybatis-plus/issues/5527">SpringBoot3支持问题 · Issue #5527 · baomidou/mybatis-plus</a></p>
+<h3 id="问题5servercheckresponsesetsupportabilitynegotiationboolean-without-it-being-registered-for-runtime-reflection">问题5：ServerCheckResponse.setSupportAbilityNegotiation(boolean) without it being registered for runtime reflection</h3>
+<pre tabindex="0"><code>2024-10-31T21:14:47.983+08:00  WARN 31708 --- [community] [           main] com.alibaba.nacos.common.remote.client   : [180612eb-b1c7-4a72-88d2-249b14fc773a] Fail to connect to server on start up, error message = The program tried to reflectively inv
+oke method public void com.alibaba.nacos.api.remote.response.ServerCheckResponse.setSupportAbilityNegotiation(boolean) without it being registered for runtime reflection. Add public void com.alibaba.nacos.api.remote.response.ServerCheckResponse.setSupportAbilityNegotiation(boolean) to the reflection metadata to solve this problem. See https://www.graalvm.org/latest/reference-manual/native-image/metadata/#reflection for help., start up retry times left: -1
+
+org.graalvm.nativeimage.MissingReflectionRegistrationError: The program tried to reflectively invoke method public void com.alibaba.nacos.api.remote.response.ServerCheckResponse.setSupportAbilityNegotiation(boolean) without it being registered for ru
+ntime reflection. Add public void com.alibaba.nacos.api.remote.response.ServerCheckResponse.setSupportAbilityNegotiation(boolean) to the reflection metadata to solve this problem. See https://www.graalvm.org/latest/reference-manual/native-image/metadata/#reflection for help.
+</code></pre><h4 id="解决-4">解决</h4>
+<p><a href="https://github.com/alibaba/nacos/issues/12688">grallvm 原生镜像 com.alibaba.nacos.api.remote.response.ServerCheckResponse MissingReflectionRegistrationError ·问题 #12688 ·阿里巴巴/NACOS</a></p>
+<h3 id="问题6无法连接-nacos">问题6：无法连接 Nacos</h3>
+<pre tabindex="0"><code>2024-10-31T22:48:52.881+08:00  INFO 36860 --- [community] [           main] com.alibaba.nacos.client.naming          : Create naming rpc client for uuid-&gt;0885d21e-a9e0-4107-bad1-e389c1fb94f3
+2024-10-31T22:48:52.881+08:00  INFO 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : [0885d21e-a9e0-4107-bad1-e389c1fb94f3] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager  
+2024-10-31T22:48:52.882+08:00  INFO 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : [0885d21e-a9e0-4107-bad1-e389c1fb94f3] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2024-10-31T22:48:52.882+08:00  INFO 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : [0885d21e-a9e0-4107-bad1-e389c1fb94f3] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2024-10-31T22:48:52.882+08:00  INFO 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : [0885d21e-a9e0-4107-bad1-e389c1fb94f3] Try to connect to server on start up, server: {serverIp = &#39;172.24.0.2&#39;, server main port = 4404}
+2024-10-31T22:48:52.882+08:00  INFO 36860 --- [community] [           main] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:172.24.0.2 ip,serverPort:5404,grpcTslConfig:{&#34;sslProvider&#34;:&#34;&#34;,&#34;enableTls&#34;:false,&#34;mutualAuthEnable&#34;:false,&#34;trustAll&#34;:false}
+2024-10-31T22:48:53.049+08:00  WARN 36860 --- [community] [or-172.24.0.2-6] c.a.n.c.remote.client.grpc.GrpcClient    : [1730386133685_172.24.0.1_6289]Ignore error event,isRunning:false,isAbandon=false
+2024-10-31T22:48:54.874+08:00 ERROR 36860 --- [community] [remote.worker.0] c.a.n.c.remote.client.grpc.GrpcClient    : Client don&#39;t receive server abilities table even empty table but server supports ability negotiation. You can check if it is need to adjust the timeout of ability negotiation by property: nacos.remote.client.grpc.channel.capability.negotiation.timeout if always fail to connect.
+</code></pre><pre tabindex="0"><code>2024-10-31T22:49:13.479+08:00  INFO 36860 --- [community] [remote.worker.0] c.a.n.c.remote.client.grpc.GrpcClient    : grpc client connection server:172.24.0.2 ip,serverPort:5404,grpcTslConfig:{&#34;sslProvider&#34;:&#34;&#34;,&#34;enableTls&#34;:false,&#34;mutualAuthEnable&#34;:false,&#34;trustAll&#34;:false}
+2024-10-31T22:49:13.589+08:00 ERROR 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : Send request fail, request = InstanceRequest{headers={accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6MTczMDQwNDEzM30.HpXbUhZoEX6Y2nGm4w_nNDXP3qJxkHqRYvq2hTeg118, app=unknown}, requestId=&#39;null&#39;}, retryTimes = 0, errorMessage = Client not connected, current status:STARTING
+2024-10-31T22:49:13.672+08:00  WARN 36860 --- [community] [r-172.24.0.2-34] c.a.n.c.remote.client.grpc.GrpcClient    : [1730386154305_172.24.0.1_6333]Ignore error event,isRunning:false,isAbandon=false
+2024-10-31T22:49:13.698+08:00 ERROR 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : Send request fail, request = InstanceRequest{headers={accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6MTczMDQwNDEzM30.HpXbUhZoEX6Y2nGm4w_nNDXP3qJxkHqRYvq2hTeg118, app=unknown}, requestId=&#39;null&#39;}, retryTimes = 1, errorMessage = Client not connected, current status:STARTING
+2024-10-31T22:49:13.808+08:00 ERROR 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : Send request fail, request = InstanceRequest{headers={accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6MTczMDQwNDEzM30.HpXbUhZoEX6Y2nGm4w_nNDXP3qJxkHqRYvq2hTeg118, app=unknown}, requestId=&#39;null&#39;}, retryTimes = 2, errorMessage = Client not connected, current status:STARTING
+2024-10-31T22:49:13.918+08:00 ERROR 36860 --- [community] [           main] com.alibaba.nacos.common.remote.client   : Send request fail, request = InstanceRequest{headers={accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6MTczMDQwNDEzM30.HpXbUhZoEX6Y2nGm4w_nNDXP3qJxkHqRYvq2hTeg118, app=unknown}, requestId=&#39;null&#39;}, retryTimes = 3, errorMessage = Client not connected, current status:STARTING
+2024-10-31T22:49:13.919+08:00 ERROR 36860 --- [community] [           main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, community register failed...NacosRegistration{nacosDiscoveryProperties=NacosDiscoveryProperties{serverAddr=&#39;172.24.
+0.2:4404&#39;, username=&#39;nacos&#39;, password=&#39;wxzxgsybD_P258852&#39;, endpoint=&#39;&#39;, namespace=&#39;5003c224-1a0f-4d34-b02c-5942e451f893&#39;, watchDelay=30000, logName=&#39;&#39;, service=&#39;community&#39;, weight=1.0, clusterName=&#39;DEFAULT&#39;, group=&#39;MANAGE_GROUP&#39;, namingLoadCacheAtSta
+rt=&#39;false&#39;, metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip=&#39;172.24.0.1&#39;, networkInterface=&#39;&#39;, port=8080, secure=false, accessKey=&#39;&#39;, secretKey=&#39;&#39;, heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null, instanceEnabled=true, ephemeral=true, failureToleranceEnabled=false}, ipDeleteTimeout=null, failFast=true}},
+
+com.alibaba.nacos.api.exception.NacosException: Client not connected, current status:STARTING
+</code></pre><h4 id="解决-5">解决</h4>
+<p>需要添加如下配置中的jvmArguments部分，之前参考的是spring-boot-starter-parent里的配置，添加jvmArguments之后重新构建即可。</p>
+<pre tabindex="0"><code>&lt;profiles&gt;
+        &lt;profile&gt;
+            &lt;id&gt;native&lt;/id&gt;
+            &lt;build&gt;
+                &lt;plugins&gt;
+                    &lt;plugin&gt;
+                        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+                        &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+                        &lt;configuration&gt;
+                            &lt;archive&gt;
+                                &lt;manifestEntries&gt;
+                                    &lt;Spring-Boot-Native-Processed&gt;true&lt;/Spring-Boot-Native-Processed&gt;
+                                &lt;/manifestEntries&gt;
+                            &lt;/archive&gt;
+                        &lt;/configuration&gt;
+                    &lt;/plugin&gt;
+                    &lt;plugin&gt;
+                        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                        &lt;configuration&gt;
+                            &lt;jvmArguments&gt;
+                                -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,experimental-conditional-config-filter-file=src/main/resources/conditional-filter.json,access-filter-file=src/main/resources/user-code-filter.json
+                                &lt;!-- 被认为包含在这个过滤器中的类将被指定为用户代码类 --&gt;
+                                &lt;!--experimental-conditional-config-filter-file=src/main/resources/user-code-filter.json,--&gt;
+                                &lt;!-- 要进一步过滤生成的配置 --&gt;
+                                &lt;!-- conditional-config-class-filter-file=&lt;path&gt; --&gt;
+                                &lt;!-- 访问过滤器适用于访问的目标。因此，访问过滤器可以直接从生成的配置中排除包和类（及其成员）。 --&gt;
+                                &lt;!--access-filter-file=src/main/resources/conditional-filter.json--&gt;
+                                &lt;!-- 过滤机制通过识别执行访问的 Java 方法（也称为调用方方法）并将其声明类与一系列过滤规则相匹配来工作 --&gt;
+                                &lt;!--caller-filter-file=src/main/resources/--&gt;
+                            &lt;/jvmArguments&gt;
+                            &lt;image&gt;
+                                &lt;builder&gt;paketobuildpacks/builder-jammy-tiny:latest&lt;/builder&gt;
+                                &lt;env&gt;
+                                    &lt;BP_NATIVE_IMAGE&gt;true&lt;/BP_NATIVE_IMAGE&gt;
+                                &lt;/env&gt;
+                            &lt;/image&gt;
+                        &lt;/configuration&gt;
+                        &lt;executions&gt;
+                            &lt;execution&gt;
+                                &lt;id&gt;process-aot&lt;/id&gt;
+                                &lt;goals&gt;
+                                    &lt;goal&gt;process-aot&lt;/goal&gt;
+                                &lt;/goals&gt;
+                            &lt;/execution&gt;
+                        &lt;/executions&gt;
+                    &lt;/plugin&gt;
+                    &lt;plugin&gt;
+                        &lt;groupId&gt;org.graalvm.buildtools&lt;/groupId&gt;
+                        &lt;artifactId&gt;native-maven-plugin&lt;/artifactId&gt;
+                        &lt;configuration&gt;
+                            &lt;classesDirectory&gt;${project.build.outputDirectory}&lt;/classesDirectory&gt;
+                            &lt;metadataRepository&gt;
+                                &lt;enabled&gt;true&lt;/enabled&gt;
+                            &lt;/metadataRepository&gt;
+                            &lt;requiredVersion&gt;22.3&lt;/requiredVersion&gt;
+                        &lt;/configuration&gt;
+                        &lt;executions&gt;
+                            &lt;execution&gt;
+                                &lt;id&gt;add-reachability-metadata&lt;/id&gt;
+                                &lt;goals&gt;
+                                    &lt;goal&gt;add-reachability-metadata&lt;/goal&gt;
+                                &lt;/goals&gt;
+                            &lt;/execution&gt;
+                        &lt;/executions&gt;
+                    &lt;/plugin&gt;
+                &lt;/plugins&gt;
+            &lt;/build&gt;
+        &lt;/profile&gt;
+    &lt;/profiles&gt;
+</code></pre>
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/" data-toggle="tooltip" data-placement="top" title="">Next
+                            Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+                
+
+                
+
+
+            </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/debian" title="debian">
+                            debian
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
+                            java基础
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/kubernetes" title="kubernetes">
+                            kubernetes
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/leetcode" title="leetcode">
+                            leetcode
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/linux" title="linux">
+                            linux
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/mysql" title="mysql">
+                            mysql
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot">
+                            springboot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/springboot" title="springboot&#39;">
+                            springboot&#39;
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/ssm" title="ssm">
+                            ssm
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/tools" title="tools">
+                            tools
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/top" title="top">
+                            top
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E6%A0%91" title="树">
+                            树
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E7%A7%81%E6%9C%89%E5%B1%80%E5%9F%9F%E7%BD%91%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83" title="私有局域网搭建开发环境">
+                            私有局域网搭建开发环境
+                        </a>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <a href="/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0" title="阅读笔记">
+                            阅读笔记
+                        </a>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+                <section>
+                    <hr>
+                    <h5>FRIENDS</h5>
+                    <ul class="list-inline">
+                        
+                        <li><a target="_blank" href="https://zrgzs.github.io/guide">ZRGZS 的博客</a></li>
+                        
+                    </ul>
+                </section>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">                  
+                    
+                    <li>
+                        <a href="mailto:xfdzcoder@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		           
+                    
+                    
+                    
+                    
+
+		            
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/xfdzcoder">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		            
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+           
+             </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; XFDZ&#39;s Blog 2024
+                    
+                    <br>
+                    <a href="https://themes.gohugo.io/hugo-theme-cleanwhite">CleanWhite Hugo Theme</a> by <a href="https://zhaohuabing.com">Huabing</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=zhaohuabing&repo=hugo-theme-cleanwhite&type=star&count=true" >
+                    </iframe>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function loadAsync(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        loadAsync("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    loadAsync("https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        
+        
+        
+        
+            _containerSelector = 'div.post-container'
+        
+
+        
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        
+        $(selector).html('')
+
+        
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    
+
+
+    loadAsync("\/js\/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+
+</html>

@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="从0到N搭建微服务项目" />
-    <meta property="og:title" content="从0到N搭建微服务项目" />
-    <meta property="twitter:title" content="从0到N搭建微服务项目" />
+    <meta name="title" content="SSM&#43;Shiro&#43;Redis纯注解环境搭建" />
+    <meta property="og:title" content="SSM&#43;Shiro&#43;Redis纯注解环境搭建" />
+    <meta property="twitter:title" content="SSM&#43;Shiro&#43;Redis纯注解环境搭建" />
     
 
     
@@ -34,7 +34,7 @@
     <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>从0到N搭建微服务项目 | XFDZ Blog</title>
+    <title>SSM&#43;Shiro&#43;Redis纯注解环境搭建 | XFDZ Blog</title>
 
     <link rel="canonical" href="/7224237482966319107/">
 
@@ -194,16 +194,12 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/top" title="top">
-                            top
-                        </a>
-                        
-                        <a class="tag" href="/tags/springcloud" title="springcloud">
-                            springcloud
+                        <a class="tag" href="/tags/ssm" title="ssm">
+                            ssm
                         </a>
                         
                     </div>
-                    <h1>从0到N搭建微服务项目</h1>
+                    <h1>SSM&#43;Shiro&#43;Redis纯注解环境搭建</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -212,7 +208,7 @@
                                     XFDZ&#39;s Blog
                              
                             on 
-                            Thursday, May 30, 2024
+                            Wednesday, November 23, 2022
                             
                             
                             
@@ -238,595 +234,149 @@
                 post-container">
 
                 
-                <h1 id="0-技术体系-">0 技术体系 ：</h1>
-<ul>
-<li>SpringCloud</li>
-<li>SpringCloud Alibaba</li>
-<li>SpringCloud Alibaba Nacos</li>
-<li>SpringCloud Feign</li>
-<li>SpringCloud Gateway</li>
-</ul>
-<h1 id="1-模块设计">1 模块设计</h1>
-<ul>
-<li>cloud01-demo
-<ul>
-<li>api-gateway
-<ul>
-<li>API 网关模块。集中了所有服务的接口，并根据请求url将请求转发到对应的微服务上</li>
-</ul>
-</li>
-<li>user-services-module
-<ul>
-<li>用户服务。负责处理与用户相关的操作</li>
-</ul>
-</li>
-<li>others-services-module
-<ul>
-<li>第三方服务模块。负责调用第三方服务接口</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-项目基础搭建">2 项目基础搭建</h1>
-<h2 id="21-新建项目">2.1 新建项目</h2>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-15-f1a81213ea79029c5f518bacc7a64bc5-1681022637631-8c0491ec-77a3-4849-9b2d-24f6aa8f8376-0a83a6.png" alt="image.png">
-
-</p>
-<h2 id="22-选择springboot版本和依赖">2.2 选择SpringBoot版本和依赖</h2>
-<p>这里什么都不选，留空</p>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-28-771eafcfb7b08d557c728891e93db8bb-1681022671441-f679acb5-b5e6-4f4e-8f53-06f9293edb7f-ca1f24.png" alt="image.png">
-
-</p>
-<h2 id="23-删除杂项">2.3 删除杂项</h2>
-<p>暂时不知道是什么的东西，记得把 src 也删了，截图的时候删漏了</p>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-35-1dee286f5a9a3b4dbf01be7b14d9ed0e-1681022813695-8a0ab780-649e-4704-9c1f-f51b3fe070bd-99cd61.png" alt="image.png">
-
-</p>
-<h2 id="24-修改打包方式为pom">2.4 修改打包方式为pom</h2>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-41-c55497325b72cea494007f0d4e823825-1681022981237-b61b553b-28b4-422a-8a1a-9d42d664f535-39f53a.png" alt="image.png">
-
-</p>
-<h2 id="25-确定版本">2.5 确定版本</h2>
-<p>SpringCloud和SpringCloudAlibaba和SpringBoot的版本对应关系在：<a href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">版本说明</a><!-- raw HTML omitted --><strong>首先确定 <strong><code>**Spring Cloud Alibaba Version**</code></strong> 的版本，然后根据该版本来确定各组件的版本</strong><!-- raw HTML omitted -->我这里就选用 2.2.9.RELEASE<!-- raw HTML omitted -->
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-50-200f1224543cc9935414b8b4ce6a231e-1681023291605-6ee72b47-3f9e-47d0-9fc0-0163d7540133-a85596.png" alt="image.png">
-
-<!-- raw HTML omitted -->通过这里可知，Nacos需要 2.1.0 的版本。那么就需要在服务器上安装 2.1.0 的 Nacos 环境。这里就不赘述了，按照 Nacos 官网文档来即可。<!-- raw HTML omitted -->然后其他组件的版本也可以确定了<!-- raw HTML omitted -->最终选择的版本信息如下：</p>
-<table>
-<thead>
-<tr>
-<th>组件名称</th>
-<th>组件版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Spring Cloud Alibaba</td>
-<td>2.2.9.RELEASE</td>
-</tr>
-<tr>
-<td>Spring Cloud Alibaba Nacos</td>
-<td>2.1.0</td>
-</tr>
-<tr>
-<td>Spring Cloud</td>
-<td>Spring Cloud Hoxton.SR12</td>
-</tr>
-<tr>
-<td>Spring Boot Version</td>
-<td>2.3.12.RELEASE</td>
-</tr>
-</tbody>
-</table>
-<h2 id="26-添加依赖管理并修改父项目的版本">2.6 添加依赖管理并修改父项目的版本</h2>
-<p>最终 cloud01-demo 项目的 pom 文件如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;project</span> <span style="color:#50fa7b">xmlns=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style="color:#50fa7b">xmlns:xsi=</span><span style="color:#f1fa8c">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-</span></span><span style="display:flex;"><span>         <span style="color:#50fa7b">xsi:schemaLocation=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#ff79c6">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;modelVersion&gt;</span>4.0.0<span style="color:#ff79c6">&lt;/modelVersion&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;parent&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-parent<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;version&gt;</span>2.3.12.RELEASE<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;relativePath/&gt;</span> <span style="color:#6272a4">&lt;!-- lookup parent from repository --&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/parent&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>com.d<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>cloud01-demo<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>0.0.1-SNAPSHOT<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;packaging&gt;</span>pom<span style="color:#ff79c6">&lt;/packaging&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;properties&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;java.version&gt;</span>1.8<span style="color:#ff79c6">&lt;/java.version&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;spring-cloud.version&gt;</span>Hoxton.SR12<span style="color:#ff79c6">&lt;/spring-cloud.version&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;spring-cloud-alibaba.version&gt;</span>2.2.9.RELEASE<span style="color:#ff79c6">&lt;/spring-cloud-alibaba.version&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/properties&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;dependencyManagement&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependencies&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-dependencies<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;version&gt;</span>${parent.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;scope&gt;</span>import<span style="color:#ff79c6">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;type&gt;</span>pom<span style="color:#ff79c6">&lt;/type&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-dependencies<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;version&gt;</span>${spring-cloud.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;scope&gt;</span>import<span style="color:#ff79c6">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;type&gt;</span>pom<span style="color:#ff79c6">&lt;/type&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-alibaba-dependencies<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;version&gt;</span>${spring-cloud-alibaba.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;scope&gt;</span>import<span style="color:#ff79c6">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;type&gt;</span>pom<span style="color:#ff79c6">&lt;/type&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependencies&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/dependencyManagement&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;build&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;plugins&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;plugin&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;/plugin&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/plugins&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/build&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/project&gt;</span>
-</span></span></code></pre></div><h2 id="27-创建-api-gateway-模块">2.7 创建 api-gateway 模块</h2>
-<h3 id="271-新建模块">2.7.1 新建模块</h3>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-17-57-c9aa44068eca22245c13e28d7759d6ec-1681024209878-7ba36c5e-815f-4646-82b4-7a22035b1c22-0a1c29.png" alt="image.png">
-
-<!-- raw HTML omitted -->
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-18-03-c49da0d7df3f9203b6e5d7768fdb7502-1681024221416-f62cd34f-d737-4843-8815-9fe8f13ab4f2-6c9739.png" alt="image.png">
-
-</p>
-<h3 id="272-删除杂项文件">2.7.2 删除杂项文件</h3>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-18-06-681f9bcc3831859c961a15f97509f44b-1681024250989-f2fb2d86-33d8-4207-be89-56e9bc19042d-32aaee.png" alt="image.png">
-
-</p>
-<h3 id="273-修改-pom-文件为如下">2.7.3 修改 pom 文件为如下</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;project</span> <span style="color:#50fa7b">xmlns=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0&#34;</span> <span style="color:#50fa7b">xmlns:xsi=</span><span style="color:#f1fa8c">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#50fa7b">xsi:schemaLocation=</span><span style="color:#f1fa8c">&#34;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&#34;</span><span style="color:#ff79c6">&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;modelVersion&gt;</span>4.0.0<span style="color:#ff79c6">&lt;/modelVersion&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;parent&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;groupId&gt;</span>com.d<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;artifactId&gt;</span>cloud01-demo<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;version&gt;</span>0.0.1-SNAPSHOT<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;relativePath&gt;</span>../pom.xml<span style="color:#ff79c6">&lt;/relativePath&gt;</span> <span style="color:#6272a4">&lt;!-- lookup parent from repository --&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;/parent&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;groupId&gt;</span>com.d.cloud01-demo<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;artifactId&gt;</span>api-gateway-module<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;version&gt;</span>0.0.1-SNAPSHOT<span style="color:#ff79c6">&lt;/version&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;packaging&gt;</span>jar<span style="color:#ff79c6">&lt;/packaging&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;properties&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;java.version&gt;</span>1.8<span style="color:#ff79c6">&lt;/java.version&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;/properties&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;dependencies&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-test<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;scope&gt;</span>test<span style="color:#ff79c6">&lt;/scope&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;/dependencies&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;build&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;plugins&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;plugin&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>				<span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;/plugin&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;/plugins&gt;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#ff79c6">&lt;/build&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/project&gt;</span>
-</span></span></code></pre></div><h3 id="274-在-父项目的pom中添加-modules-标签">2.7.4 在 父项目的pom中添加 modules 标签</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;modules&gt;</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;module&gt;</span>api-gateway-module<span style="color:#ff79c6">&lt;/module&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;/modules&gt;</span>
-</span></span></code></pre></div><h2 id="28x-按照-27-的步骤创建其余模块">2.8.x 按照 2.7 的步骤创建其余模块</h2>
-<p>最终的目录结构：</p>
-<p>
-  <img src="https://cdn.jsdelivr.net/gh/zrgzs/images@main/images/2024%2F07%2F31%2F11-18-14-926005767a086cd24ca2f0bebbe0921b-1681025379431-7adcf23d-88b7-4f3e-b0b5-3f22a4dde4de-13a095.png" alt="image.png">
-
-</p>
-<h1 id="3-配置-api-gateway-module-模块">3 配置 api-gateway-module 模块</h1>
-<h2 id="31-引依赖">3.1 引依赖</h2>
+                <p>首先根据业务拆分成 <code>Permission</code> 和 <code>Club</code> 两个模块。<!-- raw HTML omitted -->然后在父工程中添加依赖：</p>
+<h2 id="1-springweb开发">1. SpringWeb开发</h2>
+<h3 id="11-添加依赖">1.1 添加依赖</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-webmvc<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>5.2.22.RELEASE<span style="color:#ff79c6">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-gateway<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-test<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&lt;version&gt;</span>${spring.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-jdbc<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>${spring.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><h2 id="32-打注解">3.2 打注解</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@SpringBootApplication
-</span></span><span style="display:flex;"><span>@EnableDiscoveryClient
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">ApiGatewayModuleApplication</span> {
+</span></span></code></pre></div><h3 id="12-添加容器启动配置类">1.2 添加容器启动配置类</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">PermissionWebInitializer</span> <span style="color:#8be9fd;font-style:italic">extends</span> AbstractAnnotationConfigDispatcherServletInitializer {
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">protected</span> Class<span style="color:#ff79c6">&lt;?&gt;[]</span> getRootConfigClasses() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Class<span style="color:#ff79c6">[]</span>{SpringMvcConfig.<span style="color:#50fa7b">class</span>};
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
-</span></span><span style="display:flex;"><span>		SpringApplication.<span style="color:#50fa7b">run</span>(ApiGatewayModuleApplication.<span style="color:#50fa7b">class</span>, args);
-</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">protected</span> Class<span style="color:#ff79c6">&lt;?&gt;[]</span> getServletConfigClasses() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> Class<span style="color:#ff79c6">[]</span>{};
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Override
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">protected</span> String<span style="color:#ff79c6">[]</span> <span style="color:#50fa7b">getServletMappings</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> String<span style="color:#ff79c6">[]</span>{<span style="color:#f1fa8c">&#34;/&#34;</span>};
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="33-写配置">3.3 写配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">server</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">port</span>: <span style="color:#bd93f9">7777</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">application</span>:
-</span></span><span style="display:flex;"><span>  	<span style="color:#6272a4"># 服务名称</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">name</span>: yiyou-gateway
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">cloud</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">nacos</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">discovery</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">server-addr</span>: nacos服务器的ip:端口号
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">username</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.key 配置项
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">password</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.value 配置项
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">gateway</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">discovery</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">locator</span>:
-</span></span><span style="display:flex;"><span>          <span style="color:#6272a4"># 开启从注册中心动态创建路由的功能，利用微服务名称进行路由</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">enabled</span>: <span style="color:#ff79c6">true</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">routes</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># 将 micro-service-cloud-provider-dept-8001 提供的服务隐藏起来</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># 不暴露给客户端，只给客户端暴露 API 网关的地址 9527</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4"># 路由 id,没有固定规则，但唯一，建议与服务名对应</span>
-</span></span><span style="display:flex;"><span>        - <span style="color:#ff79c6">id</span>: provider-user-services
-</span></span><span style="display:flex;"><span>          <span style="color:#6272a4"># 匹配后提供服务的路由地址，可以通过 ip:port 的形式，也可以通过 lb://服务名 的形式</span>
-</span></span><span style="display:flex;"><span>        	<span style="color:#6272a4"># 通过服务名进行跳转时需要设置 spring.cloud.gateway.discovery.locator.enabled=true</span>
-</span></span><span style="display:flex;"><span>					<span style="color:#6272a4"># uri: http://localhost:7778</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">uri</span>: lb://user-services
-</span></span><span style="display:flex;"><span>        	<span style="color:#6272a4"># 其余断言条件详见：https://www.cnblogs.com/h--d/p/12741901.html</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">predicates</span>:
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># 以下是断言条件，必选全部符合条件</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># 断言，路径匹配 注意：Path 中 P 为大写</span>
-</span></span><span style="display:flex;"><span>            - Path=/user/**
-</span></span><span style="display:flex;"><span>            <span style="color:#6272a4"># 只能 符合要求时，才能访问</span>
-</span></span><span style="display:flex;"><span>            - Method=GET,POST,PUT,DELETE
-</span></span></code></pre></div><h1 id="4-配置-others-services-module">4 配置 others-services-module</h1>
-<p>这里就以微信小程序登录为第三方接口为例。</p>
-<h2 id="41-引依赖">4.1 引依赖</h2>
+</span></span></code></pre></div><blockquote>
+<p>《Spring实战》
+AbstractAnnotationConfigDispatcherServletInitializer剖析
+如果你坚持要了解更多细节的话，那就看这里吧。在Servlet 3.0环境中，容器会在类路径中查找实
+现javax.servlet.servletContainerInitializer接口的类，如果能发现的话，就会用它来配置Servet容器。</p>
+<p>Spring提供了这个接口的实现，名为SpringServletContainerInitializer，这个类反过来又会查找实现webApplicationInitializer的类并将配置的任务交给它们来完成。Spring 3.2引入了一个便利的WiebApplicationInitializer基础实现，也就是AbstractAnnotationConfigDispatcherServletInitializer。因为我们的Spittr-WebAppInitializer扩展了AbstractAnnotationConfig DispatcherServlet-Initializer(同时也就实现了webApplicationInitializer)，因此当部署到Servlet 3.0容器中的时候，容器会自动发现它，并用它来配置Servlet上下文。</p>
+<p>尽管它的名字很长，但是AbstractAnnotationConfigDispatcherServlet-Initializer使用起来很简便。在程序清单5.1中，SpittrwebAppInitializer重写了三个方法。</p>
+</blockquote>
+<h2 id="2-lombok">2. Lombok</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-openfeign<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.projectlombok<span style="color:#ff79c6">&lt;/groupId&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>lombok<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>1.18.24<span style="color:#ff79c6">&lt;/version&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><h2 id="42-写配置">4.2 写配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">server</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">port</span>: <span style="color:#bd93f9">7778</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">application</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 服务名称</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">name</span>: others-services
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">cloud</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">nacos</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">discovery</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">server-addr</span>: nacos服务器的ip:端口号
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">username</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.key 配置项
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">password</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.value 配置项
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">others-service-feign</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">wechat-mini-program</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">url</span>: api.weixin.qq.com
-</span></span></code></pre></div><h2 id="43-编写-第三方接口-的请求对象和响应对象">4.3 编写 第三方接口 的请求对象和响应对象</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.othersservicesmodule.feign.request;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.Data;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.NoArgsConstructor;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.Serializable;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description: 微信小程序登录请求实体类对象
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 11:10:04
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@Data
-</span></span><span style="display:flex;"><span>@NoArgsConstructor
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">WechatMiniProgramLoginRequest</span> <span style="color:#8be9fd;font-style:italic">implements</span> Serializable {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 登录时获取的 code
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String js_code;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 小程序 appid
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String appid;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 小程序 appSecret
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String secret;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 授权类型，此处只需填写 authorization_code
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String grant_type <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;authorization_code&#34;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">long</span> serialVersionUID <span style="color:#ff79c6">=</span> 1L;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.othersservicesmodule.feign.response;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.Data;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> java.io.Serializable;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description: 微信小程序登录请求响应对象
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 11:11:16
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@Data
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">WechatMiniProgramLoginResponse</span> <span style="color:#8be9fd;font-style:italic">implements</span> Serializable {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 会话密钥
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String session_key;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 用户在开放平台的唯一标识符，若当前小程序已绑定到微信开放平台帐号下会返回，详见 &lt;a href=&#34;https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html&#34;&gt;UnionID 机制说明&lt;/a&gt;。
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String unionid;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 错误信息
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String errmsg;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 用户唯一标识
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> String openid;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 错误码
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> Integer errcode;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd;font-style:italic">final</span> <span style="color:#8be9fd">long</span> serialVersionUID <span style="color:#ff79c6">=</span> 1L;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="44-编写-feignclient-类">4.4 编写 FeignClient 类</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.othersservicesmodule.feign;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.d.cloud01demo.othersservicesmodule.feign.request.WechatMiniProgramLoginRequest;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.d.cloud01demo.othersservicesmodule.feign.response.WechatMiniProgramLoginResponse;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.cloud.openfeign.FeignClient;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.cloud.openfeign.SpringQueryMap;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.GetMapping;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 15:57:27
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@FeignClient(name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;wechatMiniProgramService&#34;</span>, url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;${others-service-feign.wechat-mini-program.url}&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">FeignWechatService</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * 定义微信小程序的登录接口，通过 feign 进行调用
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param request 接口请求对象
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 返回登录接口的响应对象
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
-</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;/sns/jscode2session&#34;</span>)
-</span></span><span style="display:flex;"><span>    WechatMiniProgramLoginResponse <span style="color:#50fa7b">login</span>(@SpringQueryMap WechatMiniProgramLoginRequest request);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="45-在启动类上添加注解">4.5 在启动类上添加注解</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@SpringBootApplication
-</span></span><span style="display:flex;"><span>@EnableDiscoveryClient
-</span></span><span style="display:flex;"><span>@EnableFeignClients(basePackages <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;com.d.cloud01demo.othersservicesmodule.feign&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">OthersServicesModuleApplication</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
-</span></span><span style="display:flex;"><span>		SpringApplication.<span style="color:#50fa7b">run</span>(OthersServicesModuleApplication.<span style="color:#50fa7b">class</span>, args);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="46-编写-controller-类">4.6 编写 Controller 类</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.othersservicesmodule.web.controller;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.d.cloud01demo.othersservicesmodule.feign.FeignWechatService;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.d.cloud01demo.othersservicesmodule.feign.request.WechatMiniProgramLoginRequest;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.extern.slf4j.Slf4j;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.beans.factory.annotation.Autowired;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.GetMapping;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.PathVariable;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.RequestMapping;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.RestController;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 16:04:23
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@Slf4j
-</span></span><span style="display:flex;"><span>@RestController
-</span></span><span style="display:flex;"><span>@RequestMapping(<span style="color:#f1fa8c">&#34;/others/wechat&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">WechatController</span> {
+</span></span></code></pre></div><h2 id="3-mybatis">3. MyBatis</h2>
+<h3 id="31-依赖导入">3.1 依赖导入</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.mybatis<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>mybatis<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>3.5.11<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.mybatis<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>mybatis-spring<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>3.0.1<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>mysql<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>mysql-connector-java<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>8.0.31<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>druid<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>1.2.12<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="32-新增-properties-配置文件">3.2 新增 properties 配置文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>url=jdbc:mysql://localhost:3306/club_manager_server
+</span></span><span style="display:flex;"><span>driverClassName=com.mysql.cj.jdbc.Driver
+</span></span><span style="display:flex;"><span>username=
+</span></span><span style="display:flex;"><span>password=
+</span></span></code></pre></div><h3 id="33-配置-mybatisconfig">3.3 配置 MyBatisConfig</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>@Configuration
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">MybatisConfig</span> {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    @Autowired
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> FeignWechatService feignWechatService;
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> DataSourceProperties dataSourceProperties;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;/login/code/{code}&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">login</span>(@PathVariable String code) {
-</span></span><span style="display:flex;"><span>        log.<span style="color:#50fa7b">info</span>(<span style="color:#f1fa8c">&#34;others-services-module 收到请求&#34;</span>);
-</span></span><span style="display:flex;"><span>        log.<span style="color:#50fa7b">info</span>(<span style="color:#f1fa8c">&#34;code: &#34;</span> <span style="color:#ff79c6">+</span> code);
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// 假装调了第三方接口</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#6272a4">// feignWechatService.login()</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;success&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 配置并返回数据源
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> DataSource <span style="color:#50fa7b">dataSource</span>() {
+</span></span><span style="display:flex;"><span>        DruidDataSource dataSource <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> DruidDataSource();
+</span></span><span style="display:flex;"><span>        dataSource.<span style="color:#50fa7b">setUrl</span>(dataSourceProperties.<span style="color:#50fa7b">getUrl</span>());
+</span></span><span style="display:flex;"><span>        dataSource.<span style="color:#50fa7b">setDriverClassName</span>(dataSourceProperties.<span style="color:#50fa7b">getDriverClassName</span>());
+</span></span><span style="display:flex;"><span>        dataSource.<span style="color:#50fa7b">setUsername</span>(dataSourceProperties.<span style="color:#50fa7b">getUsername</span>());
+</span></span><span style="display:flex;"><span>        dataSource.<span style="color:#50fa7b">setPassword</span>(dataSourceProperties.<span style="color:#50fa7b">getPassword</span>());
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> dataSource;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h1 id="5-配置-user-services-module-模块">5 配置 user-services-module 模块</h1>
-<h2 id="51-引依赖">5.1 引依赖</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-boot-starter-web<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;groupId&gt;</span>com.alibaba.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;groupId&gt;</span>org.springframework.cloud<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;artifactId&gt;</span>spring-cloud-starter-openfeign<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;dependency&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;groupId&gt;</span>org.projectlombok<span style="color:#ff79c6">&lt;/groupId&gt;</span>
-</span></span><span style="display:flex;"><span>			<span style="color:#ff79c6">&lt;artifactId&gt;</span>lombok<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#ff79c6">&lt;/dependency&gt;</span>
-</span></span></code></pre></div><h2 id="52-写配置">5.2 写配置</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ff79c6">server</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">port</span>: <span style="color:#bd93f9">7779</span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">spring</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">application</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#6272a4"># 服务名称</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">name</span>: user-services
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">cloud</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">nacos</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">discovery</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">server-addr</span>: nacos服务器的ip:端口号
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">username</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.key 配置项
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">password</span>: nacos/conf/application.properties 中的 nacos.core.auth.server.identity.value 配置项
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">user-services-feign</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">others-services</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">url</span>: localhost:7779
-</span></span></code></pre></div><h2 id="53-编写远程调用的-feignclient">5.3 编写远程调用的 FeignClient</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.userservicesmodule.feign;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.cloud.openfeign.FeignClient;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.GetMapping;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.PathVariable;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 16:13:52
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@FeignClient(name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;others-services&#34;</span>, url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;${user-services-feign.others-services.url}&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">interface</span> <span style="color:#50fa7b">FeignOthersServices</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;/others/wechat/login/code/{code}&#34;</span>)
-</span></span><span style="display:flex;"><span>    String <span style="color:#50fa7b">login</span>(@PathVariable String code);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="54在启动类上添加注解">5.4在启动类上添加注解</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.userservicesmodule;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.boot.SpringApplication;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.cloud.openfeign.EnableFeignClients;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@SpringBootApplication
-</span></span><span style="display:flex;"><span>@EnableDiscoveryClient
-</span></span><span style="display:flex;"><span>@EnableFeignClients(basePackages <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;com.d.cloud01demo.userservicesmodule.feign&#34;</span>})
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">UserServicesModuleApplication</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> <span style="color:#8be9fd">void</span> <span style="color:#50fa7b">main</span>(String<span style="color:#ff79c6">[]</span> args) {
-</span></span><span style="display:flex;"><span>		SpringApplication.<span style="color:#50fa7b">run</span>(UserServicesModuleApplication.<span style="color:#50fa7b">class</span>, args);
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="55-编写-controller-类">5.5 编写 Controller 类</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#ff79c6">package</span> com.d.cloud01demo.userservicesmodule.web.controller;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> com.d.cloud01demo.userservicesmodule.feign.FeignOthersServices;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> lombok.extern.slf4j.Slf4j;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.beans.factory.annotation.Autowired;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.GetMapping;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.PathVariable;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.RequestMapping;
-</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> org.springframework.web.bind.annotation.RestController;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @description:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @author: Ding
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @version: 1.0
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @createTime: 2023-04-09 15:48:47
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @modify:
-</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>@Slf4j
-</span></span><span style="display:flex;"><span>@RestController
-</span></span><span style="display:flex;"><span>@RequestMapping(<span style="color:#f1fa8c">&#34;/user&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">class</span> <span style="color:#50fa7b">UserController</span> {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @Autowired
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">private</span> FeignOthersServices feignOthersServices;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    @GetMapping(<span style="color:#f1fa8c">&#34;/wechat/login/code/{code}&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> Object <span style="color:#50fa7b">login</span>(@PathVariable String code) {
-</span></span><span style="display:flex;"><span>        String result <span style="color:#ff79c6">=</span> feignOthersServices.<span style="color:#50fa7b">login</span>(code);
-</span></span><span style="display:flex;"><span>        log.<span style="color:#50fa7b">info</span>(<span style="color:#f1fa8c">&#34;请求成功&#34;</span>);
-</span></span><span style="display:flex;"><span>        log.<span style="color:#50fa7b">info</span>(<span style="color:#f1fa8c">&#34;result: &#34;</span> <span style="color:#ff79c6">+</span> result);
-</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> result;
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 配置 SqlSessionFactory 对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @throws Exception
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> SqlSessionFactory <span style="color:#50fa7b">sqlSessionFactory</span>() <span style="color:#8be9fd;font-style:italic">throws</span> Exception  {
+</span></span><span style="display:flex;"><span>        SqlSessionFactoryBean sessionFactory <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> SqlSessionFactoryBean();
+</span></span><span style="display:flex;"><span>        sessionFactory.<span style="color:#50fa7b">setDataSource</span>(dataSource());
+</span></span><span style="display:flex;"><span>        sessionFactory.<span style="color:#50fa7b">setConfigLocation</span>(<span style="color:#ff79c6">new</span> ClassPathResource(<span style="color:#f1fa8c">&#34;mybatis-config.xml&#34;</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> sessionFactory.<span style="color:#50fa7b">getObject</span>();
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @param dataSource 数据源对象
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     * @return 返回事务管理器
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">     */</span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> PlatformTransactionManager <span style="color:#50fa7b">transactionManager</span>(DataSource dataSource) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> DataSourceTransactionManager(dataSource);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    @Bean
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">public</span> <span style="color:#8be9fd;font-style:italic">static</span> PropertySourcesPlaceholderConfigurer <span style="color:#50fa7b">propertySourcesPlaceholderConfigurer</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">new</span> PropertySourcesPlaceholderConfigurer();
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h1 id="6-启动项目">6 启动项目</h1>
-<p>都启动之后，即可成功访问</p>
-<h1 id="总结">总结</h1>
-<ul>
-<li>SpringCloud和SpringCloudAlibaba和SpringBoot的版本对应关系在：<a href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">版本说明</a></li>
-</ul>
+</span></span></code></pre></div><h2 id="4-junit5">4. Junit5</h2>
+<h3 id="41-依赖导入">4.1 依赖导入</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span> <span style="color:#6272a4">&lt;!-- Junit5 --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.junit.jupiter<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>junit-jupiter-api<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>${junit5.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;scope&gt;</span>test<span style="color:#ff79c6">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;groupId&gt;</span>org.junit.jupiter<span style="color:#ff79c6">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;artifactId&gt;</span>junit-jupiter-engine<span style="color:#ff79c6">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;version&gt;</span>${junit5.version}<span style="color:#ff79c6">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&lt;scope&gt;</span>test<span style="color:#ff79c6">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="42-使用示例">4.2 使用示例</h3>
+<p>报错，结束项目开发。</p>
+<p>【参考文章】<!-- raw HTML omitted --><a href="https://blog.csdn.net/Follower_JC/article/details/107105691">实例演示如何以全注解的方式搭建SSM（Spring+SpringMVC+Mybatis）项目_將晨的博客-CSDN博客</a><!-- raw HTML omitted --><a href="https://blog.csdn.net/haydenyu/article/details/76427663">Spring中Resource（资源）的获取_詹姆斯哈登的博客-CSDN博客_spring 获取resource</a></p>
 
 
                 
@@ -836,13 +386,13 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/7224237482966319105/" data-toggle="tooltip" data-placement="top" title="SpringMVC中整合的Jackson从请求体解析参数流程的源码分析">&larr;
+                        <a href="/7224237482966319104/" data-toggle="tooltip" data-placement="top" title="SpringBoot&#43;MybatisPlus快速入门">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/7224246078978457601/" data-toggle="tooltip" data-placement="top" title="mysql中datadir目录下的文件">Next
+                        <a href="/7224233674005610500/" data-toggle="tooltip" data-placement="top" title="链表">Next
                             Post &rarr;</a>
                     </li>
                     
@@ -900,6 +450,8 @@
                         
                         
                         
+                        
+                        
                         <a href="/tags/java%E5%9F%BA%E7%A1%80" title="java基础">
                             java基础
                         </a>
@@ -947,6 +499,10 @@
                         </a>
                         
                         
+                        
+                        <a href="/tags/springcloud" title="springcloud">
+                            springcloud
+                        </a>
                         
                         
                         
