@@ -6,8 +6,15 @@
     <description>Recent content in Posts on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Fri, 01 Nov 2024 21:09:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 12:22:15 +0800</lastBuildDate>
     <atom:link href="https://xfdzcoder.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>效率工具utools的使用</title>
+      <link>https://xfdzcoder.github.io/7265217846525861888/</link>
+      <pubDate>Thu, 21 Nov 2024 12:22:15 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/7265217846525861888/</guid>
+      <description>降本增效，使用触手可得的小工具缩短你繁琐的步骤</description>
+    </item>
     <item>
       <title>私有局域网搭建开发环境其七——SpringCloudAlibaba项目的Native构建</title>
       <link>https://xfdzcoder.github.io/7258102899799007232/</link>
@@ -406,6 +413,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://xfdzcoder.github.io/post/%E6%B1%82%E8%81%8C/java%E5%90%8E%E7%AB%AF/%E9%9D%A2%E7%BB%8F/%E4%BA%8C%E9%9D%A2/</guid>
       <description></description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://xfdzcoder.github.io/post/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/%E8%87%AA%E5%BB%BAnas/%E5%88%A9%E7%94%A8%E8%80%81%E7%AC%94%E8%AE%B0%E6%9C%AC%E8%87%AA%E5%BB%BA%E4%B8%B4%E6%97%B6nas/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://xfdzcoder.github.io/post/%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/%E8%87%AA%E5%BB%BAnas/%E5%88%A9%E7%94%A8%E8%80%81%E7%AC%94%E8%AE%B0%E6%9C%AC%E8%87%AA%E5%BB%BA%E4%B8%B4%E6%97%B6nas/</guid>
+      <description>利用老笔记本自建NAS 格式化成ext4 (base) root@xfdz-debian:~# mkfs.ext4 /dev/sda 挂载 (base) root@xfdz-debian:~# mount /dev/sda /mnt/sn570/ 使用NextCloud搭建个人云盘 Nextcloud - Open source content collaboration platform https://github.com/nextcloud/all-in-one 首次登录获取密码： cat /var/lib/docker/volumes/nextcloud_aio_mastercontainer/_data/data/configuration.json | grep password</description>
     </item>
   </channel>
 </rss>

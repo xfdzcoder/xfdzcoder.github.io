@@ -6,8 +6,15 @@
     <description>Recent content in Tags on XFDZ&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>zh-us</language>
-    <lastBuildDate>Fri, 01 Nov 2024 21:09:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 12:22:15 +0800</lastBuildDate>
     <atom:link href="https://xfdzcoder.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tools</title>
+      <link>https://xfdzcoder.github.io/tags/tools/</link>
+      <pubDate>Thu, 21 Nov 2024 12:22:15 +0800</pubDate>
+      <guid>https://xfdzcoder.github.io/tags/tools/</guid>
+      <description></description>
+    </item>
     <item>
       <title>GraalVM</title>
       <link>https://xfdzcoder.github.io/tags/graalvm/</link>
@@ -223,13 +230,6 @@
       <link>https://xfdzcoder.github.io/tags/ssm/</link>
       <pubDate>Fri, 22 Mar 2024 16:35:09 +0800</pubDate>
       <guid>https://xfdzcoder.github.io/tags/ssm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tools</title>
-      <link>https://xfdzcoder.github.io/tags/tools/</link>
-      <pubDate>Fri, 28 Jul 2023 11:18:04 +0800</pubDate>
-      <guid>https://xfdzcoder.github.io/tags/tools/</guid>
       <description></description>
     </item>
     <item>
