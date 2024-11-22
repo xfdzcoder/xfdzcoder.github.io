@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="私有局域网搭建开发环境其三——dnsmasq自建DNS服务器" />
-    <meta property="og:title" content="私有局域网搭建开发环境其三——dnsmasq自建DNS服务器" />
-    <meta property="twitter:title" content="私有局域网搭建开发环境其三——dnsmasq自建DNS服务器" />
+    <meta name="title" content="私有局域网搭建开发环境其四——自建私有GitLab" />
+    <meta property="og:title" content="私有局域网搭建开发环境其四——自建私有GitLab" />
+    <meta property="twitter:title" content="私有局域网搭建开发环境其四——自建私有GitLab" />
     
 
     
@@ -34,7 +34,7 @@
     <meta name="keyword"  content="xfdz, 个人网站, 互联网, Web, 云原生, 微服务, Java">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>私有局域网搭建开发环境其三——dnsmasq自建DNS服务器 | XFDZ Blog</title>
+    <title>私有局域网搭建开发环境其四——自建私有GitLab | XFDZ Blog</title>
 
     <link rel="canonical" href="/7245597786396205056/">
 
@@ -211,7 +211,7 @@
                         </a>
                         
                     </div>
-                    <h1>私有局域网搭建开发环境其三——dnsmasq自建DNS服务器</h1>
+                    <h1>私有局域网搭建开发环境其四——自建私有GitLab</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         
@@ -247,24 +247,27 @@
 
                 
                 <!-- raw HTML omitted -->
-<h2 id="参考文献">参考文献</h2>
-<p><a href="https://ivo-wang.github.io/2018/06/02/dnsmasq-%E8%AF%A6%E8%A7%A3%E5%8F%8A%E9%85%8D%E7%BD%AE/">dnsmasq 详解及配置 - 老王的自留地 | ivo Blog (ivo-wang.github.io)</a></p>
-<p><a href="https://dnsmasq.org/">Index of / (dnsmasq.org)</a></p>
-<p>我的配置：</p>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">log-queries
-
-cache-size=2000
-clear-on-reload
-resolv-file=/etc/resolv.dnsupstream.conf
-</code></pre><p>自定义域名在 <code>/etc/hosts</code> 文件中定义</p>
-<p><code>/etc/resolv.dnsupstream.conf</code> 文件定义上游DNS服务器，然后在 <code>/etc/resolv.conf</code> 中新增 <code>nameserver 本机接口地址</code> 指向本机的 DNS 服务器</p>
-<h2 id="问题及解决">问题及解决</h2>
-<h3 id="1-nslookup可以查询到ping不行">1. nslookup可以查询到，ping不行</h3>
-<p>还原案发现场：</p>
-<p>DNS服务器建在A电脑，我用B电脑。A和B不在一个物理局域网内，通过 Zerotier 搭建的虚拟局域网相连。所以A、B电脑中各有一张连接WiFi的网卡和一个Zerotier的网卡。</p>
-<p>在B端配置DNS服务器时，需要在两个网卡中都配置。</p>
-<h3 id="2-ping-可以但是浏览器无法访问">2. ping 可以，但是浏览器无法访问</h3>
-<p>clash的原因，没配置过滤，导致访问自定义域名的时候直接被转发了。</p>
+<h2 id="安装环境">安装环境</h2>
+<p>Debian12</p>
+<h2 id="安装">安装</h2>
+<p><a href="https://about.gitlab.com/install/#debian">Download and install GitLab</a></p>
+<ol>
+<li>
+<p>如果找不到gitlab-ee包的，运行apt update 看看是不是镜像问题</p>
+<ul>
+<li>如果是，那么就更换为<a href="https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/">gitlab-ce | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a>，然后安装命令换 gitlab-ce</li>
+</ul>
+</li>
+<li>
+<p>减少内存占用：<a href="https://blog.csdn.net/weixin_45272815/article/details/130033903">降低gitlab的资源占用（直接干）_puma: cluster worker 减少-CSDN博客</a></p>
+<ul>
+<li>16G内存条件下：63.6% -&gt; 36.7%</li>
+</ul>
+</li>
+</ol>
+<h3 id="安装gitlab-runner">安装GitLab-Runner</h3>
+<p>这个的安装建议直接在物理机中安装而不是通过docker等容器化安装方式，可以避免很多不必要的麻烦。</p>
+<p>详见：<a href="https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/">Using Docker-in-Docker for your CI or testing environment? Think twice.</a></p>
 
 
                 
@@ -274,13 +277,13 @@ resolv-file=/etc/resolv.dnsupstream.conf
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/7245436255238922240/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其二——Zerotier搭建虚拟局域网">&larr;
+                        <a href="/7245597786396205056/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其三——dnsmasq自建DNS服务器">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/7245597786396205056/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其四——自建私有GitLab">Next
+                        <a href="/7245621337065037824/" data-toggle="tooltip" data-placement="top" title="私有局域网搭建开发环境其四——自建GitLab">Next
                             Post &rarr;</a>
                     </li>
                     
